@@ -2,8 +2,8 @@
 # platform :ios, '9.0'
 
 target 'CaptureVue' do
-  # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
+  platform :ios, '15.1'
 
   # Pods for CaptureVue
 

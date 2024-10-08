@@ -12,6 +12,7 @@
 		F9A561E82CB5BD5E00634C7A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A561E72CB5BD5E00634C7A /* ContentView.swift */; };
 		F9A561EA2CB5BD6000634C7A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F9A561E92CB5BD6000634C7A /* Assets.xcassets */; };
 		F9A561ED2CB5BD6000634C7A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F9A561EC2CB5BD6000634C7A /* Preview Assets.xcassets */; };
+		F9A561F52CB5C34E00634C7A /* SwiftfulRouting in Frameworks */ = {isa = PBXBuildFile; productRef = F9A561F42CB5C34E00634C7A /* SwiftfulRouting */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +32,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5457F31B200F5FF381B36EA8 /* Pods_CaptureVue.framework in Frameworks */,
+				F9A561F52CB5C34E00634C7A /* SwiftfulRouting in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -43,7 +45,6 @@
 				B1796C4E2D302A5133D7D757 /* Pods-CaptureVue.debug.xcconfig */,
 				E8C2D384A7F5A3605A10C257 /* Pods-CaptureVue.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -109,6 +110,9 @@
 			dependencies = (
 			);
 			name = CaptureVue;
+			packageProductDependencies = (
+				F9A561F42CB5C34E00634C7A /* SwiftfulRouting */,
+			);
 			productName = CaptureVue;
 			productReference = F9A561E22CB5BD5E00634C7A /* CaptureVue.app */;
 			productType = "com.apple.product-type.application";
@@ -137,6 +141,9 @@
 				Base,
 			);
 			mainGroup = F9A561D92CB5BD5E00634C7A;
+			packageReferences = (
+				F9A561F32CB5C34E00634C7A /* XCRemoteSwiftPackageReference "SwiftfulRouting" */,
+			);
 			productRefGroup = F9A561E32CB5BD5E00634C7A /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -332,6 +339,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -362,6 +370,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -397,6 +406,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		F9A561F32CB5C34E00634C7A /* XCRemoteSwiftPackageReference "SwiftfulRouting" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwiftfulThinking/SwiftfulRouting.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.3.6;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		F9A561F42CB5C34E00634C7A /* SwiftfulRouting */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F9A561F32CB5C34E00634C7A /* XCRemoteSwiftPackageReference "SwiftfulRouting" */;
+			productName = SwiftfulRouting;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = F9A561DA2CB5BD5E00634C7A /* Project object */;
 }
