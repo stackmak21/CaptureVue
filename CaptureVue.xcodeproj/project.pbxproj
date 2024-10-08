@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5457F31B200F5FF381B36EA8 /* Pods_CaptureVue.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 787C7C26BE395C5F3D6E1B4E /* Pods_CaptureVue.framework */; };
 		F9A561E62CB5BD5E00634C7A /* CaptureVueApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A561E52CB5BD5E00634C7A /* CaptureVueApp.swift */; };
 		F9A561E82CB5BD5E00634C7A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A561E72CB5BD5E00634C7A /* ContentView.swift */; };
 		F9A561EA2CB5BD6000634C7A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F9A561E92CB5BD6000634C7A /* Assets.xcassets */; };
@@ -14,6 +15,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		787C7C26BE395C5F3D6E1B4E /* Pods_CaptureVue.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CaptureVue.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B1796C4E2D302A5133D7D757 /* Pods-CaptureVue.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CaptureVue.debug.xcconfig"; path = "Target Support Files/Pods-CaptureVue/Pods-CaptureVue.debug.xcconfig"; sourceTree = "<group>"; };
+		E8C2D384A7F5A3605A10C257 /* Pods-CaptureVue.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CaptureVue.release.xcconfig"; path = "Target Support Files/Pods-CaptureVue/Pods-CaptureVue.release.xcconfig"; sourceTree = "<group>"; };
 		F9A561E22CB5BD5E00634C7A /* CaptureVue.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CaptureVue.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9A561E52CB5BD5E00634C7A /* CaptureVueApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureVueApp.swift; sourceTree = "<group>"; };
 		F9A561E72CB5BD5E00634C7A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -26,17 +30,38 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5457F31B200F5FF381B36EA8 /* Pods_CaptureVue.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		43D61A224B7B74C52C56E12C /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B1796C4E2D302A5133D7D757 /* Pods-CaptureVue.debug.xcconfig */,
+				E8C2D384A7F5A3605A10C257 /* Pods-CaptureVue.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		9560C0B3BF1E483A6219C553 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				787C7C26BE395C5F3D6E1B4E /* Pods_CaptureVue.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		F9A561D92CB5BD5E00634C7A = {
 			isa = PBXGroup;
 			children = (
 				F9A561E42CB5BD5E00634C7A /* CaptureVue */,
 				F9A561E32CB5BD5E00634C7A /* Products */,
+				43D61A224B7B74C52C56E12C /* Pods */,
+				9560C0B3BF1E483A6219C553 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -74,6 +99,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F9A561F02CB5BD6000634C7A /* Build configuration list for PBXNativeTarget "CaptureVue" */;
 			buildPhases = (
+				A219F8ED7448E7B63145773C /* [CP] Check Pods Manifest.lock */,
 				F9A561DE2CB5BD5E00634C7A /* Sources */,
 				F9A561DF2CB5BD5E00634C7A /* Frameworks */,
 				F9A561E02CB5BD5E00634C7A /* Resources */,
@@ -131,6 +157,31 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		A219F8ED7448E7B63145773C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-CaptureVue-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		F9A561DE2CB5BD5E00634C7A /* Sources */ = {
@@ -266,6 +317,7 @@
 		};
 		F9A561F12CB5BD6000634C7A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B1796C4E2D302A5133D7D757 /* Pods-CaptureVue.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -295,6 +347,7 @@
 		};
 		F9A561F22CB5BD6000634C7A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E8C2D384A7F5A3605A10C257 /* Pods-CaptureVue.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
