@@ -6,19 +6,34 @@
 //
 
 import Foundation
+import UIKit
 import SwiftUI
 
 struct Typography {
     static func light(size: CGFloat) -> Font {
-        FontFamily.Ubuntu.light.swiftUIFont(size: size)
+        FontFamily.Ubuntu.light.font(size: size)
     }
     static func regular(size: CGFloat) -> Font {
-        FontFamily.Ubuntu.regular.swiftUIFont(size: size)
+        FontFamily.Ubuntu.regular.font(size: size)
     }
     static func medium(size: CGFloat) -> Font {
-        FontFamily.Ubuntu.medium.swiftUIFont(size: size)
+        FontFamily.Ubuntu.medium.font(size: size)
     }
     static func bold(size: CGFloat) -> Font {
-        FontFamily.Ubuntu.bold.swiftUIFont(size: size)
+        FontFamily.Ubuntu.bold.font(size: size)
+    }
+}
+
+
+typealias SwiftUiFont = Font
+typealias UiKitFont = UIFont
+
+extension FontConvertible {
+    func font(size: CGFloat) -> SwiftUiFont {
+        return SwiftUiFont.custom(name, size: size)
+    }
+    
+    func uiKitFont(size: CGFloat) -> UiKitFont {
+        return font(size: size)
     }
 }

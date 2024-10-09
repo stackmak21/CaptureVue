@@ -21,6 +21,8 @@
 		F9A5622E2CB71B0500634C7A /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A5622C2CB71B0500634C7A /* Assets.swift */; };
 		F9A5622F2CB71B0500634C7A /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A5622D2CB71B0500634C7A /* Fonts.swift */; };
 		F9A562322CB71CDC00634C7A /* Typography.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A562312CB71CDC00634C7A /* Typography.swift */; };
+		F9A562362CB72E6E00634C7A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F9A562382CB72E6E00634C7A /* Localizable.strings */; };
+		F9A5623B2CB72F4F00634C7A /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A5623A2CB72F4F00634C7A /* Strings.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +43,9 @@
 		F9A5622C2CB71B0500634C7A /* Assets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Assets.swift; sourceTree = "<group>"; };
 		F9A5622D2CB71B0500634C7A /* Fonts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 		F9A562312CB71CDC00634C7A /* Typography.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Typography.swift; sourceTree = "<group>"; };
+		F9A562372CB72E6E00634C7A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		F9A562392CB72E7200634C7A /* el */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = el; path = el.lproj/Localizable.strings; sourceTree = "<group>"; };
+		F9A5623A2CB72F4F00634C7A /* Strings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +101,7 @@
 		F9A561E42CB5BD5E00634C7A /* CaptureVue */ = {
 			isa = PBXGroup;
 			children = (
+				F9A562332CB72E3100634C7A /* Strings */,
 				F9A562302CB71CCC00634C7A /* Theme */,
 				F9A5620B2CB7116C00634C7A /* Fonts */,
 				F9A561E52CB5BD5E00634C7A /* CaptureVueApp.swift */,
@@ -131,6 +137,7 @@
 			children = (
 				F9A5622C2CB71B0500634C7A /* Assets.swift */,
 				F9A5622D2CB71B0500634C7A /* Fonts.swift */,
+				F9A5623A2CB72F4F00634C7A /* Strings.swift */,
 			);
 			path = Generated;
 			sourceTree = "<group>";
@@ -141,6 +148,14 @@
 				F9A562312CB71CDC00634C7A /* Typography.swift */,
 			);
 			path = Theme;
+			sourceTree = "<group>";
+		};
+		F9A562332CB72E3100634C7A /* Strings */ = {
+			isa = PBXGroup;
+			children = (
+				F9A562382CB72E6E00634C7A /* Localizable.strings */,
+			);
+			path = Strings;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -190,6 +205,7 @@
 			knownRegions = (
 				en,
 				Base,
+				el,
 			);
 			mainGroup = F9A561D92CB5BD5E00634C7A;
 			packageReferences = (
@@ -214,6 +230,7 @@
 				F9A561ED2CB5BD6000634C7A /* Preview Assets.xcassets in Resources */,
 				F9A5621C2CB716CB00634C7A /* Ubuntu-Bold.ttf in Resources */,
 				F9A5621B2CB716C800634C7A /* Ubuntu-Light.ttf in Resources */,
+				F9A562362CB72E6E00634C7A /* Localizable.strings in Resources */,
 				F9A5621A2CB716C500634C7A /* Ubuntu-Medium.ttf in Resources */,
 				F9A561EA2CB5BD6000634C7A /* Assets.xcassets in Resources */,
 			);
@@ -257,6 +274,7 @@
 				"$(PROJECT_DIR)/swiftgen.yml",
 				"$(PROJECT_DIR)/$TARGET_NAME/Assets.xcassets",
 				"$(PROJECT_DIR)/$TARGET_NAME/Fonts",
+				"$(PROJECT_DIR)/$TARGET_NAME/Strings",
 			);
 			name = SwiftGen;
 			outputFileListPaths = (
@@ -264,10 +282,11 @@
 			outputPaths = (
 				"$(PROJECT_DIR)/Generated/Assets.swift",
 				"$(PROJECT_DIR)/Generated/Fonts.swift",
+				"$(PROJECT_DIR)/Generated/Strings.swift",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif [[ -f \"${PODS_ROOT}/SwiftGen/bin/swiftgen\" ]]; then\n  echo $PROJECT_DIR\n  mkdir -p Generated\n  touch Generated/Assets.swift\n  touch Generated/Fonts.swift\n  \"${PODS_ROOT}/SwiftGen/bin/swiftgen\" config run --config \"${PROJECT_DIR}/swiftgen.yml\"\n  echo \"PODS_ROOT: $PODS_ROOT\"\n  echo \"PROJECT_DIR: $PROJECT_DIR\"\n  echo \"SRCROOT: $SRCROOT\"\n  \nelse\n  echo \"warning: SwiftGen is not installed. Run 'pod install --repo-update' to install it.\"\nfi\n\n";
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif [[ -f \"${PODS_ROOT}/SwiftGen/bin/swiftgen\" ]]; then\n  echo $PROJECT_DIR\n  mkdir -p Generated\n  touch Generated/Assets.swift\n  touch Generated/Fonts.swift\n  touch Generated/Strings.swift\n  \"${PODS_ROOT}/SwiftGen/bin/swiftgen\" config run --config \"${PROJECT_DIR}/swiftgen.yml\"\n  echo \"PODS_ROOT: $PODS_ROOT\"\n  echo \"PROJECT_DIR: $PROJECT_DIR\"\n  echo \"SRCROOT: $SRCROOT\"\n  \nelse\n  echo \"warning: SwiftGen is not installed. Run 'pod install --repo-update' to install it.\"\nfi\n\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -280,11 +299,24 @@
 				F9A5622F2CB71B0500634C7A /* Fonts.swift in Sources */,
 				F9A561E82CB5BD5E00634C7A /* ContentView.swift in Sources */,
 				F9A561E62CB5BD5E00634C7A /* CaptureVueApp.swift in Sources */,
+				F9A5623B2CB72F4F00634C7A /* Strings.swift in Sources */,
 				F9A5622E2CB71B0500634C7A /* Assets.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		F9A562382CB72E6E00634C7A /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F9A562372CB72E6E00634C7A /* en */,
+				F9A562392CB72E7200634C7A /* el */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		F9A561EE2CB5BD6000634C7A /* Debug */ = {

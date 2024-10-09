@@ -2,13 +2,13 @@
 
       
       
-#strings:
-#  inputs: WrenchWizard/ios/Strings/en.lproj
-#  outputs:
-#    - templateName: structured-swift5
-#      params:
-#        enumName: Strings
-#      output: Generated/Strings.swift
+strings:
+  inputs: CaptureVue/Strings/en.lproj
+  outputs:
+    - templateName: structured-swift5
+      params:
+        enumName: Strings
+      output: Generated/Strings.swift
 xcassets:
   inputs: CaptureVue/Assets.xcassets
   outputs:
