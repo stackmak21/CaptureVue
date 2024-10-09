@@ -13,6 +13,7 @@
 		F9A561EA2CB5BD6000634C7A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F9A561E92CB5BD6000634C7A /* Assets.xcassets */; };
 		F9A561ED2CB5BD6000634C7A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F9A561EC2CB5BD6000634C7A /* Preview Assets.xcassets */; };
 		F9A561F52CB5C34E00634C7A /* SwiftfulRouting in Frameworks */ = {isa = PBXBuildFile; productRef = F9A561F42CB5C34E00634C7A /* SwiftfulRouting */; };
+		F9A5620A2CB6F74500634C7A /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A562092CB6F74500634C7A /* Assets.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		F9A561E72CB5BD5E00634C7A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		F9A561E92CB5BD6000634C7A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F9A561EC2CB5BD6000634C7A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		F9A562092CB6F74500634C7A /* Assets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Assets.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +61,7 @@
 		F9A561D92CB5BD5E00634C7A = {
 			isa = PBXGroup;
 			children = (
+				F9A562082CB6F74500634C7A /* Generated */,
 				F9A561E42CB5BD5E00634C7A /* CaptureVue */,
 				F9A561E32CB5BD5E00634C7A /* Products */,
 				43D61A224B7B74C52C56E12C /* Pods */,
@@ -93,6 +96,14 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		F9A562082CB6F74500634C7A /* Generated */ = {
+			isa = PBXGroup;
+			children = (
+				F9A562092CB6F74500634C7A /* Assets.swift */,
+			);
+			path = Generated;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -101,6 +112,7 @@
 			buildConfigurationList = F9A561F02CB5BD6000634C7A /* Build configuration list for PBXNativeTarget "CaptureVue" */;
 			buildPhases = (
 				A219F8ED7448E7B63145773C /* [CP] Check Pods Manifest.lock */,
+				F9A561F62CB5D49F00634C7A /* SwiftGen */,
 				F9A561DE2CB5BD5E00634C7A /* Sources */,
 				F9A561DF2CB5BD5E00634C7A /* Frameworks */,
 				F9A561E02CB5BD5E00634C7A /* Resources */,
@@ -188,6 +200,28 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		F9A561F62CB5D49F00634C7A /* SwiftGen */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 12;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/SwiftGen/bin",
+				"$(PROJECT_DIR)/swiftgen.yml",
+				"$(PROJECT_DIR)/$TARGET_NAME/Assets.xcassets",
+			);
+			name = SwiftGen;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(PROJECT_DIR)/Generated/Assets.swift",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif [[ -f \"${PODS_ROOT}/SwiftGen/bin/swiftgen\" ]]; then\n  echo $PROJECT_DIR\n  mkdir -p Generated\n  touch Generated/Assets.swift\n  \"${PODS_ROOT}/SwiftGen/bin/swiftgen\" config run --config \"${PROJECT_DIR}/swiftgen.yml\"\n  echo \"PODS_ROOT: $PODS_ROOT\"\necho \"PROJECT_DIR: $PROJECT_DIR\"\necho \"SRCROOT: $SRCROOT\"\n  \nelse\n  echo \"warning: SwiftGen is not installed. Run 'pod install --repo-update' to install it.\"\nfi\n\n";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -197,6 +231,7 @@
 			files = (
 				F9A561E82CB5BD5E00634C7A /* ContentView.swift in Sources */,
 				F9A561E62CB5BD5E00634C7A /* CaptureVueApp.swift in Sources */,
+				F9A5620A2CB6F74500634C7A /* Assets.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -255,7 +290,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -312,7 +347,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;

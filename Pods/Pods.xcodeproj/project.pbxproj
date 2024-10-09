@@ -6,11 +6,34 @@
 	objectVersion = 56;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		1E798429DCFA7906F6625CCFC1088744 /* SwiftGen */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = FB296D1C543ACA89207838196BB823E7 /* Build configuration list for PBXAggregateTarget "SwiftGen" */;
+			buildPhases = (
+			);
+			dependencies = (
+			);
+			name = SwiftGen;
+			productName = SwiftGen;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
-		622679E776D91C7C06792B7931EF282B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
-		AD350583D8C05E24787F7535E7685DB6 /* Pods-CaptureVue-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = BD853479F609510CDC221E6A9895D873 /* Pods-CaptureVue-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		E59E0EFC09757C6DDC97DEE8AF12129B /* Pods-CaptureVue-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 38E428A0DB1B9A2F406562B143C29490 /* Pods-CaptureVue-dummy.m */; };
+		3712524D039FEF83D4502DD7E7343BC6 /* Pods-CaptureVue-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = BD853479F609510CDC221E6A9895D873 /* Pods-CaptureVue-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		5091B6F51C06E52FB01041A784E5E094 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
+		C2D07CCF57416F9A5BCF79E8B1AE3ABB /* Pods-CaptureVue-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 38E428A0DB1B9A2F406562B143C29490 /* Pods-CaptureVue-dummy.m */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		04EC5607129AF39BE08C590526959007 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1E798429DCFA7906F6625CCFC1088744;
+			remoteInfo = SwiftGen;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		10C6F943A482FC52BB864F63291EB35A /* Pods-CaptureVue-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-CaptureVue-acknowledgements.markdown"; sourceTree = "<group>"; };
@@ -18,26 +41,36 @@
 		3D3ADDFA7DA3FED298D6E7B884DF2A23 /* Pods-CaptureVue-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-CaptureVue-acknowledgements.plist"; sourceTree = "<group>"; };
 		63F5522265393C0843305B86DC88DAB3 /* Pods-CaptureVue.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-CaptureVue.debug.xcconfig"; sourceTree = "<group>"; };
 		73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		A7E2F3968103CD37F0078EE21E735FF6 /* Pods-CaptureVue-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-CaptureVue-Info.plist"; sourceTree = "<group>"; };
+		B4263489E673801EC37C1F15D4E531D8 /* SwiftGen.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SwiftGen.release.xcconfig; sourceTree = "<group>"; };
 		B7D07D8A4271D8EDAA9F8D952C9E3A99 /* Pods-CaptureVue */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-CaptureVue"; path = Pods_CaptureVue.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BD853479F609510CDC221E6A9895D873 /* Pods-CaptureVue-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-CaptureVue-umbrella.h"; sourceTree = "<group>"; };
 		CB1B5FC55A7190F0D8E36BDBBA27E674 /* Pods-CaptureVue.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-CaptureVue.modulemap"; sourceTree = "<group>"; };
 		F07992984266F41657997143A0BBC0BB /* Pods-CaptureVue.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-CaptureVue.release.xcconfig"; sourceTree = "<group>"; };
+		FD691AE7128F940D3B179941FCEC2F54 /* SwiftGen.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SwiftGen.debug.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		B20AE113A01F710B8CE048E28CDB2E5C /* Frameworks */ = {
+		DB69255BDAAF92E1DD59F67809ACB728 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				622679E776D91C7C06792B7931EF282B /* Foundation.framework in Frameworks */,
+				5091B6F51C06E52FB01041A784E5E094 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		08DF4A29620F30ECCD85AE71F22FD52C /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				878C176E7A3E3DF8BAB24F0858DEDDDD /* SwiftGen */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		31F3ABE2EE1E559B1F63DCBCC89579E1 /* Pods-CaptureVue */ = {
 			isa = PBXGroup;
 			children = (
@@ -70,11 +103,30 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		878C176E7A3E3DF8BAB24F0858DEDDDD /* SwiftGen */ = {
+			isa = PBXGroup;
+			children = (
+				AB4F699EB2CE4C63CBA1FEFDD0861DAA /* Support Files */,
+			);
+			path = SwiftGen;
+			sourceTree = "<group>";
+		};
+		AB4F699EB2CE4C63CBA1FEFDD0861DAA /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				FD691AE7128F940D3B179941FCEC2F54 /* SwiftGen.debug.xcconfig */,
+				B4263489E673801EC37C1F15D4E531D8 /* SwiftGen.release.xcconfig */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/SwiftGen";
+			sourceTree = "<group>";
+		};
 		CF1408CF629C7361332E53B88F7BD30C = {
 			isa = PBXGroup;
 			children = (
 				9D940727FF8FB9C785EB98E56350EF41 /* Podfile */,
 				D210D550F4EA176C3123ED886F8F87F5 /* Frameworks */,
+				08DF4A29620F30ECCD85AE71F22FD52C /* Pods */,
 				6EC04B5DCE6CE48C45B1DE780D66136A /* Products */,
 				DDD44C2AD2A04D5852215BE1C038515F /* Targets Support Files */,
 			);
@@ -99,11 +151,11 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		9C114DDA46921E554A44246CD5E268DA /* Headers */ = {
+		BE862D3AAD48DD88A766D7A7AE7CD53C /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AD350583D8C05E24787F7535E7685DB6 /* Pods-CaptureVue-umbrella.h in Headers */,
+				3712524D039FEF83D4502DD7E7343BC6 /* Pods-CaptureVue-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -112,16 +164,17 @@
 /* Begin PBXNativeTarget section */
 		F2682801DD7B47F52253FDBC4F8C824A /* Pods-CaptureVue */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = A282CE8D66EEEF4F43E34D3AFACF7918 /* Build configuration list for PBXNativeTarget "Pods-CaptureVue" */;
+			buildConfigurationList = 08FE4F81843138436B93ABF80705356E /* Build configuration list for PBXNativeTarget "Pods-CaptureVue" */;
 			buildPhases = (
-				9C114DDA46921E554A44246CD5E268DA /* Headers */,
-				21356AF7D41699016CB21B66F963608B /* Sources */,
-				B20AE113A01F710B8CE048E28CDB2E5C /* Frameworks */,
-				F9A5BA26DB0B1B7D7F87ECAA543C3F9C /* Resources */,
+				BE862D3AAD48DD88A766D7A7AE7CD53C /* Headers */,
+				D5E889D3712A82A1060424A33BCAEA81 /* Sources */,
+				DB69255BDAAF92E1DD59F67809ACB728 /* Frameworks */,
+				C61CF26427A96D0A4C010522EB0A7241 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				A032D7C3306CFC0CD30D4B067D457110 /* PBXTargetDependency */,
 			);
 			name = "Pods-CaptureVue";
 			productName = Pods_CaptureVue;
@@ -146,18 +199,18 @@
 				en,
 			);
 			mainGroup = CF1408CF629C7361332E53B88F7BD30C;
-			minimizedProjectReferenceProxies = 0;
 			productRefGroup = 6EC04B5DCE6CE48C45B1DE780D66136A /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				F2682801DD7B47F52253FDBC4F8C824A /* Pods-CaptureVue */,
+				1E798429DCFA7906F6625CCFC1088744 /* SwiftGen */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		F9A5BA26DB0B1B7D7F87ECAA543C3F9C /* Resources */ = {
+		C61CF26427A96D0A4C010522EB0A7241 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -167,18 +220,43 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		21356AF7D41699016CB21B66F963608B /* Sources */ = {
+		D5E889D3712A82A1060424A33BCAEA81 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E59E0EFC09757C6DDC97DEE8AF12129B /* Pods-CaptureVue-dummy.m in Sources */,
+				C2D07CCF57416F9A5BCF79E8B1AE3ABB /* Pods-CaptureVue-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		A032D7C3306CFC0CD30D4B067D457110 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = SwiftGen;
+			target = 1E798429DCFA7906F6625CCFC1088744 /* SwiftGen */;
+			targetProxy = 04EC5607129AF39BE08C590526959007 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
-		6A5C026ED62BBFE3380CD257EEFAEB20 /* Debug */ = {
+		2202230BF25CAB2FDC609A71D79055BB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = FD691AE7128F940D3B179941FCEC2F54 /* SwiftGen.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		296F86E0DD688C440F8EB2FD9C0415AF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -231,7 +309,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -244,7 +322,45 @@
 			};
 			name = Debug;
 		};
-		B657C0B768E0E5B53174206630135871 /* Debug */ = {
+		710F40732421B4E4EF942A8868CF44C7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F07992984266F41657997143A0BBC0BB /* Pods-CaptureVue.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-CaptureVue/Pods-CaptureVue-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-CaptureVue/Pods-CaptureVue.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		AC1478A4FB097C2AF18247CEC416907B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 63F5522265393C0843305B86DC88DAB3 /* Pods-CaptureVue.debug.xcconfig */;
 			buildSettings = {
@@ -260,7 +376,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = "Target Support Files/Pods-CaptureVue/Pods-CaptureVue-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -281,7 +397,24 @@
 			};
 			name = Debug;
 		};
-		E873CA97BD124B21839AF13C9BE1CD18 /* Release */ = {
+		CF3B4AB84D0F77E437676BAFB9C2086C /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B4263489E673801EC37C1F15D4E531D8 /* SwiftGen.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		F3E264B2417BDFCD2BC2B58566242312 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -331,7 +464,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -343,61 +476,32 @@
 			};
 			name = Release;
 		};
-		EE01A46550A4130FB4E9CF154C36466A /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = F07992984266F41657997143A0BBC0BB /* Pods-CaptureVue.release.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-CaptureVue/Pods-CaptureVue-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-CaptureVue/Pods-CaptureVue.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */ = {
+		08FE4F81843138436B93ABF80705356E /* Build configuration list for PBXNativeTarget "Pods-CaptureVue" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				6A5C026ED62BBFE3380CD257EEFAEB20 /* Debug */,
-				E873CA97BD124B21839AF13C9BE1CD18 /* Release */,
+				AC1478A4FB097C2AF18247CEC416907B /* Debug */,
+				710F40732421B4E4EF942A8868CF44C7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		A282CE8D66EEEF4F43E34D3AFACF7918 /* Build configuration list for PBXNativeTarget "Pods-CaptureVue" */ = {
+		4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				B657C0B768E0E5B53174206630135871 /* Debug */,
-				EE01A46550A4130FB4E9CF154C36466A /* Release */,
+				296F86E0DD688C440F8EB2FD9C0415AF /* Debug */,
+				F3E264B2417BDFCD2BC2B58566242312 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FB296D1C543ACA89207838196BB823E7 /* Build configuration list for PBXAggregateTarget "SwiftGen" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2202230BF25CAB2FDC609A71D79055BB /* Debug */,
+				CF3B4AB84D0F77E437676BAFB9C2086C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
