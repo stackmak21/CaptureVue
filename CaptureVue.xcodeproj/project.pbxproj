@@ -13,7 +13,14 @@
 		F9A561EA2CB5BD6000634C7A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F9A561E92CB5BD6000634C7A /* Assets.xcassets */; };
 		F9A561ED2CB5BD6000634C7A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F9A561EC2CB5BD6000634C7A /* Preview Assets.xcassets */; };
 		F9A561F52CB5C34E00634C7A /* SwiftfulRouting in Frameworks */ = {isa = PBXBuildFile; productRef = F9A561F42CB5C34E00634C7A /* SwiftfulRouting */; };
-		F9A5620A2CB6F74500634C7A /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A562092CB6F74500634C7A /* Assets.swift */; };
+		F9A562192CB716C300634C7A /* Ubuntu-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F9A562172CB714EE00634C7A /* Ubuntu-Regular.ttf */; };
+		F9A5621A2CB716C500634C7A /* Ubuntu-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F9A562182CB714EE00634C7A /* Ubuntu-Medium.ttf */; };
+		F9A5621B2CB716C800634C7A /* Ubuntu-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F9A562162CB714EE00634C7A /* Ubuntu-Light.ttf */; };
+		F9A5621C2CB716CB00634C7A /* Ubuntu-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F9A562152CB714EE00634C7A /* Ubuntu-Bold.ttf */; };
+		F9A5622A2CB71ADC00634C7A /* swiftgen.yml in Resources */ = {isa = PBXBuildFile; fileRef = F9A562292CB71ADC00634C7A /* swiftgen.yml */; };
+		F9A5622E2CB71B0500634C7A /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A5622C2CB71B0500634C7A /* Assets.swift */; };
+		F9A5622F2CB71B0500634C7A /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A5622D2CB71B0500634C7A /* Fonts.swift */; };
+		F9A562322CB71CDC00634C7A /* Typography.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A562312CB71CDC00634C7A /* Typography.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,7 +32,15 @@
 		F9A561E72CB5BD5E00634C7A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		F9A561E92CB5BD6000634C7A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F9A561EC2CB5BD6000634C7A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		F9A562092CB6F74500634C7A /* Assets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Assets.swift; sourceTree = "<group>"; };
+		F9A562102CB711E700634C7A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		F9A562152CB714EE00634C7A /* Ubuntu-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Ubuntu-Bold.ttf"; sourceTree = "<group>"; };
+		F9A562162CB714EE00634C7A /* Ubuntu-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Ubuntu-Light.ttf"; sourceTree = "<group>"; };
+		F9A562172CB714EE00634C7A /* Ubuntu-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Ubuntu-Regular.ttf"; sourceTree = "<group>"; };
+		F9A562182CB714EE00634C7A /* Ubuntu-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Ubuntu-Medium.ttf"; sourceTree = "<group>"; };
+		F9A562292CB71ADC00634C7A /* swiftgen.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = swiftgen.yml; sourceTree = "<group>"; };
+		F9A5622C2CB71B0500634C7A /* Assets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Assets.swift; sourceTree = "<group>"; };
+		F9A5622D2CB71B0500634C7A /* Fonts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
+		F9A562312CB71CDC00634C7A /* Typography.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Typography.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,7 +76,8 @@
 		F9A561D92CB5BD5E00634C7A = {
 			isa = PBXGroup;
 			children = (
-				F9A562082CB6F74500634C7A /* Generated */,
+				F9A5622B2CB71B0500634C7A /* Generated */,
+				F9A562292CB71ADC00634C7A /* swiftgen.yml */,
 				F9A561E42CB5BD5E00634C7A /* CaptureVue */,
 				F9A561E32CB5BD5E00634C7A /* Products */,
 				43D61A224B7B74C52C56E12C /* Pods */,
@@ -80,9 +96,12 @@
 		F9A561E42CB5BD5E00634C7A /* CaptureVue */ = {
 			isa = PBXGroup;
 			children = (
+				F9A562302CB71CCC00634C7A /* Theme */,
+				F9A5620B2CB7116C00634C7A /* Fonts */,
 				F9A561E52CB5BD5E00634C7A /* CaptureVueApp.swift */,
 				F9A561E72CB5BD5E00634C7A /* ContentView.swift */,
 				F9A561E92CB5BD6000634C7A /* Assets.xcassets */,
+				F9A562102CB711E700634C7A /* Info.plist */,
 				F9A561EB2CB5BD6000634C7A /* Preview Content */,
 			);
 			path = CaptureVue;
@@ -96,12 +115,32 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		F9A562082CB6F74500634C7A /* Generated */ = {
+		F9A5620B2CB7116C00634C7A /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
-				F9A562092CB6F74500634C7A /* Assets.swift */,
+				F9A562152CB714EE00634C7A /* Ubuntu-Bold.ttf */,
+				F9A562162CB714EE00634C7A /* Ubuntu-Light.ttf */,
+				F9A562182CB714EE00634C7A /* Ubuntu-Medium.ttf */,
+				F9A562172CB714EE00634C7A /* Ubuntu-Regular.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		F9A5622B2CB71B0500634C7A /* Generated */ = {
+			isa = PBXGroup;
+			children = (
+				F9A5622C2CB71B0500634C7A /* Assets.swift */,
+				F9A5622D2CB71B0500634C7A /* Fonts.swift */,
 			);
 			path = Generated;
+			sourceTree = "<group>";
+		};
+		F9A562302CB71CCC00634C7A /* Theme */ = {
+			isa = PBXGroup;
+			children = (
+				F9A562312CB71CDC00634C7A /* Typography.swift */,
+			);
+			path = Theme;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -170,7 +209,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F9A562192CB716C300634C7A /* Ubuntu-Regular.ttf in Resources */,
+				F9A5622A2CB71ADC00634C7A /* swiftgen.yml in Resources */,
 				F9A561ED2CB5BD6000634C7A /* Preview Assets.xcassets in Resources */,
+				F9A5621C2CB716CB00634C7A /* Ubuntu-Bold.ttf in Resources */,
+				F9A5621B2CB716C800634C7A /* Ubuntu-Light.ttf in Resources */,
+				F9A5621A2CB716C500634C7A /* Ubuntu-Medium.ttf in Resources */,
 				F9A561EA2CB5BD6000634C7A /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -202,6 +246,7 @@
 		};
 		F9A561F62CB5D49F00634C7A /* SwiftGen */ = {
 			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
 			buildActionMask = 12;
 			files = (
 			);
@@ -211,16 +256,18 @@
 				"${PODS_ROOT}/SwiftGen/bin",
 				"$(PROJECT_DIR)/swiftgen.yml",
 				"$(PROJECT_DIR)/$TARGET_NAME/Assets.xcassets",
+				"$(PROJECT_DIR)/$TARGET_NAME/Fonts",
 			);
 			name = SwiftGen;
 			outputFileListPaths = (
 			);
 			outputPaths = (
 				"$(PROJECT_DIR)/Generated/Assets.swift",
+				"$(PROJECT_DIR)/Generated/Fonts.swift",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif [[ -f \"${PODS_ROOT}/SwiftGen/bin/swiftgen\" ]]; then\n  echo $PROJECT_DIR\n  mkdir -p Generated\n  touch Generated/Assets.swift\n  \"${PODS_ROOT}/SwiftGen/bin/swiftgen\" config run --config \"${PROJECT_DIR}/swiftgen.yml\"\n  echo \"PODS_ROOT: $PODS_ROOT\"\necho \"PROJECT_DIR: $PROJECT_DIR\"\necho \"SRCROOT: $SRCROOT\"\n  \nelse\n  echo \"warning: SwiftGen is not installed. Run 'pod install --repo-update' to install it.\"\nfi\n\n";
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif [[ -f \"${PODS_ROOT}/SwiftGen/bin/swiftgen\" ]]; then\n  echo $PROJECT_DIR\n  mkdir -p Generated\n  touch Generated/Assets.swift\n  touch Generated/Fonts.swift\n  \"${PODS_ROOT}/SwiftGen/bin/swiftgen\" config run --config \"${PROJECT_DIR}/swiftgen.yml\"\n  echo \"PODS_ROOT: $PODS_ROOT\"\n  echo \"PROJECT_DIR: $PROJECT_DIR\"\n  echo \"SRCROOT: $SRCROOT\"\n  \nelse\n  echo \"warning: SwiftGen is not installed. Run 'pod install --repo-update' to install it.\"\nfi\n\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -229,9 +276,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F9A562322CB71CDC00634C7A /* Typography.swift in Sources */,
+				F9A5622F2CB71B0500634C7A /* Fonts.swift in Sources */,
 				F9A561E82CB5BD5E00634C7A /* ContentView.swift in Sources */,
 				F9A561E62CB5BD5E00634C7A /* CaptureVueApp.swift in Sources */,
-				F9A5620A2CB6F74500634C7A /* Assets.swift in Sources */,
+				F9A5622E2CB71B0500634C7A /* Assets.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -369,12 +418,13 @@
 				DEVELOPMENT_TEAM = HTZN6N8NQA;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = CaptureVue/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -400,12 +450,13 @@
 				DEVELOPMENT_TEAM = HTZN6N8NQA;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = CaptureVue/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

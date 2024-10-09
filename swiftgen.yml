@@ -1,4 +1,14 @@
 
+
+      
+      
+#strings:
+#  inputs: WrenchWizard/ios/Strings/en.lproj
+#  outputs:
+#    - templateName: structured-swift5
+#      params:
+#        enumName: Strings
+#      output: Generated/Strings.swift
 xcassets:
   inputs: CaptureVue/Assets.xcassets
   outputs:
@@ -6,6 +16,17 @@ xcassets:
       params:
         forceProvidesNamespaces: true
       output: Generated/Assets.swift
+fonts:
+  inputs: CaptureVue/Fonts
+  outputs:
+    templateName: swift5
+    params:
+       fontAliasName: GeneratedFont
+    output: Generated/Fonts.swift
+    
+    
+    
+    
 ## Note: all of the config entries below are just examples with placeholders. Be sure to edit and adjust to your needs when uncommenting.
 
 ## In case your config entries all use a common input/output parent directory, you can specify those here.
