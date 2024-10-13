@@ -6,8 +6,17 @@
 //
 
 import SwiftUI
+import SwiftfulRouting
 
 struct ContentView: View {
+    let router: AnyRouter
+    let data: String?
+    
+    init(router: AnyRouter, data: String? = nil) {
+        self.router = router
+        self.data = data
+    }
+    
     var body: some View {
         VStack {
             Image(uiImage: Asset.Illustrations.image1.image)
@@ -29,13 +38,19 @@ struct ContentView: View {
                 .italic()
             Text("Hello, world!")
                 .italic()
+            if let data {
+                Text(data)
+                    .font(Typography.bold(size: 50))
+            }
+          
+            
                 
         }
         .padding()
     }
 }
 
-#Preview {
-    ContentView()
-}
+//#Preview {
+//    ContentView()
+//}
 

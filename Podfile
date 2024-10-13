@@ -3,7 +3,7 @@
 
 target 'CaptureVue' do
   use_frameworks!
-  platform :ios, '15.1'
+  platform :ios, '16.0'
 
   # Pods for CaptureVue
   pod 'SwiftGen', '~> 6.0'

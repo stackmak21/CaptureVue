@@ -6,12 +6,19 @@
 //
 
 import SwiftUI
+import SwiftfulRouting
 
 @main
 struct CaptureVueApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            RouterView { router in
+                SplashScreen(router: router)
+                    .onOpenURL(perform: { url in
+                        let string = url.absoluteString
+                        print(string)
+                    })
+            }
         }
     }
 }

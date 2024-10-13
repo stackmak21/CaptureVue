@@ -23,7 +23,41 @@
 		F9A562322CB71CDC00634C7A /* Typography.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A562312CB71CDC00634C7A /* Typography.swift */; };
 		F9A562362CB72E6E00634C7A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F9A562382CB72E6E00634C7A /* Localizable.strings */; };
 		F9A5623B2CB72F4F00634C7A /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A5623A2CB72F4F00634C7A /* Strings.swift */; };
+		F9A5623E2CBA8D5A00634C7A /* SplashScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A5623D2CBA8D5A00634C7A /* SplashScreen.swift */; };
+		F9A562442CBABA4200634C7A /* SplashPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A562432CBABA4200634C7A /* SplashPresenter.swift */; };
+		F9A562462CBABA6000634C7A /* SplashInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A562452CBABA6000634C7A /* SplashInteractor.swift */; };
+		F9A562482CBABA7A00634C7A /* SplashRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A562472CBABA7A00634C7A /* SplashRouter.swift */; };
+		F9A5624A2CBABD1900634C7A /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A562492CBABD1900634C7A /* DataService.swift */; };
+		F9A562522CBB9DDD00634C7A /* CaptureVueAppClipApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A562512CBB9DDD00634C7A /* CaptureVueAppClipApp.swift */; };
+		F9A562542CBB9DDD00634C7A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A562532CBB9DDD00634C7A /* ContentView.swift */; };
+		F9A562562CBB9DDF00634C7A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F9A562552CBB9DDF00634C7A /* Assets.xcassets */; };
+		F9A562592CBB9DDF00634C7A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F9A562582CBB9DDF00634C7A /* Preview Assets.xcassets */; };
+		F9A5625E2CBB9DDF00634C7A /* CaptureVueAppClip.app in Embed App Clips */ = {isa = PBXBuildFile; fileRef = F9A5624F2CBB9DDD00634C7A /* CaptureVueAppClip.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		F9A5625C2CBB9DDF00634C7A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F9A561DA2CB5BD5E00634C7A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F9A5624E2CBB9DDD00634C7A;
+			remoteInfo = CaptureVueAppClip;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		F9A562622CBB9DDF00634C7A /* Embed App Clips */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/AppClips";
+			dstSubfolderSpec = 16;
+			files = (
+				F9A5625E2CBB9DDF00634C7A /* CaptureVueAppClip.app in Embed App Clips */,
+			);
+			name = "Embed App Clips";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		787C7C26BE395C5F3D6E1B4E /* Pods_CaptureVue.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CaptureVue.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -46,6 +80,18 @@
 		F9A562372CB72E6E00634C7A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		F9A562392CB72E7200634C7A /* el */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = el; path = el.lproj/Localizable.strings; sourceTree = "<group>"; };
 		F9A5623A2CB72F4F00634C7A /* Strings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
+		F9A5623D2CBA8D5A00634C7A /* SplashScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreen.swift; sourceTree = "<group>"; };
+		F9A562432CBABA4200634C7A /* SplashPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashPresenter.swift; sourceTree = "<group>"; };
+		F9A562452CBABA6000634C7A /* SplashInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashInteractor.swift; sourceTree = "<group>"; };
+		F9A562472CBABA7A00634C7A /* SplashRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashRouter.swift; sourceTree = "<group>"; };
+		F9A562492CBABD1900634C7A /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
+		F9A5624F2CBB9DDD00634C7A /* CaptureVueAppClip.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CaptureVueAppClip.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F9A562512CBB9DDD00634C7A /* CaptureVueAppClipApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureVueAppClipApp.swift; sourceTree = "<group>"; };
+		F9A562532CBB9DDD00634C7A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		F9A562552CBB9DDF00634C7A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F9A562582CBB9DDF00634C7A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		F9A5625A2CBB9DDF00634C7A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F9A5625B2CBB9DDF00634C7A /* CaptureVueAppClip.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CaptureVueAppClip.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +101,13 @@
 			files = (
 				5457F31B200F5FF381B36EA8 /* Pods_CaptureVue.framework in Frameworks */,
 				F9A561F52CB5C34E00634C7A /* SwiftfulRouting in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F9A5624C2CBB9DDD00634C7A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -87,6 +140,7 @@
 				F9A561E32CB5BD5E00634C7A /* Products */,
 				43D61A224B7B74C52C56E12C /* Pods */,
 				9560C0B3BF1E483A6219C553 /* Frameworks */,
+				F9A562502CBB9DDD00634C7A /* CaptureVueAppClip */,
 			);
 			sourceTree = "<group>";
 		};
@@ -94,6 +148,7 @@
 			isa = PBXGroup;
 			children = (
 				F9A561E22CB5BD5E00634C7A /* CaptureVue.app */,
+				F9A5624F2CBB9DDD00634C7A /* CaptureVueAppClip.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -104,11 +159,13 @@
 				F9A562332CB72E3100634C7A /* Strings */,
 				F9A562302CB71CCC00634C7A /* Theme */,
 				F9A5620B2CB7116C00634C7A /* Fonts */,
+				F9A5623C2CBA8D1000634C7A /* Screens */,
 				F9A561E52CB5BD5E00634C7A /* CaptureVueApp.swift */,
 				F9A561E72CB5BD5E00634C7A /* ContentView.swift */,
 				F9A561E92CB5BD6000634C7A /* Assets.xcassets */,
 				F9A562102CB711E700634C7A /* Info.plist */,
 				F9A561EB2CB5BD6000634C7A /* Preview Content */,
+				F9A562492CBABD1900634C7A /* DataService.swift */,
 			);
 			path = CaptureVue;
 			sourceTree = "<group>";
@@ -158,6 +215,46 @@
 			path = Strings;
 			sourceTree = "<group>";
 		};
+		F9A5623C2CBA8D1000634C7A /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				F9A5623F2CBA8D6400634C7A /* Splash */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
+		F9A5623F2CBA8D6400634C7A /* Splash */ = {
+			isa = PBXGroup;
+			children = (
+				F9A5623D2CBA8D5A00634C7A /* SplashScreen.swift */,
+				F9A562432CBABA4200634C7A /* SplashPresenter.swift */,
+				F9A562452CBABA6000634C7A /* SplashInteractor.swift */,
+				F9A562472CBABA7A00634C7A /* SplashRouter.swift */,
+			);
+			path = Splash;
+			sourceTree = "<group>";
+		};
+		F9A562502CBB9DDD00634C7A /* CaptureVueAppClip */ = {
+			isa = PBXGroup;
+			children = (
+				F9A562512CBB9DDD00634C7A /* CaptureVueAppClipApp.swift */,
+				F9A562532CBB9DDD00634C7A /* ContentView.swift */,
+				F9A562552CBB9DDF00634C7A /* Assets.xcassets */,
+				F9A5625A2CBB9DDF00634C7A /* Info.plist */,
+				F9A5625B2CBB9DDF00634C7A /* CaptureVueAppClip.entitlements */,
+				F9A562572CBB9DDF00634C7A /* Preview Content */,
+			);
+			path = CaptureVueAppClip;
+			sourceTree = "<group>";
+		};
+		F9A562572CBB9DDF00634C7A /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				F9A562582CBB9DDF00634C7A /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -170,10 +267,12 @@
 				F9A561DE2CB5BD5E00634C7A /* Sources */,
 				F9A561DF2CB5BD5E00634C7A /* Frameworks */,
 				F9A561E02CB5BD5E00634C7A /* Resources */,
+				F9A562622CBB9DDF00634C7A /* Embed App Clips */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				F9A5625D2CBB9DDF00634C7A /* PBXTargetDependency */,
 			);
 			name = CaptureVue;
 			packageProductDependencies = (
@@ -182,6 +281,23 @@
 			productName = CaptureVue;
 			productReference = F9A561E22CB5BD5E00634C7A /* CaptureVue.app */;
 			productType = "com.apple.product-type.application";
+		};
+		F9A5624E2CBB9DDD00634C7A /* CaptureVueAppClip */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F9A5625F2CBB9DDF00634C7A /* Build configuration list for PBXNativeTarget "CaptureVueAppClip" */;
+			buildPhases = (
+				F9A5624B2CBB9DDD00634C7A /* Sources */,
+				F9A5624C2CBB9DDD00634C7A /* Frameworks */,
+				F9A5624D2CBB9DDD00634C7A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CaptureVueAppClip;
+			productName = CaptureVueAppClip;
+			productReference = F9A5624F2CBB9DDD00634C7A /* CaptureVueAppClip.app */;
+			productType = "com.apple.product-type.application.on-demand-install-capable";
 		};
 /* End PBXNativeTarget section */
 
@@ -194,6 +310,9 @@
 				LastUpgradeCheck = 1500;
 				TargetAttributes = {
 					F9A561E12CB5BD5E00634C7A = {
+						CreatedOnToolsVersion = 15.0;
+					};
+					F9A5624E2CBB9DDD00634C7A = {
 						CreatedOnToolsVersion = 15.0;
 					};
 				};
@@ -216,6 +335,7 @@
 			projectRoot = "";
 			targets = (
 				F9A561E12CB5BD5E00634C7A /* CaptureVue */,
+				F9A5624E2CBB9DDD00634C7A /* CaptureVueAppClip */,
 			);
 		};
 /* End PBXProject section */
@@ -233,6 +353,15 @@
 				F9A562362CB72E6E00634C7A /* Localizable.strings in Resources */,
 				F9A5621A2CB716C500634C7A /* Ubuntu-Medium.ttf in Resources */,
 				F9A561EA2CB5BD6000634C7A /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F9A5624D2CBB9DDD00634C7A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F9A562592CBB9DDF00634C7A /* Preview Assets.xcassets in Resources */,
+				F9A562562CBB9DDF00634C7A /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -297,6 +426,11 @@
 			files = (
 				F9A562322CB71CDC00634C7A /* Typography.swift in Sources */,
 				F9A5622F2CB71B0500634C7A /* Fonts.swift in Sources */,
+				F9A5623E2CBA8D5A00634C7A /* SplashScreen.swift in Sources */,
+				F9A562442CBABA4200634C7A /* SplashPresenter.swift in Sources */,
+				F9A562462CBABA6000634C7A /* SplashInteractor.swift in Sources */,
+				F9A5624A2CBABD1900634C7A /* DataService.swift in Sources */,
+				F9A562482CBABA7A00634C7A /* SplashRouter.swift in Sources */,
 				F9A561E82CB5BD5E00634C7A /* ContentView.swift in Sources */,
 				F9A561E62CB5BD5E00634C7A /* CaptureVueApp.swift in Sources */,
 				F9A5623B2CB72F4F00634C7A /* Strings.swift in Sources */,
@@ -304,7 +438,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		F9A5624B2CBB9DDD00634C7A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F9A562542CBB9DDD00634C7A /* ContentView.swift in Sources */,
+				F9A562522CBB9DDD00634C7A /* CaptureVueAppClipApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		F9A5625D2CBB9DDF00634C7A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F9A5624E2CBB9DDD00634C7A /* CaptureVueAppClip */;
+			targetProxy = F9A5625C2CBB9DDF00634C7A /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		F9A562382CB72E6E00634C7A /* Localizable.strings */ = {
@@ -442,6 +593,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B1796C4E2D302A5133D7D757 /* Pods-CaptureVue.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -456,7 +608,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -474,6 +626,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E8C2D384A7F5A3605A10C257 /* Pods-CaptureVue.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -488,13 +641,79 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = gr.stackmak.CaptureVue;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		F9A562602CBB9DDF00634C7A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = CaptureVueAppClip/CaptureVueAppClip.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"CaptureVueAppClip/Preview Content\"";
+				DEVELOPMENT_TEAM = HTZN6N8NQA;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = CaptureVueAppClip/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = CaptureVue;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = gr.stackmak.CaptureVue.Clip;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		F9A562612CBB9DDF00634C7A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = CaptureVueAppClip/CaptureVueAppClip.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"CaptureVueAppClip/Preview Content\"";
+				DEVELOPMENT_TEAM = HTZN6N8NQA;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = CaptureVueAppClip/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = CaptureVue;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = gr.stackmak.CaptureVue.Clip;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -519,6 +738,15 @@
 			buildConfigurations = (
 				F9A561F12CB5BD6000634C7A /* Debug */,
 				F9A561F22CB5BD6000634C7A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F9A5625F2CBB9DDF00634C7A /* Build configuration list for PBXNativeTarget "CaptureVueAppClip" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F9A562602CBB9DDF00634C7A /* Debug */,
+				F9A562612CBB9DDF00634C7A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
