@@ -27,10 +27,16 @@ struct SplashScreen: View {
                     presenter.goToContent4()
                 }
             })
+            Button("Fatal Error 1234", action: {
+                fatalError("Paris Triggered this error")
+            })
             Button("Modal", action: {
                 if #available(iOS 16.0, *) {
                     presenter.goToContent5()
                 }
+            })
+            Button("Fatal Error", action: {
+                fatalError("Fatal error Paris")
             })
         }
     }

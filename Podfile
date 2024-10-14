@@ -8,4 +8,5 @@ target 'CaptureVue' do
   # Pods for CaptureVue
   pod 'SwiftGen', '~> 6.0'
 
+
 end

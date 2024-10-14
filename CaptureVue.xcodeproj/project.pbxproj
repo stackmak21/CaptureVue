@@ -7,7 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5457F31B200F5FF381B36EA8 /* Pods_CaptureVue.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 787C7C26BE395C5F3D6E1B4E /* Pods_CaptureVue.framework */; };
+		3DD6664B95C65668E07C6012 /* Pods_CaptureVue.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9A6560C7CC0D1F8822ACF60 /* Pods_CaptureVue.framework */; };
+		F966BA652CBD91B6000863F2 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = F966BA642CBD91B6000863F2 /* FirebaseAnalytics */; };
+		F966BA672CBD91B6000863F2 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = F966BA662CBD91B6000863F2 /* FirebaseCrashlytics */; };
+		F9995E8D2CBC4DB100909E85 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F9995E8C2CBC4DB100909E85 /* GoogleService-Info.plist */; };
+		F9995E8E2CBC4DB100909E85 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F9995E8C2CBC4DB100909E85 /* GoogleService-Info.plist */; };
 		F9A561E62CB5BD5E00634C7A /* CaptureVueApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A561E52CB5BD5E00634C7A /* CaptureVueApp.swift */; };
 		F9A561E82CB5BD5E00634C7A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A561E72CB5BD5E00634C7A /* ContentView.swift */; };
 		F9A561EA2CB5BD6000634C7A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F9A561E92CB5BD6000634C7A /* Assets.xcassets */; };
@@ -60,9 +64,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		787C7C26BE395C5F3D6E1B4E /* Pods_CaptureVue.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CaptureVue.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		B1796C4E2D302A5133D7D757 /* Pods-CaptureVue.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CaptureVue.debug.xcconfig"; path = "Target Support Files/Pods-CaptureVue/Pods-CaptureVue.debug.xcconfig"; sourceTree = "<group>"; };
-		E8C2D384A7F5A3605A10C257 /* Pods-CaptureVue.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CaptureVue.release.xcconfig"; path = "Target Support Files/Pods-CaptureVue/Pods-CaptureVue.release.xcconfig"; sourceTree = "<group>"; };
+		62C717BC74FED4716BC578A3 /* Pods-CaptureVue.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CaptureVue.release.xcconfig"; path = "Target Support Files/Pods-CaptureVue/Pods-CaptureVue.release.xcconfig"; sourceTree = "<group>"; };
+		8AB11C2F5B7270D2D97E5BE8 /* Pods-CaptureVue.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CaptureVue.debug.xcconfig"; path = "Target Support Files/Pods-CaptureVue/Pods-CaptureVue.debug.xcconfig"; sourceTree = "<group>"; };
+		C9A6560C7CC0D1F8822ACF60 /* Pods_CaptureVue.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CaptureVue.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F9995E8C2CBC4DB100909E85 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F9A561E22CB5BD5E00634C7A /* CaptureVue.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CaptureVue.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9A561E52CB5BD5E00634C7A /* CaptureVueApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureVueApp.swift; sourceTree = "<group>"; };
 		F9A561E72CB5BD5E00634C7A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -99,8 +104,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5457F31B200F5FF381B36EA8 /* Pods_CaptureVue.framework in Frameworks */,
 				F9A561F52CB5C34E00634C7A /* SwiftfulRouting in Frameworks */,
+				F966BA672CBD91B6000863F2 /* FirebaseCrashlytics in Frameworks */,
+				3DD6664B95C65668E07C6012 /* Pods_CaptureVue.framework in Frameworks */,
+				F966BA652CBD91B6000863F2 /* FirebaseAnalytics in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -114,21 +121,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		179285FA11B373990493C867 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C9A6560C7CC0D1F8822ACF60 /* Pods_CaptureVue.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		43D61A224B7B74C52C56E12C /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				B1796C4E2D302A5133D7D757 /* Pods-CaptureVue.debug.xcconfig */,
-				E8C2D384A7F5A3605A10C257 /* Pods-CaptureVue.release.xcconfig */,
+				8AB11C2F5B7270D2D97E5BE8 /* Pods-CaptureVue.debug.xcconfig */,
+				62C717BC74FED4716BC578A3 /* Pods-CaptureVue.release.xcconfig */,
 			);
 			path = Pods;
-			sourceTree = "<group>";
-		};
-		9560C0B3BF1E483A6219C553 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				787C7C26BE395C5F3D6E1B4E /* Pods_CaptureVue.framework */,
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		F9A561D92CB5BD5E00634C7A = {
@@ -139,8 +146,8 @@
 				F9A561E42CB5BD5E00634C7A /* CaptureVue */,
 				F9A561E32CB5BD5E00634C7A /* Products */,
 				43D61A224B7B74C52C56E12C /* Pods */,
-				9560C0B3BF1E483A6219C553 /* Frameworks */,
 				F9A562502CBB9DDD00634C7A /* CaptureVueAppClip */,
+				179285FA11B373990493C867 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -164,6 +171,7 @@
 				F9A561E72CB5BD5E00634C7A /* ContentView.swift */,
 				F9A561E92CB5BD6000634C7A /* Assets.xcassets */,
 				F9A562102CB711E700634C7A /* Info.plist */,
+				F9995E8C2CBC4DB100909E85 /* GoogleService-Info.plist */,
 				F9A561EB2CB5BD6000634C7A /* Preview Content */,
 				F9A562492CBABD1900634C7A /* DataService.swift */,
 			);
@@ -262,12 +270,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F9A561F02CB5BD6000634C7A /* Build configuration list for PBXNativeTarget "CaptureVue" */;
 			buildPhases = (
-				A219F8ED7448E7B63145773C /* [CP] Check Pods Manifest.lock */,
+				29EFF281DE73DC741EFFF045 /* [CP] Check Pods Manifest.lock */,
 				F9A561F62CB5D49F00634C7A /* SwiftGen */,
 				F9A561DE2CB5BD5E00634C7A /* Sources */,
 				F9A561DF2CB5BD5E00634C7A /* Frameworks */,
 				F9A561E02CB5BD5E00634C7A /* Resources */,
 				F9A562622CBB9DDF00634C7A /* Embed App Clips */,
+				F966BA622CBD9095000863F2 /* Upload dSYMs to Firebase Crashlytics */,
 			);
 			buildRules = (
 			);
@@ -277,6 +286,8 @@
 			name = CaptureVue;
 			packageProductDependencies = (
 				F9A561F42CB5C34E00634C7A /* SwiftfulRouting */,
+				F966BA642CBD91B6000863F2 /* FirebaseAnalytics */,
+				F966BA662CBD91B6000863F2 /* FirebaseCrashlytics */,
 			);
 			productName = CaptureVue;
 			productReference = F9A561E22CB5BD5E00634C7A /* CaptureVue.app */;
@@ -307,7 +318,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1500;
-				LastUpgradeCheck = 1500;
+				LastUpgradeCheck = 1600;
 				TargetAttributes = {
 					F9A561E12CB5BD5E00634C7A = {
 						CreatedOnToolsVersion = 15.0;
@@ -329,6 +340,7 @@
 			mainGroup = F9A561D92CB5BD5E00634C7A;
 			packageReferences = (
 				F9A561F32CB5C34E00634C7A /* XCRemoteSwiftPackageReference "SwiftfulRouting" */,
+				F966BA632CBD91B6000863F2 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = F9A561E32CB5BD5E00634C7A /* Products */;
 			projectDirPath = "";
@@ -347,6 +359,7 @@
 			files = (
 				F9A562192CB716C300634C7A /* Ubuntu-Regular.ttf in Resources */,
 				F9A5622A2CB71ADC00634C7A /* swiftgen.yml in Resources */,
+				F9995E8E2CBC4DB100909E85 /* GoogleService-Info.plist in Resources */,
 				F9A561ED2CB5BD6000634C7A /* Preview Assets.xcassets in Resources */,
 				F9A5621C2CB716CB00634C7A /* Ubuntu-Bold.ttf in Resources */,
 				F9A5621B2CB716C800634C7A /* Ubuntu-Light.ttf in Resources */,
@@ -362,13 +375,14 @@
 			files = (
 				F9A562592CBB9DDF00634C7A /* Preview Assets.xcassets in Resources */,
 				F9A562562CBB9DDF00634C7A /* Assets.xcassets in Resources */,
+				F9995E8D2CBC4DB100909E85 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		A219F8ED7448E7B63145773C /* [CP] Check Pods Manifest.lock */ = {
+		29EFF281DE73DC741EFFF045 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -389,6 +403,29 @@
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
+		};
+		F966BA622CBD9095000863F2 /* Upload dSYMs to Firebase Crashlytics */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}",
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${PRODUCT_NAME}",
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Info.plist",
+				"$(TARGET_BUILD_DIR)/$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/GoogleService-Info.plist",
+				"$(TARGET_BUILD_DIR)/$(EXECUTABLE_PATH)",
+			);
+			name = "Upload dSYMs to Firebase Crashlytics";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"${BUILD_DIR%/Build/*}/SourcePackages/checkouts/firebase-ios-sdk/Crashlytics/run\"\n";
 		};
 		F9A561F62CB5D49F00634C7A /* SwiftGen */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -475,6 +512,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -507,7 +545,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -538,6 +576,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -570,7 +609,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -591,16 +630,17 @@
 		};
 		F9A561F12CB5BD6000634C7A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B1796C4E2D302A5133D7D757 /* Pods-CaptureVue.debug.xcconfig */;
+			baseConfigurationReference = 8AB11C2F5B7270D2D97E5BE8 /* Pods-CaptureVue.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_ASSET_PATHS = "\"CaptureVue/Preview Content\"";
 				DEVELOPMENT_TEAM = HTZN6N8NQA;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CaptureVue/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -614,6 +654,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = gr.stackmak.CaptureVue;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -624,16 +665,17 @@
 		};
 		F9A561F22CB5BD6000634C7A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E8C2D384A7F5A3605A10C257 /* Pods-CaptureVue.release.xcconfig */;
+			baseConfigurationReference = 62C717BC74FED4716BC578A3 /* Pods-CaptureVue.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_ASSET_PATHS = "\"CaptureVue/Preview Content\"";
 				DEVELOPMENT_TEAM = HTZN6N8NQA;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CaptureVue/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -647,6 +689,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = gr.stackmak.CaptureVue;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -754,6 +797,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		F966BA632CBD91B6000863F2 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 11.3.0;
+			};
+		};
 		F9A561F32CB5C34E00634C7A /* XCRemoteSwiftPackageReference "SwiftfulRouting" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SwiftfulThinking/SwiftfulRouting.git";
@@ -765,6 +816,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		F966BA642CBD91B6000863F2 /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F966BA632CBD91B6000863F2 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		F966BA662CBD91B6000863F2 /* FirebaseCrashlytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F966BA632CBD91B6000863F2 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCrashlytics;
+		};
 		F9A561F42CB5C34E00634C7A /* SwiftfulRouting */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = F9A561F32CB5C34E00634C7A /* XCRemoteSwiftPackageReference "SwiftfulRouting" */;
