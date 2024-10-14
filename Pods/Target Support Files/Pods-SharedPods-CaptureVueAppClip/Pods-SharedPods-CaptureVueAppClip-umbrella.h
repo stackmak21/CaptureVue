@@ -11,6 +11,6 @@
 #endif
 
 
-FOUNDATION_EXPORT double Pods_CaptureVueVersionNumber;
-FOUNDATION_EXPORT const unsigned char Pods_CaptureVueVersionString[];
+FOUNDATION_EXPORT double Pods_SharedPods_CaptureVueAppClipVersionNumber;
+FOUNDATION_EXPORT const unsigned char Pods_SharedPods_CaptureVueAppClipVersionString[];
 
