@@ -7,29 +7,42 @@
 
 import Foundation
 
-final class DataService {
+protocol NetworkService {
+    func downloadData<T: Codable>(fromURL: String) async throws -> T?
+}
+
+final class DataService: NetworkService {
     
     
     func downloadData<T: Codable>(fromURL: String) async throws -> T? {
         do {
             guard let url = URL(string: fromURL) else { throw NetworkError.badUrlResponse }
+            var request = URLRequest(url: url)
+            request.allHTTPHeaderFields = ["Content-Type": "application/json"]
+            request.setValue("", forHTTPHeaderField: "Authentication")
+                
+            
             let (data, response) = try await URLSession.shared.data(from: url)
             guard let response = response as? HTTPURLResponse else { throw NetworkError.badResponse }
             guard response.statusCode >= 200 && response.statusCode < 300 else { throw NetworkError.badStatus }
             guard let decodedResponse = try? JSONDecoder().decode(T.self, from: data) else { throw NetworkError.failedToDecodeResponse }
             return decodedResponse
             
-        } catch NetworkError.badUrlResponse {
-            print("There was an error creating the URL")
-        } catch NetworkError.badResponse {
-            print("Did not get a valid response")
-        } catch NetworkError.badStatus {
-            print("Did not get a 2xx status code from the response")
-        } catch NetworkError.failedToDecodeResponse {
-            print("Failed to decode response into the given type")
-        } catch {
-            print("An error occured downloading the data")
+        } catch(let error as NetworkError) {
+            print(error.errorDescription() ?? "Unknown Network error")
         }
+        
+//        catch NetworkError.badUrlResponse {
+//            print("There was an error creating the URL")
+//        } catch NetworkError.badResponse {
+//            print("Did not get a valid response")
+//        } catch NetworkError.badStatus {
+//            print("Did not get a 2xx status code from the response")
+//        } catch NetworkError.failedToDecodeResponse {
+//            print("Failed to decode response into the given type")
+//        } catch {
+//            print("An error occured downloading the data")
+//        }
         return nil
     }
     
@@ -39,6 +52,21 @@ final class DataService {
         case badResponse
         case badStatus
         case failedToDecodeResponse
+        
+        func errorDescription() -> String? {
+            switch self {
+            case .badUrlResponse:
+                return "Bad URL response"
+            case .invalidRequest:
+                return "Invalid request"
+            case .badResponse:
+                return "Bad response"
+            case .badStatus:
+                return "Bad status"
+            case .failedToDecodeResponse:
+                return "Failed to decode response"
+            }
+        }
         
     }
     

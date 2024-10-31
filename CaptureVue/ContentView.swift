@@ -50,7 +50,10 @@ struct ContentView: View {
     }
 }
 
-//#Preview {
-//    ContentView()
-//}
+#Preview {
+    RouterView { router in
+        ContentView(router: router)
+    }
+    
+}
 

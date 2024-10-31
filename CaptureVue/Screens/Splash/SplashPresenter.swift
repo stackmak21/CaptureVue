@@ -11,6 +11,8 @@ import SwiftfulRouting
 @MainActor
 class SplashPresenter: ObservableObject{
     
+    @Published var isLoading: Bool = false
+    
     private let router: SplashRouter
     private let interactor: SplashInteractor
     private var tasks: [Task<Void, Never>] = []
@@ -47,5 +49,9 @@ class SplashPresenter: ObservableObject{
     func goToContent5(){
         router.goToContent5("Hello From Splash Screen")
     }
+    
+    
 }
+
+
 

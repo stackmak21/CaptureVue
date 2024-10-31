@@ -1,15 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "crown.png",
+      "filename" : "jam_qr-code.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "jam_qr-code 1.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "filename" : "jam_qr-code 2.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

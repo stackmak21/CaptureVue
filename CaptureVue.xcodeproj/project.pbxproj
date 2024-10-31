@@ -7,14 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		33CFE58F8918C0B40591D9BD /* Pods_SharedPods_CaptureVueAppClip.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D9E3592D2DD2BA8C1AA897F /* Pods_SharedPods_CaptureVueAppClip.framework */; };
 		699E42A99FF6384630584121 /* Pods_SharedPods_CaptureVue.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B55DAC067026C587C6ABA373 /* Pods_SharedPods_CaptureVue.framework */; };
+		F953B24D2CC827780058C2BD /* OnBoardingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = F953B24C2CC827570058C2BD /* OnBoardingScreen.swift */; };
+		F953B24F2CC8280C0058C2BD /* OnBoardingPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F953B24E2CC8280C0058C2BD /* OnBoardingPresenter.swift */; };
+		F953B2512CC828A70058C2BD /* OnBoardingInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F953B2502CC8289A0058C2BD /* OnBoardingInteractor.swift */; };
+		F953B25A2CC828C30058C2BD /* OnBoardingRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F953B2592CC828BD0058C2BD /* OnBoardingRouter.swift */; };
+		F953B2632CD2A3BD0058C2BD /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F953B2622CD2A3BD0058C2BD /* CameraView.swift */; };
+		F953B2652CD2E9E00058C2BD /* QRCameraManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F953B2642CD2E9E00058C2BD /* QRCameraManager.swift */; };
+		F953B2672CD3CDE20058C2BD /* PermissionAlertStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = F953B2662CD3CDE20058C2BD /* PermissionAlertStatus.swift */; };
 		F966BA652CBD91B6000863F2 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = F966BA642CBD91B6000863F2 /* FirebaseAnalytics */; };
 		F966BA672CBD91B6000863F2 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = F966BA662CBD91B6000863F2 /* FirebaseCrashlytics */; };
-		F96A6D3A2CBDB997001C1E85 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = F96A6D392CBDB997001C1E85 /* FirebaseAnalytics */; };
-		F96A6D3C2CBDB99F001C1E85 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = F96A6D3B2CBDB99F001C1E85 /* FirebaseCrashlytics */; };
-		F96A6D3E2CBDBA1C001C1E85 /* SwiftfulRouting in Frameworks */ = {isa = PBXBuildFile; productRef = F96A6D3D2CBDBA1C001C1E85 /* SwiftfulRouting */; };
-		F9995E8D2CBC4DB100909E85 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F9995E8C2CBC4DB100909E85 /* GoogleService-Info.plist */; };
+		F96A6D4E2CC1B9A3001C1E85 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = F96A6D4D2CC1B9A3001C1E85 /* Kingfisher */; };
 		F9995E8E2CBC4DB100909E85 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F9995E8C2CBC4DB100909E85 /* GoogleService-Info.plist */; };
 		F9A561E62CB5BD5E00634C7A /* CaptureVueApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A561E52CB5BD5E00634C7A /* CaptureVueApp.swift */; };
 		F9A561E82CB5BD5E00634C7A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A561E72CB5BD5E00634C7A /* ContentView.swift */; };
@@ -36,22 +39,7 @@
 		F9A562462CBABA6000634C7A /* SplashInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A562452CBABA6000634C7A /* SplashInteractor.swift */; };
 		F9A562482CBABA7A00634C7A /* SplashRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A562472CBABA7A00634C7A /* SplashRouter.swift */; };
 		F9A5624A2CBABD1900634C7A /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A562492CBABD1900634C7A /* DataService.swift */; };
-		F9A562522CBB9DDD00634C7A /* CaptureVueAppClipApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A562512CBB9DDD00634C7A /* CaptureVueAppClipApp.swift */; };
-		F9A562542CBB9DDD00634C7A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A562532CBB9DDD00634C7A /* ContentView.swift */; };
-		F9A562562CBB9DDF00634C7A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F9A562552CBB9DDF00634C7A /* Assets.xcassets */; };
-		F9A562592CBB9DDF00634C7A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F9A562582CBB9DDF00634C7A /* Preview Assets.xcassets */; };
-		F9A5625E2CBB9DDF00634C7A /* CaptureVueAppClip.app in Embed App Clips */ = {isa = PBXBuildFile; fileRef = F9A5624F2CBB9DDD00634C7A /* CaptureVueAppClip.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		F9A5625C2CBB9DDF00634C7A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = F9A561DA2CB5BD5E00634C7A /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = F9A5624E2CBB9DDD00634C7A;
-			remoteInfo = CaptureVueAppClip;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		F9A562622CBB9DDF00634C7A /* Embed App Clips */ = {
@@ -60,7 +48,6 @@
 			dstPath = "$(CONTENTS_FOLDER_PATH)/AppClips";
 			dstSubfolderSpec = 16;
 			files = (
-				F9A5625E2CBB9DDF00634C7A /* CaptureVueAppClip.app in Embed App Clips */,
 			);
 			name = "Embed App Clips";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -69,16 +56,18 @@
 
 /* Begin PBXFileReference section */
 		2D9E3592D2DD2BA8C1AA897F /* Pods_SharedPods_CaptureVueAppClip.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SharedPods_CaptureVueAppClip.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		62C717BC74FED4716BC578A3 /* Pods-CaptureVue.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CaptureVue.release.xcconfig"; path = "Target Support Files/Pods-CaptureVue/Pods-CaptureVue.release.xcconfig"; sourceTree = "<group>"; };
 		758F377F6F3AE5544EBC2AB5 /* Pods-SharedPods-CaptureVueAppClip.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SharedPods-CaptureVueAppClip.release.xcconfig"; path = "Target Support Files/Pods-SharedPods-CaptureVueAppClip/Pods-SharedPods-CaptureVueAppClip.release.xcconfig"; sourceTree = "<group>"; };
-		80001320CD955560C5F43A41 /* Pods-CaptureVueAppClip.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CaptureVueAppClip.debug.xcconfig"; path = "Target Support Files/Pods-CaptureVueAppClip/Pods-CaptureVueAppClip.debug.xcconfig"; sourceTree = "<group>"; };
-		8AB11C2F5B7270D2D97E5BE8 /* Pods-CaptureVue.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CaptureVue.debug.xcconfig"; path = "Target Support Files/Pods-CaptureVue/Pods-CaptureVue.debug.xcconfig"; sourceTree = "<group>"; };
 		8AFD92558721D1028EB17997 /* Pods-SharedPods-CaptureVue.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SharedPods-CaptureVue.release.xcconfig"; path = "Target Support Files/Pods-SharedPods-CaptureVue/Pods-SharedPods-CaptureVue.release.xcconfig"; sourceTree = "<group>"; };
 		AE57C1641ABBD722CCDD3C4B /* Pods-SharedPods-CaptureVue.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SharedPods-CaptureVue.debug.xcconfig"; path = "Target Support Files/Pods-SharedPods-CaptureVue/Pods-SharedPods-CaptureVue.debug.xcconfig"; sourceTree = "<group>"; };
 		B55DAC067026C587C6ABA373 /* Pods_SharedPods_CaptureVue.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SharedPods_CaptureVue.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		D9F6F053A30938E707C88482 /* Pods-CaptureVueAppClip.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CaptureVueAppClip.release.xcconfig"; path = "Target Support Files/Pods-CaptureVueAppClip/Pods-CaptureVueAppClip.release.xcconfig"; sourceTree = "<group>"; };
 		EF6DA8B05FD40FCA04A474D9 /* Pods-SharedPods-CaptureVueAppClip.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SharedPods-CaptureVueAppClip.debug.xcconfig"; path = "Target Support Files/Pods-SharedPods-CaptureVueAppClip/Pods-SharedPods-CaptureVueAppClip.debug.xcconfig"; sourceTree = "<group>"; };
-		F96A6D3F2CBDBA2A001C1E85 /* Pods_CaptureVue.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_CaptureVue.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F953B24C2CC827570058C2BD /* OnBoardingScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingScreen.swift; sourceTree = "<group>"; };
+		F953B24E2CC8280C0058C2BD /* OnBoardingPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingPresenter.swift; sourceTree = "<group>"; };
+		F953B2502CC8289A0058C2BD /* OnBoardingInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingInteractor.swift; sourceTree = "<group>"; };
+		F953B2592CC828BD0058C2BD /* OnBoardingRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingRouter.swift; sourceTree = "<group>"; };
+		F953B2622CD2A3BD0058C2BD /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
+		F953B2642CD2E9E00058C2BD /* QRCameraManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCameraManager.swift; sourceTree = "<group>"; };
+		F953B2662CD3CDE20058C2BD /* PermissionAlertStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionAlertStatus.swift; sourceTree = "<group>"; };
 		F9995E8C2CBC4DB100909E85 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F9A561E22CB5BD5E00634C7A /* CaptureVue.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CaptureVue.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9A561E52CB5BD5E00634C7A /* CaptureVueApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureVueApp.swift; sourceTree = "<group>"; };
@@ -102,7 +91,6 @@
 		F9A562452CBABA6000634C7A /* SplashInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashInteractor.swift; sourceTree = "<group>"; };
 		F9A562472CBABA7A00634C7A /* SplashRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashRouter.swift; sourceTree = "<group>"; };
 		F9A562492CBABD1900634C7A /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
-		F9A5624F2CBB9DDD00634C7A /* CaptureVueAppClip.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CaptureVueAppClip.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9A562512CBB9DDD00634C7A /* CaptureVueAppClipApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureVueAppClipApp.swift; sourceTree = "<group>"; };
 		F9A562532CBB9DDD00634C7A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		F9A562552CBB9DDF00634C7A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -120,17 +108,7 @@
 				F966BA672CBD91B6000863F2 /* FirebaseCrashlytics in Frameworks */,
 				F966BA652CBD91B6000863F2 /* FirebaseAnalytics in Frameworks */,
 				699E42A99FF6384630584121 /* Pods_SharedPods_CaptureVue.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		F9A5624C2CBB9DDD00634C7A /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				F96A6D3A2CBDB997001C1E85 /* FirebaseAnalytics in Frameworks */,
-				F96A6D3E2CBDBA1C001C1E85 /* SwiftfulRouting in Frameworks */,
-				F96A6D3C2CBDB99F001C1E85 /* FirebaseCrashlytics in Frameworks */,
-				33CFE58F8918C0B40591D9BD /* Pods_SharedPods_CaptureVueAppClip.framework in Frameworks */,
+				F96A6D4E2CC1B9A3001C1E85 /* Kingfisher in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -149,10 +127,6 @@
 		43D61A224B7B74C52C56E12C /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				8AB11C2F5B7270D2D97E5BE8 /* Pods-CaptureVue.debug.xcconfig */,
-				62C717BC74FED4716BC578A3 /* Pods-CaptureVue.release.xcconfig */,
-				80001320CD955560C5F43A41 /* Pods-CaptureVueAppClip.debug.xcconfig */,
-				D9F6F053A30938E707C88482 /* Pods-CaptureVueAppClip.release.xcconfig */,
 				AE57C1641ABBD722CCDD3C4B /* Pods-SharedPods-CaptureVue.debug.xcconfig */,
 				8AFD92558721D1028EB17997 /* Pods-SharedPods-CaptureVue.release.xcconfig */,
 				EF6DA8B05FD40FCA04A474D9 /* Pods-SharedPods-CaptureVueAppClip.debug.xcconfig */,
@@ -161,12 +135,25 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
-		F96A6D472CBDBD7A001C1E85 /* Recovered References */ = {
+		F953B24B2CC8274B0058C2BD /* OnBoarding */ = {
 			isa = PBXGroup;
 			children = (
-				F96A6D3F2CBDBA2A001C1E85 /* Pods_CaptureVue.framework */,
+				F953B24C2CC827570058C2BD /* OnBoardingScreen.swift */,
+				F953B24E2CC8280C0058C2BD /* OnBoardingPresenter.swift */,
+				F953B2502CC8289A0058C2BD /* OnBoardingInteractor.swift */,
+				F953B2592CC828BD0058C2BD /* OnBoardingRouter.swift */,
 			);
-			name = "Recovered References";
+			path = OnBoarding;
+			sourceTree = "<group>";
+		};
+		F953B25D2CC96C130058C2BD /* Camera */ = {
+			isa = PBXGroup;
+			children = (
+				F953B2662CD3CDE20058C2BD /* PermissionAlertStatus.swift */,
+				F953B2622CD2A3BD0058C2BD /* CameraView.swift */,
+				F953B2642CD2E9E00058C2BD /* QRCameraManager.swift */,
+			);
+			path = Camera;
 			sourceTree = "<group>";
 		};
 		F9A561D92CB5BD5E00634C7A = {
@@ -179,7 +166,6 @@
 				43D61A224B7B74C52C56E12C /* Pods */,
 				F9A562502CBB9DDD00634C7A /* CaptureVueAppClip */,
 				179285FA11B373990493C867 /* Frameworks */,
-				F96A6D472CBDBD7A001C1E85 /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -187,7 +173,6 @@
 			isa = PBXGroup;
 			children = (
 				F9A561E22CB5BD5E00634C7A /* CaptureVue.app */,
-				F9A5624F2CBB9DDD00634C7A /* CaptureVueAppClip.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -258,6 +243,8 @@
 		F9A5623C2CBA8D1000634C7A /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				F953B25D2CC96C130058C2BD /* Camera */,
+				F953B24B2CC8274B0058C2BD /* OnBoarding */,
 				F9A5623F2CBA8D6400634C7A /* Splash */,
 			);
 			path = Screens;
@@ -313,36 +300,17 @@
 			buildRules = (
 			);
 			dependencies = (
-				F9A5625D2CBB9DDF00634C7A /* PBXTargetDependency */,
 			);
 			name = CaptureVue;
 			packageProductDependencies = (
 				F9A561F42CB5C34E00634C7A /* SwiftfulRouting */,
 				F966BA642CBD91B6000863F2 /* FirebaseAnalytics */,
 				F966BA662CBD91B6000863F2 /* FirebaseCrashlytics */,
+				F96A6D4D2CC1B9A3001C1E85 /* Kingfisher */,
 			);
 			productName = CaptureVue;
 			productReference = F9A561E22CB5BD5E00634C7A /* CaptureVue.app */;
 			productType = "com.apple.product-type.application";
-		};
-		F9A5624E2CBB9DDD00634C7A /* CaptureVueAppClip */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = F9A5625F2CBB9DDF00634C7A /* Build configuration list for PBXNativeTarget "CaptureVueAppClip" */;
-			buildPhases = (
-				C83A7FD7EA694B68924437BC /* [CP] Check Pods Manifest.lock */,
-				F9A5624B2CBB9DDD00634C7A /* Sources */,
-				F9A5624C2CBB9DDD00634C7A /* Frameworks */,
-				F9A5624D2CBB9DDD00634C7A /* Resources */,
-				F96A6D432CBDBAE1001C1E85 /* Upload dSYMs to Firebase Crashlytics */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = CaptureVueAppClip;
-			productName = CaptureVueAppClip;
-			productReference = F9A5624F2CBB9DDD00634C7A /* CaptureVueAppClip.app */;
-			productType = "com.apple.product-type.application.on-demand-install-capable";
 		};
 /* End PBXNativeTarget section */
 
@@ -355,9 +323,6 @@
 				LastUpgradeCheck = 1600;
 				TargetAttributes = {
 					F9A561E12CB5BD5E00634C7A = {
-						CreatedOnToolsVersion = 15.0;
-					};
-					F9A5624E2CBB9DDD00634C7A = {
 						CreatedOnToolsVersion = 15.0;
 					};
 				};
@@ -375,13 +340,13 @@
 			packageReferences = (
 				F9A561F32CB5C34E00634C7A /* XCRemoteSwiftPackageReference "SwiftfulRouting" */,
 				F966BA632CBD91B6000863F2 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				F96A6D4C2CC1B9A3001C1E85 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = F9A561E32CB5BD5E00634C7A /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				F9A561E12CB5BD5E00634C7A /* CaptureVue */,
-				F9A5624E2CBB9DDD00634C7A /* CaptureVueAppClip */,
 			);
 		};
 /* End PBXProject section */
@@ -400,16 +365,6 @@
 				F9A562362CB72E6E00634C7A /* Localizable.strings in Resources */,
 				F9A5621A2CB716C500634C7A /* Ubuntu-Medium.ttf in Resources */,
 				F9A561EA2CB5BD6000634C7A /* Assets.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		F9A5624D2CBB9DDD00634C7A /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				F9A562592CBB9DDF00634C7A /* Preview Assets.xcassets in Resources */,
-				F9A562562CBB9DDF00634C7A /* Assets.xcassets in Resources */,
-				F9995E8D2CBC4DB100909E85 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -438,53 +393,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		C83A7FD7EA694B68924437BC /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-SharedPods-CaptureVueAppClip-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
 		F966BA622CBD9095000863F2 /* Upload dSYMs to Firebase Crashlytics */ = {
-			isa = PBXShellScriptBuildPhase;
-			alwaysOutOfDate = 1;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}",
-				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${PRODUCT_NAME}",
-				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Info.plist",
-				"$(TARGET_BUILD_DIR)/$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/GoogleService-Info.plist",
-				"$(TARGET_BUILD_DIR)/$(EXECUTABLE_PATH)",
-			);
-			name = "Upload dSYMs to Firebase Crashlytics";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"${BUILD_DIR%/Build/*}/SourcePackages/checkouts/firebase-ios-sdk/Crashlytics/run\"\n";
-		};
-		F96A6D432CBDBAE1001C1E85 /* Upload dSYMs to Firebase Crashlytics */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
@@ -543,37 +452,27 @@
 			buildActionMask = 2147483647;
 			files = (
 				F9A562322CB71CDC00634C7A /* Typography.swift in Sources */,
+				F953B24F2CC8280C0058C2BD /* OnBoardingPresenter.swift in Sources */,
 				F9A5622F2CB71B0500634C7A /* Fonts.swift in Sources */,
 				F9A5623E2CBA8D5A00634C7A /* SplashScreen.swift in Sources */,
 				F9A562442CBABA4200634C7A /* SplashPresenter.swift in Sources */,
+				F953B25A2CC828C30058C2BD /* OnBoardingRouter.swift in Sources */,
 				F9A562462CBABA6000634C7A /* SplashInteractor.swift in Sources */,
 				F9A5624A2CBABD1900634C7A /* DataService.swift in Sources */,
 				F9A562482CBABA7A00634C7A /* SplashRouter.swift in Sources */,
+				F953B2652CD2E9E00058C2BD /* QRCameraManager.swift in Sources */,
+				F953B2512CC828A70058C2BD /* OnBoardingInteractor.swift in Sources */,
 				F9A561E82CB5BD5E00634C7A /* ContentView.swift in Sources */,
+				F953B2632CD2A3BD0058C2BD /* CameraView.swift in Sources */,
+				F953B2672CD3CDE20058C2BD /* PermissionAlertStatus.swift in Sources */,
 				F9A561E62CB5BD5E00634C7A /* CaptureVueApp.swift in Sources */,
 				F9A5623B2CB72F4F00634C7A /* Strings.swift in Sources */,
 				F9A5622E2CB71B0500634C7A /* Assets.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		F9A5624B2CBB9DDD00634C7A /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				F9A562542CBB9DDD00634C7A /* ContentView.swift in Sources */,
-				F9A562522CBB9DDD00634C7A /* CaptureVueAppClipApp.swift in Sources */,
+				F953B24D2CC827780058C2BD /* OnBoardingScreen.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		F9A5625D2CBB9DDF00634C7A /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = F9A5624E2CBB9DDD00634C7A /* CaptureVueAppClip */;
-			targetProxy = F9A5625C2CBB9DDF00634C7A /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		F9A562382CB72E6E00634C7A /* Localizable.strings */ = {
@@ -779,75 +678,6 @@
 			};
 			name = Release;
 		};
-		F9A562602CBB9DDF00634C7A /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = EF6DA8B05FD40FCA04A474D9 /* Pods-SharedPods-CaptureVueAppClip.debug.xcconfig */;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = CaptureVueAppClip/CaptureVueAppClip.entitlements;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_ASSET_PATHS = "\"CaptureVueAppClip/Preview Content\"";
-				DEVELOPMENT_TEAM = HTZN6N8NQA;
-				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = CaptureVueAppClip/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = CaptureVue;
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
-				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = gr.stackmak.CaptureVue.Clip;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		F9A562612CBB9DDF00634C7A /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 758F377F6F3AE5544EBC2AB5 /* Pods-SharedPods-CaptureVueAppClip.release.xcconfig */;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = CaptureVueAppClip/CaptureVueAppClip.entitlements;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"CaptureVueAppClip/Preview Content\"";
-				DEVELOPMENT_TEAM = HTZN6N8NQA;
-				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = CaptureVueAppClip/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = CaptureVue;
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
-				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = gr.stackmak.CaptureVue.Clip;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -869,15 +699,6 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		F9A5625F2CBB9DDF00634C7A /* Build configuration list for PBXNativeTarget "CaptureVueAppClip" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				F9A562602CBB9DDF00634C7A /* Debug */,
-				F9A562612CBB9DDF00634C7A /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
@@ -887,6 +708,14 @@
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 11.3.0;
+			};
+		};
+		F96A6D4C2CC1B9A3001C1E85 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.1.0;
 			};
 		};
 		F9A561F32CB5C34E00634C7A /* XCRemoteSwiftPackageReference "SwiftfulRouting" */ = {
@@ -910,20 +739,10 @@
 			package = F966BA632CBD91B6000863F2 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseCrashlytics;
 		};
-		F96A6D392CBDB997001C1E85 /* FirebaseAnalytics */ = {
+		F96A6D4D2CC1B9A3001C1E85 /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = F966BA632CBD91B6000863F2 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseAnalytics;
-		};
-		F96A6D3B2CBDB99F001C1E85 /* FirebaseCrashlytics */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = F966BA632CBD91B6000863F2 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseCrashlytics;
-		};
-		F96A6D3D2CBDBA1C001C1E85 /* SwiftfulRouting */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = F9A561F32CB5C34E00634C7A /* XCRemoteSwiftPackageReference "SwiftfulRouting" */;
-			productName = SwiftfulRouting;
+			package = F96A6D4C2CC1B9A3001C1E85 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
 		};
 		F9A561F42CB5C34E00634C7A /* SwiftfulRouting */ = {
 			isa = XCSwiftPackageProductDependency;

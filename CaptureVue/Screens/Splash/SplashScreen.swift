@@ -18,7 +18,7 @@ struct SplashScreen: View {
     
     var body: some View {
         VStack{
-            Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+            Text(Strings.helloWorld)
             Button("Push to Content1", action: {presenter.goToContent1()})
             Button("fullscreen", action: {presenter.goToContent2()})
             Button("Sheet", action: {presenter.goToContent3()})
@@ -35,9 +35,8 @@ struct SplashScreen: View {
                     presenter.goToContent5()
                 }
             })
-            Button("Fatal Error", action: {
-                fatalError("Fatal error Paris")
-            })
+          
+
         }
     }
 }
