@@ -7,11 +7,9 @@
 
 import Foundation
 
-protocol SplashInteractor{
-    
-}
 
-class SplashInteractor_Production: SplashInteractor{
+
+class SplashInteractor{
     let dataService: DataService
     
     init(dataService: DataService) {

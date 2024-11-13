@@ -10,31 +10,25 @@ import SwiftfulRouting
 
 struct SplashScreen: View {
     
-    @StateObject var presenter: SplashPresenter
+    @StateObject var viewModel: SplashViewModel
+    let dataService: DataService
     
-    init(router: AnyRouter) {
-        _presenter = StateObject(wrappedValue: SplashPresenter(router: SplashRouter_Production(router: router), interactor: SplashInteractor_Production(dataService: DataService())))
+    init(router: AnyRouter, dataService: DataService) {
+        self.dataService = dataService
+        let interactor = SplashInteractor(dataService: dataService)
+        _viewModel = StateObject(wrappedValue: SplashViewModel(router: router, interactor: interactor))
     }
     
     var body: some View {
         VStack{
             Text(Strings.helloWorld)
-            Button("Push to Content1", action: {presenter.goToContent1()})
-            Button("fullscreen", action: {presenter.goToContent2()})
-            Button("Sheet", action: {presenter.goToContent3()})
-            Button("Sheet Detention", action: {
-                if #available(iOS 16.0, *) {
-                    presenter.goToContent4()
-                }
+          
+           
+            Button("Go To On Boarding", action: {
+                viewModel.navigateToOnboarding(dataService: dataService)
             })
-            Button("Fatal Error 1234", action: {
-                fatalError("Paris Triggered this error")
-            })
-            Button("Modal", action: {
-                if #available(iOS 16.0, *) {
-                    presenter.goToContent5()
-                }
-            })
+            .buttonStyle(PrimaryButtonStyle())
+         
           
 
         }
@@ -42,8 +36,10 @@ struct SplashScreen: View {
 }
 
 #Preview {
+    let dataService = DataServiceImpl()
+    
     RouterView{ router in
-        SplashScreen(router: router)
+        SplashScreen(router: router, dataService: dataService)
     }
 }
 

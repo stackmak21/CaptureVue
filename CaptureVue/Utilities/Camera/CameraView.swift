@@ -22,9 +22,20 @@ struct CameraView: UIViewRepresentable {
     
     let session: AVCaptureSession
     @Binding var isConnectionEnabled: Bool
+    @Binding var qrRect: CGRect
+    let rectBounds: ((CGRect) -> Void)?
+    
+    init(session: AVCaptureSession, isConnectionEnabled: Binding<Bool>, qrRect: Binding<CGRect>, completion: ((CGRect) -> Void)?) {
+        self.session = session
+        _isConnectionEnabled = isConnectionEnabled
+        rectBounds = completion
+        _qrRect = qrRect
+        
+    }
     
     func makeUIView(context: Context) -> VideoPreviewView {
         let view = VideoPreviewView()
+        
         view.backgroundColor = .black
         view.videoPreviewLayer.cornerRadius = 0
         view.videoPreviewLayer.session = session
@@ -35,6 +46,7 @@ struct CameraView: UIViewRepresentable {
     
     func updateUIView(_ uiView: VideoPreviewView, context: Context) {
         uiView.videoPreviewLayer.connection?.isEnabled = isConnectionEnabled
+        rectBounds?(uiView.videoPreviewLayer.layerRectConverted(fromMetadataOutputRect: qrRect))
     }
 }
 

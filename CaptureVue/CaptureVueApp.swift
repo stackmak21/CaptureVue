@@ -22,12 +22,12 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 struct CaptureVueApp: App {
 //     register app delegate for Firebase setup
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
-    let networkService: NetworkService = DataService()
+    let dataService: DataService = DataServiceImpl()
     
     var body: some Scene {
         WindowGroup {
             RouterView { router in
-                OnBoardingScreen(router: router, dataService: networkService)
+                SplashScreen(router: router, dataService: dataService)
                     .onOpenURL(perform: { url in
                         let string = url.absoluteString
                         print(string)

@@ -8,8 +8,19 @@
 import Foundation
 import AVFoundation
 import Combine
+import UIKit
 
-class QRCameraManager: NSObject, ObservableObject, AVCaptureMetadataOutputObjectsDelegate {
+extension QRCameraManager: AVCapturePhotoCaptureDelegate {
+    
+    
+    func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto) {
+        if let imageData = photo.fileDataRepresentation() {
+            onImageCapture?(UIImage(data: imageData)!) // Store the last captured image
+        }
+    }
+}
+
+class QRCameraManager: NSObject, ObservableObject, AVCaptureMetadataOutputObjectsDelegate{
     
     static let shared: QRCameraManager = QRCameraManager()
     
@@ -17,9 +28,25 @@ class QRCameraManager: NSObject, ObservableObject, AVCaptureMetadataOutputObject
     private let sessionQueue: DispatchQueue = DispatchQueue(label: "com.capturevue.session.qrcode")
     private var videoDeviceInput: AVCaptureDeviceInput? = nil
     
+    private var codeFetched: Bool = false
+    var onQRDetected: ((String, CGRect) -> Void)? = nil
+    var onImageCapture: ((UIImage) -> Void)? = nil
+    
     @Published var qrOutput: AVCaptureMetadataOutput = AVCaptureMetadataOutput()
+    @Published var photoOutput = AVCapturePhotoOutput()
     @Published var permissionStatus: PermissionStatus = .unknown
     @Published var availableCameraPositions: [AVCaptureDevice.Position]? = nil
+    
+    
+    
+    func getQrFrame(onQRDetected: @escaping (String, CGRect) -> Void){
+        self.onQRDetected = onQRDetected
+        
+    }
+    
+    func getImage(onImageCapture: @escaping ((UIImage) -> Void) ){
+        self.onImageCapture = onImageCapture
+    }
     
     func bind() {
         checkPermissions()
@@ -36,23 +63,34 @@ class QRCameraManager: NSObject, ObservableObject, AVCaptureMetadataOutputObject
                     self.session.removeInput(input)
                 }
                 
+                
+                
                 self.session.removeOutput(self.qrOutput)
                 self.session.stopRunning()
             }
             
             self.availableCameraPositions = nil
+            
+            DispatchQueue.main.async {
+                self.codeFetched = false
+            }
         }
     }
     
-    
     func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
+        
+        if codeFetched {
+            return
+        }
+        
         if let metaObject = metadataObjects.first {
             guard let readableObject = metaObject as? AVMetadataMachineReadableCodeObject else { return }
             guard let scannedCode = readableObject.stringValue else { return }
+            onQRDetected?(scannedCode, readableObject.bounds)
             print(scannedCode)
         }
-        
     }
+    
     
     func onCameraSelect(position: AVCaptureDevice.Position) {
         sessionQueue.async {
@@ -110,7 +148,7 @@ class QRCameraManager: NSObject, ObservableObject, AVCaptureMetadataOutputObject
         }
         
         session.commitConfiguration()
- 
+        
         session.startRunning()
     }
     
@@ -164,7 +202,7 @@ class QrCameraFeed: ObservableObject {
     @Published var permissionStatus: QRCameraManager.PermissionStatus = .unknown
     @Published var availableCameraPositions: [AVCaptureDevice.Position]? = nil
     
-    private let cameraManager: QRCameraManager = QRCameraManager.shared
+    let cameraManager: QRCameraManager = QRCameraManager.shared
     
     var session: AVCaptureSession {
         return cameraManager.session

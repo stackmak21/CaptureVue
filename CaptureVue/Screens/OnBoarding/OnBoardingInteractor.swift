@@ -7,15 +7,25 @@
 
 import Foundation
 
-protocol OnBoardingInteractor{
-    
-}
 
 
-class OnBoardingInteractor_Production: OnBoardingInteractor{
-    let dataService: NetworkService
+class OnBoardingInteractor{
     
-    init(dataService: NetworkService) {
+    let dataService: DataService
+    
+    init(dataService: DataService) {
         self.dataService = dataService
     }
+    
+
+    
+    func validateEvent(eventId: String) async throws -> ValidateEventDto? {
+        do {
+            let response: ValidateEventDto? = try await dataService.downloadData(url: "\(urlPrefix)event/validate?eventId=\(eventId)")
+                return response
+        } catch let error as CaptureVueErrorDto {
+            throw error
+        } 
+    }
+   
 }

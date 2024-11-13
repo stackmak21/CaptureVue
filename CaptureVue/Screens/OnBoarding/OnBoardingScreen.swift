@@ -12,77 +12,102 @@ import SwiftfulRouting
 
 struct OnBoardingScreen: View {
     
-    @StateObject var presenter: OnBoardingPresenter
+    @StateObject var viewModel: OnBoardingViewModel
     @State var isPresent: Bool = false
-    private let feed: QrCameraFeed = QrCameraFeed()
-    @State var isconnectionEnabled: Bool = false
     
-    init(router: AnyRouter, dataService: NetworkService ) {
-        _presenter = StateObject(wrappedValue: OnBoardingPresenter(router: OnBoardingRouter_Production(router: router), interactor: OnBoardingInteractor_Production(dataService: dataService)))
+   
+    
+    init(router: AnyRouter, dataService: DataService ) {
+        let interactor = OnBoardingInteractor(dataService: dataService)
+        _viewModel = StateObject(wrappedValue: OnBoardingViewModel(router: router, interactor: interactor))
     }
     
     var body: some View {
         ZStack{
-            Color.red.ignoresSafeArea() 
+            Color.white.ignoresSafeArea()
             VStack{
-//                Button("Sheet") {
-//                    isPresent = true
-//                }
-//                Button("Sheet") {
-//                    presenter.showCaptureImage()
-//                }
-//                Button("Sheet") {
-//                    presenter.showCaptureQRCode()
-//                }
-                Button("Scan QR Code") {
-                    isPresent = true
+                
+                Image(uiImage: Asset.Illustrations.image.image)
+                    .resizable()
+                    .renderingMode(.template)
+                    .foregroundStyle(Color.black)
+                    .frame(width: 100, height: 100)
+                    .padding(.top)
+             
+                
+                Spacer()
+                Button("Fetch String") {
+                    
                 }
-                .buttonStyle(DefaultButtonStyle())
+                .buttonStyle(PrimaryButtonStyle())
+                Button("Show Banner") {
+                    viewModel.nextScreen()
+                }
+                .buttonStyle(PrimaryButtonStyle())
+                Text("Welcome to CaptureVue")
+                    .font(Typography.bold(size: 20))
+                    .foregroundStyle(Color.black)
+                    .padding()
+                Group{
+                    Button {
+                        
+                    } label: {
+                        Text("Create an event")
+                    }
+                    .buttonStyle(PrimaryButtonStyle())
+                    
+                    Button {
+                        isPresent = true
+                    } label: {
+                        Text("Scan QR Code")
+                    }
+                    .buttonStyle(PrimaryButtonStyle())
+                    .padding(.bottom, 100)
+                }
+                
+                
+
             }
+            .padding()
             .sheet(isPresented: $isPresent) {
-                CameraView(session: feed.session, isConnectionEnabled: $isPresent)
-                    .ignoresSafeArea()
+                QRCodeScannerScreen(qrString: $viewModel.eventId)
+                .presentationDetents([.medium])
+                .onDisappear() {
+                    viewModel.goToEventHome()
+                }
             }
         }
-        .ignoresSafeArea()
-        .onChange(of: isPresent) {
-            if $0 {
-                feed.start()
-            }else{
-                feed.stop()
-            }
-        }
+       
     }
 }
 
 #Preview {
-    let dataService = DataService()
-    return RouterView { router in
+    let dataService = DataServiceImpl()
+    RouterView { router in
         OnBoardingScreen(router: router, dataService: dataService)
     }
     
 }
 
 
-struct QRCodeCapture: View {
-    
-    var body: some View {
-        ScrollView{
-            VStack{
-                        
-                        Text("Hello Sheet")
-                            .foregroundStyle(.white)
-                        Image(systemName: "qrcode")
-                            .resizable()
-                            .frame(width: 200, height: 200)
-                }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-                
-        }
-        
-        .background(Color.blue)
-        
+struct PrimaryButtonStyle: ButtonStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .font(Typography.medium(size: 16))
+            .foregroundStyle(Color.black.opacity(configuration.isPressed ? 0.6 : 1))
+            .frame(maxWidth: .infinity)
+            .frame(height: 48)
+            .background(Color.white.opacity(0.001))
+            .overlay {
+                Capsule().stroke(Color.black.opacity(configuration.isPressed ? 0.6 : 1),style: StrokeStyle(lineWidth: 2))
+            }
+            
     }
-    
-    }
+}
+
+
+
+
+
+
 
