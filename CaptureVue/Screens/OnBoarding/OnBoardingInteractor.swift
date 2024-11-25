@@ -23,9 +23,18 @@ class OnBoardingInteractor{
         do {
             let response: ValidateEventDto? = try await dataService.downloadData(url: "\(urlPrefix)event/validate?eventId=\(eventId)")
                 return response
-        } catch let error as CaptureVueErrorDto {
+        } catch let error as CaptureVueError {
             throw error
         } 
+    }
+    
+    func fetchEvent(eventId: String) async throws -> EventDto? {
+        do {
+            let response: EventDto? = try await dataService.downloadData(url: "\(urlPrefix)event?eventId=\(eventId)")
+                return response
+        } catch let error as CaptureVueError {
+            throw error
+        }
     }
    
 }

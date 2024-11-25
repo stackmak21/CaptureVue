@@ -30,6 +30,26 @@ internal enum Asset {
     internal static let image2 = ImageAsset(name: "Image 2")
     internal static let image = ImageAsset(name: "Image")
   }
+  internal static let story1 = ImageAsset(name: "story1")
+  internal static let story10 = ImageAsset(name: "story10")
+  internal static let story2 = ImageAsset(name: "story2")
+  internal static let story3 = ImageAsset(name: "story3")
+  internal static let story4 = ImageAsset(name: "story4")
+  internal static let story5 = ImageAsset(name: "story5")
+  internal static let story6 = ImageAsset(name: "story6")
+  internal static let story7 = ImageAsset(name: "story7")
+  internal static let story8 = ImageAsset(name: "story8")
+  internal static let story9 = ImageAsset(name: "story9")
+  internal static let thumb1 = ImageAsset(name: "thumb1")
+  internal static let thumb10 = ImageAsset(name: "thumb10")
+  internal static let thumb2 = ImageAsset(name: "thumb2")
+  internal static let thumb3 = ImageAsset(name: "thumb3")
+  internal static let thumb4 = ImageAsset(name: "thumb4")
+  internal static let thumb5 = ImageAsset(name: "thumb5")
+  internal static let thumb6 = ImageAsset(name: "thumb6")
+  internal static let thumb7 = ImageAsset(name: "thumb7")
+  internal static let thumb8 = ImageAsset(name: "thumb8")
+  internal static let thumb9 = ImageAsset(name: "thumb9")
 }
 // swiftlint:enable identifier_name line_length nesting type_body_length type_name
 

@@ -32,29 +32,53 @@ class OnBoardingViewModel: ObservableObject {
         tasks.forEach{$0.cancel()}
     }
 
-    func nextScreen(){
-//        router.showScreen(.push, destination: {router in Text("Hello")})
-        banner(message: "No Capture Vue Error", bannerType: .error, bannerDuration: .long, action: nil)
-        
+    func nextScreen(eventId: String){
+        let task = Task{
+            do{
+                let validateResult =  try await interactor.validateEvent(eventId: eventId)
+                
+                if let  result = validateResult{
+                    if result.isValid{
+                        let event = try await interactor.fetchEvent(eventId: eventId)
+                        if let fetchedEvent = event{
+                            router.showScreen(.push) { router in
+                                EventHomeScreen(router: router, dataService: self.interactor.dataService, event: fetchedEvent)
+                            }
+                        }
+                    }
+                    
+                }
+            }
+            catch let error as CaptureVueError{
+                banner(message: error.msg ?? "", bannerType: .error, bannerDuration: .infinite, action: nil)
+            }
+        }
+        tasks.append(task)
     }
     
     func goToEventHome(){
         if let eventId {
-             validateEvent(eventId: eventId)
+             fetchEvent(eventId: eventId)
         }
     }
     
-    private func validateEvent(eventId: String){
+    private func fetchEvent(eventId: String){
         let task = Task{
             do{
                 let validateResult =  try await interactor.validateEvent(eventId: eventId)
                 if let  result = validateResult{
-                    router.showScreen(.push) { router in
-                        Text(result.hasExpired ? "Event Expired" : "Event Started")
+                    if result.isValid{
+                        let event = try await interactor.fetchEvent(eventId: eventId)
+                        if let fetchedEvent = event{
+                            router.showScreen(.push) { router in
+                                EventHomeScreen(router: router, dataService: self.interactor.dataService, event: fetchedEvent)
+                            }
+                        }
                     }
+                    
                 }
             }
-            catch let error as CaptureVueErrorDto{
+            catch let error as CaptureVueError{
                 banner(message: error.msg ?? "", bannerType: .error, bannerDuration: .infinite, action: nil)
             }
         }
@@ -84,13 +108,6 @@ extension OnBoardingViewModel {
 }
 
 
-struct OnBoardingRoutes{
-    static func goToEventHome(router: AnyRouter, eventId: String) -> AnyRoute{
-        AnyRoute(.push) { router in
-            ContentView(router: router)
-        }
-    }
-}
 
 
 

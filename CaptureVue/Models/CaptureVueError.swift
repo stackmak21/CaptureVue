@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct CaptureVueErrorDto: Codable, Error {
+struct CaptureVueError: Codable, Error {
     let msg: String?
     let code: Int
     let reason: String?

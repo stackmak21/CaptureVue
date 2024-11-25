@@ -9,21 +9,16 @@ import SwiftUI
 import Kingfisher
 
 struct ImageLoader: View {
-    let url: URL
+    let url: String
     
     var body: some View {
-        Rectangle()
-            .opacity(0)
-            .overlay {
-                KFImage(url)
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
-            }
-            .clipped()
-        
+        ZStack{
+            KFImage(URL(string: url)!)
+                .resizable(resizingMode: .stretch)
+        }
     }
 }
 
 #Preview {
-    ImageLoader(url: URL(string: "https://picsum.photos/800/1001")!)
+    ImageLoader(url: "https://picsum.photos/800/1001")
 }

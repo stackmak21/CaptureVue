@@ -41,7 +41,7 @@ struct OnBoardingScreen: View {
                 }
                 .buttonStyle(PrimaryButtonStyle())
                 Button("Show Banner") {
-                    viewModel.nextScreen()
+                    viewModel.nextScreen(eventId: "cp-12345")
                 }
                 .buttonStyle(PrimaryButtonStyle())
                 Text("Welcome to CaptureVue")

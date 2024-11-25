@@ -34,13 +34,13 @@ class DataServiceImpl: DataService {
             if let successResponse = try? JSONDecoder().decode(T.self, from: data) {
                 return successResponse
             }
-            if let errorResponse = try? JSONDecoder().decode(CaptureVueErrorDto.self, from: data) {
+            if let errorResponse = try? JSONDecoder().decode(CaptureVueError.self, from: data) {
                 throw errorResponse
             } else{
                 throw NetworkError.failedToDecodeResponse
             }
         }
-        catch(let error as CaptureVueErrorDto){
+        catch(let error as CaptureVueError){
             throw error
         }
         catch (let error as NetworkError){

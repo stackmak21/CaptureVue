@@ -21,7 +21,7 @@ class EventHomeInteractor{
         do {
             let response: EventDto? = try await dataService.downloadData(url: "\(urlPrefix)event?eventId=\(eventId)")
                 return response
-        } catch let error as CaptureVueErrorDto {
+        } catch let error as CaptureVueError {
             throw error
         }
     }

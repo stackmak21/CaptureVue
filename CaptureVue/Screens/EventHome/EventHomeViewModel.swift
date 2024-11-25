@@ -16,40 +16,23 @@ class EventHomeViewModel: ObservableObject {
     private let router: AnyRouter
     private let interactor: EventHomeInteractor
     private var tasks: [Task<Void, Error>] = []
-    private var cancellables: Set<AnyCancellable> = []
-    private let eventId: String
     
-    @Published var eventDetails: EventDto?
-
+    @Published var event: EventDto
+    
     init(
         router: AnyRouter,
         interactor: EventHomeInteractor,
-        eventId: String
+        event: EventDto
     ) {
         self.router = router
         self.interactor = interactor
-        self.eventId = eventId
-        fetchEventDetails(eventId: eventId)
+        self.event = event
     }
     
     deinit {
         tasks.forEach{$0.cancel()}
     }
 
-
-  
-    
-    private func fetchEventDetails(eventId: String){
-        let task = Task{
-            do{
-                eventDetails = try await interactor.fetchEventDetails(eventId: eventId)
-            }
-            catch let error as CaptureVueErrorDto {
-                print(error)
-            }
-        }
-        tasks.append(task)
-    }
     
 }
 
