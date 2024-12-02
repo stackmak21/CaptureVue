@@ -12,6 +12,7 @@ import SwiftfulRouting
 struct GalleryView: View {
     
     @EnvironmentObject var vm: EventHomeViewModel
+    @EnvironmentObject var videoManager: VideoPlayerManager
     
     @State private var offsetX: CGFloat = 0
     @State private var offsetY: CGFloat = 0
@@ -31,9 +32,20 @@ struct GalleryView: View {
             TabView(selection: $selectedGalleryItem){
                 ForEach(vm.event.galleryList){ galleryItem in
                     GeometryReader{ proxy in
-                        ImageLoader(url: galleryItem.publicUrl)
-                            .tag(galleryItem.id)
-                            .clipShape(RoundedRectangle(cornerRadius: 8))
+                        if galleryItem.publicUrl.hasSuffix(".mp4"){
+                            VideoPlayerView(player: videoManager.player)
+                                .onAppear{
+                                    videoManager.setVideoToPlayer(videoUrl: galleryItem.publicUrl)
+                                    videoManager.playVideo()
+                                }
+                                .onDisappear{
+                                    videoManager.pauseVideo()
+                                }
+                        }else{
+                            ImageLoader(url: galleryItem.publicUrl)
+                                .tag(galleryItem.id)
+                                .clipShape(RoundedRectangle(cornerRadius: 8))
+                        }
                     }
                 }
             }
@@ -73,7 +85,7 @@ struct GalleryView: View {
                     opacity = 1.0
                 }
             }else{
-                withAnimation(.easeOut(duration: 0.2)){
+                withAnimation(.easeInOut(duration: 0.1)){
                     showGallery.toggle()
                 }
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.4){

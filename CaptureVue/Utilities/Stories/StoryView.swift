@@ -11,6 +11,7 @@ import SwiftfulRouting
 struct StoryView: View {
     
     @EnvironmentObject var vm: EventHomeViewModel
+    @EnvironmentObject var videoManager: VideoPlayerManager
     
     @State private var offsetY: CGFloat = 0
     @State private var scale: CGFloat = 1
@@ -30,9 +31,22 @@ struct StoryView: View {
             TabView(selection: $selectedStory){
                 ForEach(vm.event.storiesList){ story in
                     GeometryReader{ proxy in
-                        ImageLoader(url: story.url)
-                            .tag(story.id)
-                            .rotation3DEffect(allow3dRotation ? getAngle(proxy: proxy) : .zero , axis: (x:0, y:1, z:0), anchor: proxy.frame(in: .global).minX > 0 ? .leading : .trailing, perspective: 0.5)
+                        Group{
+                            if story.url.hasSuffix(".mp4"){
+                                VideoPlayerView(player: videoManager.player)
+                                    .onAppear{
+                                        videoManager.setVideoToPlayer(videoUrl: story.url)
+                                        videoManager.playVideo()
+                                    }
+                                    .onDisappear{
+                                        videoManager.pauseVideo()
+                                    }
+                            }else{
+                                ImageLoader(url: story.url)
+                            }
+                        }
+                        .tag(story.id)
+                        .rotation3DEffect(allow3dRotation ? getAngle(proxy: proxy) : .zero , axis: (x:0, y:1, z:0), anchor: proxy.frame(in: .global).minX > 0 ? .leading : .trailing, perspective: 0.5)
                     }
                     .onAppear{
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
@@ -76,7 +90,7 @@ struct StoryView: View {
             }else{
                 allow3dRotation = false
                 if !allow3dRotation{
-                    withAnimation(.easeOut(duration: 0.2)){
+                    withAnimation(.easeInOut(duration: 0.1)){
                         showStory.toggle()
                     }
                 }
@@ -95,9 +109,6 @@ struct StoryView: View {
         let degrees = rotationAngle * progress
         return Angle(degrees: Double(degrees))
     }
-    
-    
-    
 }
 
 

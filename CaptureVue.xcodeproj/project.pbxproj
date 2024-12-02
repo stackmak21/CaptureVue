@@ -24,6 +24,11 @@
 		F96982F52CF31CA800CC3C55 /* StoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F96982F42CF31CA800CC3C55 /* StoryView.swift */; };
 		F96982FA2CF3530D00CC3C55 /* GalleryListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F96982F92CF3530D00CC3C55 /* GalleryListView.swift */; };
 		F96982FC2CF3537B00CC3C55 /* GalleryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F96982FB2CF3537B00CC3C55 /* GalleryView.swift */; };
+		F96983002CF5203500CC3C55 /* LoginScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = F96982FF2CF5203500CC3C55 /* LoginScreen.swift */; };
+		F96983022CF5207C00CC3C55 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F96983012CF5207C00CC3C55 /* LoginViewModel.swift */; };
+		F96983042CF520EC00CC3C55 /* LoginInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F96983032CF520EC00CC3C55 /* LoginInteractor.swift */; };
+		F96983062CF63E5A00CC3C55 /* VideoPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F96983052CF63E5A00CC3C55 /* VideoPlayerView.swift */; };
+		F96983082CF6448D00CC3C55 /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F96983072CF6448D00CC3C55 /* TestView.swift */; };
 		F96A6D4E2CC1B9A3001C1E85 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = F96A6D4D2CC1B9A3001C1E85 /* Kingfisher */; };
 		F9995E8E2CBC4DB100909E85 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F9995E8C2CBC4DB100909E85 /* GoogleService-Info.plist */; };
 		F9A561E62CB5BD5E00634C7A /* CaptureVueApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A561E52CB5BD5E00634C7A /* CaptureVueApp.swift */; };
@@ -58,7 +63,7 @@
 		F9A9E0872CE564F1003DB166 /* ImagePrefetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A9E0862CE564F1003DB166 /* ImagePrefetcher.swift */; };
 		F9A9E08B2CE6703A003DB166 /* StretchyHeaderViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A9E08A2CE6703A003DB166 /* StretchyHeaderViewModifier.swift */; };
 		F9A9E08D2CE67432003DB166 /* DateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A9E08C2CE67432003DB166 /* DateExtensions.swift */; };
-		F9A9E09A2CE8A21C003DB166 /* PreviewProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A9E0992CE8A21C003DB166 /* PreviewProvider.swift */; };
+		F9A9E09A2CE8A21C003DB166 /* DeveloperPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A9E0992CE8A21C003DB166 /* DeveloperPreview.swift */; };
 		F9A9E0AA2CEF8C7F003DB166 /* GalleryItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A9E0A92CEF8C7F003DB166 /* GalleryItemView.swift */; };
 /* End PBXBuildFile section */
 
@@ -96,6 +101,11 @@
 		F96982F42CF31CA800CC3C55 /* StoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryView.swift; sourceTree = "<group>"; };
 		F96982F92CF3530D00CC3C55 /* GalleryListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryListView.swift; sourceTree = "<group>"; };
 		F96982FB2CF3537B00CC3C55 /* GalleryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryView.swift; sourceTree = "<group>"; };
+		F96982FF2CF5203500CC3C55 /* LoginScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginScreen.swift; sourceTree = "<group>"; };
+		F96983012CF5207C00CC3C55 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		F96983032CF520EC00CC3C55 /* LoginInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginInteractor.swift; sourceTree = "<group>"; };
+		F96983052CF63E5A00CC3C55 /* VideoPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerView.swift; sourceTree = "<group>"; };
+		F96983072CF6448D00CC3C55 /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
 		F9995E8C2CBC4DB100909E85 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F9A561E22CB5BD5E00634C7A /* CaptureVue.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CaptureVue.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9A561E52CB5BD5E00634C7A /* CaptureVueApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureVueApp.swift; sourceTree = "<group>"; };
@@ -137,7 +147,7 @@
 		F9A9E0862CE564F1003DB166 /* ImagePrefetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePrefetcher.swift; sourceTree = "<group>"; };
 		F9A9E08A2CE6703A003DB166 /* StretchyHeaderViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StretchyHeaderViewModifier.swift; sourceTree = "<group>"; };
 		F9A9E08C2CE67432003DB166 /* DateExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtensions.swift; sourceTree = "<group>"; };
-		F9A9E0992CE8A21C003DB166 /* PreviewProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewProvider.swift; sourceTree = "<group>"; };
+		F9A9E0992CE8A21C003DB166 /* DeveloperPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeveloperPreview.swift; sourceTree = "<group>"; };
 		F9A9E0A92CEF8C7F003DB166 /* GalleryItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryItemView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -181,6 +191,7 @@
 			isa = PBXGroup;
 			children = (
 				F927D19A2CF1B01500EB7650 /* VideoPlayerManager.swift */,
+				F96983052CF63E5A00CC3C55 /* VideoPlayerView.swift */,
 			);
 			path = VideoPlayer;
 			sourceTree = "<group>";
@@ -264,6 +275,24 @@
 			path = Gallery;
 			sourceTree = "<group>";
 		};
+		F96982FD2CF5200800CC3C55 /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				F96982FE2CF5201100CC3C55 /* Login */,
+			);
+			path = Authentication;
+			sourceTree = "<group>";
+		};
+		F96982FE2CF5201100CC3C55 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				F96982FF2CF5203500CC3C55 /* LoginScreen.swift */,
+				F96983012CF5207C00CC3C55 /* LoginViewModel.swift */,
+				F96983032CF520EC00CC3C55 /* LoginInteractor.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
 		F9A561D92CB5BD5E00634C7A = {
 			isa = PBXGroup;
 			children = (
@@ -301,6 +330,7 @@
 				F9A562102CB711E700634C7A /* Info.plist */,
 				F9995E8C2CBC4DB100909E85 /* GoogleService-Info.plist */,
 				F9A561EB2CB5BD6000634C7A /* Preview Content */,
+				F96983072CF6448D00CC3C55 /* TestView.swift */,
 			);
 			path = CaptureVue;
 			sourceTree = "<group>";
@@ -354,6 +384,7 @@
 		F9A5623C2CBA8D1000634C7A /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				F96982FD2CF5200800CC3C55 /* Authentication */,
 				F9A9E07C2CE52DED003DB166 /* EventHome */,
 				F953B24B2CC8274B0058C2BD /* OnBoarding */,
 				F9A5623F2CBA8D6400634C7A /* Splash */,
@@ -399,7 +430,7 @@
 				F9A9E0692CDFC224003DB166 /* ViewExtensions.swift */,
 				F9A9E08A2CE6703A003DB166 /* StretchyHeaderViewModifier.swift */,
 				F9A9E08C2CE67432003DB166 /* DateExtensions.swift */,
-				F9A9E0992CE8A21C003DB166 /* PreviewProvider.swift */,
+				F9A9E0992CE8A21C003DB166 /* DeveloperPreview.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -620,9 +651,11 @@
 			files = (
 				F9A562322CB71CDC00634C7A /* Typography.swift in Sources */,
 				F953B24F2CC8280C0058C2BD /* OnBoardingViewModel.swift in Sources */,
+				F96983042CF520EC00CC3C55 /* LoginInteractor.swift in Sources */,
 				F9A5622F2CB71B0500634C7A /* Fonts.swift in Sources */,
 				F96982F32CF31B4E00CC3C55 /* StoryThumbnailView.swift in Sources */,
 				F96982FC2CF3537B00CC3C55 /* GalleryView.swift in Sources */,
+				F96983022CF5207C00CC3C55 /* LoginViewModel.swift in Sources */,
 				F9A9E0852CE563AA003DB166 /* ImageLoader.swift in Sources */,
 				F927D19E2CF1F37000EB7650 /* CacheManager.swift in Sources */,
 				F927D19B2CF1B01500EB7650 /* VideoPlayerManager.swift in Sources */,
@@ -640,6 +673,7 @@
 				F9A9E0752CE2AF77003DB166 /* EventDto.swift in Sources */,
 				F9A9E0872CE564F1003DB166 /* ImagePrefetcher.swift in Sources */,
 				F9A9E0802CE52E22003DB166 /* EventHomeViewModel.swift in Sources */,
+				F96983082CF6448D00CC3C55 /* TestView.swift in Sources */,
 				F96982FA2CF3530D00CC3C55 /* GalleryListView.swift in Sources */,
 				F9A5624A2CBABD1900634C7A /* DataService.swift in Sources */,
 				F953B2652CD2E9E00058C2BD /* QRCameraManager.swift in Sources */,
@@ -647,8 +681,10 @@
 				F9A9E06A2CDFC224003DB166 /* ViewExtensions.swift in Sources */,
 				F9503ACC2CD821CA00DDD4F0 /* SystemProperties.swift in Sources */,
 				F953B2632CD2A3BD0058C2BD /* CameraView.swift in Sources */,
+				F96983062CF63E5A00CC3C55 /* VideoPlayerView.swift in Sources */,
+				F96983002CF5203500CC3C55 /* LoginScreen.swift in Sources */,
 				F953B2672CD3CDE20058C2BD /* PermissionAlertStatus.swift in Sources */,
-				F9A9E09A2CE8A21C003DB166 /* PreviewProvider.swift in Sources */,
+				F9A9E09A2CE8A21C003DB166 /* DeveloperPreview.swift in Sources */,
 				F9A9E07B2CE2B4AF003DB166 /* CaptureVueError.swift in Sources */,
 				F9A561E62CB5BD5E00634C7A /* CaptureVueApp.swift in Sources */,
 				F9A9E0702CE0A684003DB166 /* Keyboard.swift in Sources */,

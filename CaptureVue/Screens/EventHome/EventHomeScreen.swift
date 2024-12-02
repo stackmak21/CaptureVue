@@ -52,25 +52,8 @@ struct EventHomeScreen: View {
                             }
                             .padding(.horizontal)
                             .padding(.vertical, 4)
-                            
-                            
-                            StoryThumbnailView(
-                                showStory: $showStory,
-                                selectedStory: $selectedStory,
-                                storyNamespace: storyNamespace
-                            )
-                            .padding(.vertical)
-                            .environmentObject(vm)
-                            
-                            GalleryListView(
-                                selectedGalleryItem: $selectedGalleryItem,
-                                showGallery: $showGallery,
-                                galleryNamespace: galleryNamespace
-                            )
-                            .environmentObject(vm)
-                            .padding(.horizontal)
-                            
-                            
+                            storyThumbnailView()
+                            galleryListView()
                         }
                     }
                     .onChange(of: selectedGalleryItem){ galleryItem in
@@ -80,32 +63,65 @@ struct EventHomeScreen: View {
                             }
                         }
                     }
-                    
+                    .refreshable {
+                        
+                    }
                 }
             }
             .ignoresSafeArea()
-
-            if showGallery{
-                GalleryView(
-                    showGallery: $showGallery,
-                    selectedGalleryItem: $selectedGalleryItem,
-                    galleryNamespace: galleryNamespace
-                )
-                .zIndex(1)
-                .environmentObject(vm)
-            }
-            
-            if showStory{
-                StoryView(
-                    showStory: $showStory,
-                    allow3dRotation: $allow3dRotation,
-                    selectedStory: $selectedStory,
-                    storyNamespace: storyNamespace
-                )
-                .environmentObject(vm)
-                .zIndex(1)
-            }
+            galleryCarousel()
+            storyCarousel()
         }
+        .navigationBarBackButtonHidden(true)
+    }
+    
+    @ViewBuilder func storyCarousel() -> some View{
+        if showStory{
+            StoryView(
+                showStory: $showStory,
+                allow3dRotation: $allow3dRotation,
+                selectedStory: $selectedStory,
+                storyNamespace: storyNamespace
+            )
+            .environmentObject(vm)
+            .environmentObject(videoPlayer)
+            .zIndex(1)
+        }
+    }
+    
+    @ViewBuilder func galleryCarousel() -> some View{
+        if showGallery{
+            
+            GalleryView(
+                showGallery: $showGallery,
+                selectedGalleryItem: $selectedGalleryItem,
+                galleryNamespace: galleryNamespace
+            )
+            .environmentObject(vm)
+            .environmentObject(videoPlayer)
+            .zIndex(1)
+            
+        }
+    }
+    
+    @ViewBuilder func storyThumbnailView() -> some View{
+        StoryThumbnailView(
+            showStory: $showStory,
+            selectedStory: $selectedStory,
+            storyNamespace: storyNamespace
+        )
+        .padding(.vertical)
+        .environmentObject(vm)
+    }
+    
+    @ViewBuilder func galleryListView() -> some View{
+        GalleryListView(
+            selectedGalleryItem: $selectedGalleryItem,
+            showGallery: $showGallery,
+            galleryNamespace: galleryNamespace
+        )
+        .environmentObject(vm)
+        .padding(.horizontal)
     }
 }
 

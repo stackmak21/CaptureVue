@@ -7,6 +7,7 @@
 
 import SwiftUI
 import SwiftfulRouting
+import AVKit
 
 struct GalleryListView: View {
     
@@ -14,6 +15,9 @@ struct GalleryListView: View {
     
     @Binding var selectedGalleryItem: String
     @Binding var showGallery: Bool
+    
+    
+    @State private var frameImages: [String: UIImage] = [:]
     
     var galleryNamespace: Namespace.ID
     
@@ -23,23 +27,49 @@ struct GalleryListView: View {
                 ZStack{
                     Rectangle()
                         .fill(Color.black.opacity(0.001))
-                        .frame(height: 160)
+                        .frame(height: 120)
                     if !showGallery || selectedGalleryItem != galleryItem.id{
-                        ImageLoader(url: galleryItem.publicUrl)
-                            .matchedGeometryEffect(id: galleryItem.id, in: galleryNamespace)
-                            .frame(height: 160)
-                            .onTapGesture {
-                                selectedGalleryItem = galleryItem.id
-                                withAnimation {
-                                    showGallery.toggle()
+                        if galleryItem.publicUrl.hasSuffix("mp4"){
+                            if let frameImage =  frameImages[galleryItem.id]{
+                                Image(uiImage: frameImage)
+                                    .resizable()
+                                    .matchedGeometryEffect(id: galleryItem.id, in: galleryNamespace)
+                                    .frame(height: 120)
+                                    .clipShape(RoundedRectangle(cornerRadius: 4))
+                                .onTapGesture {
+                                    selectedGalleryItem = galleryItem.id
+                                    withAnimation(.easeInOut(duration: 0.1)){
+                                        showGallery.toggle()
+                                    }
                                 }
                             }
+                        }else{
+                            ImageLoader(url: galleryItem.publicUrl)
+                                .matchedGeometryEffect(id: galleryItem.id, in: galleryNamespace)
+                                .frame(height: 120)
+                                .clipShape(RoundedRectangle(cornerRadius: 4))
+                                .onTapGesture {
+                                    selectedGalleryItem = galleryItem.id
+                                    withAnimation(.easeInOut(duration: 0.1)){
+                                        showGallery.toggle()
+                                    }
+                                }
+                        }
                     }
                 }
                 .id(galleryItem.id)
+                .onAppear{
+                    vm.imageFromVideo(url: URL(string: galleryItem.publicUrl)!, at: 5) { image in
+                        if let image = image {
+                                    self.frameImages[galleryItem.id] = image
+                                }
+                    }
+                }
             }
         }
     }
+    
+
 }
 
 #Preview {

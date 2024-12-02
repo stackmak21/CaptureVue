@@ -14,6 +14,8 @@ struct StoryThumbnailView: View {
     @Binding var showStory: Bool
     @Binding var selectedStory: String
     
+    @State private var frameImages: [String: UIImage] = [:]
+    
     var storyNamespace: Namespace.ID
     
     var body: some View {
@@ -32,33 +34,56 @@ struct StoryThumbnailView: View {
                                 )
                                 .padding(4)
                             if !showStory || selectedStory != story.id{
-                                ImageLoader(url: story.url)
-                                    .matchedGeometryEffect(id: story.id, in: storyNamespace)
-                                    .frame(width: 76, height: 76)
-                                    .clipShape(Circle())
-                                    .onTapGesture {
-                                        selectedStory = story.id
-                                        withAnimation(.easeIn(duration: 0.2)) {
-                                            showStory.toggle()
-                                        }
-                                        
+                                if story.url.hasSuffix("mp4"){
+                                    if let frameImage =  frameImages[story.id]{
+                                        Image(uiImage: frameImage)
+                                            .resizable()
+                                            .matchedGeometryEffect(id: story.id, in: storyNamespace)
+                                            .frame(width: 76, height: 76)
+                                            .clipShape(Circle())
+                                            .onTapGesture {
+                                                selectedStory = story.id
+                                                withAnimation(.easeInOut(duration: 0.05)) {
+                                                    showStory.toggle()
+                                                }
+                                            }
                                     }
+                                    }else{
+                                        ImageLoader(url: story.url)
+                                            .matchedGeometryEffect(id: story.id, in: storyNamespace)
+                                            .frame(width: 76, height: 76)
+                                            .clipShape(Circle())
+                                            .onTapGesture {
+                                                selectedStory = story.id
+                                                withAnimation(.easeInOut(duration: 0.1)) {
+                                                    showStory.toggle()
+                                                }
+                                                
+                                            }
+                                    }
+                                }
+                            }
+                        .id(story.id)
+                        .onAppear{
+                            vm.imageFromVideo(url: URL(string: story.url)!, at: 5) { image in
+                                if let image = image {
+                                    self.frameImages[story.id] = image
+                                }
                             }
                         }
-                        .id(story.id)
+                        }
                     }
+                    .padding(.horizontal)
                 }
-                .padding(.horizontal)
-            }
-            .onChange(of: selectedStory){ storyId in
-                withAnimation(){
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.4){
-                        scrollView.scrollTo(storyId, anchor: .leading)                        
+                .onChange(of: selectedStory){ storyId in
+                    withAnimation(){
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.4){
+                            scrollView.scrollTo(storyId, anchor: .leading)
+                        }
                     }
                 }
             }
         }
-    }
 }
 
 #Preview {

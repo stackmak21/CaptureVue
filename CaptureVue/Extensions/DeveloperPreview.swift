@@ -1,5 +1,5 @@
 //
-//  PreviewProvider.swift
+//  DeveloperPreview.swift
 //  CaptureVue
 //
 //  Created by Paris Makris on 16/11/24.
@@ -9,13 +9,6 @@ import Foundation
 import SwiftUI
 import SwiftfulRouting
 
-extension PreviewProvider {
-    
-    static var dev: DeveloperPreview {
-        return DeveloperPreview.instance
-    }
-    
-}
 
 class DeveloperPreview {
     
@@ -28,7 +21,7 @@ class DeveloperPreview {
         creator = Customer(id: "72b239c-900e-49cf-9ed4-54f26b073ehj", firstName: "Paris", lastName: "Makris", createdAt: 1730197768000, isVerified: true)
         stories = [
             StoryItem(id: "1", url: "https://picsum.photos/800/1001", previewUrl: "", type: .photo, creator: creatorInstance),
-            StoryItem(id: "2", url: "https://picsum.photos/800/1002", previewUrl: "", type: .photo, creator: creatorInstance),
+            StoryItem(id: "2", url: "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4", previewUrl: "", type: .photo, creator: creatorInstance),
             StoryItem(id: "3", url: "https://picsum.photos/800/1003", previewUrl: "", type: .photo, creator: creatorInstance),
             StoryItem(id: "4", url: "https://picsum.photos/800/1004", previewUrl: "", type: .photo, creator: creatorInstance),
             StoryItem(id: "5", url: "https://picsum.photos/800/1005", previewUrl: "", type: .photo, creator: creatorInstance),
@@ -47,14 +40,14 @@ class DeveloperPreview {
             creator: creatorInstance,
             storiesList: [
                 StoryItem(id: "075e147b-a701-4eaa-a1a6-b5167a857516", url: "https://picsum.photos/800/1000", previewUrl: "", type: .photo, creator: creatorInstance),
-                StoryItem(id: "25b859ef-efd5-42f3-953f-a8a0d963c6a3", url: "https://picsum.photos/809/1001", previewUrl: "", type: .photo, creator: creatorInstance),
+                StoryItem(id: "25b859ef-efd5-42f3-953f-a8a0d963c6a3", url: "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4", previewUrl: "", type: .photo, creator: creatorInstance),
                 StoryItem(id: "672b239c-900e-49cf-9ed4-54f26b073eae", url: "https://picsum.photos/804/1000", previewUrl: "", type: .photo, creator: creatorInstance),
                 StoryItem(id: "9371ef4e-2bab-49d5-a35e-7ec1e809e809", url: "https://picsum.photos/806/1000", previewUrl: "", type: .photo, creator: creatorInstance),
                 StoryItem(id: "dd2393db-0eba-4dc1-afb9-b6755dc8b90c", url: "https://picsum.photos/803/1000", previewUrl: "", type: .photo, creator: creatorInstance),
                 StoryItem(id: "ec3af1c2-0bf3-4eee-be7e-9407695d373d", url: "https://picsum.photos/805/1000", previewUrl: "", type: .photo, creator: creatorInstance),
             ],
             galleryList: [
-                GalleryItem(id: "4637ef9d-a3bc-431f-b12a-f5332c27f827", publicUrl: "https://picsum.photos/802/1001", creatorId: "cpu-12345", createdAt: 1731422089000, eventId: "cp-12345", dataType: .photo, previewUrl: "", customer: creatorInstance),
+                GalleryItem(id: "4637ef9d-a3bc-431f-b12a-f5332c27f827", publicUrl: "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4", creatorId: "cpu-12345", createdAt: 1731422089000, eventId: "cp-12345", dataType: .photo, previewUrl: "", customer: creatorInstance),
                 GalleryItem(id: "4637ef9d-a3bc-431f-b12a-f5hgjc27f827", publicUrl: "https://picsum.photos/802/1002", creatorId: "cpu-12345", createdAt: 1731422089000, eventId: "cp-12345", dataType: .photo, previewUrl: "", customer: creatorInstance),
                 GalleryItem(id: "4637ef9d-a3bc-431f-b12a-f5qw3c27f827", publicUrl: "https://picsum.photos/802/1003", creatorId: "cpu-12345", createdAt: 1731422089000, eventId: "cp-12345", dataType: .photo, previewUrl: "", customer: creatorInstance),
                 GalleryItem(id: "4637ef9d-a3bc-431f-b12a-f589kc27f827", publicUrl: "https://picsum.photos/802/1004", creatorId: "cpu-12345", createdAt: 1731422089000, eventId: "cp-12345", dataType: .photo, previewUrl: "", customer: creatorInstance),

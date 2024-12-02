@@ -27,19 +27,21 @@ struct CaptureVueApp: App {
     
     var body: some Scene {
         WindowGroup {
-//            RouterView { router in
-//                SplashScreen(router: router, dataService: dataService)
-//                    .onOpenURL(perform: { url in
-//                        let string = url.absoluteString
-//                        print(string)
-//                    })
-//            }
-//            TestTabViewOpening()
-            let dev = DeveloperPreview.instance
-            let dataService = DataServiceImpl()
-            RouterView{ router in
-                EventHomeScreen(router: router, dataService: dataService, event: dev.event)
+            RouterView { router in
+                SplashScreen(router: router, dataService: dataService)
+                    .onOpenURL(perform: { url in
+                        let string = url.absoluteString
+                        print(string)
+                    })
             }
+//            TestTabViewOpening()
+//            let dev = DeveloperPreview.instance
+//            let dataService = DataServiceImpl()
+//            RouterView{ router in
+//                EventHomeScreen(router: router, dataService: dataService, event: dev.event)
+////                LoginScreen(router: router, dataService: dataService)
+//            }
+            
            
         }
     }

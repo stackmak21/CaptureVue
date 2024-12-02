@@ -29,7 +29,6 @@ struct GalleryItemView: View {
                         Text(galleryItem.customer.lastName)
                             .font(Typography.medium(size: 8))
                     }
-
                 }
             }
             .onTapGesture {
