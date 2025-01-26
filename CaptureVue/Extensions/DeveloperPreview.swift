@@ -15,10 +15,10 @@ class DeveloperPreview {
     static let instance = DeveloperPreview()
     
     private init() {
-        let creatorInstance: Customer = Customer(id: "72b239c-900e-49cf-9ed4-54f26b073ehj", firstName: "Paris", lastName: "Makris", createdAt: 1730197768000, isVerified: true)
+        let creatorInstance: Customer = Customer(id: "72b239c-900e-49cf-9ed4-54f26b073ehj", email: "test1@gmail.com", firstName: "Paris", lastName: "Makris", createdAt: 1730197768000, isVerified: true)
         galleryItem = GalleryItem(id: "4637ef9d-a3bc-431f-b12a-f5332c27f827", publicUrl: "https://picsum.photos/802/1001", creatorId: "cpu-12345", createdAt: 1731422089000, eventId: "cp-12345", dataType: .photo, previewUrl: "", customer: creatorInstance)
         story = StoryItem(id: "672b239c-900e-49cf-9ed4-54f26b073eae", url: "https://picsum.photos/804/1000", previewUrl: "", type: .photo, creator: creatorInstance)
-        creator = Customer(id: "72b239c-900e-49cf-9ed4-54f26b073ehj", firstName: "Paris", lastName: "Makris", createdAt: 1730197768000, isVerified: true)
+        creator = Customer(id: "72b239c-900e-49cf-9ed4-54f26b073ehj", email: "test1@gmail.com", firstName: "Paris", lastName: "Makris", createdAt: 1730197768000, isVerified: true)
         stories = [
             StoryItem(id: "1", url: "https://picsum.photos/800/1001", previewUrl: "", type: .photo, creator: creatorInstance),
             StoryItem(id: "2", url: "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4", previewUrl: "", type: .photo, creator: creatorInstance),
@@ -32,7 +32,7 @@ class DeveloperPreview {
             eventName: "Test event 1",
             mainImage: "https://picsum.photos/804/1009",
             eventDescription: "Test description 1",
-            expires: 1735467926000,
+//            expires: 1735467926000,
             createdAt: 1730197768000,
             dateStart: 0,
             dateEnd: 0,

@@ -31,7 +31,7 @@ class SplashViewModel: ObservableObject{
     
     func navigateToOnboarding(dataService: DataService) {
         router.showScreen(.push) { router in
-            OnBoardingScreen(router: router, dataService: dataService)
+            LoginScreen(router: router, dataService: dataService)
         }
     }
     

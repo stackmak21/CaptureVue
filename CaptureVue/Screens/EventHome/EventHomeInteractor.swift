@@ -17,9 +17,9 @@ class EventHomeInteractor{
     
 
     
-    func fetchEventDetails(eventId: String) async throws -> EventDto? {
+    func fetchEventDetails(eventId: String, token: String) async throws -> EventDto? {
         do {
-            let response: EventDto? = try await dataService.downloadData(url: "\(urlPrefix)event?eventId=\(eventId)")
+            let response: EventDto? = try await dataService.downloadData(url: "\(urlPrefix)/event?eventId=\(eventId)", authToken: token)
                 return response
         } catch let error as CaptureVueError {
             throw error

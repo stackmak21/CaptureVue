@@ -82,6 +82,7 @@ struct QRCodeScannerScreen: View {
                 presentationMode.wrappedValue.dismiss()
             }
         }
+        
             
         
     }

@@ -48,6 +48,11 @@ struct GalleryListView: View {
                                 .matchedGeometryEffect(id: galleryItem.id, in: galleryNamespace)
                                 .frame(height: 120)
                                 .clipShape(RoundedRectangle(cornerRadius: 4))
+                                .padding(1)
+                                .background(
+                                    RoundedRectangle(cornerRadius: 5)
+                                        .fill(Color.black.opacity(0.6))
+                                )
                                 .onTapGesture {
                                     selectedGalleryItem = galleryItem.id
                                     withAnimation(.easeInOut(duration: 0.1)){

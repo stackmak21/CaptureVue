@@ -20,9 +20,17 @@ struct EventHomeScreen: View {
     @State var selectedStory: String = ""
     @State var selectedGalleryItem: String = ""
     @State var allow3dRotation: Bool = false
+    @State var offsetY: CGRect = .zero
+    @State var position: CGRect = .zero
+    @State var opacity: CGFloat = 1
+    @State var opacity1: CGFloat = 0
+    
+    @State var myDate: Date = Date.now
+    
     
     @Namespace var storyNamespace
     @Namespace var galleryNamespace
+    
     
     init(router: AnyRouter, dataService: DataService, event: EventDto ) {
         let interactor = EventHomeInteractor(dataService: dataService)
@@ -31,50 +39,85 @@ struct EventHomeScreen: View {
     
     var body: some View {
         ZStack {
-            VStack(spacing: 0){
-                Rectangle()
-                    .fill(Color.black.opacity(0.001))
-                    .frame(height: 260)
-                    .overlay {
-                        ZStack{
-                            ImageLoader(url: vm.event.mainImage)
-                        }
-                    }
-                ScrollViewReader{ mainScrollReader in
-                    ScrollView(showsIndicators: false) {
-                        VStack(spacing: 0){
-                            HStack{
-                                Text(vm.event.eventName)
-                                    .font(Typography.medium(size: 16))
-                                Spacer()
-                                Text(vm.event.eventName)
-                                    .font(Typography.medium(size: 16))
-                            }
-                            .padding(.horizontal)
-                            .padding(.vertical, 4)
-                            storyThumbnailView()
-                            galleryListView()
-                        }
-                    }
-                    .onChange(of: selectedGalleryItem){ galleryItem in
-                        withAnimation(){
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.4){
-                                mainScrollReader.scrollTo(galleryItem, anchor: .bottom)
+            ZStack {
+                VStack(spacing: 0){
+                    Rectangle()
+                        .fill(Color.black.opacity(0.001))
+                        .frame(height: 260)
+                        .overlay {
+                            ZStack{
+                                ImageLoader(url: vm.event.mainImage)
+                                HStack{
+                                    Text(vm.event.eventName)
+                                        .font(Typography.medium(size: 16))
+                                    Spacer()
+                                    Text(vm.event.eventName)
+                                        .font(Typography.medium(size: 16))
+                                }
+                                .opacity(calculateOpacity())
+                                .padding(.horizontal)
+                                .padding(.vertical, 4)
+                                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
                             }
                         }
-                    }
-                    .refreshable {
-                        
+                    
+                    ScrollViewReader{ mainScrollReader in
+                        ScrollView(showsIndicators: false) {
+                            GeometryReader{ geo in
+                                VStack(spacing: 0){
+                                    HStack{
+                                        Text(vm.event.eventName)
+                                            .font(Typography.medium(size: 16))
+                                            .frameReader{ rect in
+                                                position = rect
+                                            }
+                                        Spacer()
+//                                        Text(vm.event.expires.asDateString())
+//                                            .font(Typography.medium(size: 16))
+//                                            .onTapGesture {
+//                                                triggerDatePickerPopover(pickerId: "datePicker")
+//                                                print("Clicked 🔥🔥🔥🔥🔥")
+//                                            }
+                                            
+                                    }
+                                    .padding(.horizontal)
+                                    .padding(.vertical, 4)
+                                    storyThumbnailView()
+                                    galleryListView()
+                                }
+                                .frameReader{ rect in
+                                    offsetY = rect
+                                }
+                            }
+                        }
+                        .onChange(of: selectedGalleryItem){ galleryItem in
+                            withAnimation(){
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.4){
+                                    mainScrollReader.scrollTo(galleryItem, anchor: .bottom)
+                                }
+                            }
+                        }
+                        .refreshable {
+                            
+                        }
                     }
                 }
+                .ignoresSafeArea()
+                galleryCarousel()
+                storyCarousel()
             }
-            .ignoresSafeArea()
-            galleryCarousel()
-            storyCarousel()
+            .navigationBarBackButtonHidden(true)
         }
-        .navigationBarBackButtonHidden(true)
     }
     
+    private func calculateOpacity() -> CGFloat{
+        if offsetY.minY < 240{
+            let a = 1/20 * ((offsetY.minY - 210) - 5)
+            return 1 - a
+        }
+        return 0
+    }
+
     @ViewBuilder func storyCarousel() -> some View{
         if showStory{
             StoryView(
@@ -134,7 +177,78 @@ struct EventHomeScreen: View {
     }
 }
 
+struct GeometryGetter: View {
+    let coordinateSpace: CoordinateSpace
+    let action: (CGRect) -> Void
+    
+    var body: some View {
+        GeometryReader { geometry in
+            Text("")
+                .onChange(of: geometry.frame(in: coordinateSpace)) { rect in
+                    action(rect)
+                }
+        }
+    }
+}
 
+
+extension View {
+    func frameReader(coordinateSpace: CoordinateSpace = .global, perform action: @escaping (CGRect) -> Void) -> some View {
+        self.background(GeometryGetter(coordinateSpace: coordinateSpace, action: action))
+    }
+}
+
+
+extension NSObject {
+  func accessibilityDescendant(passing test: (Any) -> Bool) -> Any? {
+
+    if test(self) { return self }
+
+    for child in accessibilityElements ?? [] {
+      if test(child) { return child }
+      if let child = child as? NSObject, let answer = child.accessibilityDescendant(passing: test) {
+        return answer
+      }
+    }
+
+    for subview in (self as? UIView)?.subviews ?? [] {
+      if test(subview) { return subview }
+      if let answer = subview.accessibilityDescendant(passing: test) {
+        return answer
+      }
+    }
+
+    return nil
+  }
+}
+
+extension NSObject {
+  func accessibilityDescendant(identifiedAs id: String) -> Any? {
+    return accessibilityDescendant {
+      // For reasons unknown, I cannot cast a UIView to a UIAccessibilityIdentification at runtime.
+      return ($0 as? UIView)?.accessibilityIdentifier == id
+      || ($0 as? UIAccessibilityIdentification)?.accessibilityIdentifier == id
+    }
+  }
+    
+    func buttonAccessibilityDescendant() -> Any? {
+        return accessibilityDescendant { ($0 as? NSObject)?.accessibilityTraits == .button }
+      }
+}
+
+
+extension View{
+  func triggerDatePickerPopover(pickerId: String) {
+    if
+      let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+      let window = scene.windows.first,
+      let picker = window.accessibilityDescendant(identifiedAs: pickerId) as? NSObject,
+      let button = picker.buttonAccessibilityDescendant() as? NSObject
+    {
+      button.accessibilityActivate()
+    }
+  }
+}
 
 
 

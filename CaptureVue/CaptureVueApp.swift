@@ -23,7 +23,12 @@ struct CaptureVueApp: App {
 //     register app delegate for Firebase setup
 //    @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     
-    let dataService: DataService = DataServiceImpl()
+    let dataService: DataService
+    
+    init(){
+        self.dataService = DataServiceImpl()
+//        configureNavigationBar()
+    }
     
     var body: some Scene {
         WindowGroup {
@@ -33,6 +38,8 @@ struct CaptureVueApp: App {
                         let string = url.absoluteString
                         print(string)
                     })
+//                LoginScreen(router: router, dataService: dataService)
+//                EventHomeScreen(router: router, dataService: dataService, event: DeveloperPreview.instance.event)
             }
 //            TestTabViewOpening()
 //            let dev = DeveloperPreview.instance
@@ -45,4 +52,20 @@ struct CaptureVueApp: App {
            
         }
     }
+//    
+//    private func configureNavigationBar() {
+//        let backgroundColor = UIColor(Color.blue)
+//        let foregroundColor = UIColor(Color.white)
+//        
+//        let coloredAppearance = UINavigationBarAppearance()
+//        coloredAppearance.configureWithOpaqueBackground()
+//        coloredAppearance.backgroundColor = backgroundColor
+//        coloredAppearance.titleTextAttributes = [.foregroundColor: foregroundColor]
+//        coloredAppearance.largeTitleTextAttributes = [.foregroundColor: foregroundColor]
+//        
+//        UINavigationBar.appearance().standardAppearance = coloredAppearance
+//        UINavigationBar.appearance().compactAppearance = coloredAppearance
+//        UINavigationBar.appearance().scrollEdgeAppearance = coloredAppearance
+//        UINavigationBar.appearance().tintColor = foregroundColor
+//    }
 }

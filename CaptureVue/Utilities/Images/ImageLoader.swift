@@ -13,8 +13,10 @@ struct ImageLoader: View {
     
     var body: some View {
         ZStack{
-            KFImage(URL(string: url)!)
-                .resizable(resizingMode: .stretch)
+            if let urlValue = URL(string: url) {
+                KFImage(urlValue)
+                    .resizable(resizingMode: .stretch)
+                }
         }
     }
 }

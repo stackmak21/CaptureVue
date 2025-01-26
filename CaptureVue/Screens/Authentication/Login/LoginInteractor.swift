@@ -15,4 +15,15 @@ class LoginInteractor {
         self.dataService = dataService
     }
     
+    func authenticateUser(credentials: Credentials) async throws ->LoginResponseDto? {
+        do {
+            let response: LoginResponseDto? = try await dataService.authenticate(url: "http://localhost:8090/api/customer/login", credentials: credentials)
+                return response
+        } catch let error as CaptureVueError {
+            throw error
+        }
+    }
 }
+
+
+

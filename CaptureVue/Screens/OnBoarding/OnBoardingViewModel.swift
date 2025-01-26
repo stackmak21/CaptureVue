@@ -19,6 +19,8 @@ class OnBoardingViewModel: ObservableObject {
     private var cancellables: Set<AnyCancellable> = []
     
     @Published var eventId: String?
+    
+    @KeychainStorage("server_token") var token = ""
 
     init(
         router: AnyRouter,
@@ -33,13 +35,15 @@ class OnBoardingViewModel: ObservableObject {
     }
 
     func nextScreen(eventId: String){
+        print("token🔥🔥🔥🔥🔥🔥 : \(token)")
         let task = Task{
             do{
-                let validateResult =  try await interactor.validateEvent(eventId: eventId)
+                let validateResult =  try await interactor.validateEvent(eventId: eventId, token: token)
                 
                 if let  result = validateResult{
-                    if result.isValid{
-                        let event = try await interactor.fetchEvent(eventId: eventId)
+                    if !result.isValid{
+                        print("result is valid")
+                        let event = try await interactor.fetchEvent(eventId: eventId, token: token)
                         if let fetchedEvent = event{
                             router.showScreen(.push) { router in
                                 EventHomeScreen(router: router, dataService: self.interactor.dataService, event: fetchedEvent)
@@ -65,10 +69,10 @@ class OnBoardingViewModel: ObservableObject {
     private func fetchEvent(eventId: String){
         let task = Task{
             do{
-                let validateResult =  try await interactor.validateEvent(eventId: eventId)
+                let validateResult =  try await interactor.validateEvent(eventId: eventId, token: token)
                 if let  result = validateResult{
                     if result.isValid{
-                        let event = try await interactor.fetchEvent(eventId: eventId)
+                        let event = try await interactor.fetchEvent(eventId: eventId, token: token)
                         if let fetchedEvent = event{
                             router.showScreen(.push) { router in
                                 EventHomeScreen(router: router, dataService: self.interactor.dataService, event: fetchedEvent)

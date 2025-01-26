@@ -16,6 +16,15 @@ struct Banner: View {
     let bannerDuration: BannerDuration
     let action: BannerAction?
     
+    init(router: AnyRouter, message: String, bannerType: BannerType, bannerDuration: BannerDuration, action: BannerAction?) {
+        self.router = router
+        self.message = message
+        self.bannerType = bannerType
+        self.bannerDuration = bannerDuration
+        self.action = action
+        showBanner()
+    }
+    
     
     var body: some View {
         HStack(alignment: .center){
@@ -58,7 +67,7 @@ struct Banner: View {
         
         .padding()
         .onAppear{
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + bannerDuration.duration) {
                 self.router.dismissModal()
             }
         }
@@ -66,6 +75,20 @@ struct Banner: View {
             self.router.dismissModal()
         }
     }
+    
+    private func showBanner() {
+        router.showModal(
+            transition: .move(edge: .bottom),
+            animation: .easeInOut,
+            alignment: .bottom,
+            backgroundColor: .black.opacity(0.1),
+            dismissOnBackgroundTap: true,
+            ignoreSafeArea: false,
+            destination: {
+                self
+            })
+    }
+    
         
 }
 

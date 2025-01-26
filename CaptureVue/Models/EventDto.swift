@@ -12,7 +12,7 @@ struct EventDto: Codable, Identifiable {
     var eventName: String
     var mainImage: String
     var eventDescription: String
-    var expires: Int64
+//    var expires: Int64
     var createdAt: Int64
     var dateStart: Int64
     var dateEnd: Int64
@@ -26,7 +26,7 @@ struct EventDto: Codable, Identifiable {
         case eventName
         case mainImage
         case eventDescription
-        case expires
+//        case expires
         case createdAt
         case dateStart
         case dateEnd
@@ -39,11 +39,11 @@ struct EventDto: Codable, Identifiable {
 
 struct StoryItem: Codable, Identifiable{
     
-    var id: String
-    var url: String
-    var previewUrl: String
-    var type: MediaType
-    var creator: Customer
+    let id: String
+    let url: String
+    let previewUrl: String
+    let type: MediaType
+    let creator: Customer
     var isSeen: Bool = false
     
     
@@ -87,6 +87,7 @@ struct GalleryItem: Codable, Identifiable{
 
 struct Customer: Codable, Identifiable{
     var id: String
+    var email: String
     var firstName: String
     var lastName: String
     var createdAt: Int64
@@ -95,6 +96,7 @@ struct Customer: Codable, Identifiable{
     
     enum CodingKeys: String, CodingKey{
         case id
+        case email
         case firstName = "firstname"
         case lastName = "lastname"
         case createdAt

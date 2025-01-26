@@ -16,12 +16,17 @@ struct StoryView: View {
     @State private var offsetY: CGFloat = 0
     @State private var scale: CGFloat = 1
     @State private var opacity: Double = 1
+    @State private var showInfo: Bool = false
     
     @Binding var showStory: Bool
     @Binding var allow3dRotation: Bool
     @Binding var selectedStory: String
     
     var storyNamespace: Namespace.ID
+    
+    let timer = Timer.publish(every: 0.05, on: .main, in: .common).autoconnect()
+    @State var storyTime: Double = 0
+    @State var timerIndicatorWidth: CGFloat = 0
     
     private let deviceHeight: Double = UIScreen.self.main.bounds.height
     
@@ -42,7 +47,47 @@ struct StoryView: View {
                                         videoManager.pauseVideo()
                                     }
                             }else{
-                                ImageLoader(url: story.url)
+                                ZStack{
+                                    ImageLoader(url: story.url)
+                                    VStack{
+                                        GeometryReader{ proxy in
+                                            ZStack{
+                                                Capsule()
+                                                    .fill(Color.white.opacity(0.2))
+                                                    .frame(maxWidth: .infinity)
+                                                    .frame(height: 2)
+                                                Capsule()
+                                                    .fill(Color.white)
+                                                    .frame(width: proxy.size.width * 0.5)
+                                                    .frame(height: 2)
+                                                    .frame(maxWidth: .infinity, alignment: .leading)
+                                            }
+                                        }
+                                        HStack{
+                                            Text("Paris Makris")
+                                            Spacer()
+                                            Text("Paris Makris")
+                                        }
+                                    }
+                                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+                                    .padding(EdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8))
+                                    .opacity(showInfo ? 0 : 1)
+                                }
+                                .onLongPressGesture(
+                                    minimumDuration: 0.5,
+                                    perform: {
+                                        print("perform")
+                                        withAnimation {
+                                            showInfo.toggle()
+                                        }
+                                    },
+                                    onPressingChanged: { pressed in
+                                        withAnimation {
+                                            if showInfo {
+                                                showInfo = pressed
+                                            }
+                                        }
+                                    })
                             }
                         }
                         .tag(story.id)
@@ -65,6 +110,11 @@ struct StoryView: View {
                     .onChanged(onDrag)
                     .onEnded(onDragEnded)
             )
+        }
+        .onReceive(timer) { _ in
+            if CGFloat(storyTime) < timerIndicatorWidth {
+                storyTime += 2
+            }
         }
     }
     
@@ -121,6 +171,8 @@ struct StoryView: View {
             .environmentObject(vm)
     }
 }
+
+
 
 
 

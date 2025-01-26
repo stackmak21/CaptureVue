@@ -75,7 +75,7 @@ struct StoryThumbnailView: View {
                     }
                     .padding(.horizontal)
                 }
-                .onChange(of: selectedStory){ storyId in
+                .onChange(of: selectedStory){ _, storyId in
                     withAnimation(){
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.4){
                             scrollView.scrollTo(storyId, anchor: .leading)

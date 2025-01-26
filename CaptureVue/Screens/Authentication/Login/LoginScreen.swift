@@ -10,11 +10,6 @@ import SwiftfulRouting
 
 struct LoginScreen: View {
     
-    enum FocusedField{
-        case username
-        case password
-    }
-    
     @StateObject var vm: LoginViewModel
     
     @FocusState private var focusedField: FocusedField?
@@ -28,13 +23,16 @@ struct LoginScreen: View {
         ZStack{
             Color.gray.opacity(0.3).ignoresSafeArea()
             VStack{
+                if !vm.token.isEmpty{
+                    Text("\(vm.token)")
+                }
                 
                 ImageLoader(url: "https://picsum.photos/802/1014")
                     .clipShape(RoundedRectangle(cornerRadius: 8))
                     .frame(height: 200)
                     .padding()
                 
-                TextField(text: $vm.username) {
+                TextField(text: $vm.email) {
                     Text("Enter your username")
                         .font(Typography.medium(size: 12))
                 }
@@ -46,6 +44,7 @@ struct LoginScreen: View {
                 .background(.white)
                 .clipShape(RoundedRectangle(cornerRadius: 8))
                 .frame(height: 55)
+                
                 
                 
                 TextField(text: $vm.password) {
@@ -60,17 +59,19 @@ struct LoginScreen: View {
                 .frame(height: 55)
                 
                 
+                
                 Button {
-                    vm.onLoginClicked()
+                    vm.onSubmitClicked()
                 } label: {
                     Text("Login")
                         .font(Typography.medium(size: 16))
                         .foregroundStyle(Color.white)
+                        .frame(maxWidth: .infinity)
+                        .frame(height: 55)
+                        .background(Color.blue)
+                        .clipShape(RoundedRectangle(cornerRadius: 8))
                 }
-                .frame(maxWidth: .infinity)
-                .frame(height: 55)
-                .background(Color.blue)
-                .clipShape(RoundedRectangle(cornerRadius: 8))
+                .buttonStyle(PlainButtonStyle())
                 .padding(.top)
                 
                 
@@ -79,7 +80,29 @@ struct LoginScreen: View {
             .background(RadialGradient(colors: [.white.opacity(0.5), .white], center: .center, startRadius: 0, endRadius: 400))
             .clipShape(RoundedRectangle(cornerRadius: 8))
             .padding()
+            .shadow(color: .black.opacity(0.2), radius: 4, x: 2, y: 4)
+            
+            if vm.isLoading {
+                ProgressView()
+                    .padding()
+                    .background(
+                        RoundedRectangle(cornerRadius: 8)
+                            .foregroundStyle(LinearGradient(colors: [.white.opacity(0.8), .gray.opacity(0.6)], startPoint: .topLeading, endPoint: .bottomTrailing))
+                            .shadow(color: .black.opacity(0.2), radius: 4, x: 1, y: 2)
+                    )
+                    .progressViewStyle(CircularProgressViewStyle(tint: Color.white))
+                    .controlSize(.regular)
+            }
         }
+    }
+    
+    
+}
+
+extension LoginScreen {
+    enum FocusedField{
+        case username
+        case password
     }
 }
 

@@ -18,6 +18,9 @@ class EventHomeViewModel: ObservableObject {
     private let interactor: EventHomeInteractor
     private var tasks: [Task<Void, Error>] = []
     
+    
+    @KeychainStorage("server_token") var token = ""
+    
     @Published var event: EventDto
     
     init(
