@@ -30,11 +30,11 @@ class LoginViewModel: BaseViewModel {
     init(
         router: AnyRouter,
         client: NetworkClient,
-        authRepository: AuthRepositoryContract
+        authRepositoryMock: AuthRepositoryContract? = nil
     ) {
         self.router = router
         self.client = client
-        self.loginUseCase = CredentialsLoginUseCase(repository: authRepository)
+        self.loginUseCase = CredentialsLoginUseCase(client: client, authRepositoryMock: authRepositoryMock)
         
     }
     
@@ -65,7 +65,7 @@ class LoginViewModel: BaseViewModel {
     
     private func goToHome() {
         router.showScreen(.push){ router in
-            HomeScreen(router: router, client: self.client, customerRepository: CustomerRepository(client: self.client))
+            HomeScreen(router: router, client: self.client)
         }
     }
     

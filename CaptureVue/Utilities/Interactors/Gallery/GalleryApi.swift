@@ -13,7 +13,7 @@ struct GalleryApi {
     
     init(client: NetworkClient) { self.client = client }
     
-    func fetchAwsDirectUploadUrl(token: String, eventId: String, section: AssetSectionType.RawValue, filename: String ) async -> Result<AwsDirectUploadUrlDto, CaptureVueErrorDto> {
+    func fetchAwsDirectUploadUrl(token: String, eventId: String, section: AssetSectionType, filename: String ) async -> Result<AwsDirectUploadUrlDto, CaptureVueErrorDto> {
         return await client.execute(
             url: "/api/v1/gallery/awsDirectUploadUrl",
             authToken: token

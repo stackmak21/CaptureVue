@@ -24,18 +24,16 @@ class OnBoardingViewModel: ObservableObject {
     private let fetchEventUseCase: FetchEventUseCase
     
     @Published var eventId: String?
-    
-    
 
     init(
         router: AnyRouter,
         client: NetworkClient,
-        eventRepository: EventRepositoryContract
+        eventRepositoryMock: EventRepositoryContract? = nil
     ) {
         self.router = router
         self.client = client
-        self.validateEventUseCase = ValidateEventUseCase(repository: eventRepository)
-        self.fetchEventUseCase = FetchEventUseCase(repository: eventRepository)
+        self.validateEventUseCase = ValidateEventUseCase(client: client, eventRepositoryMock: eventRepositoryMock)
+        self.fetchEventUseCase = FetchEventUseCase(client: client, eventRepositoryMock: eventRepositoryMock)
     }
     
     deinit {

@@ -235,9 +235,6 @@ struct CreateEventScreen: View {
             }
         }
         .navigationBarBackButtonHidden(true)
-        //        .sheet(isPresented: .constant(true)) {
-        //            Text("sheet")
-        //        }
     }
     
     private func loadVideo() async {
@@ -265,12 +262,7 @@ struct CreateEventScreen: View {
     }
 }
 
-extension Double{
-    
-    func toInt() -> Int {
-        return Int(self)
-    }
-}
+
 
 #Preview {
     
@@ -278,119 +270,3 @@ extension Double{
         CreateEventScreen(router: router, client: NetworkClient())
     }
 }
-
-struct SectionItem<LeadingIcon, Action>: View where LeadingIcon: View, Action: View {
-    
-    let label: String?
-    let title: String?
-    let message: String
-    let description: String?
-    let leadingIcon: () -> LeadingIcon
-    let action: () -> Action
-    
-    init(
-        label: String? = nil,
-        title: String? = nil,
-        message: String,
-        description: String? = nil,
-        leadingIcon: @escaping () -> LeadingIcon,
-        action: @escaping () -> Action
-    ) {
-        self.label = label
-        self.title = title
-        self.message = message
-        self.description = description
-        self.leadingIcon = leadingIcon
-        self.action = action
-    }
-    
-    init(
-        label: String? = nil,
-        title: String? = nil,
-        message: String,
-        description: String? = nil,
-        action: @escaping () -> Action
-    )where LeadingIcon == EmptyView{
-        self.init(
-            label: label,
-            title: title,
-            message: message,
-            description: description,
-            leadingIcon: { EmptyView() },
-            action: action
-        )
-    }
-    
-    init(
-        label: String? = nil,
-        title: String? = nil,
-        message: String,
-        description: String? = nil,
-        leadingIcon: @escaping () -> LeadingIcon
-    )where Action == EmptyView{
-        self.init(
-            label: label,
-            title: title,
-            message: message,
-            description: description,
-            leadingIcon: leadingIcon,
-            action: { EmptyView() }
-        )
-    }
-    
-    var body: some View {
-        VStack{
-            if let labelValue = label{
-                Text(labelValue)
-                    .foregroundStyle(Color.black)
-                    .font(Typography.medium(size: 14))
-                    .frame(maxWidth: .infinity, alignment: .leading)
-            }
-            HStack{
-                leadingIcon()
-                VStack{
-                    Group{
-                        if let titleValue = title{
-                            Text(titleValue)
-                                .foregroundStyle(Color.black)
-                                .font(Typography.regular(size: 12))
-                        }
-                        Text(message)
-                            .foregroundStyle(Color.black)
-                            .font(Typography.medium(size: 14))
-                    }
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                }
-                Spacer()
-                action()
-            }
-        }
-        .padding(.vertical, 4)
-    }
-}
-
-struct ClickSectionAction: View {
-    var body: some View {
-        Image(systemName: "chevron.right")
-            .font(Typography.medium(size: 14))
-            .foregroundStyle(Color.black)
-        
-    }
-}
-
-struct LeadingSectionIcon: View {
-    let systemName: String
-    
-    init(_ systemName: String) {
-        self.systemName = systemName
-    }
-    
-    var body: some View {
-        Image(systemName: systemName)
-            .font(Typography.medium(size: 16))
-            .foregroundStyle(Color.black.opacity(0.8))
-        
-    }
-}
-
-

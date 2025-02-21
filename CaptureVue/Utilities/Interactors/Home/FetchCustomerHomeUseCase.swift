@@ -11,7 +11,9 @@ struct FetchCustomerHomeUseCase{
     
     private let repository: CustomerRepositoryContract
     
-    init(repository: CustomerRepositoryContract) { self.repository = repository }
+    init(client: NetworkClient, customerRepositoryMock: CustomerRepositoryContract? = nil) {
+        self.repository = customerRepositoryMock ?? CustomerRepository(client: client)
+    }
     
     func invoke(_ token: String) async -> Result<HomeResponse, CaptureVueError> {
         return await repository.fetchHomeContract(token)

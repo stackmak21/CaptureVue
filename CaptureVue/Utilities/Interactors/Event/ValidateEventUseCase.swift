@@ -11,7 +11,9 @@ struct ValidateEventUseCase{
     
     private let repository: EventRepositoryContract
     
-    init(repository: EventRepositoryContract) { self.repository = repository }
+    init(client: NetworkClient, eventRepositoryMock: EventRepositoryContract? = nil) {
+        self.repository = eventRepositoryMock ?? EventRepository(client: client)
+    }
     
     func invoke(_ eventId: String) async -> Result<ValidateEvent, CaptureVueError> {
         return await repository.validateEvent(eventId)

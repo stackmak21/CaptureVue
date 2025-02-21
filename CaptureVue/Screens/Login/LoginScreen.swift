@@ -16,8 +16,8 @@ struct LoginScreen: View {
     @FocusState private var focusedField: FocusedField?
     @FocusState var isUsernameFocused: Bool
     
-    init(router: AnyRouter, client: NetworkClient, authRepository: AuthRepositoryContract) {
-        _vm = StateObject(wrappedValue: LoginViewModel(router: router, client: client, authRepository: authRepository))
+    init(router: AnyRouter, client: NetworkClient, authRepositoryMock: AuthRepositoryContract? = nil) {
+        _vm = StateObject(wrappedValue: LoginViewModel(router: router, client: client, authRepositoryMock: authRepositoryMock))
     }
     
     var body: some View {
@@ -115,8 +115,7 @@ extension LoginScreen {
 
 
 #Preview {
-    let authRepositoryMock = AuthRepositoryMock()
     RouterView{ router in
-        LoginScreen(router: router, client: NetworkClient(), authRepository: authRepositoryMock)
+        LoginScreen(router: router, client: NetworkClient(), authRepositoryMock: AuthRepositoryMock())
     }
 }

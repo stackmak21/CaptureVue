@@ -34,7 +34,7 @@ struct CaptureVueApp: App {
     var body: some Scene {
         WindowGroup {
             RouterView { router in
-                SplashScreen(router: router, client: client, authRepository: AuthRepository(client: client))
+                SplashScreen(router: router, client: client)
                     
                     .onOpenURL(perform: { url in
                         let string = url.absoluteString

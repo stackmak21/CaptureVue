@@ -37,8 +37,8 @@ struct EventScreen: View {
     @Namespace var galleryNamespace
     
     
-    init(router: AnyRouter, client: NetworkClient, eventRepository: EventRepositoryContract, eventId: String ) {
-        _vm = StateObject(wrappedValue: EventViewModel(router: router, client: client, eventRepository: eventRepository , eventId: eventId ))
+    init(router: AnyRouter, client: NetworkClient, eventRepositoryMock: EventRepositoryContract? = nil, eventId: String ) {
+        _vm = StateObject(wrappedValue: EventViewModel(router: router, client: client, eventRepositoryMock: eventRepositoryMock , eventId: eventId ))
     }
     
     var body: some View {
@@ -183,7 +183,7 @@ struct EventScreen: View {
 #Preview {
     
     RouterView{ router in
-        EventScreen(router: router, client: NetworkClient(), eventRepository: EventRepositoryMock(), eventId: "cp-12345")
+        EventScreen(router: router, client: NetworkClient(), eventRepositoryMock: EventRepositoryMock(), eventId: "cp-12345")
             .environmentObject(NetworkClient())
     }
 }

@@ -12,8 +12,8 @@ struct HomeScreen: View {
     
     @StateObject var vm: HomeViewModel
 
-    init(router: AnyRouter, client: NetworkClient, customerRepository: CustomerRepositoryContract) {
-        _vm = StateObject(wrappedValue:HomeViewModel(router: router, client: client, customerRepository: customerRepository))
+    init(router: AnyRouter, client: NetworkClient, customerRepositoryMock: CustomerRepositoryContract? = nil) {
+        _vm = StateObject(wrappedValue:HomeViewModel(router: router, client: client, customerRepositoryMock: customerRepositoryMock))
     }
     
     var body: some View {
@@ -153,6 +153,6 @@ struct HomeScreen: View {
 
 #Preview {
     RouterView{ router in
-        HomeScreen(router: router, client: NetworkClient(), customerRepository: CustomerRepositoryMock())
+        HomeScreen(router: router, client: NetworkClient(), customerRepositoryMock: CustomerRepositoryMock())
     }
 }

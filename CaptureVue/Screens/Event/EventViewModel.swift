@@ -32,13 +32,13 @@ class EventViewModel: BaseViewModel {
     init(
         router: AnyRouter,
         client: NetworkClient,
-        eventRepository: EventRepositoryContract,
+        eventRepositoryMock: EventRepositoryContract? = nil,
         eventId: String
     ) {
         self.router = router
         self.client = client
         self.eventId = eventId
-        self.fetchEventUseCase = FetchEventUseCase(repository: eventRepository)
+        self.fetchEventUseCase = FetchEventUseCase(client: client, eventRepositoryMock: eventRepositoryMock)
     }
     
     deinit {

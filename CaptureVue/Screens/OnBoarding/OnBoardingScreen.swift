@@ -18,8 +18,8 @@ struct OnBoardingScreen: View {
     
    
     
-    init(router: AnyRouter, client: NetworkClient, eventRepository: EventRepositoryContract) {
-        _viewModel = StateObject(wrappedValue: OnBoardingViewModel(router: router, client: client, eventRepository: eventRepository))
+    init(router: AnyRouter, client: NetworkClient, eventRepositoryMock: EventRepositoryContract? = nil) {
+        _viewModel = StateObject(wrappedValue: OnBoardingViewModel(router: router, client: client, eventRepositoryMock: eventRepositoryMock))
     }
     
     var body: some View {
@@ -84,7 +84,7 @@ struct OnBoardingScreen: View {
 #Preview {
     
     RouterView { router in
-        OnBoardingScreen(router: router, client: NetworkClient(), eventRepository: EventRepositoryMock())
+        OnBoardingScreen(router: router, client: NetworkClient(), eventRepositoryMock: EventRepositoryMock())
     }
     
 }

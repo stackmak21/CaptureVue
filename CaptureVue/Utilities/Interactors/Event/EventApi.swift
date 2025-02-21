@@ -16,14 +16,14 @@ struct EventApi {
     
     func validateEvent(_ eventId: String) async -> Result<ValidateEventDto, CaptureVueErrorDto> {
         return await client.execute(
-            url: "api/v1/event/validate",
+            url: "/api/v1/event/validate",
             queryItems: ["eventId": eventId]
         )
     }
     
     func fetchEvent(_ eventId: String, _ token: String) async -> Result<EventDto, CaptureVueErrorDto> {
         return await client.execute(
-            url: "api/v1/event",
+            url: "/api/v1/event",
             authToken: token,
             queryItems: ["eventId": eventId]
         )

@@ -20,7 +20,7 @@ struct GalleryRepository: GalleryRepositoryContract {
         return await galleryApi.fetchAwsDirectUploadUrl(
             token: token,
             eventId: uploadInfo.eventId,
-            section: uploadInfo.section.rawValue,
+            section: uploadInfo.section,
             filename: uploadInfo.filename
         )
         .map({ $0.toAwsDirectUploadUrl() })

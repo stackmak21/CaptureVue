@@ -12,8 +12,8 @@ struct SplashScreen: View {
     
     @StateObject var viewModel: SplashViewModel
     
-    init(router: AnyRouter, client: NetworkClient, authRepository: AuthRepositoryContract) {
-        _viewModel = StateObject(wrappedValue: SplashViewModel(router: router, client: client, authRepository: authRepository))
+    init(router: AnyRouter, client: NetworkClient, authRepositoryMock: AuthRepositoryContract? = nil) {
+        _viewModel = StateObject(wrappedValue: SplashViewModel(router: router, client: client, authRepositoryMock: authRepositoryMock))
     }
     
     var body: some View {
@@ -33,7 +33,7 @@ struct SplashScreen: View {
 
 #Preview {
     RouterView{ router in
-        SplashScreen(router: router, client: NetworkClient(), authRepository: AuthRepositoryMock())
+        SplashScreen(router: router, client: NetworkClient(), authRepositoryMock: AuthRepositoryMock())
     }
 }
 

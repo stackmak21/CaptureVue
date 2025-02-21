@@ -35,11 +35,11 @@ class HomeViewModel: ObservableObject {
     init(
         router: AnyRouter,
         client: NetworkClient,
-        customerRepository: CustomerRepositoryContract
+        customerRepositoryMock: CustomerRepositoryContract? = nil
     ) {
         self.router = router
         self.client = client
-        self.fetchCustomerHomeUseCase = FetchCustomerHomeUseCase(repository: customerRepository)
+        self.fetchCustomerHomeUseCase = FetchCustomerHomeUseCase(client: client, customerRepositoryMock: customerRepositoryMock)
     }
     
     deinit {
@@ -79,7 +79,7 @@ extension HomeViewModel {
 extension HomeViewModel {
     
     func goToLogin(){
-        router.showScreen(.push, destination: { LoginScreen(router: $0, client: self.client, authRepository: AuthRepository(client: self.client))})
+        router.showScreen(.push, destination: { LoginScreen(router: $0, client: self.client) })
     }
     
     func goToHome() {
@@ -89,16 +89,15 @@ extension HomeViewModel {
     }
     
     func goToCreateEvent() {
-        //        router.showScreen(.push){ router in
-        //            CreateEventScreen(router: router, dataService: self.interactor.dataService)
-        //        }
+        router.showScreen(.push){ router in
+            CreateEventScreen(router: router, client: self.client)
+        }
     }
     
     func goToEvent(eventId: String) {
-        //        let interactor = EventInteractor(dataService: self.interactor.dataService)
-        //        router.showScreen(.push){ router in
-        //            EventScreen(router: router, interactor: interactor, eventId: eventId)
-        //        }
+        router.showScreen(.push){ router in
+            EventScreen(router: router, client: self.client, eventId: eventId)
+        }
     }
     
     func dismissScreenStack() {

@@ -89,7 +89,9 @@ class NetworkClient: ObservableObject {
         urlComponents.host = host
         urlComponents.path = path
         urlComponents.port = port
-        queryItems.forEach({ urlComponents.queryItems?.append(URLQueryItem(name: $0, value: $1)) })
+        var queryItemsArray: [URLQueryItem] = []
+        queryItems.forEach({queryItemsArray.append(URLQueryItem(name: $0, value: $1))})
+        urlComponents.queryItems = queryItemsArray
         guard let url = urlComponents.url else { throw NetworkError.invalidUrl }
         return url
     }
