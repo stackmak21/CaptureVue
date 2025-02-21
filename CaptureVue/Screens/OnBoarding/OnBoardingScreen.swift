@@ -13,13 +13,13 @@ import SwiftfulRouting
 struct OnBoardingScreen: View {
     
     @StateObject var viewModel: OnBoardingViewModel
+    
     @State var isPresent: Bool = false
     
    
     
-    init(router: AnyRouter, dataService: DataService ) {
-        let interactor = OnBoardingInteractor(dataService: dataService)
-        _viewModel = StateObject(wrappedValue: OnBoardingViewModel(router: router, interactor: interactor))
+    init(router: AnyRouter, client: NetworkClient, eventRepository: EventRepositoryContract) {
+        _viewModel = StateObject(wrappedValue: OnBoardingViewModel(router: router, client: client, eventRepository: eventRepository))
     }
     
     var body: some View {
@@ -73,7 +73,7 @@ struct OnBoardingScreen: View {
                 QRCodeScannerScreen(qrString: $viewModel.eventId)
                 .presentationDetents([.medium])
                 .onDisappear() {
-                    viewModel.goToEventHome()
+                    
                 }
             }
         }
@@ -82,9 +82,9 @@ struct OnBoardingScreen: View {
 }
 
 #Preview {
-    let dataService = DataServiceImpl()
+    
     RouterView { router in
-        OnBoardingScreen(router: router, dataService: dataService)
+        OnBoardingScreen(router: router, client: NetworkClient(), eventRepository: EventRepositoryMock())
     }
     
 }

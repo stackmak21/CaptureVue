@@ -12,8 +12,8 @@ struct HomeScreen: View {
     
     @StateObject var vm: HomeViewModel
 
-    init(router: AnyRouter, dataService: DataService) {
-        _vm = StateObject(wrappedValue:HomeViewModel(router: router, interactor: HomeInteractor(dataService: dataService)))
+    init(router: AnyRouter, client: NetworkClient, customerRepository: CustomerRepositoryContract) {
+        _vm = StateObject(wrappedValue:HomeViewModel(router: router, client: client, customerRepository: customerRepository))
     }
     
     var body: some View {
@@ -37,6 +37,7 @@ struct HomeScreen: View {
                                 Text("Join")
                                     .foregroundStyle(Color.white)
                                     .font(Typography.medium(size: 12))
+                                 
                             }
                             .padding(EdgeInsets(top: 4, leading: 6, bottom: 4, trailing: 6))
                             .background(Color.gray)
@@ -45,7 +46,7 @@ struct HomeScreen: View {
                         .buttonStyle(PlainButtonStyle())
                     }
                     HStack{
-                        titleWithCounter(title: "Hosting Events", counter: vm.events.count)
+                        titleWithCounter(title: "Hosting Events", counter: vm.hostEvents.count)
                         Spacer()
                         Button {
                             vm.goToCreateEvent()
@@ -61,20 +62,29 @@ struct HomeScreen: View {
                         }
                         .buttonStyle(PlainButtonStyle())
                     }
-                    ForEach(vm.events, id: \.id){ event in
+                    ForEach(vm.hostEvents, id: \.id){ event in
                         Button(
                             action: {
-                                vm.goToEvent(event: event)
+                                vm.goToEvent(eventId: event.id)
                             },
                             label: {
                                 VStack{
                                     HStack{
-                                        if !event.mainImage.isEmpty{
-                                            ImageLoader(url: event.mainImage)
-                                                .frame(width: 40, height: 40)
-                                                .clipShape(RoundedRectangle(cornerRadius: 8))
+                                        
+                                        if !event.mainImage.isEmpty {
+                                                ImageLoader(
+                                                    url: event.mainImage,
+                                                    width: 40,
+                                                    height: 40
+                                                )
+                                                    
+                                                    .clipShape(RoundedRectangle(cornerRadius: 8))
+                                            }
+//                                            ImageLoader(url: event.mainImage)
+//                                                .frame(width: 40, height: 40)
+//                                                .clipShape(RoundedRectangle(cornerRadius: 8))
                                             
-                                        }else{
+                                        else{
                                             RoundedRectangle(cornerRadius: 8)
                                                 .frame(width: 40, height: 40)
                                         }
@@ -95,7 +105,7 @@ struct HomeScreen: View {
                     }
                     Divider()
                         .padding(.vertical)
-                    titleWithCounter(title: "Participating Events", counter: vm.events.count)
+                    titleWithCounter(title: "Participating Events", counter: vm.participatingEvents.count)
                         .frame(maxWidth: .infinity, alignment: .leading)
                     
                     Spacer()
@@ -107,15 +117,22 @@ struct HomeScreen: View {
             .navigationBarItems(trailing: Text("Trailing"))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
+                ToolbarItem(placement: .topBarLeading) {
+                    Text("Logout")
+                        .onTapGesture {
+                            vm.logoutUser()
+                        }
+                }
                 ToolbarItem(placement: .principal) {
                     Text("My title")
-                        
                 }
             }
 //            .toolbarBackground(.red, for: .navigationBar)
 //            .toolbarBackground(.visible, for: .navigationBar)
             .onAppear {
+                vm.dismissScreenStack()
                 vm.fetchEvents()
+                NotificationManager.scheduleNotification(title: "New Notificaton", subtitle: "Paris notification Sceduled")
             }
         }
         
@@ -135,8 +152,7 @@ struct HomeScreen: View {
 }
 
 #Preview {
-    let dataService = DataServiceImpl()
     RouterView{ router in
-        HomeScreen(router: router, dataService: dataService)
+        HomeScreen(router: router, client: NetworkClient(), customerRepository: CustomerRepositoryMock())
     }
 }

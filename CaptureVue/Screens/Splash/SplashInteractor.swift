@@ -9,12 +9,21 @@ import Foundation
 
 
 
-class SplashInteractor{
-    let dataService: DataService
-    
-    init(dataService: DataService) {
-        self.dataService = dataService
-    }
-}
+//class SplashInteractor{
+//    let dataService: NetworkClient
+//    
+//    init(dataService: NetworkClient) {
+//        self.dataService = dataService
+//    }
+//    
+//    func authenticateUser(credentials: Credentials) async throws -> LoginResponseDto? {
+//        do {
+//            let response: LoginResponseDto? = try await dataService.authenticate(url: "\(urlPrefix)/customer/login", credentials: credentials)
+//                return response
+//        } catch let error as CaptureVueErrorDto {
+//            throw error
+//        }
+//    }
+//}
 
 

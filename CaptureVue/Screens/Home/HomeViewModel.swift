@@ -6,78 +6,114 @@
 //
 
 import Foundation
+import Combine
 import SwiftfulRouting
 
 @MainActor
 class HomeViewModel: ObservableObject {
-   
+    
+    @KeychainStorage(.token) var token = ""
+    @KeychainStorage(.credentials) var credentials = Credentials()
+    
     private let router: AnyRouter
-    private let interactor: HomeInteractor
-    private var tasks: [Task<Void, Error>] = []
+    private var tasks: [Task<Void, Never>] = []
+    private var cancellables =  Set<AnyCancellable>()
     
+    private let client: NetworkClient
+    
+    //MARK: - Use Cases
+    private let fetchCustomerHomeUseCase: FetchCustomerHomeUseCase
+    
+    
+    //MARK: - Screen State
     @Published var isLoading: Bool = false
-    @Published var events: [EventDto] = []
+    @Published var customer: Customer = Customer()
+    @Published var hostEvents: [Event] = []
+    @Published var participatingEvents: [Event] = []
     
-    @KeychainStorage("server_token") var token = ""
-    
+    //MARK: - Constructor
     init(
         router: AnyRouter,
-        interactor: HomeInteractor
+        client: NetworkClient,
+        customerRepository: CustomerRepositoryContract
     ) {
         self.router = router
-        self.interactor = interactor
-        fetchEvents()
+        self.client = client
+        self.fetchCustomerHomeUseCase = FetchCustomerHomeUseCase(repository: customerRepository)
     }
     
     deinit {
-        tasks.forEach{$0.cancel()}
+        tasks.forEach{ $0.cancel() }
     }
     
+    func logoutUser(){
+        credentials = Credentials()
+        goToLogin()
+    }
     
+}
+
+
+//MARK: - Networking
+extension HomeViewModel {
     
     func fetchEvents() {
         let task = Task{
-            do{
-                isLoading = true
-                let fetcedEvents = try await interactor.fetchEvents(token: token)
-                if let events = fetcedEvents{
-                    self.events = events
-                }
-                isLoading = false
+            setLoading()
+            defer{resetLoading()}
+            switch await fetchCustomerHomeUseCase.invoke(token){
+            case .success(let response):
+                customer = response.customer
+                hostEvents = response.hostEvents
+                participatingEvents = response.participatingEvents
+            case .failure(let error):
+                Banner(router: router, message: error.msg , bannerType: .error, bannerDuration: .long, action: nil)
             }
-            catch let error as CaptureVueError{
-                isLoading = false
-                Banner(router: router, message: error.msg ?? "", bannerType: .error, bannerDuration: .long, action: nil)
-            }
-            
         }
         tasks.append(task)
     }
+}
+
+
+//MARK: - Routing
+extension HomeViewModel {
+    
+    func goToLogin(){
+        router.showScreen(.push, destination: { LoginScreen(router: $0, client: self.client, authRepository: AuthRepository(client: self.client))})
+    }
     
     func goToHome() {
-        router.showScreen(.push){ router in
-            OnBoardingScreen(router: router, dataService: self.interactor.dataService)
-        }
+        //        router.showScreen(.push){ router in
+        //            OnBoardingScreen(router: router, dataService: self.interactor.dataService)
+        //        }
     }
     
     func goToCreateEvent() {
-        router.showScreen(.push){ router in
-            CreateEventScreen(router: router, dataService: self.interactor.dataService)
-        }
+        //        router.showScreen(.push){ router in
+        //            CreateEventScreen(router: router, dataService: self.interactor.dataService)
+        //        }
     }
     
-    func goToEvent(event: EventDto) {
-        router.showScreen(.push){ router in
-            EventHomeScreen(router: router, dataService: self.interactor.dataService, event: event)
-        }
+    func goToEvent(eventId: String) {
+        //        let interactor = EventInteractor(dataService: self.interactor.dataService)
+        //        router.showScreen(.push){ router in
+        //            EventScreen(router: router, interactor: interactor, eventId: eventId)
+        //        }
     }
-//
-//    func navigateToOnboarding(dataService: DataService) {
-//        router.showScreen(.push) { router in
-//            OnBoardingScreen(router: router, dataService: dataService)
-//        }
-//    }
     
+    func dismissScreenStack() {
+        router.dismissEnvironment()
+    }
+}
 
+
+//MARK: - Loading State
+extension HomeViewModel{
+    private func setLoading(){
+        isLoading = true
+    }
     
+    private func resetLoading(){
+        isLoading = false
+    }
 }

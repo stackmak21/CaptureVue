@@ -10,7 +10,7 @@ import SwiftUI
 import KeychainSwift
 
 
-struct KeychainManager {
+final class KeychainManager {
     
     private let keychain: KeychainSwift
     
@@ -27,25 +27,46 @@ struct KeychainManager {
     func get(key: String) -> String? {
         keychain.get(key)
     }
+    
+    func saveData<T: Codable>(_ object: T, key: String){
+        do{
+            let data = try JSONEncoder().encode(object)
+            keychain.set(data, forKey: key)
+        }
+        catch(let error){
+            print("Failed to encode object to data with error: \(error)")
+        }
+    }
+    
+    func getData<T: Codable>(key: String) -> T? {
+        do{
+            guard let fetchedData = keychain.getData(key) else { return nil }
+            return try JSONDecoder().decode(T.self, from: fetchedData)
+        }
+        catch(let error){
+            print("Failed to decode object from keychain to data with error: \(error)")
+            return nil
+        }
+    }
 }
 
 @propertyWrapper
-struct KeychainStorage: DynamicProperty{
+struct KeychainStorage<T: Codable>: DynamicProperty{
     
-    @State private var newValue: String
-    let key: String
+    @State private var newValue: T
+    let key: KeychainKeys
     let keychain: KeychainManager
     
-    var wrappedValue: String {
+    var wrappedValue: T {
         get{
             newValue
         }
         nonmutating set{
-            save(newValue: newValue)
+            save(newValue)
         }
     }
     
-    var projectedValue: Binding<String> {
+    var projectedValue: Binding<T> {
         Binding(
             get: { wrappedValue },
             set: { newValue in
@@ -54,17 +75,35 @@ struct KeychainStorage: DynamicProperty{
         )
     }
     
-    init(wrappedValue: String, _ key: String){
+    init(wrappedValue: T, _ key: KeychainKeys){
         self.key = key
-        let keychain = KeychainManager()
-        self.keychain = keychain
-        newValue = keychain.get(key: key) ?? ""
+        self.keychain = KeychainManager()
+        
+        if T.self == String.self, let storedValue = keychain.get(key: key.rawValue) as? T{
+            self.newValue = storedValue
+        }
+        else if let storedValue: T = keychain.getData(key: key.rawValue) {
+            self.newValue = storedValue
+        }
+        else{
+            self.newValue = wrappedValue
+        }
     }
     
-    func save(newValue: String){
-        keychain.save(newValue, key: key)
+    func save(_ newValue: T){
+        if let value = newValue as? String{
+            keychain.save(value, key: key.rawValue)
+        }
+        else{
+            keychain.saveData(newValue, key: key.rawValue)
+        }
         self.newValue = newValue
     }
+}
+
+enum KeychainKeys: String{
+    case token = "server_token"
+    case credentials = "user_credentials"
 }
 
 

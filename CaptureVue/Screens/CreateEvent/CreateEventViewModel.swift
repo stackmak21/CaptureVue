@@ -9,17 +9,20 @@ import Foundation
 import SwiftfulRouting
 import SwiftUI
 
+
 @MainActor
 class CreateEventViewModel: ObservableObject {
    
     private let router: AnyRouter
-    private let interactor: CreateEventInteractor
     private var tasks: [Task<Void, Error>] = []
+    
+    private let client: NetworkClient
+    
     
     @Published var isLoading: Bool = false
     
     @Published var eventName: String = "paris birthday SWIFT"
-    @Published var eventImage: Image?
+    @Published var eventImage: UIImage?
     @Published var eventDescription: String = ""
     @Published var authorizeGuests: Bool = false
     @Published var guestsGallery: Bool = false
@@ -27,43 +30,50 @@ class CreateEventViewModel: ObservableObject {
     @Published var startDate: Date = .now
     @Published var endDate: Date = .now
     
+    @Published var videoURL: URL?
     
     
-    @KeychainStorage("server_token") var token = ""
+    
+    @KeychainStorage(.token) var token = ""
     
     init(
         router: AnyRouter,
-        interactor: CreateEventInteractor
+        client: NetworkClient
     ) {
         self.router = router
-        self.interactor = interactor
+        self.client = client
     }
     
     deinit {
         tasks.forEach{$0.cancel()}
     }
     
+    func startUpload(fileUrl: URL) {
+//        mux.uploadVideoToMux(fileURL: fileUrl)
+    }
+    
     
     
     func publishEvent() {
-        let task = Task{
-            do{
-                let mainImage = UIImage(systemName: "square.and.arrow.up")?.jpegData(compressionQuality: 0.8)!
-                isLoading = true
-                let createEventResponse = try await interactor.uploadPhoto(token: token, request: createEventRequestBuilder(), imageData: mainImage)
-                
-                isLoading = false
-                if createEventResponse?.success ?? false{
-                    Banner(router: router, message: createEventResponse?.msg ?? "", bannerType: .warning, bannerDuration: .long, action: nil)
-                }
-            }
-            catch let error as CaptureVueError{
-                isLoading = false
-                Banner(router: router, message: error.msg ?? "", bannerType: .error, bannerDuration: .long, action: nil)
-            }
-            
-        }
-        tasks.append(task)
+//        let task = Task{
+//            do{
+//                let mainImage = UIImage(systemName: "square.and.arrow.up")?.jpegData(compressionQuality: 0.8)!
+//                let secondImage = eventImage?.jpegData(compressionQuality: 0.1)
+//                isLoading = true
+//                
+//                
+//                isLoading = false
+//                
+//                    
+//                
+//            }
+//            catch let error as CaptureVueErrorDto{
+//                isLoading = false
+//                Banner(router: router, message: error.msg ?? "", bannerType: .error, bannerDuration: .long, action: nil)
+//            }
+//            
+//        }
+//        tasks.append(task)
     }
     
     

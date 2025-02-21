@@ -11,16 +11,20 @@ import PhotosUI
 
 struct CreateEventScreen: View {
     
+
     @StateObject var vm: CreateEventViewModel
     
     @State private var selectedItem: PhotosPickerItem?
-    @State var image: Image?
+    @State private var selectedItems: [PhotosPickerItem] = []
+    @State var image: UIImage?
+    
+    @State var videoURL: URL?
     
     @State var sliderValue: Double = 0
     let sliderSteps: [Double] = [10, 20, 50, 100, 150, 200]
     
-    init(router: AnyRouter, dataService: DataService) {
-        _vm = StateObject(wrappedValue:CreateEventViewModel(router: router, interactor: CreateEventInteractor(dataService: dataService)))
+    init(router: AnyRouter,client: NetworkClient) {
+        _vm = StateObject(wrappedValue: CreateEventViewModel(router: router, client: client))
     }
     
     var body: some View {
@@ -62,8 +66,8 @@ struct CreateEventScreen: View {
                         
                         VStack{
                             
-                            if let image {
-                                image
+                            if let image = vm.eventImage {
+                                Image(uiImage: image)
                                     .resizable()
                                     .frame(height: proxy.size.height/3)
                                     .scaledToFit()
@@ -80,15 +84,38 @@ struct CreateEventScreen: View {
                                         
                                     }
                             }
-                            PhotosPicker("Select an image", selection: $selectedItem, matching: .images)
-                                .onChange(of: selectedItem) {
+//                            
+//                            PhotosPicker("Select a video", selection: $selectedItem, matching: .videos)
+//                                .onChange(of: selectedItem) { _ in
+//                                    Task {
+//                                        if let data = try? await selectedItem?.loadTransferable(type: Data.self) {
+//                                            // Save the video data to a local file
+//                                            let tempURL = FileManager.default.temporaryDirectory.appendingPathComponent("selectedVideo.mp4")
+//                                            do {
+//                                                try data.write(to: tempURL)
+//                                                print("Video saved to: \(tempURL)")
+//                                                vm.startUpload(fileUrl: tempURL)
+//                                            } catch {
+//                                                print("Failed to save video: \(error)")
+//                                            }
+//                                            
+//                                            // Use the file URL with Mux
+//                                            
+//                                        }
+//                                    }
+//                                }
+                            
+                            PhotosPicker("Select a Photo", selection: $selectedItem, matching: .images)
+                                .onChange(of: selectedItem) { oldImage, newImage in
                                     Task {
-                                        if let image = try? await selectedItem?.loadTransferable(type: Image.self) {
-                                            self.image = image
+                                        if let data = try? await newImage?.loadTransferable(type: Data.self) {
+                                            if let selectedImage = UIImage(data: data) {
+                                                vm.eventImage = selectedImage
+                                            }
                                         }
-                                        
                                     }
                                 }
+                            
                             
                             
                             
@@ -160,13 +187,13 @@ struct CreateEventScreen: View {
                             }
                             .frame(minHeight: 50)
                             .frame(maxWidth: .infinity)
-                            .padding()
+                            .padding(.horizontal)
                             .background(
-                                RoundedRectangle(cornerRadius: 10)
+                                RoundedRectangle(cornerRadius: 6)
                                     .stroke(style: StrokeStyle(lineWidth: 2))
                                     .foregroundStyle(Color.black)
                             )
-                            .padding(.horizontal, 2)
+
                             
                             
                             
@@ -212,6 +239,30 @@ struct CreateEventScreen: View {
         //            Text("sheet")
         //        }
     }
+    
+    private func loadVideo() async {
+        guard let selectedItem else { return }
+        
+        do {
+            // Attempt to get the local URL directly
+            if let url = try await selectedItem.loadTransferable(type: URL.self) {
+                vm.videoURL = url
+                print("Video Local URL: \(url)")
+            } else {
+                // Fallback: Load as Data and save to a temporary file
+                if let data = try await selectedItem.loadTransferable(type: Data.self) {
+                    let tempURL = FileManager.default.temporaryDirectory.appendingPathComponent("\(UUID().uuidString).mov")
+                    try data.write(to: tempURL)
+                    vm.videoURL = tempURL
+                    print("Video saved to temporary URL: \(tempURL)")
+                } else {
+                    print("Failed to load video as URL or Data.")
+                }
+            }
+        } catch {
+            print("Error loading video: \(error)")
+        }
+    }
 }
 
 extension Double{
@@ -222,9 +273,9 @@ extension Double{
 }
 
 #Preview {
-    let dataService = DataServiceImpl()
+    
     RouterView{ router in
-        CreateEventScreen(router: router, dataService: dataService)
+        CreateEventScreen(router: router, client: NetworkClient())
     }
 }
 

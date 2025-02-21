@@ -16,7 +16,13 @@ struct Banner: View {
     let bannerDuration: BannerDuration
     let action: BannerAction?
     
-    init(router: AnyRouter, message: String, bannerType: BannerType, bannerDuration: BannerDuration, action: BannerAction?) {
+    init(
+        router: AnyRouter,
+        message: String,
+        bannerType: BannerType,
+        bannerDuration: BannerDuration,
+        action: BannerAction?
+    ) {
         self.router = router
         self.message = message
         self.bannerType = bannerType
@@ -84,9 +90,8 @@ struct Banner: View {
             backgroundColor: .black.opacity(0.1),
             dismissOnBackgroundTap: true,
             ignoreSafeArea: false,
-            destination: {
-                self
-            })
+            destination: { self }
+        )
     }
     
         

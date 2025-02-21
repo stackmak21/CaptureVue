@@ -27,5 +27,7 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>App needs access to photos for video upload.</string>
 </dict>
 </plist>

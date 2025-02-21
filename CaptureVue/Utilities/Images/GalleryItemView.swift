@@ -14,20 +14,24 @@ struct GalleryItemView: View {
     var body: some View {
         GeometryReader{ proxy in
             VStack(spacing: 0){
-                ImageLoader(url: galleryItem.publicUrl)
-                    .frame(height: proxy.size.height * 5/6)
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    .clipped()
+                
+                ImageLoader(
+                    url: galleryItem.publicUrl,
+                    height: proxy.size.height * 5/6
+                )
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
                 ZStack{
                     Rectangle()
                         .foregroundStyle(.white)
                         .frame(height: proxy.size.height / 6)
                         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
                     HStack(spacing: 4){
+                        
                         Text(galleryItem.customer.firstName)
-                            .font(Typography.medium(size: 8))
+                                .font(Typography.medium(size: 8))
                         Text(galleryItem.customer.lastName)
-                            .font(Typography.medium(size: 8))
+                                .font(Typography.medium(size: 8))
+
                     }
                 }
             }

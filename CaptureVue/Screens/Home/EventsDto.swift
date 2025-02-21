@@ -7,6 +7,18 @@
 
 import Foundation
 
-struct EventsDto: Codable {
-    let events: [EventDto]
+struct Events {
+    let events: [Event]
 }
+
+struct EventsDto: Codable {
+    let events: [EventDto]?
+    
+    func toEvents() -> Events {
+        return Events(
+            events: self.events?.map{ $0.toEvent() } ?? []
+        )
+    }
+}
+
+

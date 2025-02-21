@@ -13,21 +13,29 @@ import Combine
 @MainActor
 class OnBoardingViewModel: ObservableObject {
     
+    @KeychainStorage(.token) var token = ""
+    
     private let router: AnyRouter
-    private let interactor: OnBoardingInteractor
-    private var tasks: [Task<Void, Error>] = []
+    private var tasks: [Task<Void, Never>] = []
     private var cancellables: Set<AnyCancellable> = []
+    
+    private let client: NetworkClient
+    private let validateEventUseCase: ValidateEventUseCase
+    private let fetchEventUseCase: FetchEventUseCase
     
     @Published var eventId: String?
     
-    @KeychainStorage("server_token") var token = ""
+    
 
     init(
         router: AnyRouter,
-        interactor: OnBoardingInteractor
+        client: NetworkClient,
+        eventRepository: EventRepositoryContract
     ) {
         self.router = router
-        self.interactor = interactor
+        self.client = client
+        self.validateEventUseCase = ValidateEventUseCase(repository: eventRepository)
+        self.fetchEventUseCase = FetchEventUseCase(repository: eventRepository)
     }
     
     deinit {
@@ -35,59 +43,22 @@ class OnBoardingViewModel: ObservableObject {
     }
 
     func nextScreen(eventId: String){
-        print("token🔥🔥🔥🔥🔥🔥 : \(token)")
         let task = Task{
-            do{
-                let validateResult =  try await interactor.validateEvent(eventId: eventId, token: token)
-                
-                if let  result = validateResult{
-                    if !result.isValid{
-                        print("result is valid")
-                        let event = try await interactor.fetchEvent(eventId: eventId, token: token)
-                        if let fetchedEvent = event{
-                            router.showScreen(.push) { router in
-                                EventHomeScreen(router: router, dataService: self.interactor.dataService, event: fetchedEvent)
-                            }
-                        }
+            let validateResponse =  await validateEventUseCase.invoke(eventId)
+            if case .success(let validateResult) = validateResponse{
+                if validateResult.isValid{
+                    router.showScreen(.push) { router in
+                        
                     }
-                    
                 }
-            }
-            catch let error as CaptureVueError{
-                banner(message: error.msg ?? "", bannerType: .error, bannerDuration: .infinite, action: nil)
             }
         }
         tasks.append(task)
     }
     
-    func goToEventHome(){
-        if let eventId {
-             fetchEvent(eventId: eventId)
-        }
-    }
+  
     
-    private func fetchEvent(eventId: String){
-        let task = Task{
-            do{
-                let validateResult =  try await interactor.validateEvent(eventId: eventId, token: token)
-                if let  result = validateResult{
-                    if result.isValid{
-                        let event = try await interactor.fetchEvent(eventId: eventId, token: token)
-                        if let fetchedEvent = event{
-                            router.showScreen(.push) { router in
-                                EventHomeScreen(router: router, dataService: self.interactor.dataService, event: fetchedEvent)
-                            }
-                        }
-                    }
-                    
-                }
-            }
-            catch let error as CaptureVueError{
-                banner(message: error.msg ?? "", bannerType: .error, bannerDuration: .infinite, action: nil)
-            }
-        }
-        tasks.append(task)
-    }
+   
     
 }
 

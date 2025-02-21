@@ -23,21 +23,36 @@ struct CaptureVueApp: App {
 //     register app delegate for Firebase setup
 //    @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     
-    let dataService: DataService
+    @Environment(\.scenePhase) var scenePhase
+    
+    let client: NetworkClient = NetworkClient()
     
     init(){
-        self.dataService = DataServiceImpl()
 //        configureNavigationBar()
     }
     
     var body: some Scene {
         WindowGroup {
             RouterView { router in
-                SplashScreen(router: router, dataService: dataService)
+                SplashScreen(router: router, client: client, authRepository: AuthRepository(client: client))
+                    
                     .onOpenURL(perform: { url in
                         let string = url.absoluteString
                         print(string)
                     })
+                    .onChange(of: scenePhase) { oldPhase, newPhase in
+                        if newPhase == .active {
+                            
+                        } else if newPhase == .inactive {
+                            
+                        } else if newPhase == .background {
+                            
+                        }
+                    }
+                    .onAppear{
+                        NotificationManager.requestPermissions()
+                    }
+                
 //                LoginScreen(router: router, dataService: dataService)
 //                EventHomeScreen(router: router, dataService: dataService, event: DeveloperPreview.instance.event)
             }
