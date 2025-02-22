@@ -74,6 +74,7 @@
 		F99773C72D692A2100D14332 /* AuthApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99773C62D692A2100D14332 /* AuthApi.swift */; };
 		F99773C92D692A3200D14332 /* CredentialsLoginUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99773C82D692A3200D14332 /* CredentialsLoginUseCase.swift */; };
 		F99773CB2D692A5800D14332 /* AuthRepositoryMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99773CA2D692A5800D14332 /* AuthRepositoryMock.swift */; };
+		F99773CF2D69D16700D14332 /* MultipartRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99773CE2D69D16700D14332 /* MultipartRequest.swift */; };
 		F9995E8E2CBC4DB100909E85 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F9995E8C2CBC4DB100909E85 /* GoogleService-Info.plist */; };
 		F9A561E62CB5BD5E00634C7A /* CaptureVueApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A561E52CB5BD5E00634C7A /* CaptureVueApp.swift */; };
 		F9A561EA2CB5BD6000634C7A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F9A561E92CB5BD6000634C7A /* Assets.xcassets */; };
@@ -91,7 +92,6 @@
 		F9A5623B2CB72F4F00634C7A /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A5623A2CB72F4F00634C7A /* Strings.swift */; };
 		F9A5623E2CBA8D5A00634C7A /* SplashScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A5623D2CBA8D5A00634C7A /* SplashScreen.swift */; };
 		F9A562442CBABA4200634C7A /* SplashViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A562432CBABA4200634C7A /* SplashViewModel.swift */; };
-		F9A562462CBABA6000634C7A /* SplashInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A562452CBABA6000634C7A /* SplashInteractor.swift */; };
 		F9A5624A2CBABD1900634C7A /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A562492CBABD1900634C7A /* NetworkClient.swift */; };
 		F9A9E06A2CDFC224003DB166 /* ViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A9E0692CDFC224003DB166 /* ViewExtensions.swift */; };
 		F9A9E06E2CDFC584003DB166 /* Banner.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A9E06D2CDFC584003DB166 /* Banner.swift */; };
@@ -206,6 +206,7 @@
 		F99773C62D692A2100D14332 /* AuthApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthApi.swift; sourceTree = "<group>"; };
 		F99773C82D692A3200D14332 /* CredentialsLoginUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CredentialsLoginUseCase.swift; sourceTree = "<group>"; };
 		F99773CA2D692A5800D14332 /* AuthRepositoryMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRepositoryMock.swift; sourceTree = "<group>"; };
+		F99773CE2D69D16700D14332 /* MultipartRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipartRequest.swift; sourceTree = "<group>"; };
 		F9995E8C2CBC4DB100909E85 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F9A561E22CB5BD5E00634C7A /* CaptureVue.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CaptureVue.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9A561E52CB5BD5E00634C7A /* CaptureVueApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureVueApp.swift; sourceTree = "<group>"; };
@@ -225,7 +226,6 @@
 		F9A5623A2CB72F4F00634C7A /* Strings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
 		F9A5623D2CBA8D5A00634C7A /* SplashScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreen.swift; sourceTree = "<group>"; };
 		F9A562432CBABA4200634C7A /* SplashViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewModel.swift; sourceTree = "<group>"; };
-		F9A562452CBABA6000634C7A /* SplashInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashInteractor.swift; sourceTree = "<group>"; };
 		F9A562492CBABD1900634C7A /* NetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkClient.swift; sourceTree = "<group>"; };
 		F9A562512CBB9DDD00634C7A /* CaptureVueAppClipApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureVueAppClipApp.swift; sourceTree = "<group>"; };
 		F9A562532CBB9DDD00634C7A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -342,6 +342,7 @@
 		F9503AC92CD6C5ED00DDD4F0 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				F99773CE2D69D16700D14332 /* MultipartRequest.swift */,
 				F9A562492CBABD1900634C7A /* NetworkClient.swift */,
 			);
 			path = Networking;
@@ -696,7 +697,6 @@
 			children = (
 				F9A5623D2CBA8D5A00634C7A /* SplashScreen.swift */,
 				F9A562432CBABA4200634C7A /* SplashViewModel.swift */,
-				F9A562452CBABA6000634C7A /* SplashInteractor.swift */,
 			);
 			path = Splash;
 			sourceTree = "<group>";
@@ -1043,7 +1043,6 @@
 				F99773C12D6929EC00D14332 /* AuthRepositoryContract.swift in Sources */,
 				F9A562442CBABA4200634C7A /* SplashViewModel.swift in Sources */,
 				F99773902D67D65000D14332 /* EventApi.swift in Sources */,
-				F9A562462CBABA6000634C7A /* SplashInteractor.swift in Sources */,
 				F9A9E0822CE52E31003DB166 /* EventInteractor.swift in Sources */,
 				F99773AC2D686D6000D14332 /* AwsDirectUploadUrl.swift in Sources */,
 				F997723C2D5491DE00D14332 /* CustomerDto.swift in Sources */,
@@ -1071,6 +1070,7 @@
 				F99773A42D6868E100D14332 /* GalleryRepositoryContract.swift in Sources */,
 				F99773A52D6868E100D14332 /* GalleryRepositoryMock.swift in Sources */,
 				F99772342D54917200D14332 /* StoryItemDto.swift in Sources */,
+				F99773CF2D69D16700D14332 /* MultipartRequest.swift in Sources */,
 				F9F306192D42AE0C00E41995 /* HomeViewModel.swift in Sources */,
 				F9503ACC2CD821CA00DDD4F0 /* SystemProperties.swift in Sources */,
 				F953B2632CD2A3BD0058C2BD /* CameraView.swift in Sources */,

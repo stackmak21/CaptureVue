@@ -14,14 +14,11 @@ extension HTTPURLResponse{
     }
 }
 
-let urlPrefix = "http://128.140.3.193:8090/api/v1"
 
 
-
-
-class NetworkClient: ObservableObject {
+class NetworkClient: NSObject {
     //MARK: - URL DETAILS
-    private let baseUrl = "http://128.140.3.193:8090/api/v1"
+
     private let scheme: URLScheme = .http
     private let host = "128.140.3.193"
     private let port = 8090
@@ -87,12 +84,14 @@ class NetworkClient: ObservableObject {
         var urlComponents = URLComponents()
         urlComponents.scheme = scheme.rawValue
         urlComponents.host = host
-        urlComponents.path = path
+        if path.hasPrefix("/"){ throw NetworkError.invalidUrl("propably due to '/' in the beginning of the endpoint.") }
+        let fixedPath = "/\(path)"
+        urlComponents.path = fixedPath
         urlComponents.port = port
         var queryItemsArray: [URLQueryItem] = []
         queryItems.forEach({queryItemsArray.append(URLQueryItem(name: $0, value: $1))})
         urlComponents.queryItems = queryItemsArray
-        guard let url = urlComponents.url else { throw NetworkError.invalidUrl }
+        guard let url = urlComponents.url else { throw NetworkError.invalidUrl("") }
         return url
     }
 
@@ -162,7 +161,7 @@ class NetworkClient: ObservableObject {
         case badResponse
         case badStatus
         case failedToDecodeResponse
-        case invalidUrl
+        case invalidUrl(_ errorDescription: String)
         
         func errorDescription() -> String {
             switch self {
@@ -178,13 +177,80 @@ class NetworkClient: ObservableObject {
                 return "Bad status"
             case .failedToDecodeResponse:
                 return "Failed to decode response"
-            case .invalidUrl:
-                return "Invalid Url"
+            case .invalidUrl(let error):
+                return "Invalid url \(error)"
             case .unknown:
                 return "Unknown Error"
             }
         }
         
+    }
+
+    
+
+    func uploadPhoto<T: Codable>(url fromUrl: String, createEventRequest: CreateEventRequest, imageData: Data?, authToken: String) async throws -> T? {
+        do {
+            guard let url = URL(string: fromUrl) else { throw NetworkError.badUrlResponse }
+            
+            var request = URLRequest(url: url)
+            request.httpMethod = "POST"
+            
+            let boundary = UUID().uuidString
+            request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
+            
+            request.addValue("Bearer " + authToken, forHTTPHeaderField: "Authorization")
+            
+            
+            var body = Data()
+            
+            // Add JSON part
+            if let jsonData = try? JSONEncoder().encode(createEventRequest) {
+                body.append("--\(boundary)\r\n".data(using: .utf8)!)
+                body.append("Content-Disposition: form-data; name=\"createEventRequest\"\r\n".data(using: .utf8)!)
+                body.append("Content-Type: application/json\r\n\r\n".data(using: .utf8)!)
+                body.append(jsonData)
+                body.append("\r\n".data(using: .utf8)!)
+            }
+            body.append("--\(boundary)\r\n".data(using: .utf8)!)
+            // Add file part
+            
+            body.append("Content-Disposition: form-data; name=\"eventImage\"; filename=\"photo.jpg\"\r\n".data(using: .utf8)!)
+            body.append("Content-Type: image/jpeg\r\n\r\n".data(using: .utf8)!)
+            if let imageData{
+                body.append(imageData)
+            }
+            body.append("\r\n".data(using: .utf8)!)
+            body.append("--\(boundary)--\r\n".data(using: .utf8)!)
+            
+            
+            request.httpBody = body
+            
+            print(body)
+            
+            let (data, response) = try await URLSession.shared.data(for: request)
+            guard let response = response as? HTTPURLResponse else { throw NetworkError.badResponse}
+            guard response.statusCode >= 200 && response.statusCode < 700 else { throw NetworkError.badStatus }
+            print(data)
+            if let successResponse = try? JSONDecoder().decode(T.self, from: data) {
+                return successResponse
+            }
+            if let errorResponse = try? JSONDecoder().decode(CaptureVueErrorDto.self, from: data) {
+                throw errorResponse
+            } else{
+                throw NetworkError.failedToDecodeResponse
+            }
+        }
+        catch(let error as CaptureVueErrorDto){
+            throw error
+        }
+        catch (let error as NetworkError){
+            print(error.errorDescription())
+        }
+        catch{
+            print("Uknown Error ⚠️⚠️⚠️⚠️⚠️")
+        }
+        
+        return nil
     }
     
     
@@ -198,12 +264,12 @@ class NetworkClient: ObservableObject {
 //        do {
 //            guard let url = URL(string: "\(urlPrefix)\(fromUrl)") else { throw NetworkError.invalidUrl }
 //            var request = URLRequest(url: url)
-//            
+//
 //            request.allHTTPHeaderFields = ["Content-Type": "application/json"]
 //            //            request.setValue("", forHTTPHeaderField: "Authentication")
 //            request.addValue("Bearer " + authToken, forHTTPHeaderField: "Authorization")
-//            
-//            
+//
+//
 //            let (data, response) = try await URLSession.shared.data(for: request)
 //            guard let response = response as? HTTPURLResponse else { throw NetworkError.badResponse}
 //            guard response.statusCode >= 200 && response.statusCode < 700 else { throw NetworkError.badStatus }
@@ -225,10 +291,10 @@ class NetworkClient: ObservableObject {
 //        catch{
 //            print("Uknown Error ⚠️⚠️⚠️⚠️⚠️")
 //        }
-//        
+//
 //        return nil
 //    }
-//    
+//
 //    func authenticate<T: Codable>(url fromUrl: String, credentials: Credentials) async -> Result<T, Error> {
 //        do {
 //            guard let url = URL(string: fromUrl) else { throw NetworkError.badUrlResponse }
@@ -242,7 +308,7 @@ class NetworkClient: ObservableObject {
 //                print("Failed to encode credentials: \(error)")
 //                throw NetworkError.invalidRequest
 //            }
-//            
+//
 //            let (data, response) = try await URLSession.shared.data(for: request)
 //            guard let response = response as? HTTPURLResponse else { throw NetworkError.badResponse}
 //            guard response.statusCode >= 200 && response.statusCode < 700 else { throw NetworkError.badStatus }
@@ -265,72 +331,23 @@ class NetworkClient: ObservableObject {
 //            print("Uknown Error ⚠️⚠️⚠️⚠️⚠️")
 //        }
 //    }
-//    
-//    func uploadPhoto<T: Codable>(url fromUrl: String, createEventRequest: CreateEventRequest, imageData: Data?, authToken: String) async throws -> T? {
-//        do {
-//            guard let url = URL(string: fromUrl) else { throw NetworkError.badUrlResponse }
-//            
-//            var request = URLRequest(url: url)
-//            request.httpMethod = "POST"
-//            
-//            let boundary = UUID().uuidString
-//            request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
-//            
-//            request.addValue("Bearer " + authToken, forHTTPHeaderField: "Authorization")
-//            
-//            
-//            var body = Data()
-//            
-//            // Add JSON part
-//            if let jsonData = try? JSONEncoder().encode(createEventRequest) {
-//                body.append("--\(boundary)\r\n".data(using: .utf8)!)
-//                body.append("Content-Disposition: form-data; name=\"createEventRequest\"\r\n".data(using: .utf8)!)
-//                body.append("Content-Type: application/json\r\n\r\n".data(using: .utf8)!)
-//                body.append(jsonData)
-//                body.append("\r\n".data(using: .utf8)!)
-//            }
-//            body.append("--\(boundary)\r\n".data(using: .utf8)!)
-//            // Add file part
-//            
-//            body.append("Content-Disposition: form-data; name=\"eventImage\"; filename=\"photo.jpg\"\r\n".data(using: .utf8)!)
-//            body.append("Content-Type: image/jpeg\r\n\r\n".data(using: .utf8)!)
-//            if let imageData{
-//                body.append(imageData)
-//            }
-//            body.append("\r\n".data(using: .utf8)!)
-//            body.append("--\(boundary)--\r\n".data(using: .utf8)!)
-//            
-//            
-//            request.httpBody = body
-//            
-//            print(body)
-//            
-//            let (data, response) = try await URLSession.shared.data(for: request)
-//            guard let response = response as? HTTPURLResponse else { throw NetworkError.badResponse}
-//            guard response.statusCode >= 200 && response.statusCode < 700 else { throw NetworkError.badStatus }
-//            print(data)
-//            if let successResponse = try? JSONDecoder().decode(T.self, from: data) {
-//                return successResponse
-//            }
-//            if let errorResponse = try? JSONDecoder().decode(CaptureVueErrorDto.self, from: data) {
-//                throw errorResponse
-//            } else{
-//                throw NetworkError.failedToDecodeResponse
-//            }
-//        }
-//        catch(let error as CaptureVueErrorDto){
-//            throw error
-//        }
-//        catch (let error as NetworkError){
-//            print(error.errorDescription())
-//        }
-//        catch{
-//            print("Uknown Error ⚠️⚠️⚠️⚠️⚠️")
-//        }
-//        
-//        return nil
-//    }
-//    
+//
+    
+}
+
+extension NetworkClient: URLSessionTaskDelegate {
+
+    
+    func urlSession(
+        _ session: URLSession,
+        task: URLSessionTask,
+        didSendBodyData bytesSent: Int64,
+        totalBytesSent: Int64,
+        totalBytesExpectedToSend: Int64) {
+        
+        print("fractionCompleted  : \(Int(Float(totalBytesSent) / Float(totalBytesExpectedToSend) * 100))")
+            
+    }
 }
 
 

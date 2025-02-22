@@ -184,7 +184,6 @@ struct EventScreen: View {
     
     RouterView{ router in
         EventScreen(router: router, client: NetworkClient(), eventRepositoryMock: EventRepositoryMock(), eventId: "cp-12345")
-            .environmentObject(NetworkClient())
     }
 }
 

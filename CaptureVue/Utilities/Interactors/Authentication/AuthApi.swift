@@ -19,7 +19,7 @@ class AuthApi {
     func login(_ loginRequestBody: LoginRequestBody) async -> LoginResponseDtoResult {
         let requestBody = try? JSONEncoder().encode(loginRequestBody)
         let response: Result<LoginResponseDto, CaptureVueErrorDto> =  await client.execute(
-            url: "/api/v1/customer/login",
+            url: "api/v1/customer/login",
             httpMethod: .post,
             headers: ["Content-Type" : "application/json"],
             requestBody: requestBody

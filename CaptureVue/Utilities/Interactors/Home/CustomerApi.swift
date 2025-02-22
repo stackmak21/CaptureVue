@@ -15,7 +15,7 @@ struct CustomerApi {
     
     func fetchCustomerHome(_ token: String) async -> Result<HomeResponseDto, CaptureVueErrorDto> {
         return await client.execute(
-            url: "/api/v1/customer/home",
+            url: "api/v1/customer/home",
             authToken: token
         )
     }
