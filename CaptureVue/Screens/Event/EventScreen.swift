@@ -31,14 +31,15 @@ struct EventScreen: View {
     @State var myDate: Date = Date.now
     
     @State var selectedVideo: PhotosPickerItem?
+    @State var selectedFiles: [PhotosPickerItem] = []
     
     
     @Namespace var storyNamespace
     @Namespace var galleryNamespace
     
     
-    init(router: AnyRouter, client: NetworkClient, eventRepositoryMock: EventRepositoryContract? = nil, eventId: String ) {
-        _vm = StateObject(wrappedValue: EventViewModel(router: router, client: client, eventRepositoryMock: eventRepositoryMock , eventId: eventId ))
+    init(router: AnyRouter, client: NetworkClient, eventRepositoryMock: EventRepositoryContract? = nil, galleryRepositoryMock: GalleryRepositoryContract? = nil, eventId: String ) {
+        _vm = StateObject(wrappedValue: EventViewModel(router: router, client: client, eventRepositoryMock: eventRepositoryMock , galleryRepositoryMock: galleryRepositoryMock ,eventId: eventId ))
     }
     
     var body: some View {
@@ -49,21 +50,21 @@ struct EventScreen: View {
                         url: vm.event.mainImage,
                         height: 260
                     )
-                        .overlay {
-                            HStack{
-                                Text(vm.event.eventName)
-                                    .foregroundStyle(.white)
-                                    .font(Typography.medium(size: 16))
-                                Spacer()
-                                Text(vm.event.eventName)
-                                    .foregroundStyle(.white)
-                                    .font(Typography.medium(size: 16))
-                            }
-                            .opacity(calculateOpacity())
-                            .padding(.horizontal)
-                            .padding(.vertical, 4)
-                            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
+                    .overlay {
+                        HStack{
+                            Text(vm.event.eventName)
+                                .foregroundStyle(.white)
+                                .font(Typography.medium(size: 16))
+                            Spacer()
+                            Text(vm.event.eventName)
+                                .foregroundStyle(.white)
+                                .font(Typography.medium(size: 16))
                         }
+                        .opacity(calculateOpacity())
+                        .padding(.horizontal)
+                        .padding(.vertical, 4)
+                        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
+                    }
                     
                     
                     ScrollViewReader{ mainScrollReader in
@@ -77,6 +78,7 @@ struct EventScreen: View {
                                             position = rect
                                         }
                                     Spacer()
+                                    
                                 }
                                 .padding(.horizontal)
                                 .padding(.vertical, 4)
@@ -89,6 +91,24 @@ struct EventScreen: View {
                                     selectedVideo: $selectedVideo
                                 )
                                 .padding(.vertical)
+                                
+                                HStack{
+                                    PhotosPicker(selection: $vm.selectedFiles)
+                                    {
+                                        HStack{
+                                            Image(systemName: "camera")
+                                                .resizable()
+                                                .aspectRatio(contentMode: .fit)
+                                                .foregroundStyle(Color.black)
+                                                .frame(width: 20, height: 20)
+                                            Text("Add Photo To Gallery")
+                                                .font(Typography.medium(size: 20))
+                                                .foregroundStyle(Color.black)
+                                        }
+                                    }
+                                }
+                                .padding(.bottom)
+                                
                                 
                                 GalleryListView(
                                     galleryList: vm.event.galleryList,
@@ -133,8 +153,8 @@ struct EventScreen: View {
                     .environmentObject(videoPlayer)
                     .zIndex(1)
                 }
-            
-        }
+                
+            }
         }
         .navigationBarTitleDisplayMode(.inline)
         .navigationTitle("Event")
@@ -142,24 +162,30 @@ struct EventScreen: View {
             Image(systemName: "gear")
         }
         .onAppear( perform: vm.fetchEvent)
-        .onChange(of: selectedVideo, convertToFileUrlPath)
+//        .onChange(of: vm.selectedFiles, convertToFileUrlPath)
     }
     
-    private func convertToFileUrlPath(_ oldValue: PhotosPickerItem?, _ newValue: PhotosPickerItem?) -> Void {
-        guard let item = newValue else { return }
-        Task {
-            do {
-                if let data = try await item.loadTransferable(type: Data.self) {
-                    let tempURL = FileManager.default.temporaryDirectory.appendingPathComponent("story")
-                    try data.write(to: tempURL)
-                    self.vm.videoUrl = tempURL.absoluteString
-                    
+    private func convertToFileUrlPath(_ oldValue: [PhotosPickerItem], _ newValue: [PhotosPickerItem]) -> Void {
+        let selectedFiles = newValue
+        
+        selectedFiles.forEach { file in
+            Task{
+                do {
+                    if let data = try await file.loadTransferable(type: Data.self) {
+                        let tempURL = FileManager.default.temporaryDirectory.appendingPathComponent("story")
+                        try data.write(to: tempURL)
+                        self.vm.videoUrl = tempURL.absoluteString
+                        
+                    }
                 }
-            } catch {
-                print("Error loading video: \(error)")
+                catch {
+                    print("Error loading video: \(error)")
+                }
             }
         }
     }
+    
+    
     
     
     private func scrollToCurrentGalleryItem(_ oldValue: String, _ newValue: String, mainScrollReader: ScrollViewProxy) -> Void {
@@ -183,7 +209,7 @@ struct EventScreen: View {
 #Preview {
     
     RouterView{ router in
-        EventScreen(router: router, client: NetworkClient(), eventRepositoryMock: EventRepositoryMock(), eventId: "cp-12345")
+        EventScreen(router: router, client: NetworkClient(), eventRepositoryMock: EventRepositoryMock(), galleryRepositoryMock: GalleryRepositoryMock(), eventId: "cp-12345")
     }
 }
 

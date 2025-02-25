@@ -130,9 +130,9 @@ struct HomeScreen: View {
 //            .toolbarBackground(.red, for: .navigationBar)
 //            .toolbarBackground(.visible, for: .navigationBar)
             .onAppear {
-                vm.dismissScreenStack()
+//                vm.dismissScreenStack()
                 vm.fetchEvents()
-                NotificationManager.scheduleNotification(title: "New Notificaton", subtitle: "Paris notification Sceduled")
+//                NotificationManager.scheduleNotification(title: "New Notificaton", subtitle: "Paris notification Sceduled")
             }
         }
         

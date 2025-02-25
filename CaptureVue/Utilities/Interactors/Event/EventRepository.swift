@@ -25,4 +25,10 @@ struct EventRepository: EventRepositoryContract {
             .mapError({ $0.toCaptureVueError() })
     }
     
+    func createEvent(_ token: String, _ createEventRequest: CreateEventRequest, _ eventImage: Data) async -> Result<CreateEventResponse, CaptureVueError> {
+        return await eventApi.createEvent(token, createEventRequest, eventImage)
+            .map({ $0.toCreateEventResponse() })
+            .mapError({ $0.toCaptureVueError() })
+    }
+    
 }

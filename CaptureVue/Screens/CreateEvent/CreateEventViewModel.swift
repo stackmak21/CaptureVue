@@ -11,12 +11,14 @@ import SwiftUI
 
 
 @MainActor
-class CreateEventViewModel: ObservableObject {
+class CreateEventViewModel: BaseViewModel {
    
     private let router: AnyRouter
-    private var tasks: [Task<Void, Error>] = []
+    private var tasks: [Task<Void, Never>] = []
     
     private let client: NetworkClient
+    // Use Cases
+    private let createEventUseCase: CreateEventUseCase
     
     
     @Published var isLoading: Bool = false
@@ -38,10 +40,12 @@ class CreateEventViewModel: ObservableObject {
     
     init(
         router: AnyRouter,
-        client: NetworkClient
+        client: NetworkClient,
+        eventRepositoryMock: EventRepositoryContract? = nil
     ) {
         self.router = router
         self.client = client
+        self.createEventUseCase = CreateEventUseCase(client: client, eventRepositoryMock: eventRepositoryMock)
     }
     
     deinit {
@@ -55,6 +59,23 @@ class CreateEventViewModel: ObservableObject {
     
     
     func publishEvent() {
+        let task = Task{
+            setLoading()
+            defer{ resetLoading() }
+                if let eventImageData = eventImage?.jpegData(compressionQuality: 0.8){
+                    let createEventResponse =  await createEventUseCase.invoke(token, createEventRequestBuilder(), eventImageData)
+                    switch createEventResponse {
+                    case .success(let response):
+                        router.dismissScreen()
+                    case .failure(let error):
+                        Banner(router: router, message: error.msg, bannerType: .error, bannerDuration: .long, action: nil)
+                    }
+                }
+                else{
+                    Banner(router: router, message: "Failed to create Data from Image", bannerType: .error, bannerDuration: .long, action: nil)
+                }
+        }
+        
 //        let task = Task{
 //            do{
 //                let mainImage = UIImage(systemName: "square.and.arrow.up")?.jpegData(compressionQuality: 0.8)!
@@ -69,7 +90,7 @@ class CreateEventViewModel: ObservableObject {
 //            }
 //            catch let error as CaptureVueErrorDto{
 //                isLoading = false
-//                Banner(router: router, message: error.msg ?? "", bannerType: .error, bannerDuration: .long, action: nil)
+//
 //            }
 //            
 //        }
@@ -93,7 +114,8 @@ class CreateEventViewModel: ObservableObject {
             contentDurationMonths: nil,
             guestsCanViewGallery: guestsGallery,
             guestsUploadPhoto: true,
-            guestsUploadVideo: nil
+            guestsUploadVideo: nil,
+            supportStories: true
         )
     }
     

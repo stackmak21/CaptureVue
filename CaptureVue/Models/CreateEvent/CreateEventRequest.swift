@@ -19,17 +19,19 @@ struct CreateEventRequest: Codable {
     let guestsCanViewGallery: Bool?
     let guestsUploadPhoto: Bool?
     let guestsUploadVideo: Bool?
+    let supportStories: Bool?
     
     enum CodingKeys: String, CodingKey {
-       case eventName
-       case eventDescription
-       case eventStartDate
-       case eventEndDate
-       case guests
-       case authorizeGuests
-       case contentDurationMonths
-       case guestsCanViewGallery
-       case guestsUploadPhoto
-       case guestsUploadVideo
+        case eventName
+        case eventDescription
+        case eventStartDate
+        case eventEndDate
+        case guests
+        case authorizeGuests
+        case contentDurationMonths
+        case guestsCanViewGallery
+        case guestsUploadPhoto
+        case guestsUploadVideo
+        case supportStories
     }
 }

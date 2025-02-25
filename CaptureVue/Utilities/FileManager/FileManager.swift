@@ -1,0 +1,87 @@
+//
+//  FileManager.swift
+//  CaptureVue
+//
+//  Created by Paris Makris on 23/2/25.
+//
+
+import Foundation
+import SwiftUI
+
+actor LocalFileManager {
+    
+    static let instance = LocalFileManager()
+    private init() { }
+    
+    func saveFile(file: Data, fileName: String, folderName: String) {
+        
+        // create folder
+        createFolderIfNeeded(folderName: folderName)
+        
+        // get path for image
+        guard
+            let url = getUrlForFile(fileName: fileName, folderName: folderName)
+            else { return }
+        
+        // save image to path
+        do {
+            try file.write(to: url)
+        } catch let error {
+            print("Error saving file. File Name: \(fileName). \(error)")
+        }
+    }
+    
+    func getFileUrl(fileName: String, folderName: String) -> URL? {
+        guard
+            let url = getUrlForFile(fileName: fileName, folderName: folderName),
+            FileManager.default.fileExists(atPath: url.path) else {
+            return nil
+        }
+        return url
+    }
+    
+    func getFile(fileUrl: String) -> Data? {
+        guard
+            let url = URL(string: fileUrl),
+            FileManager.default.fileExists(atPath: url.path) else {
+            return nil
+        }
+        return FileManager.default.contents(atPath: url.path)
+    }
+    
+    func getAllFiles(folderName: String) -> [String] {
+        guard let url = getUrlForFolder(folderName: folderName), FileManager.default.fileExists(atPath: url.path) else { return [] }
+        do{
+            return try FileManager.default.contentsOfDirectory(atPath: url.path)
+        }catch{
+            return []
+        }
+    }
+    
+    private func createFolderIfNeeded(folderName: String) {
+        guard let url = getUrlForFolder(folderName: folderName) else { return }
+        
+        if !FileManager.default.fileExists(atPath: url.path) {
+            do {
+                try FileManager.default.createDirectory(at: url, withIntermediateDirectories: true, attributes: nil)
+            } catch let error {
+                print("Error creating directory. FolderName: \(folderName). \(error)")
+            }
+        }
+    }
+    
+    private func getUrlForFolder(folderName: String) -> URL? {
+        guard let url = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {
+            return nil
+        }
+        return url.appendingPathComponent(folderName)
+    }
+    
+    private func getUrlForFile(fileName: String, folderName: String) -> URL? {
+        guard let folderURL = getUrlForFolder(folderName: folderName) else {
+            return nil
+        }
+        return folderURL.appendingPathComponent(fileName)
+    }
+    
+}

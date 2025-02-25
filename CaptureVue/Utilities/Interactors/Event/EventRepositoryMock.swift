@@ -18,5 +18,8 @@ struct EventRepositoryMock: EventRepositoryContract{
         return .success(DeveloperPreview.instance.event)
     }
     
+    func createEvent(_ token: String, _ createEventRequest: CreateEventRequest, _ eventImage: Data) async -> Result<CreateEventResponse, CaptureVueError> {
+        return .success(CreateEventResponse(msg: "message", paymentUrl: "payment url", success: true, eventId: "cp-1234"))
+    }
     
 }

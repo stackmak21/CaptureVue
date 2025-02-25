@@ -23,8 +23,8 @@ struct CreateEventScreen: View {
     @State var sliderValue: Double = 0
     let sliderSteps: [Double] = [10, 20, 50, 100, 150, 200]
     
-    init(router: AnyRouter,client: NetworkClient) {
-        _vm = StateObject(wrappedValue: CreateEventViewModel(router: router, client: client))
+    init(router: AnyRouter, client: NetworkClient, eventRepositoryMock: EventRepositoryContract? = nil) {
+        _vm = StateObject(wrappedValue: CreateEventViewModel(router: router, client: client, eventRepositoryMock: eventRepositoryMock))
     }
     
     var body: some View {
@@ -267,6 +267,6 @@ struct CreateEventScreen: View {
 #Preview {
     
     RouterView{ router in
-        CreateEventScreen(router: router, client: NetworkClient())
+        CreateEventScreen(router: router, client: NetworkClient(), eventRepositoryMock: EventRepositoryMock())
     }
 }

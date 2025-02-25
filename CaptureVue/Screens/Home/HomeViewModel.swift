@@ -10,7 +10,7 @@ import Combine
 import SwiftfulRouting
 
 @MainActor
-class HomeViewModel: ObservableObject {
+class HomeViewModel: BaseViewModel {
     
     @KeychainStorage(.token) var token = ""
     @KeychainStorage(.credentials) var credentials = Credentials()
@@ -106,13 +106,13 @@ extension HomeViewModel {
 }
 
 
-//MARK: - Loading State
-extension HomeViewModel{
-    private func setLoading(){
-        isLoading = true
-    }
-    
-    private func resetLoading(){
-        isLoading = false
-    }
-}
+////MARK: - Loading State
+//extension HomeViewModel{
+//    private func setLoading(){
+//        isLoading = true
+//    }
+//    
+//    private func resetLoading(){
+//        isLoading = false
+//    }
+//}

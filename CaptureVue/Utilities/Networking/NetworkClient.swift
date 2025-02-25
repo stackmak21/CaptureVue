@@ -24,6 +24,8 @@ class NetworkClient: NSObject {
     private let port = 8090
     
 
+    //MARK: - Execute Function
+    
     func execute<T: Codable>(
         url endpoint: String,
         authToken: String = "",
@@ -74,6 +76,7 @@ class NetworkClient: NSObject {
     //MARK: - BUILD URL FUNCTION
     
     private func buildURL(
+        url completedUrl: String? = nil,
         scheme: URLScheme = .http,
         host: String = "",
         port: Int? = nil,
@@ -81,6 +84,10 @@ class NetworkClient: NSObject {
         queryItems: [String: String] = [:]
         
     ) throws -> URL {
+        if let url = completedUrl{
+            guard let uploadUrl = URL(string: url) else { throw NetworkError.invalidUrl("") }
+            return uploadUrl
+        }
         var urlComponents = URLComponents()
         urlComponents.scheme = scheme.rawValue
         urlComponents.host = host
@@ -108,7 +115,9 @@ class NetworkClient: NSObject {
         var request = URLRequest(url: url, timeoutInterval: timeInterval)
         request.httpMethod = httpMethod?.rawValue
         headers.forEach({request.setValue($1, forHTTPHeaderField: $0)})
-        request.addValue("Bearer " + authToken, forHTTPHeaderField: "Authorization")
+        if !authToken.isEmpty{
+            request.addValue("Bearer " + authToken, forHTTPHeaderField: "Authorization")
+        }
         request.httpBody = requestBody
         return request
     }
@@ -185,73 +194,126 @@ class NetworkClient: NSObject {
         }
         
     }
-
     
+    //MARK: - Upload Function
+    
+    func upload(
+        url endpoint: String,
+        authToken: String = "",
+        queryItems: [String: String] = [:],
+        urlScheme: URLScheme? = nil,
+        urlHost: String? = nil,
+        urlPort: Int? = nil,
+        httpMethod: HttpMethod = .get,
+        headers: [String: String] = [:],
+        timeInterval: Double = 60,
+        requestBody: Data? = nil,
+        fileUrl: String = ""
+    ) async {
+        do{
+            let url = try buildURL(
+                url: endpoint.hasPrefix("http") ? endpoint : nil,
+                scheme: urlScheme ?? scheme,
+                host: urlHost ?? host,
+                port: urlPort ?? port,
+                endpoint: endpoint,
+                queryItems: queryItems
+            )
+            let request = buildRequest(
+                url: url,
+                httpMethod: httpMethod,
+                headers: headers,
+                timeInterval: timeInterval,
+                requestBody: requestBody,
+                authToken: authToken
+            )
+            
+            
+            guard let fileUrl = URL(string: fileUrl) else { throw NetworkError.invalidUrl("Creating url from file url error") }
+            let (data, response) = try await URLSession.shared.upload(for: request, fromFile: fileUrl, delegate: self)
+            if let responseUrl = response as? HTTPURLResponse {
+                print(responseUrl.statusCode)
+            }
+            guard let urlResponse = response as? HTTPURLResponse, urlResponse.isSuccess() else { throw NetworkError.badResponse  }
 
-    func uploadPhoto<T: Codable>(url fromUrl: String, createEventRequest: CreateEventRequest, imageData: Data?, authToken: String) async throws -> T? {
-        do {
-            guard let url = URL(string: fromUrl) else { throw NetworkError.badUrlResponse }
-            
-            var request = URLRequest(url: url)
-            request.httpMethod = "POST"
-            
-            let boundary = UUID().uuidString
-            request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
-            
-            request.addValue("Bearer " + authToken, forHTTPHeaderField: "Authorization")
-            
-            
-            var body = Data()
-            
-            // Add JSON part
-            if let jsonData = try? JSONEncoder().encode(createEventRequest) {
-                body.append("--\(boundary)\r\n".data(using: .utf8)!)
-                body.append("Content-Disposition: form-data; name=\"createEventRequest\"\r\n".data(using: .utf8)!)
-                body.append("Content-Type: application/json\r\n\r\n".data(using: .utf8)!)
-                body.append(jsonData)
-                body.append("\r\n".data(using: .utf8)!)
-            }
-            body.append("--\(boundary)\r\n".data(using: .utf8)!)
-            // Add file part
-            
-            body.append("Content-Disposition: form-data; name=\"eventImage\"; filename=\"photo.jpg\"\r\n".data(using: .utf8)!)
-            body.append("Content-Type: image/jpeg\r\n\r\n".data(using: .utf8)!)
-            if let imageData{
-                body.append(imageData)
-            }
-            body.append("\r\n".data(using: .utf8)!)
-            body.append("--\(boundary)--\r\n".data(using: .utf8)!)
-            
-            
-            request.httpBody = body
-            
-            print(body)
-            
-            let (data, response) = try await URLSession.shared.data(for: request)
-            guard let response = response as? HTTPURLResponse else { throw NetworkError.badResponse}
-            guard response.statusCode >= 200 && response.statusCode < 700 else { throw NetworkError.badStatus }
-            print(data)
-            if let successResponse = try? JSONDecoder().decode(T.self, from: data) {
-                return successResponse
-            }
-            if let errorResponse = try? JSONDecoder().decode(CaptureVueErrorDto.self, from: data) {
-                throw errorResponse
-            } else{
-                throw NetworkError.failedToDecodeResponse
-            }
         }
-        catch(let error as CaptureVueErrorDto){
-            throw error
-        }
-        catch (let error as NetworkError){
+        catch(let error as NetworkError){
             print(error.errorDescription())
         }
-        catch{
-            print("Uknown Error ⚠️⚠️⚠️⚠️⚠️")
+        catch(let error){
+            print(error.localizedDescription)
         }
-        
-        return nil
     }
+    
+    
+    
+
+    
+//
+//    func uploadPhoto<T: Codable>(url fromUrl: String, createEventRequest: CreateEventRequest, imageData: Data?, authToken: String) async throws -> T? {
+//        do {
+//            guard let url = URL(string: fromUrl) else { throw NetworkError.badUrlResponse }
+//            
+//            var request = URLRequest(url: url)
+//            request.httpMethod = "POST"
+//            
+//            let boundary = UUID().uuidString
+//            request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
+//            
+//            request.addValue("Bearer " + authToken, forHTTPHeaderField: "Authorization")
+//            
+//            
+//            var body = Data()
+//            
+//            // Add JSON part
+//            if let jsonData = try? JSONEncoder().encode(createEventRequest) {
+//                body.append("--\(boundary)\r\n".data(using: .utf8)!)
+//                body.append("Content-Disposition: form-data; name=\"createEventRequest\"\r\n".data(using: .utf8)!)
+//                body.append("Content-Type: application/json\r\n\r\n".data(using: .utf8)!)
+//                body.append(jsonData)
+//                body.append("\r\n".data(using: .utf8)!)
+//            }
+//            body.append("--\(boundary)\r\n".data(using: .utf8)!)
+//            // Add file part
+//            
+//            body.append("Content-Disposition: form-data; name=\"eventImage\"; filename=\"photo.jpg\"\r\n".data(using: .utf8)!)
+//            body.append("Content-Type: image/jpeg\r\n\r\n".data(using: .utf8)!)
+//            if let imageData{
+//                body.append(imageData)
+//            }
+//            body.append("\r\n".data(using: .utf8)!)
+//            body.append("--\(boundary)--\r\n".data(using: .utf8)!)
+//            
+//            
+//            request.httpBody = body
+//            
+//            print(body)
+//            
+//            let (data, response) = try await URLSession.shared.data(for: request)
+//            guard let response = response as? HTTPURLResponse else { throw NetworkError.badResponse}
+//            guard response.statusCode >= 200 && response.statusCode < 700 else { throw NetworkError.badStatus }
+//            print(data)
+//            if let successResponse = try? JSONDecoder().decode(T.self, from: data) {
+//                return successResponse
+//            }
+//            if let errorResponse = try? JSONDecoder().decode(CaptureVueErrorDto.self, from: data) {
+//                throw errorResponse
+//            } else{
+//                throw NetworkError.failedToDecodeResponse
+//            }
+//        }
+//        catch(let error as CaptureVueErrorDto){
+//            throw error
+//        }
+//        catch (let error as NetworkError){
+//            print(error.errorDescription())
+//        }
+//        catch{
+//            print("Uknown Error ⚠️⚠️⚠️⚠️⚠️")
+//        }
+//        
+//        return nil
+//    }
     
     
     

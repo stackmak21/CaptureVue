@@ -55,6 +55,17 @@ struct MultipartRequest {
         appendSeparator()
         data.append(value + separator)
     }
+    
+    public mutating func add(
+        key: String,
+        value: Data
+    ) {
+        appendBoundarySeparator()
+        data.append(disposition(key) + separator)
+        appendSeparator()
+        data.append(value)
+        data.append(separator)
+    }
 
     public mutating func add(
         key: String,
