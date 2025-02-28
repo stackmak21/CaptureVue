@@ -30,29 +30,30 @@ struct GalleryApi {
             queryItems: [
                 "eventId" : uploadInfo.eventId,
                 "section" : uploadInfo.section.rawValue,
-                "filename" : uploadInfo.fileUrl
+                "filename" : uploadInfo.fileName
             ]
         )
     }
     
     func uploadAwsFile(uploadUrl: String, uploadInfo: PrepareUploadData) async {
-        if let file = await fileManager.getFile(fileUrl: uploadInfo.fileUrl){
-            
-            let fileLength = String(file.count)
-            let mimeType = mimeTypeForPath(path: uploadInfo.fileUrl)
-            let eventId = uploadInfo.eventId
-            print(file.count.byteSize)
-            print("fileLength: " + fileLength + "  Mime Type: " + mimeType + "  EventId: " + eventId)
-            await client.upload(
-                url: uploadUrl,
-                httpMethod: .put,
-                headers: [
-                    "Content-Type" : mimeType,
-                    "Content-Length" : fileLength,
-                    "x-amz-meta-event" : eventId
-                ],
-                fileUrl: uploadInfo.fileUrl
-            )
+        if let fileData = await fileManager.getFile(fileName: uploadInfo.fileName, folderName: "UploadPendingFiles"){
+            if let fileUrl = await fileManager.getFileUrl(fileName: uploadInfo.fileName, folderName: "UploadPendingFiles"){
+                let fileLength = String(fileData.count)
+                let mimeType = mimeTypeForPath(path: uploadInfo.fileName)
+                let eventId = uploadInfo.eventId
+                
+                print("fileLength: " + fileLength + "  Mime Type: " + mimeType + "  EventId: " + eventId)
+                await client.upload(
+                    url: uploadUrl,
+                    httpMethod: .put,
+                    headers: [
+                        "Content-Type" : mimeType,
+                        "Content-Length" : fileLength,
+                        "x-amz-meta-event" : eventId
+                    ],
+                    fileUrl: fileUrl.absoluteString
+                )
+            }
         }
     }
     

@@ -55,6 +55,11 @@ struct EventScreen: View {
                             Text(vm.event.eventName)
                                 .foregroundStyle(.white)
                                 .font(Typography.medium(size: 16))
+                                .onTapGesture {
+                                    if let url = vm.event.galleryList.first?.publicUrl{
+                                        print("Photo URL 🔥🔥🔥🔥🔥" + url)
+                                    }
+                                }
                             Spacer()
                             Text(vm.event.eventName)
                                 .foregroundStyle(.white)
@@ -162,6 +167,11 @@ struct EventScreen: View {
             Image(systemName: "gear")
         }
         .onAppear( perform: vm.fetchEvent)
+        .onAppear {
+            if let url = vm.event.galleryList.first?.publicUrl{
+                print("Photo URL 🔥🔥🔥🔥🔥" + url)
+            }
+        }
 //        .onChange(of: vm.selectedFiles, convertToFileUrlPath)
     }
     

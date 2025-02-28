@@ -28,12 +28,13 @@ class EventViewModel: BaseViewModel {
     private let getAwsDirectUploadUrlUseCase: GetAwsDirectUploadUrlUseCase
     private let uploadAwsFileUseCase: UploadAwsFileUseCase
     private let notifyNewAssetUploadUseCase: NotifyNewAssetUseCase
+    private let assetUploadHelper: AssetUploadHelper
     
     let eventId: String
     var videoUrl: String = ""
-    private var fileUrl = "" {
+    private var fileName = "" {
         didSet{
-            if !fileUrl.isEmpty{
+            if !fileName.isEmpty{
                 getAwsDirectUploadUrl()
             }
         }
@@ -45,7 +46,7 @@ class EventViewModel: BaseViewModel {
     @Published var selectedFiles: [PhotosPickerItem] = [] {
         didSet{
             if !selectedFiles.isEmpty{
-                copyIntoTempFile(selectedFiles)
+                uploadFiles(selectedFiles)
             }
         }
     }
@@ -66,10 +67,12 @@ class EventViewModel: BaseViewModel {
         self.getAwsDirectUploadUrlUseCase = GetAwsDirectUploadUrlUseCase(client: client, galleryRepositoryMock: galleryRepositoryMock)
         self.uploadAwsFileUseCase = UploadAwsFileUseCase(client: client, galleryRepositoryMock: galleryRepositoryMock)
         self.notifyNewAssetUploadUseCase = NotifyNewAssetUseCase(client: client, galleryRepositoryMock: galleryRepositoryMock)
+        self.assetUploadHelper = AssetUploadHelper(client: client, galleryRepositoryMock: galleryRepositoryMock)
     }
     
     deinit {
         tasks.forEach{$0.cancel()}
+        print("View Model Deinit")
     }
     
     func fetchEvent() {
@@ -87,52 +90,21 @@ class EventViewModel: BaseViewModel {
         tasks.append(task)
     }
     
-    func copyIntoTempFile(_ selectedFiles: [PhotosPickerItem]){
-        // Task group
-
-        let task = Task{
-            await withTaskGroup(of: String.self) { taskGroup in
-                for file in selectedFiles{
-                    taskGroup.addTask {
-                        let (fileData, identifier) = await self.prepareFile(file: file)
-                        return await self.copyIntoTempFileUseCase.invoke(fileData, identifier: identifier)
-                    }
-                }
-                
-                for await result in taskGroup{
-                    self.fileUrl = result
-                }
-            }
-            
-           
+    func uploadFiles(_ selectedFiles: [PhotosPickerItem]){
+        Task{
+           await assetUploadHelper.uploadAwsAsset(token, selectedFiles: selectedFiles, eventId: eventId, section: .gallery)
         }
-        tasks.append(task)
-        
-//        // Concurrent process
-//        selectedFiles.forEach { file in
-//            Task{
-//                let (fileData, identifier) = await prepareFile(file: file)
-//                await copyIntoTempFileUseCase.invoke(fileData, identifier: identifier)
-//            }
-//        }
-//        
-//        // Sequential process
-//        Task{
-//            for file in selectedFiles{
-//                let (fileData, identifier) = await prepareFile(file: file)
-//                await copyIntoTempFileUseCase.invoke(fileData, identifier: identifier)
-//            }
-//        }
+
     }
     
     func getAwsDirectUploadUrl() -> Void {
         let task = Task{
-            let serverResponse = await getAwsDirectUploadUrlUseCase.invoke(token, uploadInfo: PrepareUploadData(eventId: eventId, fileUrl: fileUrl, section: .gallery, assetType: .photo, thumbnailPublicName: ""))
+            let serverResponse = await getAwsDirectUploadUrlUseCase.invoke(token, uploadInfo: PrepareUploadData(eventId: eventId, fileName: fileName, section: .gallery, assetType: .photo, thumbnailPublicName: ""))
             switch serverResponse {
             case .success(let response):
                 print(response.url)
-                await uploadAwsFileUseCase.invoke(uploadUrl: response.url, uploadInfo: PrepareUploadData(eventId: eventId, fileUrl: fileUrl, section: .gallery, assetType: .photo, thumbnailPublicName: ""))
-                await notifyNewAssetUploadUseCase.invoke(token, assetUploadRequest: PrepareUploadData(eventId: eventId, fileUrl: fileUrl, section: .gallery, assetType: .photo, thumbnailPublicName: "").toNotifyNewAssetRequest())
+                await uploadAwsFileUseCase.invoke(uploadUrl: response.url, uploadInfo: PrepareUploadData(eventId: eventId, fileName: fileName, section: .gallery, assetType: .photo, thumbnailPublicName: ""))
+                await notifyNewAssetUploadUseCase.invoke(token, assetUploadRequest: PrepareUploadData(eventId: eventId, fileName: fileName, section: .gallery, assetType: .photo, thumbnailPublicName: "").toNotifyNewAssetRequest())
             case .failure(let error):
                 print("error aws direct upload url")
             }
@@ -141,27 +113,7 @@ class EventViewModel: BaseViewModel {
     }
     
     
-    func prepareFile(file: PhotosPickerItem) async -> (Data, String) {
-        var fileData = Data()
-        var identifier = ""
-        do{
-            if let uti = file.supportedContentTypes.first?.identifier {
-                identifier = getFileExtension(from: uti)
-            }
-            if let data = try? await file.loadTransferable(type: Data.self){
-                fileData = data
-            }
-        }
-        return (fileData, identifier)
-    }
-    
-    
-    private func getFileExtension(from identifier: String) -> String {
-        if let type = UTType(identifier) {
-            return type.preferredFilenameExtension ?? "unknown"
-        }
-        return "unknown"
-    }
+
     
 
     
@@ -171,16 +123,6 @@ class EventViewModel: BaseViewModel {
 }
 
 
-enum GalleryItemType: Int{
-    case photo = 0
-    case video = 1
-    case thumbnail = 2
-}
-
-enum AssetSectionType: String {
-    case story
-    case gallery
-}
 
 
 

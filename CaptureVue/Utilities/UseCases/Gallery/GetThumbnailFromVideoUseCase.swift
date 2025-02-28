@@ -1,13 +1,14 @@
 //
-//  CopyTempFileUseCase.swift
+//  GetThumbnailFromVideoUseCase.swift
 //  CaptureVue
 //
-//  Created by Paris Makris on 22/2/25.
+//  Created by Paris Makris on 28/2/25.
 //
 
 import Foundation
+import SwiftUI
 
-struct CopyIntoTempFileUseCase{
+struct GetThumbnailFromVideoUseCase{
     
     private let repository: GalleryRepositoryContract
     
@@ -15,7 +16,7 @@ struct CopyIntoTempFileUseCase{
         self.repository = galleryRepositoryMock ?? GalleryRepository(client: client)
     }
     
-    func invoke(fileDetails: (fileData: Data, identifier: String)) async  {
-        return await repository.copyIntoTempFile(fileDetails.fileData, identifier: fileDetails.identifier)
+    func invoke(url: URL, at: TimeInterval) async -> UIImage? {
+        return await repository.getThumbnailFromVideo(url: url, at: at)
     }
 }

@@ -79,12 +79,16 @@
 		F99773D12D6A719E00D14332 /* CreateEventUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99773D02D6A719E00D14332 /* CreateEventUseCase.swift */; };
 		F99773D92D6A7F2D00D14332 /* CopyTempFileUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99773D82D6A7F2D00D14332 /* CopyTempFileUseCase.swift */; };
 		F99773DD2D6A8EF500D14332 /* FileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99773DC2D6A8EF500D14332 /* FileManager.swift */; };
-		F99773DF2D6E1C1D00D14332 /* AssetUploadHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99773DE2D6E1C1D00D14332 /* AssetUploadHelper.swift */; };
 		F99773E12D6E266400D14332 /* PrepareUploadData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99773E02D6E266400D14332 /* PrepareUploadData.swift */; };
 		F99773E52D6E28FB00D14332 /* GetAwsDirectUploadUrlUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99773E42D6E28FB00D14332 /* GetAwsDirectUploadUrlUseCase.swift */; };
 		F99773E92D6E616E00D14332 /* IntExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99773E82D6E616E00D14332 /* IntExtensions.swift */; };
 		F99773EB2D6E635700D14332 /* UploadAwsFileUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99773EA2D6E635700D14332 /* UploadAwsFileUseCase.swift */; };
 		F99773ED2D6E8A4B00D14332 /* NotifyNewAssetUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99773EC2D6E8A4B00D14332 /* NotifyNewAssetUseCase.swift */; };
+		F99773F02D6F2B4300D14332 /* AssetUploadHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99773EF2D6F2B4300D14332 /* AssetUploadHelper.swift */; };
+		F99773F22D6F4FA400D14332 /* PrepareUploadFileUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99773F12D6F4FA400D14332 /* PrepareUploadFileUseCase.swift */; };
+		F99773F42D6F5F1900D14332 /* GetPendingUploadFileUSeCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99773F32D6F5F1900D14332 /* GetPendingUploadFileUSeCase.swift */; };
+		F99773F62D6F6D4200D14332 /* DeleteTempFileUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99773F52D6F6D4200D14332 /* DeleteTempFileUseCase.swift */; };
+		F99773F82D71BFCA00D14332 /* GetThumbnailFromVideoUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99773F72D71BFCA00D14332 /* GetThumbnailFromVideoUseCase.swift */; };
 		F9995E8E2CBC4DB100909E85 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F9995E8C2CBC4DB100909E85 /* GoogleService-Info.plist */; };
 		F9A561E62CB5BD5E00634C7A /* CaptureVueApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A561E52CB5BD5E00634C7A /* CaptureVueApp.swift */; };
 		F9A561EA2CB5BD6000634C7A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F9A561E92CB5BD6000634C7A /* Assets.xcassets */; };
@@ -222,12 +226,16 @@
 		F99773D02D6A719E00D14332 /* CreateEventUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateEventUseCase.swift; sourceTree = "<group>"; };
 		F99773D82D6A7F2D00D14332 /* CopyTempFileUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CopyTempFileUseCase.swift; sourceTree = "<group>"; };
 		F99773DC2D6A8EF500D14332 /* FileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManager.swift; sourceTree = "<group>"; };
-		F99773DE2D6E1C1D00D14332 /* AssetUploadHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetUploadHelper.swift; sourceTree = "<group>"; };
 		F99773E02D6E266400D14332 /* PrepareUploadData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrepareUploadData.swift; sourceTree = "<group>"; };
 		F99773E42D6E28FB00D14332 /* GetAwsDirectUploadUrlUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetAwsDirectUploadUrlUseCase.swift; sourceTree = "<group>"; };
 		F99773E82D6E616E00D14332 /* IntExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntExtensions.swift; sourceTree = "<group>"; };
 		F99773EA2D6E635700D14332 /* UploadAwsFileUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadAwsFileUseCase.swift; sourceTree = "<group>"; };
 		F99773EC2D6E8A4B00D14332 /* NotifyNewAssetUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotifyNewAssetUseCase.swift; sourceTree = "<group>"; };
+		F99773EF2D6F2B4300D14332 /* AssetUploadHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetUploadHelper.swift; sourceTree = "<group>"; };
+		F99773F12D6F4FA400D14332 /* PrepareUploadFileUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrepareUploadFileUseCase.swift; sourceTree = "<group>"; };
+		F99773F32D6F5F1900D14332 /* GetPendingUploadFileUSeCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetPendingUploadFileUSeCase.swift; sourceTree = "<group>"; };
+		F99773F52D6F6D4200D14332 /* DeleteTempFileUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteTempFileUseCase.swift; sourceTree = "<group>"; };
+		F99773F72D71BFCA00D14332 /* GetThumbnailFromVideoUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetThumbnailFromVideoUseCase.swift; sourceTree = "<group>"; };
 		F9995E8C2CBC4DB100909E85 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F9A561E22CB5BD5E00634C7A /* CaptureVue.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CaptureVue.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F9A561E52CB5BD5E00634C7A /* CaptureVueApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureVueApp.swift; sourceTree = "<group>"; };
@@ -610,6 +618,7 @@
 		F99773D32D6A7C1000D14332 /* UseCases */ = {
 			isa = PBXGroup;
 			children = (
+				F99773EE2D6F2B3200D14332 /* AssetUploadHelper */,
 				F99773D42D6A7C7C00D14332 /* Authentication */,
 				F99773D52D6A7C8600D14332 /* Gallery */,
 				F99773D62D6A7C8C00D14332 /* Event */,
@@ -636,6 +645,10 @@
 				F99773E42D6E28FB00D14332 /* GetAwsDirectUploadUrlUseCase.swift */,
 				F99773EA2D6E635700D14332 /* UploadAwsFileUseCase.swift */,
 				F99773EC2D6E8A4B00D14332 /* NotifyNewAssetUseCase.swift */,
+				F99773F12D6F4FA400D14332 /* PrepareUploadFileUseCase.swift */,
+				F99773F32D6F5F1900D14332 /* GetPendingUploadFileUSeCase.swift */,
+				F99773F52D6F6D4200D14332 /* DeleteTempFileUseCase.swift */,
+				F99773F72D71BFCA00D14332 /* GetThumbnailFromVideoUseCase.swift */,
 			);
 			path = Gallery;
 			sourceTree = "<group>";
@@ -672,6 +685,14 @@
 				F99773DC2D6A8EF500D14332 /* FileManager.swift */,
 			);
 			path = FileManager;
+			sourceTree = "<group>";
+		};
+		F99773EE2D6F2B3200D14332 /* AssetUploadHelper */ = {
+			isa = PBXGroup;
+			children = (
+				F99773EF2D6F2B4300D14332 /* AssetUploadHelper.swift */,
+			);
+			path = AssetUploadHelper;
 			sourceTree = "<group>";
 		};
 		F9A561D92CB5BD5E00634C7A = {
@@ -906,7 +927,6 @@
 				F9A9E07F2CE52E22003DB166 /* EventViewModel.swift */,
 				F96982F62CF352ED00CC3C55 /* Gallery */,
 				F96982F12CF31B4500CC3C55 /* Stories */,
-				F99773DE2D6E1C1D00D14332 /* AssetUploadHelper.swift */,
 			);
 			path = Event;
 			sourceTree = "<group>";
@@ -1092,6 +1112,7 @@
 				F99772302D54912F00D14332 /* Event.swift in Sources */,
 				F99773CD2D69BC3C00D14332 /* CreateEventResponse.swift in Sources */,
 				F96982F32CF31B4E00CC3C55 /* StoryThumbnailView.swift in Sources */,
+				F99773F62D6F6D4200D14332 /* DeleteTempFileUseCase.swift in Sources */,
 				F96982FC2CF3537B00CC3C55 /* GalleryView.swift in Sources */,
 				F99773B82D69196700D14332 /* SectionItem.swift in Sources */,
 				F997722E2D5490ED00D14332 /* ValidateEvent.swift in Sources */,
@@ -1100,13 +1121,13 @@
 				F997736F2D56664C00D14332 /* TemporaryHoldStructs.swift in Sources */,
 				F99773962D67D73C00D14332 /* ValidateEventUseCase.swift in Sources */,
 				F96983022CF5207C00CC3C55 /* LoginViewModel.swift in Sources */,
-				F99773DF2D6E1C1D00D14332 /* AssetUploadHelper.swift in Sources */,
 				F99773E92D6E616E00D14332 /* IntExtensions.swift in Sources */,
 				F9F306252D44FC8000E41995 /* CreateEventInteractor.swift in Sources */,
 				F9F306262D44FC8000E41995 /* CreateEventViewModel.swift in Sources */,
 				F9F306272D44FC8000E41995 /* CreateEventScreen.swift in Sources */,
 				F99773822D6798A900D14332 /* CustomerRepositoryContract.swift in Sources */,
 				F99772322D54915500D14332 /* StoryItem.swift in Sources */,
+				F99773F42D6F5F1900D14332 /* GetPendingUploadFileUSeCase.swift in Sources */,
 				F9A9E0852CE563AA003DB166 /* ImageLoader.swift in Sources */,
 				F927D19E2CF1F37000EB7650 /* CacheManager.swift in Sources */,
 				F927D19B2CF1B01500EB7650 /* VideoPlayerManager.swift in Sources */,
@@ -1161,6 +1182,7 @@
 				F99773A42D6868E100D14332 /* GalleryRepositoryContract.swift in Sources */,
 				F99773A52D6868E100D14332 /* GalleryRepositoryMock.swift in Sources */,
 				F99772342D54917200D14332 /* StoryItemDto.swift in Sources */,
+				F99773F02D6F2B4300D14332 /* AssetUploadHelper.swift in Sources */,
 				F99773D92D6A7F2D00D14332 /* CopyTempFileUseCase.swift in Sources */,
 				F99773CF2D69D16700D14332 /* MultipartRequest.swift in Sources */,
 				F9F306192D42AE0C00E41995 /* HomeViewModel.swift in Sources */,
@@ -1188,8 +1210,10 @@
 				F99773C92D692A3200D14332 /* CredentialsLoginUseCase.swift in Sources */,
 				F9A9E06E2CDFC584003DB166 /* Banner.swift in Sources */,
 				F99773922D67D6A800D14332 /* EventRepository.swift in Sources */,
+				F99773F82D71BFCA00D14332 /* GetThumbnailFromVideoUseCase.swift in Sources */,
 				F99773CB2D692A5800D14332 /* AuthRepositoryMock.swift in Sources */,
 				F99773782D6630D800D14332 /* LoginRequestBody.swift in Sources */,
+				F99773F22D6F4FA400D14332 /* PrepareUploadFileUseCase.swift in Sources */,
 				F99773842D6798C100D14332 /* CustomerRepository.swift in Sources */,
 				F9A5622E2CB71B0500634C7A /* Assets.swift in Sources */,
 				F953B24D2CC827780058C2BD /* OnBoardingScreen.swift in Sources */,

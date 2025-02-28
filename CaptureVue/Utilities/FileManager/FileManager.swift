@@ -40,9 +40,9 @@ actor LocalFileManager {
         return url
     }
     
-    func getFile(fileUrl: String) -> Data? {
+    func getFile(fileName: String, folderName: String) -> Data? {
         guard
-            let url = URL(string: fileUrl),
+            let url = getUrlForFile(fileName: fileName, folderName: folderName),
             FileManager.default.fileExists(atPath: url.path) else {
             return nil
         }
@@ -50,11 +50,28 @@ actor LocalFileManager {
     }
     
     func getAllFiles(folderName: String) -> [String] {
-        guard let url = getUrlForFolder(folderName: folderName), FileManager.default.fileExists(atPath: url.path) else { return [] }
+        guard
+            let url = getUrlForFolder(folderName: folderName),
+            FileManager.default.fileExists(atPath: url.path)
+        else { return [] }
+        
         do{
-            return try FileManager.default.contentsOfDirectory(atPath: url.path)
+            let result = try FileManager.default.contentsOfDirectory(atPath: url.path)
+//            return result.map({url.appendingPathComponent($0).absoluteString})
+            return result
         }catch{
             return []
+        }
+    }
+    
+    func deleteFile(fileName: String, folderName: String) -> Result<Bool, Never> {
+        do{
+            guard let url = getUrlForFile(fileName: fileName, folderName: folderName) else { return .success(false) }
+            try FileManager.default.removeItem(atPath: url.path)
+            return.success(true)
+        }
+        catch{
+            return .success(false)
         }
     }
     
@@ -83,5 +100,6 @@ actor LocalFileManager {
         }
         return folderURL.appendingPathComponent(fileName)
     }
+    
     
 }

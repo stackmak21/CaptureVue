@@ -9,14 +9,14 @@ import Foundation
 
 struct PrepareUploadData {
     let eventId: String
-    let fileUrl: String
+    let fileName: String
     let section: AssetSectionType
     let assetType: GalleryItemType
     let thumbnailPublicName: String
     
     func toNotifyNewAssetRequest() -> NotifyNewAssetRequest {
         return NotifyNewAssetRequest(
-            assetKey: self.fileUrl,
+            assetKey: self.fileName,
             section: self.section.rawValue,
             assetType: self.assetType.rawValue,
             eventId: self.eventId,
@@ -32,4 +32,17 @@ struct NotifyNewAssetRequest: Codable {
     let assetType: Int
     let eventId: String
     let thumbnailKey: String
+}
+
+
+
+enum GalleryItemType: Int{
+    case photo = 0
+    case video = 1
+    case thumbnail = 2
+}
+
+enum AssetSectionType: String {
+    case story
+    case gallery
 }

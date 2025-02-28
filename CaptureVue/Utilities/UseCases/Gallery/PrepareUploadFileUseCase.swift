@@ -1,13 +1,15 @@
 //
-//  CopyTempFileUseCase.swift
+//  PrepareUploadFileUseCase.swift
 //  CaptureVue
 //
-//  Created by Paris Makris on 22/2/25.
+//  Created by Paris Makris on 26/2/25.
 //
 
 import Foundation
+import SwiftUI
+import PhotosUI
 
-struct CopyIntoTempFileUseCase{
+struct PrepareUploadFileUseCase{
     
     private let repository: GalleryRepositoryContract
     
@@ -15,7 +17,7 @@ struct CopyIntoTempFileUseCase{
         self.repository = galleryRepositoryMock ?? GalleryRepository(client: client)
     }
     
-    func invoke(fileDetails: (fileData: Data, identifier: String)) async  {
-        return await repository.copyIntoTempFile(fileDetails.fileData, identifier: fileDetails.identifier)
+    func invoke(_ selectedFile: PhotosPickerItem) async -> (Data, String) {
+        return await repository.prepareUploadFile(file: selectedFile)
     }
 }

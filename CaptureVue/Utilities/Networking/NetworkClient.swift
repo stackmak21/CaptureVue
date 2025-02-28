@@ -231,9 +231,6 @@ class NetworkClient: NSObject {
             
             guard let fileUrl = URL(string: fileUrl) else { throw NetworkError.invalidUrl("Creating url from file url error") }
             let (data, response) = try await URLSession.shared.upload(for: request, fromFile: fileUrl, delegate: self)
-            if let responseUrl = response as? HTTPURLResponse {
-                print(responseUrl.statusCode)
-            }
             guard let urlResponse = response as? HTTPURLResponse, urlResponse.isSuccess() else { throw NetworkError.badResponse  }
 
         }

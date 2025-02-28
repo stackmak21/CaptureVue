@@ -1,13 +1,13 @@
 //
-//  CopyTempFileUseCase.swift
+//  DeleteTempFileUseCase.swift
 //  CaptureVue
 //
-//  Created by Paris Makris on 22/2/25.
+//  Created by Paris Makris on 26/2/25.
 //
 
 import Foundation
 
-struct CopyIntoTempFileUseCase{
+struct DeleteTempFileUseCase{
     
     private let repository: GalleryRepositoryContract
     
@@ -15,7 +15,7 @@ struct CopyIntoTempFileUseCase{
         self.repository = galleryRepositoryMock ?? GalleryRepository(client: client)
     }
     
-    func invoke(fileDetails: (fileData: Data, identifier: String)) async  {
-        return await repository.copyIntoTempFile(fileDetails.fileData, identifier: fileDetails.identifier)
+    func invoke(fileName: String) async -> Result<Bool, Never>{
+        return await repository.deleteTempFile(fileName: fileName)
     }
 }
