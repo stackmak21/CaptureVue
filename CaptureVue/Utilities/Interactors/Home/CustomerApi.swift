@@ -13,7 +13,7 @@ struct CustomerApi {
     
     init(client: NetworkClient) { self.client = client }
     
-    func fetchCustomerHome(_ token: String) async -> Result<HomeResponseDto, CaptureVueErrorDto> {
+    func fetchCustomerHome(_ token: String) async -> Result<HomeResponseDto, CaptureVueResponseRaw> {
         return await client.execute(
             url: "api/v1/customer/home",
             authToken: token

@@ -68,7 +68,7 @@ class CreateEventViewModel: BaseViewModel {
                     case .success(let response):
                         router.dismissScreen()
                     case .failure(let error):
-                        Banner(router: router, message: error.msg, bannerType: .error, bannerDuration: .long, action: nil)
+                        Banner(router: router, message: error.msg ?? "", bannerType: .error, bannerDuration: .long, action: nil)
                     }
                 }
                 else{

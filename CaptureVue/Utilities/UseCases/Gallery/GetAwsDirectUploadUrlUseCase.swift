@@ -15,7 +15,7 @@ struct GetAwsDirectUploadUrlUseCase{
         self.repository = galleryRepositoryMock ?? GalleryRepository(client: client)
     }
     
-    func invoke(_ token: String, uploadInfo: PrepareUploadData) async -> Result<AwsDirectUploadUrl, CaptureVueError> {
+    func invoke(_ token: String, uploadInfo: PrepareUploadData) async -> Result<AwsDirectUploadUrl, CaptureVueResponseRaw> {
         return await repository.getAwsDirectUploadUrl(token, uploadInfo: uploadInfo)
     }
 }

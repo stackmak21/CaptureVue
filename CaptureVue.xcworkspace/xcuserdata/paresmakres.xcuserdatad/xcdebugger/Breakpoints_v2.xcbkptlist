@@ -320,8 +320,8 @@
             filePath = "CaptureVue/Utilities/Networking/NetworkClient.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "59"
-            endingLineNumber = "59"
+            startingLineNumber = "61"
+            endingLineNumber = "61"
             landmarkName = "execute(url:authToken:queryItems:urlScheme:urlHost:urlPort:httpMethod:headers:timeInterval:requestBody:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -368,8 +368,8 @@
             filePath = "CaptureVue/Utilities/Networking/NetworkClient.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "60"
-            endingLineNumber = "60"
+            startingLineNumber = "62"
+            endingLineNumber = "62"
             landmarkName = "execute(url:authToken:queryItems:urlScheme:urlHost:urlPort:httpMethod:headers:timeInterval:requestBody:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -384,26 +384,10 @@
             filePath = "CaptureVue/Screens/Event/EventViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "42"
-            endingLineNumber = "42"
+            startingLineNumber = "32"
+            endingLineNumber = "32"
             landmarkName = "EventViewModel"
             landmarkType = "3">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "99A3654E-B784-4263-B629-7FA00322FA47"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "CaptureVue/Utilities/Interactors/Gallery/GalleryRepository.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "28"
-            endingLineNumber = "28"
-            landmarkName = "fetchAwsDirectUploadURL(_:_:)"
-            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -416,8 +400,8 @@
             filePath = "CaptureVue/Utilities/Interactors/Gallery/GalleryRepository.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "37"
-            endingLineNumber = "37"
+            startingLineNumber = "26"
+            endingLineNumber = "26"
             landmarkName = "copyIntoTempFile(_:identifier:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -432,8 +416,8 @@
             filePath = "CaptureVue/Screens/Event/EventViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "58"
-            endingLineNumber = "58"
+            startingLineNumber = "56"
+            endingLineNumber = "56"
             landmarkName = "init(router:client:eventRepositoryMock:galleryRepositoryMock:eventId:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -448,8 +432,8 @@
             filePath = "CaptureVue/Utilities/Interactors/Gallery/GalleryApi.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "39"
-            endingLineNumber = "39"
+            startingLineNumber = "34"
+            endingLineNumber = "34"
             landmarkName = "uploadAwsFile(uploadUrl:uploadInfo:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -480,8 +464,8 @@
             filePath = "CaptureVue/Screens/Event/EventViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "57"
-            endingLineNumber = "57"
+            startingLineNumber = "55"
+            endingLineNumber = "55"
             landmarkName = "init(router:client:eventRepositoryMock:galleryRepositoryMock:eventId:)"
             landmarkType = "7">
          </BreakpointContent>

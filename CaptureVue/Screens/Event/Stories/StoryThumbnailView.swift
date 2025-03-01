@@ -15,13 +15,13 @@ struct StoryThumbnailView: View {
     
     @Binding var showStory: Bool
     @Binding var selectedStory: String
-    @Binding var selectedVideo: PhotosPickerItem?
+    @Binding var selectedStoryItem: [PhotosPickerItem]
     
     var body: some View {
         ScrollViewReader { scrollView in
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack {
-                    AddStoryButton(selectedItem: $selectedVideo)
+                    AddStoryButton(selectedStoryItem: $selectedStoryItem)
                     ForEach(storiesList) { story in
                         ZStack {
                             Circle()
@@ -71,19 +71,20 @@ struct StoryThumbnailView: View {
         storyNamespace: Namespace().wrappedValue,
         showStory: .constant(false),
         selectedStory: .constant(""),
-        selectedVideo: .constant(nil)
+        selectedStoryItem: .constant([])
     )
 }
 
 
 struct AddStoryButton: View {
     
-    @Binding var selectedItem: PhotosPickerItem?
+    @Binding var selectedStoryItem: [PhotosPickerItem]
     
     var body: some View {
         PhotosPicker(
-            selection: $selectedItem,
-            matching: .videos,
+            selection: $selectedStoryItem,
+            maxSelectionCount: 1,
+            matching: .any(of: [.images, .videos]),
             label: {
                 ZStack{
                     ImageLoader(url: "https://picsum.photos/800/1003")

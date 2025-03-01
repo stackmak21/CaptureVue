@@ -15,10 +15,10 @@ struct CustomerRepository: CustomerRepositoryContract {
         self.customerApi = CustomerApi(client: client)
     }
     
-    func fetchHomeContract(_ token: String) async -> Result<HomeResponse, CaptureVueError> {
+    func fetchHomeContract(_ token: String) async -> Result<HomeResponse, CaptureVueResponseRaw> {
         return await customerApi.fetchCustomerHome(token)
             .map({ $0.toHomeResponse() })
-            .mapError({ $0.toCaptureVueError() })
+            .mapError({ $0 })
     }
     
 }

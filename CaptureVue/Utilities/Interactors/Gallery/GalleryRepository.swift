@@ -11,7 +11,6 @@ import PhotosUI
 import UniformTypeIdentifiers
 
 struct GalleryRepository: GalleryRepositoryContract {
-    
 
     
     private let galleryApi: GalleryApi
@@ -21,38 +20,23 @@ struct GalleryRepository: GalleryRepositoryContract {
         self.galleryApi = GalleryApi(client: client)
     }
     
-    func fetchAwsDirectUploadURL(_ token: String, _ uploadInfo: UploadServiceData) async -> Result<AwsDirectUploadUrl, CaptureVueError> {
-        return await galleryApi.fetchAwsDirectUploadUrl(
-            token: token,
-            eventId: uploadInfo.eventId,
-            section: uploadInfo.section,
-            filename: uploadInfo.filename
-        )
-        .map({ $0.toAwsDirectUploadUrl() })
-        .mapError({ $0.toCaptureVueError() })
-    }
-    
+ 
     func copyIntoTempFile(_ selectedFile: Data, identifier: String) async {
         let uniqueString = UUID().uuidString
         await fileManager.saveFile(file: selectedFile, fileName: "\(uniqueString).\(identifier)", folderName: "UploadPendingFiles")
     }
     
-    func getAwsDirectUploadUrl(_ token: String, uploadInfo: PrepareUploadData) async -> Result<AwsDirectUploadUrl, CaptureVueError> {
+    func getPendingUploadFiles() async -> [String] {
+        return await fileManager.getAllFiles(folderName: "UploadPendingFiles")
+    }
+    
+    func getAwsDirectUploadUrl(_ token: String, uploadInfo: PrepareUploadData) async -> Result<AwsDirectUploadUrl, CaptureVueResponseRaw> {
         return await galleryApi.getAwsDirectUploadUrl(
             token: token,
             uploadInfo: uploadInfo
         )
         .map({$0.toAwsDirectUploadUrl()})
-        .mapError({$0.toCaptureVueError()})
-    }
-    
-    func uploadAwsFile(uploadUrl: String, uploadInfo: PrepareUploadData) async {
-        await galleryApi.uploadAwsFile(uploadUrl: uploadUrl, uploadInfo: uploadInfo)
-        
-    }
-    
-    func notifyNewAssetUpload(_ token: String, assetUploadRequest: NotifyNewAssetRequest) async -> CaptureVueError {
-        return await galleryApi.notifyNewAssetUpload(token, assetUploadRequest: assetUploadRequest).toCaptureVueError()
+        .mapError({ $0 })
     }
     
     func prepareUploadFile(file: PhotosPickerItem) async -> (Data, String) {
@@ -69,8 +53,24 @@ struct GalleryRepository: GalleryRepositoryContract {
         return (fileData, identifier)
     }
     
-    func getThumbnailFromVideo(url: URL, at time: TimeInterval) async -> UIImage?{
+    func uploadAwsFile(uploadUrl: String, uploadInfo: PrepareUploadData) async {
+        await galleryApi.uploadAwsFile(uploadUrl: uploadUrl, uploadInfo: uploadInfo)
         
+    }
+    
+    func notifyNewAssetUpload(_ token: String, assetUploadRequest: NotifyNewAssetRequest) async -> CaptureVueResponseRaw {
+        return await galleryApi.notifyNewAssetUpload(token, assetUploadRequest: assetUploadRequest)
+    }
+    
+    func deleteTempFile(fileName: String) async -> Bool {
+        return await fileManager.deleteFile(fileName: fileName, folderName: "UploadPendingFiles")
+    }
+    
+    func uploadAwsThumbnail(uploadUrl: String, uploadInfo: PrepareUploadData, imageData: Data) async {
+        await galleryApi.uploadAwsThumbnail(uploadUrl: uploadUrl, uploadInfo: uploadInfo, imageData: imageData)
+    }
+    
+    func getThumbnailFromVideo(url: URL, at time: TimeInterval) async -> UIImage?{
         do{
             let asset = AVURLAsset(url: url)
             
@@ -80,6 +80,7 @@ struct GalleryRepository: GalleryRepositoryContract {
             
             let cmTime = CMTime(seconds: time, preferredTimescale: 60)
             let thumbnailImage = try await assetImageGenerator.image(at: cmTime).image
+            
             return UIImage(cgImage: thumbnailImage)
         }
         catch{
@@ -95,13 +96,9 @@ struct GalleryRepository: GalleryRepositoryContract {
         return "unknown"
     }
     
-    func getPendingUploadFiles() async -> [String] {
-        return await fileManager.getAllFiles(folderName: "UploadPendingFiles")
-    }
     
-    func deleteTempFile(fileName: String) async -> Result<Bool, Never> {
-        return await fileManager.deleteFile(fileName: fileName, folderName: "UploadPendingFiles")
-    }
+    
+    
     
 }
 

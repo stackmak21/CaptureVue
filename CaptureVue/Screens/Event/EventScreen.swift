@@ -93,7 +93,7 @@ struct EventScreen: View {
                                     storyNamespace: storyNamespace,
                                     showStory: $showStory,
                                     selectedStory: $selectedStory,
-                                    selectedVideo: $selectedVideo
+                                    selectedStoryItem: $vm.selectedStoryItem
                                 )
                                 .padding(.vertical)
                                 

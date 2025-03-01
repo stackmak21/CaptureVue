@@ -8,7 +8,7 @@
 import Foundation
 
 struct CustomerRepositoryMock: CustomerRepositoryContract {
-    func fetchHomeContract(_ token: String) async -> Result<HomeResponse, CaptureVueError> {
+    func fetchHomeContract(_ token: String) async -> Result<HomeResponse, CaptureVueResponseRaw> {
         let event = DeveloperPreview.instance.event
         return .success(HomeResponse(customer: event.creator, hostEvents: [event], participatingEvents: [event]))
     }

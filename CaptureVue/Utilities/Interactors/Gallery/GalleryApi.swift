@@ -6,7 +6,9 @@
 //
 
 import Foundation
-import MobileCoreServices
+import SwiftUI
+import UniformTypeIdentifiers
+
 
 struct GalleryApi {
     
@@ -15,15 +17,8 @@ struct GalleryApi {
     
     init(client: NetworkClient) { self.client = client }
     
-    func fetchAwsDirectUploadUrl(token: String, eventId: String, section: AssetSectionType, filename: String ) async -> Result<AwsDirectUploadUrlDto, CaptureVueErrorDto> {
-        return await client.execute(
-            url: "api/v1/gallery/awsDirectUploadUrl",
-            authToken: token
-        )
-    }
- 
     
-    func getAwsDirectUploadUrl(token: String, uploadInfo: PrepareUploadData) async -> Result<AwsDirectUploadUrlDto, CaptureVueErrorDto> {
+    func getAwsDirectUploadUrl(token: String, uploadInfo: PrepareUploadData) async -> Result<AwsDirectUploadUrlDto, CaptureVueResponseRaw> {
         return await client.execute(
             url: "api/v1/gallery/awsDirectUploadUrl",
             authToken: token,
@@ -37,12 +32,9 @@ struct GalleryApi {
     
     func uploadAwsFile(uploadUrl: String, uploadInfo: PrepareUploadData) async {
         if let fileData = await fileManager.getFile(fileName: uploadInfo.fileName, folderName: "UploadPendingFiles"){
-            if let fileUrl = await fileManager.getFileUrl(fileName: uploadInfo.fileName, folderName: "UploadPendingFiles"){
                 let fileLength = String(fileData.count)
                 let mimeType = mimeTypeForPath(path: uploadInfo.fileName)
                 let eventId = uploadInfo.eventId
-                
-                print("fileLength: " + fileLength + "  Mime Type: " + mimeType + "  EventId: " + eventId)
                 await client.upload(
                     url: uploadUrl,
                     httpMethod: .put,
@@ -51,43 +43,59 @@ struct GalleryApi {
                         "Content-Length" : fileLength,
                         "x-amz-meta-event" : eventId
                     ],
-                    fileUrl: fileUrl.absoluteString
-                )
-            }
+                    requestBody: fileData
+                ){
+                    print("upload file completed")
+                }
         }
     }
     
-    func notifyNewAssetUpload(_ token: String, assetUploadRequest: NotifyNewAssetRequest) async -> CaptureVueErrorDto {
+    func uploadAwsThumbnail(uploadUrl: String, uploadInfo: PrepareUploadData, imageData: Data) async {
+        let fileLength = String(imageData.count)
+        let mimeType = mimeTypeForPath(path: uploadInfo.fileName)
+        let eventId = uploadInfo.eventId
+        await client.upload(
+            url: uploadUrl,
+            httpMethod: .put,
+            headers: [
+                "Content-Type" : mimeType,
+                "Content-Length" : fileLength,
+                "x-amz-meta-event" : eventId
+            ],
+            requestBody: imageData
+        ){
+            print("upload thumbnail completed")
+        }
+    }
+    
+    
+    func notifyNewAssetUpload(_ token: String, assetUploadRequest: NotifyNewAssetRequest) async -> CaptureVueResponseRaw {
         let data = try? JSONEncoder().encode(assetUploadRequest)
-        let response: Result<CaptureVueErrorDto, CaptureVueErrorDto> = await client.execute(
+        let response: Result<CaptureVueResponseRaw, CaptureVueResponseRaw> = await client.execute(
             url: "api/v1/gallery/notifyNewAsset",
             authToken: token,
             httpMethod: .post,
             headers: ["Content-Type" : "application/json"],
             requestBody: data
-    
         )
-        
         switch response {
         case .success(let success):
             return success
         case .failure(let failure):
             print("\(failure.localizedDescription)")
-            return CaptureVueErrorDto(msg: nil, code: nil, reason: nil)
+            return CaptureVueResponseRaw(msg: nil, code: nil, reason: nil)
         }
         
     }
     
     
-
+    
     private func mimeTypeForPath(path: String) -> String {
-        let url = NSURL(fileURLWithPath: path)
+        let url = URL(fileURLWithPath: path)
         let pathExtension = url.pathExtension
-
-        if let uti = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, pathExtension! as NSString, nil)?.takeRetainedValue() {
-            if let mimetype = UTTypeCopyPreferredTagWithClass(uti, kUTTagClassMIMEType)?.takeRetainedValue() {
-                return mimetype as String
-            }
+        if let uti = UTType(filenameExtension: pathExtension),
+           let mimeType = uti.preferredMIMEType {
+            return mimeType
         }
         return "application/octet-stream"
     }

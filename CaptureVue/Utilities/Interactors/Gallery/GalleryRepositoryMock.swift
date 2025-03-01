@@ -10,13 +10,17 @@ import SwiftUI
 import PhotosUI
 
 struct GalleryRepositoryMock: GalleryRepositoryContract {
+    func uploadAwsThumbnail(uploadUrl: String, uploadInfo: PrepareUploadData, imageData: Data) async {
+        
+    }
+    
     
     func getThumbnailFromVideo(url: URL, at time: TimeInterval) async -> UIImage? {
         return .image1
     }
     
-    func deleteTempFile(fileName: String) async -> Result<Bool, Never> {
-        return .success(true)
+    func deleteTempFile(fileName: String) async -> Bool {
+        return true
     }
     
     func prepareUploadFile(file: PhotosPickerItem) async -> (Data, String) {
@@ -27,7 +31,7 @@ struct GalleryRepositoryMock: GalleryRepositoryContract {
         return []
     }
     
-    func getAwsDirectUploadUrl(_ token: String, uploadInfo: PrepareUploadData) async -> Result<AwsDirectUploadUrl, CaptureVueError> {
+    func getAwsDirectUploadUrl(_ token: String, uploadInfo: PrepareUploadData) async -> Result<AwsDirectUploadUrl, CaptureVueResponseRaw> {
         return .success(AwsDirectUploadUrl(url: "fdfd"))
     }
   
@@ -36,12 +40,8 @@ struct GalleryRepositoryMock: GalleryRepositoryContract {
         
     }
     
-    func notifyNewAssetUpload(_ token: String, assetUploadRequest: NotifyNewAssetRequest) async -> CaptureVueError { return CaptureVueErrorDto(msg: nil, code: nil, reason: nil).toCaptureVueError()}
+    func notifyNewAssetUpload(_ token: String, assetUploadRequest: NotifyNewAssetRequest) async -> CaptureVueResponseRaw { return CaptureVueResponseRaw(msg: nil, code: nil, reason: nil)}
     
-
-    func fetchAwsDirectUploadURL(_ token: String, _ uploadInfo: UploadServiceData) async -> Result<AwsDirectUploadUrl, CaptureVueError> {
-        return .success(AwsDirectUploadUrl(url: "fdf"))
-    }
     
     func copyIntoTempFile(_ selectedFile: Data, identifier: String) async {
         

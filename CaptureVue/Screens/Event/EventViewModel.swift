@@ -24,21 +24,11 @@ class EventViewModel: BaseViewModel {
     
     private let client: NetworkClient
     private let fetchEventUseCase: FetchEventUseCase
-    private let copyIntoTempFileUseCase: CopyIntoTempFileUseCase
-    private let getAwsDirectUploadUrlUseCase: GetAwsDirectUploadUrlUseCase
-    private let uploadAwsFileUseCase: UploadAwsFileUseCase
-    private let notifyNewAssetUploadUseCase: NotifyNewAssetUseCase
     private let assetUploadHelper: AssetUploadHelper
     
     let eventId: String
     var videoUrl: String = ""
-    private var fileName = "" {
-        didSet{
-            if !fileName.isEmpty{
-                getAwsDirectUploadUrl()
-            }
-        }
-    }
+
     
     @Published var event: Event = Event()
     @Published var isLoading: Bool = false
@@ -46,7 +36,15 @@ class EventViewModel: BaseViewModel {
     @Published var selectedFiles: [PhotosPickerItem] = [] {
         didSet{
             if !selectedFiles.isEmpty{
-                uploadFiles(selectedFiles)
+                uploadFiles(selectedFiles, section: .gallery)
+            }
+        }
+    }
+    
+    @Published var selectedStoryItem: [PhotosPickerItem] = [] {
+        didSet{
+            if !selectedStoryItem.isEmpty{
+                uploadFiles(selectedStoryItem, section: .story)
             }
         }
     }
@@ -63,10 +61,6 @@ class EventViewModel: BaseViewModel {
         self.client = client
         self.eventId = eventId
         self.fetchEventUseCase = FetchEventUseCase(client: client, eventRepositoryMock: eventRepositoryMock)
-        self.copyIntoTempFileUseCase = CopyIntoTempFileUseCase(client: client, galleryRepositoryMock: galleryRepositoryMock)
-        self.getAwsDirectUploadUrlUseCase = GetAwsDirectUploadUrlUseCase(client: client, galleryRepositoryMock: galleryRepositoryMock)
-        self.uploadAwsFileUseCase = UploadAwsFileUseCase(client: client, galleryRepositoryMock: galleryRepositoryMock)
-        self.notifyNewAssetUploadUseCase = NotifyNewAssetUseCase(client: client, galleryRepositoryMock: galleryRepositoryMock)
         self.assetUploadHelper = AssetUploadHelper(client: client, galleryRepositoryMock: galleryRepositoryMock)
     }
     
@@ -84,47 +78,16 @@ class EventViewModel: BaseViewModel {
             case .success(let fetchedEvent):
                 self.event = fetchedEvent
             case .failure(let error):
-                Banner(router: router, message: error.msg , bannerType: .error, bannerDuration: .long, action: nil)
+                Banner(router: router, message: error.msg ?? "" , bannerType: .error, bannerDuration: .long, action: nil)
             }
         }
         tasks.append(task)
     }
     
-    func uploadFiles(_ selectedFiles: [PhotosPickerItem]){
+    func uploadFiles(_ selectedFiles: [PhotosPickerItem], section: AssetSectionType){
         Task{
-           await assetUploadHelper.uploadAwsAsset(token, selectedFiles: selectedFiles, eventId: eventId, section: .gallery)
+            await assetUploadHelper.uploadAwsAsset(token, selectedFiles: selectedFiles, eventId: eventId, section: section)
         }
-
     }
-    
-    func getAwsDirectUploadUrl() -> Void {
-        let task = Task{
-            let serverResponse = await getAwsDirectUploadUrlUseCase.invoke(token, uploadInfo: PrepareUploadData(eventId: eventId, fileName: fileName, section: .gallery, assetType: .photo, thumbnailPublicName: ""))
-            switch serverResponse {
-            case .success(let response):
-                print(response.url)
-                await uploadAwsFileUseCase.invoke(uploadUrl: response.url, uploadInfo: PrepareUploadData(eventId: eventId, fileName: fileName, section: .gallery, assetType: .photo, thumbnailPublicName: ""))
-                await notifyNewAssetUploadUseCase.invoke(token, assetUploadRequest: PrepareUploadData(eventId: eventId, fileName: fileName, section: .gallery, assetType: .photo, thumbnailPublicName: "").toNotifyNewAssetRequest())
-            case .failure(let error):
-                print("error aws direct upload url")
-            }
-        }
-        tasks.append(task)
-    }
-    
-    
 
-    
-
-    
-    
-    
-    
 }
-
-
-
-
-
-
-

@@ -8,6 +8,6 @@
 import Foundation
 
 protocol CustomerRepositoryContract {
-    func fetchHomeContract(_ token: String) async -> Result<HomeResponse, CaptureVueError>
+    func fetchHomeContract(_ token: String) async -> Result<HomeResponse, CaptureVueResponseRaw>
 
 }

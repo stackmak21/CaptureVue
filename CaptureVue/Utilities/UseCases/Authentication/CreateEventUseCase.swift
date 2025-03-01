@@ -15,7 +15,7 @@ struct CreateEventUseCase{
         self.repository = eventRepositoryMock ?? EventRepository(client: client)
     }
     
-    func invoke(_ token: String, _ createEventRequest: CreateEventRequest, _ eventImage: Data) async -> Result<CreateEventResponse, CaptureVueError> {
+    func invoke(_ token: String, _ createEventRequest: CreateEventRequest, _ eventImage: Data) async -> Result<CreateEventResponse, CaptureVueResponseRaw> {
         return await repository.createEvent(token, createEventRequest, eventImage)
     }
 }

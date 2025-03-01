@@ -27,6 +27,7 @@
 		F96983022CF5207C00CC3C55 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F96983012CF5207C00CC3C55 /* LoginViewModel.swift */; };
 		F96983062CF63E5A00CC3C55 /* VideoPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F96983052CF63E5A00CC3C55 /* VideoPlayerView.swift */; };
 		F96A6D4E2CC1B9A3001C1E85 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = F96A6D4D2CC1B9A3001C1E85 /* Kingfisher */; };
+		F980ED0E2D71F5A7003D8CAC /* UploadThumbnailUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F980ED0D2D71F5A7003D8CAC /* UploadThumbnailUseCase.swift */; };
 		F99772252D4CCFEE00D14332 /* SwipeBackGestures.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99772242D4CCFEE00D14332 /* SwipeBackGestures.swift */; };
 		F997722E2D5490ED00D14332 /* ValidateEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = F997722D2D5490ED00D14332 /* ValidateEvent.swift */; };
 		F99772302D54912F00D14332 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = F997722F2D54912F00D14332 /* Event.swift */; };
@@ -56,7 +57,6 @@
 		F99773982D67D75C00D14332 /* EventRepositoryMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99773972D67D75C00D14332 /* EventRepositoryMock.swift */; };
 		F997739A2D67DEDB00D14332 /* FetchEventUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99773992D67DEDB00D14332 /* FetchEventUseCase.swift */; };
 		F99773A12D6868E100D14332 /* GalleryApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = F997739F2D6868E100D14332 /* GalleryApi.swift */; };
-		F99773A22D6868E100D14332 /* FetchAwsDirectUploadUrlUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F997739D2D6868E100D14332 /* FetchAwsDirectUploadUrlUseCase.swift */; };
 		F99773A32D6868E100D14332 /* GalleryRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F997739E2D6868E100D14332 /* GalleryRepository.swift */; };
 		F99773A42D6868E100D14332 /* GalleryRepositoryContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = F997739C2D6868E100D14332 /* GalleryRepositoryContract.swift */; };
 		F99773A52D6868E100D14332 /* GalleryRepositoryMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99773A02D6868E100D14332 /* GalleryRepositoryMock.swift */; };
@@ -113,7 +113,7 @@
 		F9A9E0722CE0C9F7003DB166 /* QRCodeScannerScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A9E0712CE0C9F7003DB166 /* QRCodeScannerScreen.swift */; };
 		F9A9E0752CE2AF77003DB166 /* EventDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A9E0742CE2AF43003DB166 /* EventDto.swift */; };
 		F9A9E0772CE2B273003DB166 /* ValidateEventDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A9E0762CE2B273003DB166 /* ValidateEventDto.swift */; };
-		F9A9E07B2CE2B4AF003DB166 /* CaptureVueErrorDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A9E07A2CE2B4AF003DB166 /* CaptureVueErrorDto.swift */; };
+		F9A9E07B2CE2B4AF003DB166 /* CaptureVueResponseRaw.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A9E07A2CE2B4AF003DB166 /* CaptureVueResponseRaw.swift */; };
 		F9A9E07E2CE52E10003DB166 /* EventScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A9E07D2CE52E10003DB166 /* EventScreen.swift */; };
 		F9A9E0802CE52E22003DB166 /* EventViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A9E07F2CE52E22003DB166 /* EventViewModel.swift */; };
 		F9A9E0852CE563AA003DB166 /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A9E0842CE563AA003DB166 /* ImageLoader.swift */; };
@@ -174,6 +174,7 @@
 		F96982FF2CF5203500CC3C55 /* LoginScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginScreen.swift; sourceTree = "<group>"; };
 		F96983012CF5207C00CC3C55 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		F96983052CF63E5A00CC3C55 /* VideoPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerView.swift; sourceTree = "<group>"; };
+		F980ED0D2D71F5A7003D8CAC /* UploadThumbnailUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadThumbnailUseCase.swift; sourceTree = "<group>"; };
 		F99772242D4CCFEE00D14332 /* SwipeBackGestures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeBackGestures.swift; sourceTree = "<group>"; };
 		F997722D2D5490ED00D14332 /* ValidateEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidateEvent.swift; sourceTree = "<group>"; };
 		F997722F2D54912F00D14332 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
@@ -203,7 +204,6 @@
 		F99773972D67D75C00D14332 /* EventRepositoryMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventRepositoryMock.swift; sourceTree = "<group>"; };
 		F99773992D67DEDB00D14332 /* FetchEventUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchEventUseCase.swift; sourceTree = "<group>"; };
 		F997739C2D6868E100D14332 /* GalleryRepositoryContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryRepositoryContract.swift; sourceTree = "<group>"; };
-		F997739D2D6868E100D14332 /* FetchAwsDirectUploadUrlUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchAwsDirectUploadUrlUseCase.swift; sourceTree = "<group>"; };
 		F997739E2D6868E100D14332 /* GalleryRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryRepository.swift; sourceTree = "<group>"; };
 		F997739F2D6868E100D14332 /* GalleryApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryApi.swift; sourceTree = "<group>"; };
 		F99773A02D6868E100D14332 /* GalleryRepositoryMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryRepositoryMock.swift; sourceTree = "<group>"; };
@@ -268,7 +268,7 @@
 		F9A9E0712CE0C9F7003DB166 /* QRCodeScannerScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeScannerScreen.swift; sourceTree = "<group>"; };
 		F9A9E0742CE2AF43003DB166 /* EventDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDto.swift; sourceTree = "<group>"; };
 		F9A9E0762CE2B273003DB166 /* ValidateEventDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidateEventDto.swift; sourceTree = "<group>"; };
-		F9A9E07A2CE2B4AF003DB166 /* CaptureVueErrorDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureVueErrorDto.swift; sourceTree = "<group>"; };
+		F9A9E07A2CE2B4AF003DB166 /* CaptureVueResponseRaw.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureVueResponseRaw.swift; sourceTree = "<group>"; };
 		F9A9E07D2CE52E10003DB166 /* EventScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventScreen.swift; sourceTree = "<group>"; };
 		F9A9E07F2CE52E22003DB166 /* EventViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventViewModel.swift; sourceTree = "<group>"; };
 		F9A9E0842CE563AA003DB166 /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
@@ -551,7 +551,7 @@
 			isa = PBXGroup;
 			children = (
 				F99773A72D686C0300D14332 /* CaptureVueError.swift */,
-				F9A9E07A2CE2B4AF003DB166 /* CaptureVueErrorDto.swift */,
+				F9A9E07A2CE2B4AF003DB166 /* CaptureVueResponseRaw.swift */,
 			);
 			path = CaptureVueError;
 			sourceTree = "<group>";
@@ -640,7 +640,6 @@
 		F99773D52D6A7C8600D14332 /* Gallery */ = {
 			isa = PBXGroup;
 			children = (
-				F997739D2D6868E100D14332 /* FetchAwsDirectUploadUrlUseCase.swift */,
 				F99773D82D6A7F2D00D14332 /* CopyTempFileUseCase.swift */,
 				F99773E42D6E28FB00D14332 /* GetAwsDirectUploadUrlUseCase.swift */,
 				F99773EA2D6E635700D14332 /* UploadAwsFileUseCase.swift */,
@@ -649,6 +648,7 @@
 				F99773F32D6F5F1900D14332 /* GetPendingUploadFileUSeCase.swift */,
 				F99773F52D6F6D4200D14332 /* DeleteTempFileUseCase.swift */,
 				F99773F72D71BFCA00D14332 /* GetThumbnailFromVideoUseCase.swift */,
+				F980ED0D2D71F5A7003D8CAC /* UploadThumbnailUseCase.swift */,
 			);
 			path = Gallery;
 			sourceTree = "<group>";
@@ -1177,7 +1177,6 @@
 				F99773ED2D6E8A4B00D14332 /* NotifyNewAssetUseCase.swift in Sources */,
 				F9A9E06A2CDFC224003DB166 /* ViewExtensions.swift in Sources */,
 				F99773A12D6868E100D14332 /* GalleryApi.swift in Sources */,
-				F99773A22D6868E100D14332 /* FetchAwsDirectUploadUrlUseCase.swift in Sources */,
 				F99773A32D6868E100D14332 /* GalleryRepository.swift in Sources */,
 				F99773A42D6868E100D14332 /* GalleryRepositoryContract.swift in Sources */,
 				F99773A52D6868E100D14332 /* GalleryRepositoryMock.swift in Sources */,
@@ -1197,12 +1196,13 @@
 				F99773862D6798D600D14332 /* CustomerApi.swift in Sources */,
 				F9A9E09A2CE8A21C003DB166 /* DeveloperPreview.swift in Sources */,
 				F99773BC2D6919EA00D14332 /* ClickSectionAction.swift in Sources */,
-				F9A9E07B2CE2B4AF003DB166 /* CaptureVueErrorDto.swift in Sources */,
+				F9A9E07B2CE2B4AF003DB166 /* CaptureVueResponseRaw.swift in Sources */,
 				F9A561E62CB5BD5E00634C7A /* CaptureVueApp.swift in Sources */,
 				F99773C72D692A2100D14332 /* AuthApi.swift in Sources */,
 				F9A9E0702CE0A684003DB166 /* Keyboard.swift in Sources */,
 				F9F3060E2D417EE400E41995 /* Credentials.swift in Sources */,
 				F9A9E0AA2CEF8C7F003DB166 /* GalleryItemView.swift in Sources */,
+				F980ED0E2D71F5A7003D8CAC /* UploadThumbnailUseCase.swift in Sources */,
 				F99773C52D692A0E00D14332 /* AuthRepository.swift in Sources */,
 				F99773A82D686C0300D14332 /* CaptureVueError.swift in Sources */,
 				F9A5623B2CB72F4F00634C7A /* Strings.swift in Sources */,

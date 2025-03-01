@@ -19,8 +19,8 @@ import Foundation
 
 //MARK: - Type Alias
 
-typealias LoginResponseDtoResult = Result<LoginResponseDto, CaptureVueErrorDto>
-typealias LoginResponseResult = Result<LoginResponse, CaptureVueError>
+typealias LoginResponseDtoResult = Result<LoginResponseDto, CaptureVueResponseRaw>
+typealias LoginResponseResult = Result<LoginResponse, CaptureVueResponseRaw>
 
 //MARK: - Contract
 

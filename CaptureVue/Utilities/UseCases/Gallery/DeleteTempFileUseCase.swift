@@ -15,7 +15,7 @@ struct DeleteTempFileUseCase{
         self.repository = galleryRepositoryMock ?? GalleryRepository(client: client)
     }
     
-    func invoke(fileName: String) async -> Result<Bool, Never>{
+    func invoke(fileName: String) async -> Bool {
         return await repository.deleteTempFile(fileName: fileName)
     }
 }

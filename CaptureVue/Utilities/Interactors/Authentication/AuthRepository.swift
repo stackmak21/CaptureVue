@@ -26,7 +26,7 @@ class AuthRepository: AuthRepositoryContract {
             )
         )
         .map({ $0.toLoginResponse() })
-        .mapError({ $0.toCaptureVueError() })
+        .mapError({ $0 })
     }
     
 }

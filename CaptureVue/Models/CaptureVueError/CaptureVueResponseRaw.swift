@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct CaptureVueErrorDto: Codable, Error {
+struct CaptureVueResponseRaw: Codable, Error {
     let msg: String?
     let code: Int?
     let reason: String?
@@ -20,7 +20,7 @@ struct CaptureVueErrorDto: Codable, Error {
         )
     }
     
-    static let decodeResponseError = CaptureVueErrorDto(msg: "Capture Vue Error", code: 400, reason: "Reason")
+    static let decodeResponseError = CaptureVueResponseRaw(msg: "Capture Vue Error", code: 400, reason: "Reason")
     
 }
 

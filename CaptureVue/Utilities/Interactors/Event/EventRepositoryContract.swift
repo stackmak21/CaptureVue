@@ -8,7 +8,7 @@
 import Foundation
 
 protocol EventRepositoryContract {
-    func validateEvent(_ eventId: String) async -> Result<ValidateEvent, CaptureVueError>
-    func fetchEvent(_ eventId: String, _ token: String) async -> Result<Event, CaptureVueError>
-    func createEvent(_ token: String, _ createEventRequest: CreateEventRequest, _ eventImage: Data) async -> Result<CreateEventResponse, CaptureVueError>
+    func validateEvent(_ eventId: String) async -> Result<ValidateEvent, CaptureVueResponseRaw>
+    func fetchEvent(_ eventId: String, _ token: String) async -> Result<Event, CaptureVueResponseRaw>
+    func createEvent(_ token: String, _ createEventRequest: CreateEventRequest, _ eventImage: Data) async -> Result<CreateEventResponse, CaptureVueResponseRaw>
 }

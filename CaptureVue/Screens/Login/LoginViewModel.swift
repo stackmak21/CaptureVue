@@ -56,7 +56,7 @@ class LoginViewModel: BaseViewModel {
                     credentials = userCredentials
                     goToHome()
                 case .failure(let error):
-                    Banner(router: router, message: error.msg, bannerType: .error, bannerDuration: .long, action: nil)
+                    Banner(router: router, message: error.msg ?? "", bannerType: .error, bannerDuration: .long, action: nil)
                 }
             }
         }
