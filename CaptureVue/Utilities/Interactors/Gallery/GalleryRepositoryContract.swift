@@ -12,7 +12,7 @@ import PhotosUI
 protocol GalleryRepositoryContract {
     func copyIntoTempFile(_ selectedFile: Data, identifier: String) async -> Void
     func getAwsDirectUploadUrl(_ token: String, uploadInfo: PrepareUploadData) async -> Result<AwsDirectUploadUrl, CaptureVueResponseRaw>
-    func uploadAwsFile(uploadUrl: String, uploadInfo: PrepareUploadData) async -> Void
+    func uploadAwsFile(uploadUrl: String, uploadInfo: PrepareUploadData, onUploadProgressUpdate: ((Int) -> Void)?) async -> Void
     func notifyNewAssetUpload(_ token: String, assetUploadRequest: NotifyNewAssetRequest) async -> CaptureVueResponseRaw
     func prepareUploadFile(file: PhotosPickerItem) async -> (Data, String)
     func getPendingUploadFiles() async -> [String]

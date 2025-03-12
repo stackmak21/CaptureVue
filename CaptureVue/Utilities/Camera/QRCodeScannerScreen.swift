@@ -11,7 +11,7 @@ struct QRCodeScannerScreen: View {
     
     @Environment(\.presentationMode) var presentationMode
     
-    private let feed: QrCameraFeed = QrCameraFeed()
+    private let feed: QRCameraFeed = QRCameraFeed()
     @State var isconnectionEnabled: Bool = false
     @State var qrIconFocus: Bool = false
     @State var rect: CGRect = .zero
@@ -36,7 +36,7 @@ struct QRCodeScannerScreen: View {
                 .background(Color.blue.ignoresSafeArea())
                 .transition(.asymmetric(insertion: .move(edge: .leading), removal: .move(edge: .leading)))
             }else{
-                CameraView(session: feed.session, isConnectionEnabled: $isconnectionEnabled, qrRect: $rect, completion: { newRect in
+                QRCameraView(session: feed.session, isConnectionEnabled: $isconnectionEnabled, qrRect: $rect, completion: { newRect in
 //                    
 //                    withAnimation(.easeInOut(duration: 2)) {
 //                        self.newRect = newRect

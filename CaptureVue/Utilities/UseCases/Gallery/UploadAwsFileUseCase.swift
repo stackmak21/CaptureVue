@@ -15,7 +15,7 @@ struct UploadAwsFileUseCase{
         self.repository = galleryRepositoryMock ?? GalleryRepository(client: client)
     }
     
-    func invoke(uploadUrl: String, uploadInfo: PrepareUploadData) async {
-        return await repository.uploadAwsFile(uploadUrl: uploadUrl, uploadInfo: uploadInfo)
+    func invoke(uploadUrl: String, uploadInfo: PrepareUploadData, onUploadProgressUpdate: ((Int) -> Void)? = nil) async {
+        return await repository.uploadAwsFile(uploadUrl: uploadUrl, uploadInfo: uploadInfo, onUploadProgressUpdate: onUploadProgressUpdate)
     }
 }

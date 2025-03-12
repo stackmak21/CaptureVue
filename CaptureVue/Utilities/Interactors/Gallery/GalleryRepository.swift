@@ -53,8 +53,8 @@ struct GalleryRepository: GalleryRepositoryContract {
         return (fileData, identifier)
     }
     
-    func uploadAwsFile(uploadUrl: String, uploadInfo: PrepareUploadData) async {
-        await galleryApi.uploadAwsFile(uploadUrl: uploadUrl, uploadInfo: uploadInfo)
+    func uploadAwsFile(uploadUrl: String, uploadInfo: PrepareUploadData, onUploadProgressUpdate: ((Int) -> Void)? = nil) async {
+        await galleryApi.uploadAwsFile(uploadUrl: uploadUrl, uploadInfo: uploadInfo, onUploadProgressUpdate: onUploadProgressUpdate)
         
     }
     

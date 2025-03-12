@@ -36,7 +36,7 @@ struct GalleryRepositoryMock: GalleryRepositoryContract {
     }
   
     
-    func uploadAwsFile(uploadUrl: String, uploadInfo: PrepareUploadData) async {
+    func uploadAwsFile(uploadUrl: String, uploadInfo: PrepareUploadData, onUploadProgressUpdate: ((Int) -> Void)? = nil) async {
         
     }
     

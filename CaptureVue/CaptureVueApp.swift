@@ -8,6 +8,7 @@
 import SwiftUI
 import SwiftfulRouting
 import Firebase
+import UIKit
 
 //class AppDelegate: NSObject, UIApplicationDelegate {
 //  func application(_ application: UIApplication,
@@ -22,6 +23,9 @@ import Firebase
 struct CaptureVueApp: App {
 //     register app delegate for Firebase setup
 //    @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
+
+    @UIApplicationDelegateAdaptor var appDelegate: UIAppDelegate
+
     
     @Environment(\.scenePhase) var scenePhase
     
@@ -33,29 +37,33 @@ struct CaptureVueApp: App {
     
     var body: some Scene {
         WindowGroup {
-            RouterView { router in
-                SplashScreen(router: router, client: client)
-                    
-                    .onOpenURL(perform: { url in
-                        let string = url.absoluteString
-                        print(string)
-                    })
-                    .onChange(of: scenePhase) { oldPhase, newPhase in
-                        if newPhase == .active {
-                            
-                        } else if newPhase == .inactive {
-                            
-                        } else if newPhase == .background {
-                            
-                        }
-                    }
-                    .onAppear{
-                        NotificationManager.requestPermissions()
-                    }
-                
-//                LoginScreen(router: router, dataService: dataService)
-//                EventHomeScreen(router: router, dataService: dataService, event: DeveloperPreview.instance.event)
-            }
+            CameraTestView()
+//            RouterView { router in
+//                SplashScreen(router: router, client: client)
+//                    
+//                    .onOpenURL(perform: { url in
+//                        let string = url.absoluteString
+//                        print(string)
+//                    })
+//                    .onChange(of: scenePhase) { oldPhase, newPhase in
+//                        if newPhase == .active {
+////                            print("active")
+//                        } else if newPhase == .inactive {
+////                            print("inactive")
+//                        } else if newPhase == .background {
+////                            print("Backgroubnd")
+//                        }
+//                    }
+//                    .onAppear{
+//                        NotificationManager.requestPermissions()
+//                    }
+//                
+////                LoginScreen(router: router, dataService: dataService)
+////                EventHomeScreen(router: router, dataService: dataService, event: DeveloperPreview.instance.event)
+//            }
+//            .overlay {
+////                Rectangle().frame(width: 200, height: 200).foregroundStyle(Color.black)
+//            }
 //            TestTabViewOpening()
 //            let dev = DeveloperPreview.instance
 //            let dataService = DataServiceImpl()
@@ -83,4 +91,33 @@ struct CaptureVueApp: App {
 //        UINavigationBar.appearance().scrollEdgeAppearance = coloredAppearance
 //        UINavigationBar.appearance().tintColor = foregroundColor
 //    }
+}
+
+
+final class UIAppDelegate: NSObject, UIApplicationDelegate {
+
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+        print(#function)
+        return true
+    }
+    
+    
+
+    func applicationWillTerminate(_ application: UIApplication) {
+        do{
+            let tempFilesUrl = FileManager.default.temporaryDirectory
+            let url = tempFilesUrl.appendingPathComponent("UploadPendingFiles")
+            try FileManager.default.removeItem(at: url)
+            print("Successfull Delete")
+        }
+        catch(let error){
+            print("Delete Error: \(error)")
+        }
+            print(#function)
+    }
+
+
+    func application(_ application: UIApplication, didDiscardSceneSessions sceneSessions: Set<UISceneSession>) {
+        print(#function)
+    }
 }

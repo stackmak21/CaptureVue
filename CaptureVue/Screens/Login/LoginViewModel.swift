@@ -21,7 +21,7 @@ class LoginViewModel: BaseViewModel {
     
     private let loginUseCase: CredentialsLoginUseCase
     
-    @Published var email: String = "test3@gmail.com"
+    @Published var email: String = "test2@gmail.com"
     @Published var password: String = "pass1234"
     @Published var isLoading: Bool = false
     

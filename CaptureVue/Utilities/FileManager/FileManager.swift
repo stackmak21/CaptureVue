@@ -88,9 +88,7 @@ actor LocalFileManager {
     }
     
     private func getUrlForFolder(folderName: String) -> URL? {
-        guard let url = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {
-            return nil
-        }
+        let url = FileManager.default.temporaryDirectory
         return url.appendingPathComponent(folderName)
     }
     
@@ -98,7 +96,7 @@ actor LocalFileManager {
         guard let folderURL = getUrlForFolder(folderName: folderName) else {
             return nil
         }
-        return folderURL.appendingPathComponent(fileName)
+        return !fileName.isEmpty ? folderURL.appendingPathComponent(fileName) : folderURL
     }
     
     

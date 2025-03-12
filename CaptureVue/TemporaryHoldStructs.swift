@@ -17,6 +17,10 @@ struct GeometryGetter: View {
                 .onChange(of: geometry.frame(in: coordinateSpace)) { rect in
                     action(rect)
                 }
+                .onAppear {
+                    let rect = geometry.frame(in: coordinateSpace)
+                    action(rect)
+                }
         }
     }
 }

@@ -20,7 +20,25 @@ extension QRCameraManager: AVCapturePhotoCaptureDelegate {
     }
 }
 
-class QRCameraManager: NSObject, ObservableObject, AVCaptureMetadataOutputObjectsDelegate{
+
+extension QRCameraManager: AVCaptureMetadataOutputObjectsDelegate{
+    func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
+        
+        if codeFetched {
+            return
+        }
+        
+        if let metaObject = metadataObjects.first {
+            guard let readableObject = metaObject as? AVMetadataMachineReadableCodeObject else { return }
+            guard let scannedCode = readableObject.stringValue else { return }
+            onQRDetected?(scannedCode, readableObject.bounds)
+            print(scannedCode)
+        }
+    }
+}
+
+
+class QRCameraManager: NSObject, ObservableObject{
     
     static let shared: QRCameraManager = QRCameraManager()
     
@@ -77,19 +95,7 @@ class QRCameraManager: NSObject, ObservableObject, AVCaptureMetadataOutputObject
         }
     }
     
-    func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
-        
-        if codeFetched {
-            return
-        }
-        
-        if let metaObject = metadataObjects.first {
-            guard let readableObject = metaObject as? AVMetadataMachineReadableCodeObject else { return }
-            guard let scannedCode = readableObject.stringValue else { return }
-            onQRDetected?(scannedCode, readableObject.bounds)
-            print(scannedCode)
-        }
-    }
+
     
     
     func onCameraSelect(position: AVCaptureDevice.Position) {
@@ -197,7 +203,7 @@ class QRCameraManager: NSObject, ObservableObject, AVCaptureMetadataOutputObject
 
 
 
-class QrCameraFeed: ObservableObject {
+class QRCameraFeed: ObservableObject {
     
     @Published var permissionStatus: QRCameraManager.PermissionStatus = .unknown
     @Published var availableCameraPositions: [AVCaptureDevice.Position]? = nil

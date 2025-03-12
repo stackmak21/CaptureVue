@@ -25,8 +25,8 @@ struct EventScreen: View {
     @State var allow3dRotation: Bool = false
     @State var offsetY: CGRect = .zero
     @State var position: CGRect = .zero
-    @State var opacity: CGFloat = 1
-    @State var opacity1: CGFloat = 0
+
+    
     
     @State var myDate: Date = Date.now
     
@@ -93,7 +93,7 @@ struct EventScreen: View {
                                     storyNamespace: storyNamespace,
                                     showStory: $showStory,
                                     selectedStory: $selectedStory,
-                                    selectedStoryItem: $vm.selectedStoryItem
+                                    onAddstoryClick: { vm.isMediaPickerPresented.toggle() }
                                 )
                                 .padding(.vertical)
                                 
@@ -127,6 +127,7 @@ struct EventScreen: View {
                                 offsetY = rect
                             }
                         }
+                        
                         .onChange(of: selectedGalleryItem, {
                             scrollToCurrentGalleryItem($0, $1, mainScrollReader: mainScrollReader)
                         })
@@ -161,12 +162,80 @@ struct EventScreen: View {
                 
             }
         }
+        .overlay(alignment: .top, content: {
+            if vm.filesToUpload != 0 {
+                UploadprogressBanner(progress: $vm.uploadProgress, filesToUpload: vm.filesToUpload)
+            }
+        })
+        .sheet(isPresented: $vm.isMediaPickerPresented, content: {
+            HStack{
+                Button(
+                    action: {
+                        vm.isPhotoPickerPresented.toggle()
+                    },
+                    label: {
+                        ZStack{
+                            RoundedRectangle(cornerRadius: 8)
+                                .stroke(style: StrokeStyle(lineWidth: 2))
+                                .foregroundStyle(Color.black)
+                                .frame(maxWidth: .infinity)
+                                .frame(height: 120)
+                            Image(systemName: "photo.on.rectangle.angled.fill")
+                                .resizable()
+                                .foregroundStyle(Color.black)
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: 40)
+                        }
+                })
+                Button(
+                    action: {},
+                    label: {
+                        ZStack{
+                            RoundedRectangle(cornerRadius: 8)
+                                .stroke(style: StrokeStyle(lineWidth: 2))
+                                .foregroundStyle(Color.black)
+                                .frame(maxWidth: .infinity)
+                                .frame(height: 120)
+                            Image(systemName: "camera.fill")
+                                .resizable()
+                                .foregroundStyle(Color.black)
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: 40)
+                        }
+                })
+            }
+            .padding(.horizontal)
+                .presentationDetents([.fraction(0.2)])
+                .presentationDragIndicator(.visible)
+                .photosPicker(
+                    isPresented: $vm.isPhotoPickerPresented,
+                    selection: $vm.selectedStoryItem,
+                    maxSelectionCount: 1,
+                    matching: .any(of: [.images, .videos])
+                )
+        })
+        .onChange(of: vm.selectedStoryItem, { oldValue, newValue in
+            if oldValue != newValue {
+                vm.isMediaPickerPresented.toggle()
+            }
+        })
+        
+        .navigationBarBackButtonHidden(true)
         .navigationBarTitleDisplayMode(.inline)
         .navigationTitle("Event")
         .toolbar {
-            Image(systemName: "gear")
+            ToolbarItem(placement: .topBarLeading) {
+                Image(systemName: "chevron.left")
+                    .onTapGesture {
+                        vm.goBack()
+                    }
+            }
+            
         }
-        .onAppear( perform: vm.fetchEvent)
+        .task {
+            await vm.fetchEvent()
+        }
+//        .onAppear( perform: vm.fetchCustomerEvent)
         .onAppear {
             if let url = vm.event.galleryList.first?.publicUrl{
                 print("Photo URL 🔥🔥🔥🔥🔥" + url)
@@ -175,25 +244,7 @@ struct EventScreen: View {
 //        .onChange(of: vm.selectedFiles, convertToFileUrlPath)
     }
     
-    private func convertToFileUrlPath(_ oldValue: [PhotosPickerItem], _ newValue: [PhotosPickerItem]) -> Void {
-        let selectedFiles = newValue
-        
-        selectedFiles.forEach { file in
-            Task{
-                do {
-                    if let data = try await file.loadTransferable(type: Data.self) {
-                        let tempURL = FileManager.default.temporaryDirectory.appendingPathComponent("story")
-                        try data.write(to: tempURL)
-                        self.vm.videoUrl = tempURL.absoluteString
-                        
-                    }
-                }
-                catch {
-                    print("Error loading video: \(error)")
-                }
-            }
-        }
-    }
+
     
     
     
@@ -221,6 +272,47 @@ struct EventScreen: View {
     RouterView{ router in
         EventScreen(router: router, client: NetworkClient(), eventRepositoryMock: EventRepositoryMock(), galleryRepositoryMock: GalleryRepositoryMock(), eventId: "cp-12345")
     }
+//    UploadprogressBanner(progress: 70, filesUploaded: 1, filesToUpload: 5)
+}
+
+
+struct UploadprogressBanner: View {
+    @Binding var progress: Double
+    let filesToUpload: Int
+    
+    @State private var filesUploaded: Int = 0
+    
+    var body: some View {
+        VStack{
+            ZStack{
+                RoundedRectangle(cornerRadius: 8)
+                    .frame(maxWidth: .infinity)
+                    .frame(height: 60)
+                    .foregroundStyle(.thinMaterial)
+                VStack{
+                    ProgressView(value: progress, total: 100)
+                        .progressViewStyle(.linear)
+                    HStack{
+                        Text("\(filesUploaded)/\(filesToUpload)")
+                            .font(Typography.medium(size: 12))
+                        Text("\(Int(progress))/100")
+                            .font(Typography.medium(size: 12))
+                            .frame(maxWidth: .infinity, alignment: .trailing)
+                    }
+                    .padding(.top, 2)
+                }
+                .padding(.horizontal)
+            }
+            .padding()
+        }
+        .onChange(of: progress) { oldValue, newValue in
+            if newValue >= 100 {
+                filesUploaded += 1
+                progress = 0
+            }
+        }
+    }
+
 }
 
 

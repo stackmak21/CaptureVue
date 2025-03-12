@@ -30,7 +30,7 @@ struct GalleryApi {
         )
     }
     
-    func uploadAwsFile(uploadUrl: String, uploadInfo: PrepareUploadData) async {
+    func uploadAwsFile(uploadUrl: String, uploadInfo: PrepareUploadData, onUploadProgressUpdate: ((Int) -> Void)? = nil) async {
         if let fileData = await fileManager.getFile(fileName: uploadInfo.fileName, folderName: "UploadPendingFiles"){
                 let fileLength = String(fileData.count)
                 let mimeType = mimeTypeForPath(path: uploadInfo.fileName)
@@ -43,10 +43,10 @@ struct GalleryApi {
                         "Content-Length" : fileLength,
                         "x-amz-meta-event" : eventId
                     ],
-                    requestBody: fileData
-                ){
-                    print("upload file completed")
-                }
+                    requestBody: fileData,
+                    onUploadProgressUpdate: { onUploadProgressUpdate?($0) },
+                    onUploadComplete: {}
+                )
         }
     }
     
@@ -63,9 +63,8 @@ struct GalleryApi {
                 "x-amz-meta-event" : eventId
             ],
             requestBody: imageData
-        ){
-            print("upload thumbnail completed")
-        }
+        )
+        
     }
     
     

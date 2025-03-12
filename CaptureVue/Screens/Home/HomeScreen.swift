@@ -113,8 +113,7 @@ struct HomeScreen: View {
                 .padding()
                 
             }
-            
-            .navigationBarItems(trailing: Text("Trailing"))
+            .navigationBarBackButtonHidden(true)
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
@@ -127,8 +126,6 @@ struct HomeScreen: View {
                     Text("My title")
                 }
             }
-//            .toolbarBackground(.red, for: .navigationBar)
-//            .toolbarBackground(.visible, for: .navigationBar)
             .onAppear {
 //                vm.dismissScreenStack()
                 vm.fetchEvents()

@@ -10,8 +10,8 @@ import PhotosUI
 import SwiftUI
 import UniformTypeIdentifiers
 
-struct AssetUploadHelper{
-    
+
+class AssetUploadHelper{
     
     private let copyIntoTempFileUseCase: CopyIntoTempFileUseCase
     private let getAwsDirectUploadUrlUseCase: GetAwsDirectUploadUrlUseCase
@@ -23,6 +23,8 @@ struct AssetUploadHelper{
     private let getThumbnailFromVideoUseCase: GetThumbnailFromVideoUseCase
     private let uploadAwsThumbnailUseCase: UploadThumbnailUseCase
     private let fileManager: LocalFileManager = LocalFileManager.instance
+    
+    var onUploadProgressUpdate: ((Int) -> Void)? = nil
     
     init(
         client: NetworkClient,
@@ -39,9 +41,10 @@ struct AssetUploadHelper{
         self.uploadAwsThumbnailUseCase = UploadThumbnailUseCase(client: client, galleryRepositoryMock: galleryRepositoryMock)
     }
     
-    func uploadAwsAsset(_ token: String, selectedFiles: [PhotosPickerItem], eventId: String, section: AssetSectionType) async {
+    func uploadAwsAsset(_ token: String, selectedFiles: [PhotosPickerItem], eventId: String, section: AssetSectionType, onUploadProgressUpdate: ((Int) -> Void)? = nil) async {
         await copyIntoTempFile(selectedFiles)
         let filesToUpload = await getAllPendingUploadFiles()
+        self.onUploadProgressUpdate = onUploadProgressUpdate
         
         for fileName in filesToUpload {
             var thumbnailName: String = ""
@@ -70,8 +73,7 @@ struct AssetUploadHelper{
         let response = await getAwsDirectUploadUrlUseCase.invoke(token, uploadInfo: uploadInfo)
         switch response {
         case .success(let response):
-            print(response.url)
-            await uploadAwsFile(uploadUrl: response.url, uploadInfo: uploadInfo)
+            await uploadAwsFile(uploadUrl: response.url, uploadInfo: uploadInfo, onUploadProgressUpdate: { progress in  Task{ @MainActor in self.onUploadProgressUpdate?(progress) } })
             await notifyNewAssetUploadUseCase.invoke(token, assetUploadRequest: uploadInfo.toNotifyNewAssetRequest())
             await deleteTempFileUseCase.invoke(fileName: uploadInfo.fileName)
         case .failure(let error):
@@ -97,10 +99,10 @@ struct AssetUploadHelper{
         }
         return nil
     }
-
     
-    private func uploadAwsFile(uploadUrl: String, uploadInfo: PrepareUploadData) async {
-        await uploadAwsFileUseCase.invoke(uploadUrl: uploadUrl, uploadInfo: uploadInfo)
+    
+    private func uploadAwsFile(uploadUrl: String, uploadInfo: PrepareUploadData, onUploadProgressUpdate: ((Int) -> Void)? = nil) async {
+        await uploadAwsFileUseCase.invoke(uploadUrl: uploadUrl, uploadInfo: uploadInfo, onUploadProgressUpdate: onUploadProgressUpdate)
     }
     
     private func getAllPendingUploadFiles() async -> [String] {
@@ -109,14 +111,14 @@ struct AssetUploadHelper{
     
     
     private func copyIntoTempFile(_ selectedFiles: [PhotosPickerItem]) async{
-            await withTaskGroup(of: Void.self) { group in
-                for selectedFile in selectedFiles {
-                    group.addTask {
-                        let fileDetails = await prepareUploadFileUseCase.invoke(selectedFile)
-                        await copyIntoTempFileUseCase.invoke(fileDetails: fileDetails)
-                    }
+        await withTaskGroup(of: Void.self) { group in
+            for selectedFile in selectedFiles {
+                group.addTask {
+                    let fileDetails = await self.prepareUploadFileUseCase.invoke(selectedFile)
+                    await self.copyIntoTempFileUseCase.invoke(fileDetails: fileDetails)
                 }
             }
+        }
     }
     
     
@@ -129,6 +131,6 @@ struct AssetUploadHelper{
         }
         return "application/octet-stream"
     }
-
+    
     
 }

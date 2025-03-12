@@ -15,13 +15,13 @@ struct StoryThumbnailView: View {
     
     @Binding var showStory: Bool
     @Binding var selectedStory: String
-    @Binding var selectedStoryItem: [PhotosPickerItem]
     
+    let onAddstoryClick: () -> Void
     var body: some View {
         ScrollViewReader { scrollView in
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack {
-                    AddStoryButton(selectedStoryItem: $selectedStoryItem)
+                    AddStoryButton(onClick: onAddstoryClick)
                     ForEach(storiesList) { story in
                         ZStack {
                             Circle()
@@ -71,35 +71,32 @@ struct StoryThumbnailView: View {
         storyNamespace: Namespace().wrappedValue,
         showStory: .constant(false),
         selectedStory: .constant(""),
-        selectedStoryItem: .constant([])
+        onAddstoryClick: {}
     )
 }
 
 
 struct AddStoryButton: View {
     
-    @Binding var selectedStoryItem: [PhotosPickerItem]
+    let onClick: () -> Void
     
     var body: some View {
-        PhotosPicker(
-            selection: $selectedStoryItem,
-            maxSelectionCount: 1,
-            matching: .any(of: [.images, .videos]),
-            label: {
-                ZStack{
-                    ImageLoader(url: "https://picsum.photos/800/1003")
-                        .frame(width: 78, height: 78)
-                        .clipShape(Circle())
-                }
-                .overlay(alignment: .bottomTrailing) {
-                    Image(systemName: "plus")
-                        .renderingMode(.template)
-                        .padding(4)
-                        .background(.red)
-                        .clipShape(Circle())
-                }
-            }
-        )
+        ZStack{
+            ImageLoader(url: "https://picsum.photos/800/1003")
+                .frame(width: 78, height: 78)
+                .clipShape(Circle())
+                
+        }
+        .onTapGesture {
+            onClick()
+        }
+        .overlay(alignment: .bottomTrailing) {
+            Image(systemName: "plus")
+                .renderingMode(.template)
+                .padding(4)
+                .background(.red)
+                .clipShape(Circle())
+        }
     }
 }
 
