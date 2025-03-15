@@ -35,6 +35,7 @@ class EventViewModel: BaseViewModel {
     
     @Published var isMediaPickerPresented: Bool = false
     @Published var isPhotoPickerPresented: Bool = false
+    @Published var isCameraPresented: Bool = false
     
     @Published var uploadProgress: Double = 0
     @Published var filesToUpload: Int = 0
@@ -77,13 +78,33 @@ class EventViewModel: BaseViewModel {
         print("View Model Deinit")
     }
     
+    func openCamera(){
+        isMediaPickerPresented = false
+        router.showScreen(.push) { router in
+            CaptureCameraView(
+                router: router,
+                onCapture: { image in
+                    self.uploadFiles([image], section: .gallery)
+                }
+            )
+        }
+    }
+    
     func goBack(){
         router.dismissScreen()
     }
     
     func fetchCustomerEvent() {
             let task = Task{
-                    await fetchEvent()
+                setLoading()
+                defer { resetLoading() }
+                let response = await fetchEventUseCase.invoke(eventId, token)
+                switch response {
+                case .success(let fetchedEvent):
+                    self.event = fetchedEvent
+                case .failure(let error):
+                    Banner(router: router, message: error.msg ?? "" , bannerType: .error, bannerDuration: .long, action: nil)
+                }
             }
 
         tasks.append(task)
@@ -91,7 +112,7 @@ class EventViewModel: BaseViewModel {
     
     func uploadFiles(_ selectedFiles: [PhotosPickerItem], section: AssetSectionType){
         let task = Task{
-                await assetUploadHelper.uploadAwsAsset(
+                await assetUploadHelper.uploadAwsLibraryAssets(
                     token,
                     selectedFiles: selectedFiles,
                     eventId: eventId,
@@ -101,24 +122,28 @@ class EventViewModel: BaseViewModel {
                     }
                 )
                 filesToUpload = 0
-                await fetchEvent()
+                fetchCustomerEvent()
         }
         tasks.append(task)
     }
     
-  
-    
-    func fetchEvent() async {
-            setLoading()
-            defer { resetLoading() }
-            let response = await fetchEventUseCase.invoke(eventId, token)
-            switch response {
-            case .success(let fetchedEvent):
-                self.event = fetchedEvent
-            case .failure(let error):
-                Banner(router: router, message: error.msg ?? "" , bannerType: .error, bannerDuration: .long, action: nil)
-            }
+    func uploadFiles(_ selectedFiles: [UIImage], section: AssetSectionType){
+        let task = Task{
+                await assetUploadHelper.uploadAwsCameraAssets(
+                    token,
+                    selectedFiles: selectedFiles,
+                    eventId: eventId,
+                    section: section,
+                    onUploadProgressUpdate: { [weak self] progress in
+                        self?.uploadProgress = Double(progress)
+                    }
+                )
+                filesToUpload = 0
+                fetchCustomerEvent()
+        }
+        tasks.append(task)
     }
+    
     
     func openPhotoLibrary(){
         isMediaPickerPresented = false

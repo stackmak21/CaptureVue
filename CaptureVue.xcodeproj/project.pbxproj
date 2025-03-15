@@ -12,8 +12,8 @@
 		F927D19E2CF1F37000EB7650 /* CacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F927D19D2CF1F37000EB7650 /* CacheManager.swift */; };
 		F94263692D76424900A55A15 /* SwipeBackModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = F94263682D76424900A55A15 /* SwipeBackModifier.swift */; };
 		F942636B2D77862E00A55A15 /* HttpUrlResponseExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F942636A2D77862E00A55A15 /* HttpUrlResponseExtensions.swift */; };
-		F942636D2D7F53E300A55A15 /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F942636C2D7F53E300A55A15 /* CameraView.swift */; };
-		F942636F2D7F543500A55A15 /* CameraTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F942636E2D7F543500A55A15 /* CameraTestView.swift */; };
+		F942636D2D7F53E300A55A15 /* CameraPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F942636C2D7F53E300A55A15 /* CameraPreviewView.swift */; };
+		F942636F2D7F543500A55A15 /* CaptureCameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F942636E2D7F543500A55A15 /* CaptureCameraView.swift */; };
 		F94263712D7F609800A55A15 /* CaptureCameraManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F94263702D7F609800A55A15 /* CaptureCameraManager.swift */; };
 		F9503ACC2CD821CA00DDD4F0 /* SystemProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9503ACB2CD821CA00DDD4F0 /* SystemProperties.swift */; };
 		F953B24D2CC827780058C2BD /* OnBoardingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = F953B24C2CC827570058C2BD /* OnBoardingScreen.swift */; };
@@ -128,7 +128,8 @@
 		F9A9E09A2CE8A21C003DB166 /* DeveloperPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A9E0992CE8A21C003DB166 /* DeveloperPreview.swift */; };
 		F9A9E0AA2CEF8C7F003DB166 /* GalleryItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A9E0A92CEF8C7F003DB166 /* GalleryItemView.swift */; };
 		F9E699302D818CAA00B4A1E1 /* CameraCaptureButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9E6992F2D818CAA00B4A1E1 /* CameraCaptureButton.swift */; };
-		F9E699322D81C6B900B4A1E1 /* testtest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9E699312D81C6B900B4A1E1 /* testtest.swift */; };
+		F9E699362D857AD800B4A1E1 /* ImageExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9E699352D857AD800B4A1E1 /* ImageExtensions.swift */; };
+		F9E699382D857FC100B4A1E1 /* CapturePhotoProccessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9E699372D857FC100B4A1E1 /* CapturePhotoProccessor.swift */; };
 		F9F3060C2D3FF3C400E41995 /* LoginResponseDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F3060B2D3FF3C400E41995 /* LoginResponseDto.swift */; };
 		F9F3060E2D417EE400E41995 /* Credentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F3060D2D417EE400E41995 /* Credentials.swift */; };
 		F9F306112D41A15100E41995 /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F306102D41A15100E41995 /* KeychainManager.swift */; };
@@ -169,8 +170,8 @@
 		F927D19D2CF1F37000EB7650 /* CacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheManager.swift; sourceTree = "<group>"; };
 		F94263682D76424900A55A15 /* SwipeBackModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeBackModifier.swift; sourceTree = "<group>"; };
 		F942636A2D77862E00A55A15 /* HttpUrlResponseExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpUrlResponseExtensions.swift; sourceTree = "<group>"; };
-		F942636C2D7F53E300A55A15 /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
-		F942636E2D7F543500A55A15 /* CameraTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraTestView.swift; sourceTree = "<group>"; };
+		F942636C2D7F53E300A55A15 /* CameraPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPreviewView.swift; sourceTree = "<group>"; };
+		F942636E2D7F543500A55A15 /* CaptureCameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureCameraView.swift; sourceTree = "<group>"; };
 		F94263702D7F609800A55A15 /* CaptureCameraManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureCameraManager.swift; sourceTree = "<group>"; };
 		F9503ACB2CD821CA00DDD4F0 /* SystemProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemProperties.swift; sourceTree = "<group>"; };
 		F953B24C2CC827570058C2BD /* OnBoardingScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingScreen.swift; sourceTree = "<group>"; };
@@ -290,7 +291,8 @@
 		F9A9E0992CE8A21C003DB166 /* DeveloperPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeveloperPreview.swift; sourceTree = "<group>"; };
 		F9A9E0A92CEF8C7F003DB166 /* GalleryItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryItemView.swift; sourceTree = "<group>"; };
 		F9E6992F2D818CAA00B4A1E1 /* CameraCaptureButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraCaptureButton.swift; sourceTree = "<group>"; };
-		F9E699312D81C6B900B4A1E1 /* testtest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testtest.swift; sourceTree = "<group>"; };
+		F9E699352D857AD800B4A1E1 /* ImageExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageExtensions.swift; sourceTree = "<group>"; };
+		F9E699372D857FC100B4A1E1 /* CapturePhotoProccessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapturePhotoProccessor.swift; sourceTree = "<group>"; };
 		F9F3060B2D3FF3C400E41995 /* LoginResponseDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginResponseDto.swift; sourceTree = "<group>"; };
 		F9F3060D2D417EE400E41995 /* Credentials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Credentials.swift; sourceTree = "<group>"; };
 		F9F306102D41A15100E41995 /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
@@ -425,10 +427,10 @@
 				F953B2642CD2E9E00058C2BD /* QRCameraManager.swift */,
 				F953B2682CD6047D0058C2BD /* QRCodeIcon.swift */,
 				F9A9E0712CE0C9F7003DB166 /* QRCodeScannerScreen.swift */,
-				F942636C2D7F53E300A55A15 /* CameraView.swift */,
-				F942636E2D7F543500A55A15 /* CameraTestView.swift */,
+				F942636C2D7F53E300A55A15 /* CameraPreviewView.swift */,
+				F942636E2D7F543500A55A15 /* CaptureCameraView.swift */,
 				F9E6992F2D818CAA00B4A1E1 /* CameraCaptureButton.swift */,
-				F9E699312D81C6B900B4A1E1 /* testtest.swift */,
+				F9E699372D857FC100B4A1E1 /* CapturePhotoProccessor.swift */,
 			);
 			path = Camera;
 			sourceTree = "<group>";
@@ -866,6 +868,7 @@
 				F99773702D5BE4E600D14332 /* LocalNotificationManager.swift */,
 				F99773E82D6E616E00D14332 /* IntExtensions.swift */,
 				F942636A2D77862E00A55A15 /* HttpUrlResponseExtensions.swift */,
+				F9E699352D857AD800B4A1E1 /* ImageExtensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1150,7 +1153,6 @@
 				F99773BE2D691A2C00D14332 /* LeadingSectionIcon.swift in Sources */,
 				F997736F2D56664C00D14332 /* TemporaryHoldStructs.swift in Sources */,
 				F99773962D67D73C00D14332 /* ValidateEventUseCase.swift in Sources */,
-				F9E699322D81C6B900B4A1E1 /* testtest.swift in Sources */,
 				F96983022CF5207C00CC3C55 /* LoginViewModel.swift in Sources */,
 				F99773E92D6E616E00D14332 /* IntExtensions.swift in Sources */,
 				F9F306252D44FC8000E41995 /* CreateEventInteractor.swift in Sources */,
@@ -1207,8 +1209,9 @@
 				F9A5624A2CBABD1900634C7A /* NetworkClient.swift in Sources */,
 				F9F306112D41A15100E41995 /* KeychainManager.swift in Sources */,
 				F953B2652CD2E9E00058C2BD /* QRCameraManager.swift in Sources */,
-				F942636D2D7F53E300A55A15 /* CameraView.swift in Sources */,
+				F942636D2D7F53E300A55A15 /* CameraPreviewView.swift in Sources */,
 				F99773ED2D6E8A4B00D14332 /* NotifyNewAssetUseCase.swift in Sources */,
+				F9E699362D857AD800B4A1E1 /* ImageExtensions.swift in Sources */,
 				F9A9E06A2CDFC224003DB166 /* ViewExtensions.swift in Sources */,
 				F99773A12D6868E100D14332 /* GalleryApi.swift in Sources */,
 				F99773A32D6868E100D14332 /* GalleryRepository.swift in Sources */,
@@ -1231,12 +1234,13 @@
 				F9A9E09A2CE8A21C003DB166 /* DeveloperPreview.swift in Sources */,
 				F99773BC2D6919EA00D14332 /* ClickSectionAction.swift in Sources */,
 				F94263692D76424900A55A15 /* SwipeBackModifier.swift in Sources */,
-				F942636F2D7F543500A55A15 /* CameraTestView.swift in Sources */,
+				F942636F2D7F543500A55A15 /* CaptureCameraView.swift in Sources */,
 				F9A9E07B2CE2B4AF003DB166 /* CaptureVueResponseRaw.swift in Sources */,
 				F9A561E62CB5BD5E00634C7A /* CaptureVueApp.swift in Sources */,
 				F99773C72D692A2100D14332 /* AuthApi.swift in Sources */,
 				F9A9E0702CE0A684003DB166 /* Keyboard.swift in Sources */,
 				F9F3060E2D417EE400E41995 /* Credentials.swift in Sources */,
+				F9E699382D857FC100B4A1E1 /* CapturePhotoProccessor.swift in Sources */,
 				F9A9E0AA2CEF8C7F003DB166 /* GalleryItemView.swift in Sources */,
 				F980ED0E2D71F5A7003D8CAC /* UploadThumbnailUseCase.swift in Sources */,
 				F99773C52D692A0E00D14332 /* AuthRepository.swift in Sources */,

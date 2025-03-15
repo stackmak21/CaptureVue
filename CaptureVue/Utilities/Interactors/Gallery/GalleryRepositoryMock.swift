@@ -10,6 +10,10 @@ import SwiftUI
 import PhotosUI
 
 struct GalleryRepositoryMock: GalleryRepositoryContract {
+    func prepareUploadCameraFile(file: CameraAsset) async -> (Data, String){
+        return (Data(), "jpeg")
+    }
+    
     func uploadAwsThumbnail(uploadUrl: String, uploadInfo: PrepareUploadData, imageData: Data) async {
         
     }

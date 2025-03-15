@@ -8,6 +8,30 @@
 
 import AVFoundation
 import UIKit
+import SwiftUI
+
+//extension CaptureCameraManager: AVCapturePhotoCaptureDelegate {
+//    
+//    
+//    
+//    func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: (any Error)?) {
+//        
+//        guard let previewPixelBuffer = photo.previewPixelBuffer else { return }
+//        let ciImage = CIImage(cvPixelBuffer: previewPixelBuffer)
+//        let uiImage = UIImage(ciImage: ciImage)
+//        onCapturePhotoCallback?(uiImage)
+//        guard let imageData = photo.fileDataRepresentation() else { return }
+//        
+//        Task{
+//            await LocalFileManager.instance.saveFile(file: imageData, fileName: "myFirstCapture", folderName: "UploadPendingFiles")
+//            print(await LocalFileManager.instance.getAllFiles(folderName: "UploadPendingFiles"))
+//        }
+//    }
+//    
+//}
+
+
+
 
 
 
@@ -20,6 +44,8 @@ class CaptureCameraManager: NSObject, ObservableObject, AVCaptureVideoDataOutput
     private var videoDeviceInput: AVCaptureDeviceInput? = nil
     private let photoOutput = AVCapturePhotoOutput()
     private let videoOutput = AVCaptureVideoDataOutput()
+    
+    private var photographerIdentifier: [Int64: CapturePhotoProccessor] = [:]
     
     private let videoOutputQueue = DispatchQueue(
         label: "com.bitvalve.ios.video.queue",
@@ -113,13 +139,9 @@ class CaptureCameraManager: NSObject, ObservableObject, AVCaptureVideoDataOutput
     }
     
     func onFlashlightChange(isEnabled: Bool) {
-        guard flashlightStatus != .unavailable else {
-            return
-        }
+        guard flashlightStatus != .unavailable else { return }
         
-        if (flashlightStatus == .enabled && isEnabled) || (flashlightStatus == .disabled && !isEnabled) {
-            return
-        }
+        if (flashlightStatus == .enabled && isEnabled) || (flashlightStatus == .disabled && !isEnabled) { return }
         
         if let device = videoDeviceInput?.device {
             do {
@@ -134,50 +156,22 @@ class CaptureCameraManager: NSObject, ObservableObject, AVCaptureVideoDataOutput
         }
     }
     
-//    func onCapturePhoto(
-//        fileName: String,
-//        previewArea: CGRect,
-//        onStartCapturing: @escaping () -> Void,
-//        onPhotoReceived: @escaping (URL) -> Void,
-//        onError: @escaping (Error) -> Void
-//    ) {
-//        sessionQueue.async {
-//            if let photoOutputConnection = self.photoOutput.connection(with: .video) {
-//                photoOutputConnection.videoOrientation = .portrait
-//                photoOutputConnection.isVideoMirrored = isMirrored
-//            }
-//            
-//            var photoSettings = AVCapturePhotoSettings()
-//            if  self.photoOutput.availablePhotoCodecTypes.contains(.jpeg) {
-//                photoSettings = AVCapturePhotoSettings(format: [AVVideoCodecKey: AVVideoCodecType.jpeg])
-//            }
-//            photoSettings.isHighResolutionPhotoEnabled = true
-//            photoSettings.photoQualityPrioritization = .quality
-//            
-//            let captureProcessor = VerificationPhotographer(
-//                with: photoSettings,
-//                name: fileName,
-//                previewArea: previewArea,
-//                cropArea: cropArea,
-//                isLandscape: isLandscape,
-//                onStartCapturing: onStartCapturing,
-//                onCapture: { processor, url, error in
-//                    self.sessionQueue.async {
-//                        self.inProgressPhotoCaptureDelegates[processor.requestedPhotoSettings.uniqueID] = nil
-//                    }
-//                    
-//                    if let url = url {
-//                        onPhotoReceived(url)
-//                    } else if let error = error {
-//                        onError(error)
-//                    }
-//                }
-//            )
-//            
-//            self.inProgressPhotoCaptureDelegates[captureProcessor.requestedPhotoSettings.uniqueID] = captureProcessor
-//            self.photoOutput.capturePhoto(with: photoSettings, delegate: captureProcessor)
-//        }
-//    }
+    func onCapturePhoto(completion: @escaping (UIImage?, UIImage?) -> Void){
+        sessionQueue.async {
+            let proccessor = CapturePhotoProccessor(
+                photoOutput: self.photoOutput,
+                videoDeviceInput: self.videoDeviceInput,
+                onStartCapturing: {},
+                onCapture: completion
+            )
+            let photoSettings = proccessor.generatePhotoSettings()
+            
+            self.photographerIdentifier[photoSettings.uniqueID] = proccessor
+            self.photoOutput.capturePhoto(with: photoSettings, delegate: proccessor)
+        }
+    }
+    
+
     
     private func checkPermissions() {
         PermissionAlertStatus.shared.setVisible(isVisible: true)
@@ -315,6 +309,10 @@ class CaptureCameraFeed: ObservableObject {
         cameraManager.onFlashlightChange(isEnabled: enabled)
     }
     
+    func capturePhoto(completion: @escaping (UIImage?, UIImage?) -> Void){
+        cameraManager.onCapturePhoto(completion: completion)
+    }
+    
 //    func capturePhoto(
 //        withName fileName: String,
 //        preview previewArea: CGRect,
@@ -342,3 +340,4 @@ class CaptureCameraFeed: ObservableObject {
     }
     
 }
+

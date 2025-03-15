@@ -17,7 +17,16 @@ struct PrepareUploadFileUseCase{
         self.repository = galleryRepositoryMock ?? GalleryRepository(client: client)
     }
     
-    func invoke(_ selectedFile: PhotosPickerItem) async -> (Data, String) {
+    func invokeLibraryAsset(_ selectedFile: PhotosPickerItem) async -> (Data, String) {
         return await repository.prepareUploadFile(file: selectedFile)
     }
+    
+    func invokeCameraAsset(_ selectedFile: CameraAsset) async -> (Data, String) {
+        return await repository.prepareUploadCameraFile(file: selectedFile)
+    }
+}
+
+enum CameraAsset {
+    case image(UIImage)
+    case video(AVAsset)
 }

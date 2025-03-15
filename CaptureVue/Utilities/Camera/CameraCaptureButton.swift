@@ -17,14 +17,14 @@ struct CameraCaptureButton: View {
     var body: some View {
         ZStack{
             Circle()
+                .scale(0.90)
+                .scaleEffect(isTapped ? 0.94 : 1, anchor: .center)
                 .foregroundStyle(Color.white)
-            Circle()
-                .scale(0.94)
-                .foregroundStyle(Color.black)
-            Circle()
-                .scale(0.88)
-                .scaleEffect(isTapped ? 0.86 : 1, anchor: .center)
-                .foregroundStyle(Color.white)
+                .overlay {
+                    Circle()
+                        .stroke(lineWidth: 2)
+                        .foregroundStyle(Color.white)
+                }
         }
         .onLongPressGesture(
             minimumDuration: 0,
@@ -33,6 +33,7 @@ struct CameraCaptureButton: View {
                 withAnimation {
                     impactHeavy.impactOccurred()
                     isTapped = true
+                    onClick()
                 }
             },
             onPressingChanged: { press in
@@ -47,7 +48,7 @@ struct CameraCaptureButton: View {
 
 #Preview {
     ZStack{
-        Color.black.ignoresSafeArea()
+        Color.blue.ignoresSafeArea()
         CameraCaptureButton(onClick: {})
             .frame(width: 60)
     }

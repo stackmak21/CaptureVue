@@ -53,6 +53,19 @@ struct GalleryRepository: GalleryRepositoryContract {
         return (fileData, identifier)
     }
     
+    func prepareUploadCameraFile(file: CameraAsset) async -> (Data, String) {
+        switch file {
+        case .image(let image):
+            if let imageData = image.jpegData(compressionQuality: 1){
+                return (imageData, "jpeg")
+            }
+        case .video(let video): // To Do Later
+            return (Data(), "mov")
+        }
+        return (Data(), "mov")
+    }
+    
+    
     func uploadAwsFile(uploadUrl: String, uploadInfo: PrepareUploadData, onUploadProgressUpdate: ((Int) -> Void)? = nil) async {
         await galleryApi.uploadAwsFile(uploadUrl: uploadUrl, uploadInfo: uploadInfo, onUploadProgressUpdate: onUploadProgressUpdate)
         

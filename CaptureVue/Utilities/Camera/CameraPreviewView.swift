@@ -1,5 +1,5 @@
 //
-//  CameraView.swift
+//  CameraPreviewView.swift
 //  CaptureVue
 //
 //  Created by Paris Makris on 10/3/25.
@@ -8,7 +8,7 @@
 import SwiftUI
 import AVKit
 
-struct CameraView: UIViewRepresentable {
+struct CameraPreviewView: UIViewRepresentable {
     
     class VideoPreviewView: UIView {
         override class var layerClass: AnyClass {
@@ -31,7 +31,7 @@ struct CameraView: UIViewRepresentable {
     func makeUIView(context: Context) -> VideoPreviewView {
         let view = VideoPreviewView()
         
-        view.backgroundColor = .red
+        view.backgroundColor = .black
         view.videoPreviewLayer.cornerRadius = 30
         view.videoPreviewLayer.session = session
         view.videoPreviewLayer.videoGravity = .resizeAspectFill

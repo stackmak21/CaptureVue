@@ -19,4 +19,5 @@ protocol GalleryRepositoryContract {
     func deleteTempFile(fileName: String) async -> Bool
     func getThumbnailFromVideo(url: URL, at time: TimeInterval) async -> UIImage?
     func uploadAwsThumbnail(uploadUrl: String, uploadInfo: PrepareUploadData, imageData: Data) async
+    func prepareUploadCameraFile(file: CameraAsset) async -> (Data, String)
 }

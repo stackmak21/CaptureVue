@@ -37,33 +37,33 @@ struct CaptureVueApp: App {
     
     var body: some Scene {
         WindowGroup {
-            CameraTestView()
-//            RouterView { router in
-//                SplashScreen(router: router, client: client)
-//                    
-//                    .onOpenURL(perform: { url in
-//                        let string = url.absoluteString
-//                        print(string)
-//                    })
-//                    .onChange(of: scenePhase) { oldPhase, newPhase in
-//                        if newPhase == .active {
-////                            print("active")
-//                        } else if newPhase == .inactive {
-////                            print("inactive")
-//                        } else if newPhase == .background {
-////                            print("Backgroubnd")
-//                        }
-//                    }
-//                    .onAppear{
-//                        NotificationManager.requestPermissions()
-//                    }
-//                
-////                LoginScreen(router: router, dataService: dataService)
-////                EventHomeScreen(router: router, dataService: dataService, event: DeveloperPreview.instance.event)
-//            }
-//            .overlay {
-////                Rectangle().frame(width: 200, height: 200).foregroundStyle(Color.black)
-//            }
+            
+            RouterView { router in
+                SplashScreen(router: router, client: client)
+                    
+                    .onOpenURL(perform: { url in
+                        let string = url.absoluteString
+                        print(string)
+                    })
+                    .onChange(of: scenePhase) { oldPhase, newPhase in
+                        if newPhase == .active {
+//                            print("active")
+                        } else if newPhase == .inactive {
+//                            print("inactive")
+                        } else if newPhase == .background {
+//                            print("Backgroubnd")
+                        }
+                    }
+                    .onAppear{
+                        NotificationManager.requestPermissions()
+                    }
+                
+//                LoginScreen(router: router, dataService: dataService)
+//                EventHomeScreen(router: router, dataService: dataService, event: DeveloperPreview.instance.event)
+            }
+            .overlay {
+//                Rectangle().frame(width: 200, height: 200).foregroundStyle(Color.black)
+            }
 //            TestTabViewOpening()
 //            let dev = DeveloperPreview.instance
 //            let dataService = DataServiceImpl()

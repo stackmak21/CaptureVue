@@ -55,11 +55,7 @@ struct EventScreen: View {
                             Text(vm.event.eventName)
                                 .foregroundStyle(.white)
                                 .font(Typography.medium(size: 16))
-                                .onTapGesture {
-                                    if let url = vm.event.galleryList.first?.publicUrl{
-                                        print("Photo URL 🔥🔥🔥🔥🔥" + url)
-                                    }
-                                }
+                                
                             Spacer()
                             Text(vm.event.eventName)
                                 .foregroundStyle(.white)
@@ -188,7 +184,7 @@ struct EventScreen: View {
                         }
                 })
                 Button(
-                    action: {},
+                    action: {vm.openCamera()},
                     label: {
                         ZStack{
                             RoundedRectangle(cornerRadius: 8)
@@ -232,10 +228,7 @@ struct EventScreen: View {
             }
             
         }
-        .task {
-            await vm.fetchEvent()
-        }
-//        .onAppear( perform: vm.fetchCustomerEvent)
+        .onAppear( perform: vm.fetchCustomerEvent)
         .onAppear {
             if let url = vm.event.galleryList.first?.publicUrl{
                 print("Photo URL 🔥🔥🔥🔥🔥" + url)

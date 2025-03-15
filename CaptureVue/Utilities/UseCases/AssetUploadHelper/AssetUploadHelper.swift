@@ -41,11 +41,22 @@ class AssetUploadHelper{
         self.uploadAwsThumbnailUseCase = UploadThumbnailUseCase(client: client, galleryRepositoryMock: galleryRepositoryMock)
     }
     
-    func uploadAwsAsset(_ token: String, selectedFiles: [PhotosPickerItem], eventId: String, section: AssetSectionType, onUploadProgressUpdate: ((Int) -> Void)? = nil) async {
-        await copyIntoTempFile(selectedFiles)
+    func uploadAwsLibraryAssets(_ token: String, selectedFiles: [PhotosPickerItem], eventId: String, section: AssetSectionType, onUploadProgressUpdate: ((Int) -> Void)? = nil) async {
+        await copyLibraryItemsIntoTempFile(selectedFiles)
         let filesToUpload = await getAllPendingUploadFiles()
         self.onUploadProgressUpdate = onUploadProgressUpdate
-        
+        await uploadProccess(token: token, eventId: eventId, section: section, filesToUpload: filesToUpload)
+    }
+    
+    func uploadAwsCameraAssets(_ token: String, selectedFiles: [UIImage], eventId: String, section: AssetSectionType, onUploadProgressUpdate: ((Int) -> Void)? = nil) async {
+        await copyCameraItemsIntoTempFile(selectedFiles)
+        let filesToUpload = await getAllPendingUploadFiles()
+        self.onUploadProgressUpdate = onUploadProgressUpdate
+        await uploadProccess(token: token, eventId: eventId, section: section, filesToUpload: filesToUpload)
+    }
+    
+    
+    private func uploadProccess(token: String, eventId: String, section: AssetSectionType, filesToUpload: [String]) async {
         for fileName in filesToUpload {
             var thumbnailName: String = ""
             let assetType: GalleryItemType = mimeTypeForPath(path: fileName).hasPrefix("image") ? .photo : .video
@@ -64,7 +75,6 @@ class AssetUploadHelper{
             await getAwsDirectUploadUrl(token, uploadInfo: uploadInfo)
         }
     }
-    
     
     
     
@@ -110,11 +120,22 @@ class AssetUploadHelper{
     }
     
     
-    private func copyIntoTempFile(_ selectedFiles: [PhotosPickerItem]) async{
+    private func copyLibraryItemsIntoTempFile(_ selectedFiles: [PhotosPickerItem]) async{
         await withTaskGroup(of: Void.self) { group in
             for selectedFile in selectedFiles {
                 group.addTask {
-                    let fileDetails = await self.prepareUploadFileUseCase.invoke(selectedFile)
+                    let fileDetails = await self.prepareUploadFileUseCase.invokeLibraryAsset(selectedFile)
+                    await self.copyIntoTempFileUseCase.invoke(fileDetails: fileDetails)
+                }
+            }
+        }
+    }
+    
+    private func copyCameraItemsIntoTempFile(_ selectedFiles: [UIImage]) async{
+        await withTaskGroup(of: Void.self) { group in
+            for selectedFile in selectedFiles {
+                group.addTask {
+                    let fileDetails = await self.prepareUploadFileUseCase.invokeCameraAsset(.image(selectedFile))
                     await self.copyIntoTempFileUseCase.invoke(fileDetails: fileDetails)
                 }
             }
