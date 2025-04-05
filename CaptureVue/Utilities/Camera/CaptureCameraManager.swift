@@ -9,6 +9,7 @@
 import AVFoundation
 import UIKit
 import SwiftUI
+import Foundation
 
 //extension CaptureCameraManager: AVCapturePhotoCaptureDelegate {
 //    
@@ -39,13 +40,17 @@ class CaptureCameraManager: NSObject, ObservableObject, AVCaptureVideoDataOutput
     
     static let shared: CaptureCameraManager = CaptureCameraManager()
     
+    static var instanceCount = 0
+    
     let session = AVCaptureSession()
     private let sessionQueue = DispatchQueue(label: "com.bitvalve.ios.session.capture")
     private var videoDeviceInput: AVCaptureDeviceInput? = nil
     private let photoOutput = AVCapturePhotoOutput()
-    private let videoOutput = AVCaptureVideoDataOutput()
+    private let videoOutput = AVCaptureMovieFileOutput()
+    
     
     private var photographerIdentifier: [Int64: CapturePhotoProccessor] = [:]
+    private var videoProccessors: [CaptureVideoProccessor] = []
     
     private let videoOutputQueue = DispatchQueue(
         label: "com.bitvalve.ios.video.queue",
@@ -57,6 +62,18 @@ class CaptureCameraManager: NSObject, ObservableObject, AVCaptureVideoDataOutput
     @Published var permissionStatus: PermissionStatus = .unknown
     @Published var availableCameraPositions: [AVCaptureDevice.Position]? = nil
     @Published var flashlightStatus: FlashlightStatus = .unavailable
+    
+    override init() {
+        CaptureCameraManager.instanceCount += 1
+        print("camera manager init")
+        print("Instances of Camera Manager: \(CaptureCameraManager.instanceCount)")
+    }
+    
+    deinit{
+        CaptureCameraManager.instanceCount -= 1
+        print("camera manager deinit")
+    }
+    
     
     func bind() {
         checkPermissions()
@@ -75,6 +92,7 @@ class CaptureCameraManager: NSObject, ObservableObject, AVCaptureVideoDataOutput
                 }
                 
                 self.session.removeOutput(self.photoOutput)
+                self.session.removeOutput(self.videoOutput)
                 self.session.stopRunning()
             }
             
@@ -118,6 +136,12 @@ class CaptureCameraManager: NSObject, ObservableObject, AVCaptureVideoDataOutput
                         if connection.isVideoStabilizationSupported {
                             connection.preferredVideoStabilizationMode = .auto
                         }
+                    }
+                    
+                    if let audioDevice = AVCaptureDevice.default(for: .audio),
+                       let audioInput = try? AVCaptureDeviceInput(device: audioDevice),
+                       self.session.canAddInput(audioInput) {
+                        self.session.addInput(audioInput)
                     }
                     
                     if videoDevice.hasTorch {
@@ -168,6 +192,32 @@ class CaptureCameraManager: NSObject, ObservableObject, AVCaptureVideoDataOutput
             
             self.photographerIdentifier[photoSettings.uniqueID] = proccessor
             self.photoOutput.capturePhoto(with: photoSettings, delegate: proccessor)
+        }
+    }
+    
+    func startRecording(completion: @escaping (URL) -> Void){
+        videoOutputQueue.async {
+            let path = FileManager.default.temporaryDirectory.appendingPathComponent("UploadPendingFiles")
+            let fileUrl = path.appendingPathComponent("\(UUID().uuidString).mov")
+            try? FileManager.default.removeItem(at: fileUrl)
+            
+            
+            
+            // Create Delegate
+            let videoProccessor = CaptureVideoProccessor(onVideoCaptureFinished: { [weak self] videoURL in
+                completion(videoURL)
+                self?.videoProccessors.removeAll()
+            })
+            self.videoProccessors.append(videoProccessor)
+            
+            self.videoOutput.startRecording(to: fileUrl, recordingDelegate: videoProccessor)
+        }
+        
+    }
+    
+    func stopRecording(){
+        videoOutputQueue.async {
+            self.videoOutput.stopRecording()
         }
     }
     
@@ -239,7 +289,7 @@ class CaptureCameraManager: NSObject, ObservableObject, AVCaptureVideoDataOutput
         }
         
         session.beginConfiguration()
-        session.sessionPreset = .photo
+        session.sessionPreset = .high
         
         if session.canAddOutput(photoOutput) {
             session.addOutput(photoOutput)
@@ -249,6 +299,14 @@ class CaptureCameraManager: NSObject, ObservableObject, AVCaptureVideoDataOutput
         } else {
             print("Cannot add photo output")
         }
+        
+        if session.canAddOutput(videoOutput) {
+            session.addOutput(videoOutput)
+        } else {
+            print("Cannot add video output")
+        }
+        
+        
         
         session.commitConfiguration()
         
@@ -311,6 +369,16 @@ class CaptureCameraFeed: ObservableObject {
     
     func capturePhoto(completion: @escaping (UIImage?, UIImage?) -> Void){
         cameraManager.onCapturePhoto(completion: completion)
+    }
+    
+    func startRecording(completion: @escaping (URL) -> Void){
+        print("start recording")
+        cameraManager.startRecording(completion: completion)
+    }
+    
+    func stopRecording(){
+        print("stop recording")
+        cameraManager.stopRecording()
     }
     
 //    func capturePhoto(

@@ -75,6 +75,10 @@ actor LocalFileManager {
         }
     }
     
+    func getURLforVideo(fileName: String, folderName: String) -> URL? {
+        return getUrlForFile(fileName: fileName, folderName: folderName)
+    }
+    
     private func createFolderIfNeeded(folderName: String) {
         guard let url = getUrlForFolder(folderName: folderName) else { return }
         

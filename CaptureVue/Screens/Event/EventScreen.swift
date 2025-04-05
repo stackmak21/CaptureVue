@@ -11,6 +11,7 @@ import Kingfisher
 import AVKit
 import PhotosUI
 
+import SwiftStoriesKit
 
 
 struct EventScreen: View {
@@ -158,6 +159,8 @@ struct EventScreen: View {
                 
             }
         }
+        
+        
         .overlay(alignment: .top, content: {
             if vm.filesToUpload != 0 {
                 UploadprogressBanner(progress: $vm.uploadProgress, filesToUpload: vm.filesToUpload)

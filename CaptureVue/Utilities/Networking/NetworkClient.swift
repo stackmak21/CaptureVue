@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 
-class NetworkClient: NSObject {
+actor NetworkClient: NSObject {
     //MARK: - URL DETAILS
     
     private let scheme: URLScheme = .http
@@ -244,12 +244,12 @@ class NetworkClient: NSObject {
 
 extension NetworkClient: URLSessionTaskDelegate {
 
-    func urlSession(
+    private func urlSession(
         _ session: URLSession,
         task: URLSessionTask,
         didSendBodyData bytesSent: Int64,
         totalBytesSent: Int64,
-        totalBytesExpectedToSend: Int64) {
+        totalBytesExpectedToSend: Int64) async {
             let uploadProgressFloat = Float(totalBytesSent) / Float(totalBytesExpectedToSend)
             let uploadProgressInt = Int(uploadProgressFloat * 100)
             onUploadProgressUpdate?(uploadProgressInt)

@@ -15,7 +15,6 @@ struct EventRepositoryMock: EventRepositoryContract{
     }
     
     func fetchEvent(_ eventId: String, _ token: String) async -> Result<Event, CaptureVueResponseRaw> {
-        try? await Task.sleep(nanoseconds: 1_000_000_000)
         return .success(DeveloperPreview.instance.event)
     }
     

@@ -10,6 +10,10 @@
 		699E42A99FF6384630584121 /* Pods_SharedPods_CaptureVue.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B55DAC067026C587C6ABA373 /* Pods_SharedPods_CaptureVue.framework */; };
 		F927D19B2CF1B01500EB7650 /* VideoPlayerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F927D19A2CF1B01500EB7650 /* VideoPlayerManager.swift */; };
 		F927D19E2CF1F37000EB7650 /* CacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F927D19D2CF1F37000EB7650 /* CacheManager.swift */; };
+		F93021942D8AFF5B0084E078 /* StoriesTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F93021932D8AFF5B0084E078 /* StoriesTest.swift */; };
+		F93021992D91888E0084E078 /* SwiftStoriesKitTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F93021982D91888E0084E078 /* SwiftStoriesKitTest.swift */; };
+		F93A1DA82D9AA03700636322 /* SwiftStoriesKit in Frameworks */ = {isa = PBXBuildFile; productRef = F93A1DA72D9AA03700636322 /* SwiftStoriesKit */; };
+		F93A1DAA2D9FEA2500636322 /* CaptureVideoProccessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F93A1DA92D9FEA2500636322 /* CaptureVideoProccessor.swift */; };
 		F94263692D76424900A55A15 /* SwipeBackModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = F94263682D76424900A55A15 /* SwipeBackModifier.swift */; };
 		F942636B2D77862E00A55A15 /* HttpUrlResponseExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F942636A2D77862E00A55A15 /* HttpUrlResponseExtensions.swift */; };
 		F942636D2D7F53E300A55A15 /* CameraPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F942636C2D7F53E300A55A15 /* CameraPreviewView.swift */; };
@@ -168,6 +172,9 @@
 		EF6DA8B05FD40FCA04A474D9 /* Pods-SharedPods-CaptureVueAppClip.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SharedPods-CaptureVueAppClip.debug.xcconfig"; path = "Target Support Files/Pods-SharedPods-CaptureVueAppClip/Pods-SharedPods-CaptureVueAppClip.debug.xcconfig"; sourceTree = "<group>"; };
 		F927D19A2CF1B01500EB7650 /* VideoPlayerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerManager.swift; sourceTree = "<group>"; };
 		F927D19D2CF1F37000EB7650 /* CacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheManager.swift; sourceTree = "<group>"; };
+		F93021932D8AFF5B0084E078 /* StoriesTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoriesTest.swift; sourceTree = "<group>"; };
+		F93021982D91888E0084E078 /* SwiftStoriesKitTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftStoriesKitTest.swift; sourceTree = "<group>"; };
+		F93A1DA92D9FEA2500636322 /* CaptureVideoProccessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureVideoProccessor.swift; sourceTree = "<group>"; };
 		F94263682D76424900A55A15 /* SwipeBackModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeBackModifier.swift; sourceTree = "<group>"; };
 		F942636A2D77862E00A55A15 /* HttpUrlResponseExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpUrlResponseExtensions.swift; sourceTree = "<group>"; };
 		F942636C2D7F53E300A55A15 /* CameraPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPreviewView.swift; sourceTree = "<group>"; };
@@ -317,6 +324,7 @@
 				F9F3062C2D46E85300E41995 /* MuxUploadSDK in Frameworks */,
 				F966BA672CBD91B6000863F2 /* FirebaseCrashlytics in Frameworks */,
 				F966BA652CBD91B6000863F2 /* FirebaseAnalytics in Frameworks */,
+				F93A1DA82D9AA03700636322 /* SwiftStoriesKit in Frameworks */,
 				699E42A99FF6384630584121 /* Pods_SharedPods_CaptureVue.framework in Frameworks */,
 				F96A6D4E2CC1B9A3001C1E85 /* Kingfisher in Frameworks */,
 			);
@@ -362,17 +370,9 @@
 			path = Cache;
 			sourceTree = "<group>";
 		};
-		F94263672D7641F900A55A15 /* New Group */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "New Group";
-			sourceTree = "<group>";
-		};
 		F9503AC82CD6C5E000DDD4F0 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
-				F94263672D7641F900A55A15 /* New Group */,
 				F99773DB2D6A8EE600D14332 /* FileManager */,
 				F99773D32D6A7C1000D14332 /* UseCases */,
 				F99773B62D69195400D14332 /* SectionItem */,
@@ -431,6 +431,7 @@
 				F942636E2D7F543500A55A15 /* CaptureCameraView.swift */,
 				F9E6992F2D818CAA00B4A1E1 /* CameraCaptureButton.swift */,
 				F9E699372D857FC100B4A1E1 /* CapturePhotoProccessor.swift */,
+				F93A1DA92D9FEA2500636322 /* CaptureVideoProccessor.swift */,
 			);
 			path = Camera;
 			sourceTree = "<group>";
@@ -763,6 +764,8 @@
 				F9995E8C2CBC4DB100909E85 /* GoogleService-Info.plist */,
 				F9A561EB2CB5BD6000634C7A /* Preview Content */,
 				F997736E2D56664C00D14332 /* TemporaryHoldStructs.swift */,
+				F93021932D8AFF5B0084E078 /* StoriesTest.swift */,
+				F93021982D91888E0084E078 /* SwiftStoriesKitTest.swift */,
 			);
 			path = CaptureVue;
 			sourceTree = "<group>";
@@ -990,6 +993,7 @@
 				F96A6D4D2CC1B9A3001C1E85 /* Kingfisher */,
 				F9F306132D42912F00E41995 /* KeychainSwift */,
 				F9F3062B2D46E85300E41995 /* MuxUploadSDK */,
+				F93A1DA72D9AA03700636322 /* SwiftStoriesKit */,
 			);
 			productName = CaptureVue;
 			productReference = F9A561E22CB5BD5E00634C7A /* CaptureVue.app */;
@@ -1026,6 +1030,7 @@
 				F96A6D4C2CC1B9A3001C1E85 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				F9F306122D42912F00E41995 /* XCRemoteSwiftPackageReference "keychain-swift" */,
 				F9F3062A2D46E85300E41995 /* XCRemoteSwiftPackageReference "swift-upload-sdk" */,
+				F93A1DA62D9AA03700636322 /* XCRemoteSwiftPackageReference "SwiftStoriesKit" */,
 			);
 			productRefGroup = F9A561E32CB5BD5E00634C7A /* Products */;
 			projectDirPath = "";
@@ -1165,6 +1170,7 @@
 				F9A9E0852CE563AA003DB166 /* ImageLoader.swift in Sources */,
 				F927D19E2CF1F37000EB7650 /* CacheManager.swift in Sources */,
 				F927D19B2CF1B01500EB7650 /* VideoPlayerManager.swift in Sources */,
+				F93A1DAA2D9FEA2500636322 /* CaptureVideoProccessor.swift in Sources */,
 				F9A9E08D2CE67432003DB166 /* DateExtensions.swift in Sources */,
 				F99773942D67D6C000D14332 /* EventRepositoryContract.swift in Sources */,
 				F997738D2D67B1C500D14332 /* HomeResponse.swift in Sources */,
@@ -1196,6 +1202,7 @@
 				F99773752D66309800D14332 /* LoginResponse.swift in Sources */,
 				F9A9E0752CE2AF77003DB166 /* EventDto.swift in Sources */,
 				F99772252D4CCFEE00D14332 /* SwipeBackGestures.swift in Sources */,
+				F93021992D91888E0084E078 /* SwiftStoriesKitTest.swift in Sources */,
 				F9A9E0872CE564F1003DB166 /* ImagePrefetcher.swift in Sources */,
 				F997723E2D553E8900D14332 /* AwsDirectUploadUrlDto.swift in Sources */,
 				F9A9E0802CE52E22003DB166 /* EventViewModel.swift in Sources */,
@@ -1219,6 +1226,7 @@
 				F99773A52D6868E100D14332 /* GalleryRepositoryMock.swift in Sources */,
 				F99772342D54917200D14332 /* StoryItemDto.swift in Sources */,
 				F99773F02D6F2B4300D14332 /* AssetUploadHelper.swift in Sources */,
+				F93021942D8AFF5B0084E078 /* StoriesTest.swift in Sources */,
 				F99773D92D6A7F2D00D14332 /* CopyTempFileUseCase.swift in Sources */,
 				F99773CF2D69D16700D14332 /* MultipartRequest.swift in Sources */,
 				F9F306192D42AE0C00E41995 /* HomeViewModel.swift in Sources */,
@@ -1490,6 +1498,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		F93A1DA62D9AA03700636322 /* XCRemoteSwiftPackageReference "SwiftStoriesKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/stackmak21/SwiftStoriesKit";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 		F966BA632CBD91B6000863F2 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
@@ -1533,6 +1549,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		F93A1DA72D9AA03700636322 /* SwiftStoriesKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F93A1DA62D9AA03700636322 /* XCRemoteSwiftPackageReference "SwiftStoriesKit" */;
+			productName = SwiftStoriesKit;
+		};
 		F966BA642CBD91B6000863F2 /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = F966BA632CBD91B6000863F2 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;

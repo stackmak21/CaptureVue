@@ -16,6 +16,7 @@ struct CaptureCameraView: View {
     
     let feed: CaptureCameraFeed = CaptureCameraFeed()
     private let onCapture: (UIImage) -> Void
+    private let onVideoCapture: (URL) -> Void
     
     @State var isconnectionEnabled: Bool = false
     @State var isCameraVisible: Bool = true
@@ -28,10 +29,12 @@ struct CaptureCameraView: View {
     
     init(
         router: AnyRouter,
-        onCapture: @escaping (UIImage) -> Void
+        onCapture: @escaping (UIImage) -> Void,
+        onVideoCapture: @escaping (URL) -> Void
     ) {
         self.router = router
         self.onCapture = onCapture
+        self.onVideoCapture = onVideoCapture
     }
     
     var body: some View{
@@ -76,14 +79,18 @@ struct CaptureCameraView: View {
                                 }
                                 
                                 CameraCaptureButton(
-                                    onClick: {
+                                    onPhotoCapture: {
                                         feed.capturePhoto(
                                             completion: { preview, original in
                                                 previewImage = preview
                                                 originalImage = original
                                             }
                                         )
-                                    }
+                                    },
+                                    onVideoCaptureStart: {feed.startRecording{ videoURL in
+                                        onVideoCapture(videoURL)
+                                    }},
+                                    onVideoCaptureStop: {feed.stopRecording()}
                                 )
                                     .frame(width: 70, height: 70)
                                     .frame(maxWidth: .infinity, alignment: .center)
@@ -157,31 +164,32 @@ struct CaptureCameraView: View {
                         Image(uiImage: image)
                             .resizable() // Make the image resizable
                             .scaledToFit() // Scale the image to fit the view proportionally
-                    }
-                    ZStack{
-                        Button(
-                            action: {
-                                previewImage = nil
-                            },
-                            label: {Text("Retake")}
-                        )
-                        .frame(maxWidth: .infinity, alignment: .leading)
                         
-                        Button(
-                            action: {
-                                if let image = originalImage{
-                                    onCapture(image)
-                                }
-                                router.dismissScreen()
-                            },
-                            label: {Text("Done")}
-                        )
-                        .frame(maxWidth: .infinity, alignment: .trailing)
-                        
+                        ZStack{
+                            Button(
+                                action: {
+                                    previewImage = nil
+                                },
+                                label: {Text("Retake")}
+                            )
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            
+                            Button(
+                                action: {
+                                    if let image = originalImage{
+                                        onCapture(image)
+                                    }
+                                    router.dismissScreen()
+                                },
+                                label: {Text("Done")}
+                            )
+                            .frame(maxWidth: .infinity, alignment: .trailing)
+                            
+                        }
+                        .ignoresSafeArea()
+                        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
+                        .padding()
                     }
-                    .ignoresSafeArea()
-                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
-                    .padding()
                 }
             }
             .onChange(of: previewImage) { oldValue, newValue in
@@ -191,6 +199,7 @@ struct CaptureCameraView: View {
                     stopFeed()
                 }
             }
+            .navigationBarBackButtonHidden(true)
         }
     }
     
@@ -209,6 +218,6 @@ struct CaptureCameraView: View {
 
 #Preview{
     RouterView{ router in
-        CaptureCameraView(router: router, onCapture: {image in })
+        CaptureCameraView(router: router, onCapture: {image in }, onVideoCapture: {_ in})
     }
 }

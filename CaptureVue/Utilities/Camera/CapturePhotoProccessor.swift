@@ -43,6 +43,11 @@ class CapturePhotoProccessor : NSObject {
         
         let isFlashAvailable = self.videoDeviceInput?.device.isFlashAvailable ?? false
         
+        photoSettings.flashMode = isFlashAvailable ? .on : .off
+        photoSettings.isHighResolutionPhotoEnabled = true
+        photoSettings.photoQualityPrioritization = .balanced
+        
+        
         // Preview Photo Settings
         if photoSettings.availablePreviewPhotoPixelFormatTypes.count > 0 {
             photoSettings.previewPhotoFormat = [
@@ -60,9 +65,7 @@ class CapturePhotoProccessor : NSObject {
 //            AVVideoHeightKey: 1024,
 //        ]
 
-        photoSettings.flashMode = isFlashAvailable ? .on : .off
-        photoSettings.isHighResolutionPhotoEnabled = true
-        photoSettings.photoQualityPrioritization = .balanced
+        
         return photoSettings
     }
 }

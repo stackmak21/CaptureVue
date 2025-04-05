@@ -518,80 +518,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "F62EDA98-8118-4302-99F2-397D82B333F8"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "CaptureVue/Utilities/Interactors/Event/EventRepositoryMock.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "18"
-            endingLineNumber = "18"
-            landmarkName = "fetchEvent(_:_:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "F62EDA98-8118-4302-99F2-397D82B333F8 - 4a6162573d2e4942"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "CaptureVue.EventRepositoryMock.fetchEvent(Swift.String, Swift.String) async -&gt; Swift.Result&lt;CaptureVue.Event, CaptureVue.CaptureVueResponseRaw&gt;"
-                  moduleName = "CaptureVue.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/paresmakres/Documents/GitHub/CaptureVue/CaptureVue/Utilities/Interactors/Event/EventRepositoryMock.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "18"
-                  endingLineNumber = "18">
-               </Location>
-               <Location
-                  uuid = "F62EDA98-8118-4302-99F2-397D82B333F8 - 3d2006fad9dddc24"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(1) await resume partial function for CaptureVue.EventRepositoryMock.fetchEvent(Swift.String, Swift.String) async -&gt; Swift.Result&lt;CaptureVue.Event, CaptureVue.CaptureVueResponseRaw&gt;"
-                  moduleName = "CaptureVue.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/paresmakres/Documents/GitHub/CaptureVue/CaptureVue/Utilities/Interactors/Event/EventRepositoryMock.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "18"
-                  endingLineNumber = "18">
-               </Location>
-               <Location
-                  uuid = "F62EDA98-8118-4302-99F2-397D82B333F8 - 997c379af200453c"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(2) suspend resume partial function for CaptureVue.EventRepositoryMock.fetchEvent(Swift.String, Swift.String) async -&gt; Swift.Result&lt;CaptureVue.Event, CaptureVue.CaptureVueResponseRaw&gt;"
-                  moduleName = "CaptureVue.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/paresmakres/Documents/GitHub/CaptureVue/CaptureVue/Utilities/Interactors/Event/EventRepositoryMock.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "18"
-                  endingLineNumber = "18">
-               </Location>
-               <Location
-                  uuid = "F62EDA98-8118-4302-99F2-397D82B333F8 - 74793c5a247de703"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(3) suspend resume partial function for CaptureVue.EventRepositoryMock.fetchEvent(Swift.String, Swift.String) async -&gt; Swift.Result&lt;CaptureVue.Event, CaptureVue.CaptureVueResponseRaw&gt;"
-                  moduleName = "CaptureVue.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/paresmakres/Documents/GitHub/CaptureVue/CaptureVue/Utilities/Interactors/Event/EventRepositoryMock.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "18"
-                  endingLineNumber = "18">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "71100AA0-E9BF-47D7-9BA9-701560EF7705"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -615,10 +541,58 @@
             filePath = "CaptureVue/Utilities/Camera/CaptureCameraView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "64"
-            endingLineNumber = "64"
+            startingLineNumber = "67"
+            endingLineNumber = "67"
             landmarkName = "body"
             landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A2BEAFAF-C8A6-4630-BC90-B5D53F632525"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CaptureVue/Utilities/Camera/CaptureVideoProccessor.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "30"
+            endingLineNumber = "30"
+            landmarkName = "CaptureVideoProccessor"
+            landmarkType = "21">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "03FF7FC9-6CB4-4850-A23F-3807105520E0"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CaptureVue/Utilities/Camera/CaptureCameraManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "39"
+            endingLineNumber = "39"
+            landmarkName = "CaptureCameraManager"
+            landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "EE17B8FB-A73D-499A-87B8-BE5D9AAA55C5"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CaptureVue/Utilities/Camera/CapturePhotoProccessor.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "29"
+            endingLineNumber = "29"
+            landmarkName = "init(photoOutput:videoDeviceInput:onStartCapturing:onCapture:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

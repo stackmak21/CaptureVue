@@ -90,6 +90,7 @@ struct StoryView: View {
                                                     showInfo = pressed
                                                 }
                                             }
+                                            print(pressed)
                                         })
                                 }
                             }

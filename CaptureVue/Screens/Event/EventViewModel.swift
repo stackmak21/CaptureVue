@@ -85,6 +85,9 @@ class EventViewModel: BaseViewModel {
                 router: router,
                 onCapture: { image in
                     self.uploadFiles([image], section: .gallery)
+                },
+                onVideoCapture: { videoURL in
+                    self.uploadVideo(videoURL, section: .story)
                 }
             )
         }
@@ -139,6 +142,19 @@ class EventViewModel: BaseViewModel {
                     }
                 )
                 filesToUpload = 0
+                fetchCustomerEvent()
+        }
+        tasks.append(task)
+    }
+    
+    func uploadVideo(_ videoURL: URL, section: AssetSectionType){
+        let task = Task{
+            await assetUploadHelper.uploadAwsVideoFile(
+                    token,
+                    capturedVideoURL: videoURL,
+                    eventId: eventId,
+                    section: section
+                )
                 fetchCustomerEvent()
         }
         tasks.append(task)

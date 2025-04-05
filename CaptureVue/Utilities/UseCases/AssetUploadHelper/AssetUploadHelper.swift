@@ -55,6 +55,23 @@ class AssetUploadHelper{
         await uploadProccess(token: token, eventId: eventId, section: section, filesToUpload: filesToUpload)
     }
     
+    func uploadAwsVideoFile(_ token: String, capturedVideoURL: URL, eventId: String, section: AssetSectionType) async {
+        let fileName = capturedVideoURL.lastPathComponent
+        print(fileName)
+        var thumbnailName: String = ""
+        if let name = await createAndUploadThumbnail(token: token, fileName: fileName, eventId: eventId){
+            thumbnailName = name
+        }
+        let uploadInfo = PrepareUploadData(
+            eventId: eventId,
+            fileName: fileName,
+            section: section,
+            assetType: .video,
+            thumbnailPublicName: thumbnailName
+        )
+        await getAwsDirectUploadUrl(token, uploadInfo: uploadInfo)
+    }
+    
     
     private func uploadProccess(token: String, eventId: String, section: AssetSectionType, filesToUpload: [String]) async {
         for fileName in filesToUpload {
@@ -85,8 +102,9 @@ class AssetUploadHelper{
         case .success(let response):
             await uploadAwsFile(uploadUrl: response.url, uploadInfo: uploadInfo, onUploadProgressUpdate: { progress in  Task{ @MainActor in self.onUploadProgressUpdate?(progress) } })
             await notifyNewAssetUploadUseCase.invoke(token, assetUploadRequest: uploadInfo.toNotifyNewAssetRequest())
-            await deleteTempFileUseCase.invoke(fileName: uploadInfo.fileName)
-        case .failure(let error):
+            let deletedSuccesfully = await deleteTempFileUseCase.invoke(fileName: uploadInfo.fileName)
+            print("deleted successfully: \(deletedSuccesfully)")
+        case .failure(_):
             print("Failed to get AWS Direct Upload Url")
         }
     }
