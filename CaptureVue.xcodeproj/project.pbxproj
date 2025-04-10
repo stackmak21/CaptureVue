@@ -8,11 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		699E42A99FF6384630584121 /* Pods_SharedPods_CaptureVue.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B55DAC067026C587C6ABA373 /* Pods_SharedPods_CaptureVue.framework */; };
+		F909281B2DA2637A0074FC57 /* SwiftStoriesKit in Frameworks */ = {isa = PBXBuildFile; productRef = F909281A2DA2637A0074FC57 /* SwiftStoriesKit */; };
+		F909281E2DA384CA0074FC57 /* LocalNotificationCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F909281D2DA384CA0074FC57 /* LocalNotificationCenter.swift */; };
 		F927D19B2CF1B01500EB7650 /* VideoPlayerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F927D19A2CF1B01500EB7650 /* VideoPlayerManager.swift */; };
 		F927D19E2CF1F37000EB7650 /* CacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F927D19D2CF1F37000EB7650 /* CacheManager.swift */; };
 		F93021942D8AFF5B0084E078 /* StoriesTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F93021932D8AFF5B0084E078 /* StoriesTest.swift */; };
 		F93021992D91888E0084E078 /* SwiftStoriesKitTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F93021982D91888E0084E078 /* SwiftStoriesKitTest.swift */; };
-		F93A1DA82D9AA03700636322 /* SwiftStoriesKit in Frameworks */ = {isa = PBXBuildFile; productRef = F93A1DA72D9AA03700636322 /* SwiftStoriesKit */; };
 		F93A1DAA2D9FEA2500636322 /* CaptureVideoProccessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F93A1DA92D9FEA2500636322 /* CaptureVideoProccessor.swift */; };
 		F94263692D76424900A55A15 /* SwipeBackModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = F94263682D76424900A55A15 /* SwipeBackModifier.swift */; };
 		F942636B2D77862E00A55A15 /* HttpUrlResponseExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F942636A2D77862E00A55A15 /* HttpUrlResponseExtensions.swift */; };
@@ -170,6 +171,7 @@
 		AE57C1641ABBD722CCDD3C4B /* Pods-SharedPods-CaptureVue.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SharedPods-CaptureVue.debug.xcconfig"; path = "Target Support Files/Pods-SharedPods-CaptureVue/Pods-SharedPods-CaptureVue.debug.xcconfig"; sourceTree = "<group>"; };
 		B55DAC067026C587C6ABA373 /* Pods_SharedPods_CaptureVue.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SharedPods_CaptureVue.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF6DA8B05FD40FCA04A474D9 /* Pods-SharedPods-CaptureVueAppClip.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SharedPods-CaptureVueAppClip.debug.xcconfig"; path = "Target Support Files/Pods-SharedPods-CaptureVueAppClip/Pods-SharedPods-CaptureVueAppClip.debug.xcconfig"; sourceTree = "<group>"; };
+		F909281D2DA384CA0074FC57 /* LocalNotificationCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalNotificationCenter.swift; sourceTree = "<group>"; };
 		F927D19A2CF1B01500EB7650 /* VideoPlayerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerManager.swift; sourceTree = "<group>"; };
 		F927D19D2CF1F37000EB7650 /* CacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheManager.swift; sourceTree = "<group>"; };
 		F93021932D8AFF5B0084E078 /* StoriesTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoriesTest.swift; sourceTree = "<group>"; };
@@ -324,7 +326,7 @@
 				F9F3062C2D46E85300E41995 /* MuxUploadSDK in Frameworks */,
 				F966BA672CBD91B6000863F2 /* FirebaseCrashlytics in Frameworks */,
 				F966BA652CBD91B6000863F2 /* FirebaseAnalytics in Frameworks */,
-				F93A1DA82D9AA03700636322 /* SwiftStoriesKit in Frameworks */,
+				F909281B2DA2637A0074FC57 /* SwiftStoriesKit in Frameworks */,
 				699E42A99FF6384630584121 /* Pods_SharedPods_CaptureVue.framework in Frameworks */,
 				F96A6D4E2CC1B9A3001C1E85 /* Kingfisher in Frameworks */,
 			);
@@ -353,6 +355,14 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		F909281C2DA384AD0074FC57 /* NotificationCenter */ = {
+			isa = PBXGroup;
+			children = (
+				F909281D2DA384CA0074FC57 /* LocalNotificationCenter.swift */,
+			);
+			path = NotificationCenter;
+			sourceTree = "<group>";
+		};
 		F927D1992CF1AFFC00EB7650 /* VideoPlayer */ = {
 			isa = PBXGroup;
 			children = (
@@ -373,6 +383,7 @@
 		F9503AC82CD6C5E000DDD4F0 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				F909281C2DA384AD0074FC57 /* NotificationCenter */,
 				F99773DB2D6A8EE600D14332 /* FileManager */,
 				F99773D32D6A7C1000D14332 /* UseCases */,
 				F99773B62D69195400D14332 /* SectionItem */,
@@ -993,7 +1004,7 @@
 				F96A6D4D2CC1B9A3001C1E85 /* Kingfisher */,
 				F9F306132D42912F00E41995 /* KeychainSwift */,
 				F9F3062B2D46E85300E41995 /* MuxUploadSDK */,
-				F93A1DA72D9AA03700636322 /* SwiftStoriesKit */,
+				F909281A2DA2637A0074FC57 /* SwiftStoriesKit */,
 			);
 			productName = CaptureVue;
 			productReference = F9A561E22CB5BD5E00634C7A /* CaptureVue.app */;
@@ -1030,7 +1041,7 @@
 				F96A6D4C2CC1B9A3001C1E85 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				F9F306122D42912F00E41995 /* XCRemoteSwiftPackageReference "keychain-swift" */,
 				F9F3062A2D46E85300E41995 /* XCRemoteSwiftPackageReference "swift-upload-sdk" */,
-				F93A1DA62D9AA03700636322 /* XCRemoteSwiftPackageReference "SwiftStoriesKit" */,
+				F90928192DA2637A0074FC57 /* XCRemoteSwiftPackageReference "SwiftStoriesKit" */,
 			);
 			productRefGroup = F9A561E32CB5BD5E00634C7A /* Products */;
 			projectDirPath = "";
@@ -1162,6 +1173,7 @@
 				F99773E92D6E616E00D14332 /* IntExtensions.swift in Sources */,
 				F9F306252D44FC8000E41995 /* CreateEventInteractor.swift in Sources */,
 				F9F306262D44FC8000E41995 /* CreateEventViewModel.swift in Sources */,
+				F909281E2DA384CA0074FC57 /* LocalNotificationCenter.swift in Sources */,
 				F9F306272D44FC8000E41995 /* CreateEventScreen.swift in Sources */,
 				F99773822D6798A900D14332 /* CustomerRepositoryContract.swift in Sources */,
 				F9E699302D818CAA00B4A1E1 /* CameraCaptureButton.swift in Sources */,
@@ -1498,7 +1510,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		F93A1DA62D9AA03700636322 /* XCRemoteSwiftPackageReference "SwiftStoriesKit" */ = {
+		F90928192DA2637A0074FC57 /* XCRemoteSwiftPackageReference "SwiftStoriesKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/stackmak21/SwiftStoriesKit";
 			requirement = {
@@ -1549,9 +1561,9 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		F93A1DA72D9AA03700636322 /* SwiftStoriesKit */ = {
+		F909281A2DA2637A0074FC57 /* SwiftStoriesKit */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = F93A1DA62D9AA03700636322 /* XCRemoteSwiftPackageReference "SwiftStoriesKit" */;
+			package = F90928192DA2637A0074FC57 /* XCRemoteSwiftPackageReference "SwiftStoriesKit" */;
 			productName = SwiftStoriesKit;
 		};
 		F966BA642CBD91B6000863F2 /* FirebaseAnalytics */ = {

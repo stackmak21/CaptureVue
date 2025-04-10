@@ -45,15 +45,7 @@ struct CaptureVueApp: App {
                         let string = url.absoluteString
                         print(string)
                     })
-                    .onChange(of: scenePhase) { oldPhase, newPhase in
-                        if newPhase == .active {
-//                            print("active")
-                        } else if newPhase == .inactive {
-//                            print("inactive")
-                        } else if newPhase == .background {
-//                            print("Backgroubnd")
-                        }
-                    }
+                    
                     .onAppear{
                         NotificationManager.requestPermissions()
                     }
@@ -61,9 +53,7 @@ struct CaptureVueApp: App {
 //                LoginScreen(router: router, dataService: dataService)
 //                EventHomeScreen(router: router, dataService: dataService, event: DeveloperPreview.instance.event)
             }
-            .overlay {
-//                Rectangle().frame(width: 200, height: 200).foregroundStyle(Color.black)
-            }
+
 //            TestTabViewOpening()
 //            let dev = DeveloperPreview.instance
 //            let dataService = DataServiceImpl()

@@ -16,17 +16,39 @@ import SwiftStoriesKit
 
 struct EventScreen: View {
     
+    @State var stories: [StoryBundle] = StoriesDeveloperPreview.stories
+    
+    @Namespace private var thumbnailNamespace
+    @Namespace private var storyNamespace
+    
+    @State private var selectedStory: String = ""
+    @State private var showStory: Bool = false
+    
+    @State private var isInternalThumbnailShown: Bool = false
+    
+    @State private var offsetY: CGFloat = 0
+    @State private var scale: CGFloat = 1
+    @State private var opacity: Double = 1
+    @State private var showInfo: Bool = false
+    
+    @State var timerProgress: CGFloat = 0
+    
+    private let deviceHeight: Double = UIScreen.self.main.bounds.height
+    
+    
+    
+    
     @StateObject var vm: EventViewModel
     @StateObject var videoPlayer: VideoPlayerManager = VideoPlayerManager()
     
-    @State var showStory: Bool = false
+    //    @State var showStory: Bool = false
     @State var showGallery: Bool = false
-    @State var selectedStory: String = ""
+    //    @State var selectedStory: String = ""
     @State var selectedGalleryItem: String = ""
     @State var allow3dRotation: Bool = false
-    @State var offsetY: CGRect = .zero
+    //    @State var offsetY: CGRect = .zero
     @State var position: CGRect = .zero
-
+    
     
     
     @State var myDate: Date = Date.now
@@ -34,8 +56,11 @@ struct EventScreen: View {
     @State var selectedVideo: PhotosPickerItem?
     @State var selectedFiles: [PhotosPickerItem] = []
     
+    @State var x: CGFloat = 0
+    @State var y: CGFloat = 0
     
-    @Namespace var storyNamespace
+    
+    //    @Namespace var storyNamespace
     @Namespace var galleryNamespace
     
     
@@ -56,7 +81,7 @@ struct EventScreen: View {
                             Text(vm.event.eventName)
                                 .foregroundStyle(.white)
                                 .font(Typography.medium(size: 16))
-                                
+                            
                             Spacer()
                             Text(vm.event.eventName)
                                 .foregroundStyle(.white)
@@ -71,6 +96,7 @@ struct EventScreen: View {
                     
                     ScrollViewReader{ mainScrollReader in
                         ScrollView(showsIndicators: true) {
+                            
                             VStack(spacing: 0){
                                 
                                 HStack{
@@ -84,6 +110,17 @@ struct EventScreen: View {
                                 }
                                 .padding(.horizontal)
                                 .padding(.vertical, 4)
+                                
+//                                StoryCarousel(
+//                                    storyBundles: $stories,
+//                                    showStory: $showStory,
+//                                    isInternalThumbnailShown: $isInternalThumbnailShown,
+//                                    selectedStory: $selectedStory,
+//                                    thumbnailNamespace: thumbnailNamespace,
+//                                    storyNamespace: storyNamespace
+//                                )
+//                                .zIndex(1)
+                                
                                 
                                 StoryThumbnailView(
                                     storiesList: vm.event.storiesList,
@@ -118,11 +155,12 @@ struct EventScreen: View {
                                     selectedGalleryItem: $selectedGalleryItem,
                                     showGallery: $showGallery
                                 )
+                                .zIndex(0)
                                 .padding(.horizontal)
                             }
-                            .frameReader{ rect in
-                                offsetY = rect
-                            }
+//                            .frameReader{ rect in
+//                                offsetY = rect
+//                            }
                         }
                         
                         .onChange(of: selectedGalleryItem, {
@@ -145,20 +183,42 @@ struct EventScreen: View {
                     
                 }
                 
-                if showStory{
-                    StoryView(
-                        showStory: $showStory,
-                        allow3dRotation: $allow3dRotation,
-                        selectedStory: $selectedStory,
-                        storiesList: vm.event.storiesList,
-                        storyNamespace: storyNamespace
-                    )
-                    .environmentObject(videoPlayer)
-                    .zIndex(1)
-                }
+                                if showStory{
+                                    StoryView(
+                                        showStory: $showStory,
+                                        allow3dRotation: $allow3dRotation,
+                                        selectedStory: $selectedStory,
+                                        storiesList: vm.event.storiesList,
+                                        storyNamespace: storyNamespace
+                                    )
+                                    .environmentObject(videoPlayer)
+                                    .zIndex(1)
+                                }
+                
+                
+//                if showStory {
+//                    
+//                    
+//                    StoryFullScreenViewer(
+//                        storiesBundle: $stories,
+//                        opacity: $opacity,
+//                        showStory: $showStory,
+//                        isInternalThumbnailShown: $isInternalThumbnailShown,
+//                        selectedStory: $selectedStory,
+//                        timerProgress: $timerProgress,
+//                        thumbnailNamespace: thumbnailNamespace,
+//                        storyNamespace: storyNamespace
+//                    )
+//                    
+//                }
+                    
                 
             }
+                
+            
+            
         }
+//        .animation(.interpolatingSpring(duration: 0.08), value: showStory)
         
         
         .overlay(alignment: .top, content: {
@@ -185,7 +245,7 @@ struct EventScreen: View {
                                 .aspectRatio(contentMode: .fit)
                                 .frame(width: 40)
                         }
-                })
+                    })
                 Button(
                     action: {vm.openCamera()},
                     label: {
@@ -201,17 +261,17 @@ struct EventScreen: View {
                                 .aspectRatio(contentMode: .fit)
                                 .frame(width: 40)
                         }
-                })
+                    })
             }
             .padding(.horizontal)
-                .presentationDetents([.fraction(0.2)])
-                .presentationDragIndicator(.visible)
-                .photosPicker(
-                    isPresented: $vm.isPhotoPickerPresented,
-                    selection: $vm.selectedStoryItem,
-                    maxSelectionCount: 1,
-                    matching: .any(of: [.images, .videos])
-                )
+            .presentationDetents([.fraction(0.2)])
+            .presentationDragIndicator(.visible)
+            .photosPicker(
+                isPresented: $vm.isPhotoPickerPresented,
+                selection: $vm.selectedStoryItem,
+                maxSelectionCount: 1,
+                matching: .any(of: [.images, .videos])
+            )
         })
         .onChange(of: vm.selectedStoryItem, { oldValue, newValue in
             if oldValue != newValue {
@@ -232,15 +292,9 @@ struct EventScreen: View {
             
         }
         .onAppear( perform: vm.fetchCustomerEvent)
-        .onAppear {
-            if let url = vm.event.galleryList.first?.publicUrl{
-                print("Photo URL 🔥🔥🔥🔥🔥" + url)
-            }
-        }
-//        .onChange(of: vm.selectedFiles, convertToFileUrlPath)
     }
     
-
+    
     
     
     
@@ -254,10 +308,10 @@ struct EventScreen: View {
     }
     
     private func calculateOpacity() -> CGFloat{
-        if offsetY.minY < 240{
-            let a = 1/20 * ((offsetY.minY - 210) - 5)
-            return 1 - a
-        }
+        //        if offsetY.minY < 240{
+        //            let a = 1/20 * ((offsetY.minY - 210) - 5)
+        //            return 1 - a
+        //        }
         return 0
     }
 }
@@ -268,7 +322,7 @@ struct EventScreen: View {
     RouterView{ router in
         EventScreen(router: router, client: NetworkClient(), eventRepositoryMock: EventRepositoryMock(), galleryRepositoryMock: GalleryRepositoryMock(), eventId: "cp-12345")
     }
-//    UploadprogressBanner(progress: 70, filesUploaded: 1, filesToUpload: 5)
+    //    UploadprogressBanner(progress: 70, filesUploaded: 1, filesToUpload: 5)
 }
 
 
@@ -308,7 +362,7 @@ struct UploadprogressBanner: View {
             }
         }
     }
-
+    
 }
 
 

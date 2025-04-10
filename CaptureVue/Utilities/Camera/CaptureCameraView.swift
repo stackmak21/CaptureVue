@@ -142,8 +142,9 @@ struct CaptureCameraView: View {
                                         .frame(width: 16)
                                         .foregroundStyle(Color.white)
                                         .font(Typography.medium(size: 16))
+                                        .padding()
                                 })
-                            .buttonStyle(PlainButtonStyle())
+                            
                             .frame(maxWidth: .infinity, alignment: .leading)
                             
                             Text("Capture Vue Camera")

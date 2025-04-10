@@ -51,6 +51,12 @@ class SplashViewModel: ObservableObject{
         }
     }
     
+    func navigateToOnBoarding() {
+        router.showScreen(.push) { router in
+            OnBoardingScreen(router: router, client: self.client)
+        }
+    }
+    
     
     func silentLogin(){
         let task = Task{
@@ -59,7 +65,8 @@ class SplashViewModel: ObservableObject{
                 switch loginResponse {
                 case .success(let response):
                     token = response.token
-                    navigateToHome()
+//                    navigateToHome()
+                    navigateToOnBoarding()
                 case .failure(_):
                     navigateToLogin()
                 }

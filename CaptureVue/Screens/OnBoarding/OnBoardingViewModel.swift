@@ -10,10 +10,14 @@ import SwiftfulRouting
 import SwiftUI
 import Combine
 
-@MainActor
-class OnBoardingViewModel: ObservableObject {
+
+class OnBoardingViewModel: BaseViewModel {
+    
+    
     
     @KeychainStorage(.token) var token = ""
+    
+    @Published var isLoading: Bool = false
     
     private let router: AnyRouter
     private var tasks: [Task<Void, Never>] = []

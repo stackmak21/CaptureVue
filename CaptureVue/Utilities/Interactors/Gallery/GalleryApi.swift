@@ -10,6 +10,13 @@ import SwiftUI
 import UniformTypeIdentifiers
 
 
+enum Headers: String{
+    case contentType = "Content-Type"
+    case contentLength = "Content-Length"
+    case xAmzMetaEvent = "x-amz-meta-event"
+    
+}
+
 struct GalleryApi {
     
     private let client: NetworkClient
@@ -39,9 +46,9 @@ struct GalleryApi {
                     url: uploadUrl,
                     httpMethod: .put,
                     headers: [
-                        "Content-Type" : mimeType,
-                        "Content-Length" : fileLength,
-                        "x-amz-meta-event" : eventId
+                        Headers.contentType.rawValue : mimeType,
+                        Headers.contentLength.rawValue : fileLength,
+                        Headers.xAmzMetaEvent.rawValue : eventId
                     ],
                     requestBody: fileData,
                     onUploadProgressUpdate: { onUploadProgressUpdate?($0) },
@@ -58,9 +65,9 @@ struct GalleryApi {
             url: uploadUrl,
             httpMethod: .put,
             headers: [
-                "Content-Type" : mimeType,
-                "Content-Length" : fileLength,
-                "x-amz-meta-event" : eventId
+                Headers.contentType.rawValue : mimeType,
+                Headers.contentLength.rawValue : fileLength,
+                Headers.xAmzMetaEvent.rawValue : eventId
             ],
             requestBody: imageData
         )

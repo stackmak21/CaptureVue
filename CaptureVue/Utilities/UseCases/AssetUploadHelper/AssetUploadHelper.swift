@@ -45,14 +45,14 @@ class AssetUploadHelper{
         await copyLibraryItemsIntoTempFile(selectedFiles)
         let filesToUpload = await getAllPendingUploadFiles()
         self.onUploadProgressUpdate = onUploadProgressUpdate
-        await uploadProccess(token: token, eventId: eventId, section: section, filesToUpload: filesToUpload)
+        await uploadProcess(token: token, eventId: eventId, section: section, filesToUpload: filesToUpload)
     }
     
     func uploadAwsCameraAssets(_ token: String, selectedFiles: [UIImage], eventId: String, section: AssetSectionType, onUploadProgressUpdate: ((Int) -> Void)? = nil) async {
         await copyCameraItemsIntoTempFile(selectedFiles)
         let filesToUpload = await getAllPendingUploadFiles()
         self.onUploadProgressUpdate = onUploadProgressUpdate
-        await uploadProccess(token: token, eventId: eventId, section: section, filesToUpload: filesToUpload)
+        await uploadProcess(token: token, eventId: eventId, section: section, filesToUpload: filesToUpload)
     }
     
     func uploadAwsVideoFile(_ token: String, capturedVideoURL: URL, eventId: String, section: AssetSectionType) async {
@@ -73,7 +73,7 @@ class AssetUploadHelper{
     }
     
     
-    private func uploadProccess(token: String, eventId: String, section: AssetSectionType, filesToUpload: [String]) async {
+    private func uploadProcess(token: String, eventId: String, section: AssetSectionType, filesToUpload: [String]) async {
         for fileName in filesToUpload {
             var thumbnailName: String = ""
             let assetType: GalleryItemType = mimeTypeForPath(path: fileName).hasPrefix("image") ? .photo : .video

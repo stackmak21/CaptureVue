@@ -18,7 +18,10 @@ struct QRCodeScannerScreen: View {
     @State var newRect: CGRect = .zero
     @State var image: UIImage? = nil
     @State var manualInput: Bool = false
-    @Binding var qrString: String? 
+    @State var qrImage: UIImage?
+    @Binding var qrString: String?
+    
+    @Namespace private var namespace
     
     var body: some View {
         ZStack{
@@ -36,52 +39,115 @@ struct QRCodeScannerScreen: View {
                 .background(Color.blue.ignoresSafeArea())
                 .transition(.asymmetric(insertion: .move(edge: .leading), removal: .move(edge: .leading)))
             }else{
-                QRCameraView(session: feed.session, isConnectionEnabled: $isconnectionEnabled, qrRect: $rect, completion: { newRect in
-//                    
-//                    withAnimation(.easeInOut(duration: 2)) {
-//                        self.newRect = newRect
-//                    }
-                })
-                .onAppear{
-                    startFeed()
-                }
-                .onDisappear{
-                    stopFeed()
-                }
-                
-                .onAppear{
-                    feed.cameraManager.getQrFrame { string, rect  in
-                        self.qrString = string
-                        self.rect = rect
-                        stopFeed()
+                GeometryReader{ proxy in
+                    QRCameraView(session: feed.session, isConnectionEnabled: $isconnectionEnabled, qrRect: $rect, completion: { newRect in
+                        
+//                                            withAnimation(.easeInOut(duration: 2)) {
+                        DispatchQueue.main.async {
+                            if !qrIconFocus, rect != .zero && self.newRect != newRect{
+                                self.newRect = newRect
+                                withAnimation {
+                                    qrIconFocus = true
+                                }completion: {
+                                    print("Animation completion called")
+                                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5){
+                                        stopFeed()
+                                        self.newRect = .zero
+                                        presentationMode.wrappedValue.dismiss()
+                                        
+                                    }
+                                }
+                            }
+                        }
+                                               
+//                                            }
+                    })
+                    .overlay(content: {
+                        ZStack{
+                            if let image = qrImage{
+                                Image(uiImage: image)
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fill)
+                                    .frame(width: proxy.size.width, height: proxy.size.height)
+                            }
+                            if qrIconFocus{
+//                                RoundedRectangle(cornerRadius: 8)
+//                                    .stroke(lineWidth: 5)
+//                                    .fill(Color.red)
+//                                Image(uiImage: Asset.Illustrations.image.image)
+//                                    .resizable()
+//                                    .renderingMode(.template)
+//                                    .matchedGeometryEffect(id: "qr_placholder", in: namespace)
+//                                    .foregroundStyle(Color.black)
+                                QRCodeIcon(color: .black)
+                                    .matchedGeometryEffect(id: "qr_placholder", in: namespace)
+                                    .frame(width: newRect.width , height: newRect.height)
+                                    .position(CGPoint(x: newRect.midX , y: newRect.midY ))
+                            }
+                            
+                            if !qrIconFocus{
+//                                RoundedRectangle(cornerRadius: 8)
+//                                    .stroke(lineWidth: 5)
+//                                    .fill(Color.red)
+//                                Image(uiImage: Asset.Illustrations.image.image)
+//                                    .resizable()
+//                                    .renderingMode(.template)
+//                                    .matchedGeometryEffect(id: "qr_placholder", in: namespace)
+//                                    .foregroundStyle(Color.black)
+                                QRCodeIcon(color: .black)
+                                    .matchedGeometryEffect(id: "qr_placholder", in: namespace)
+                                    .frame(width: 200, height: 200)
+                                
+//                                    .if(qrIconFocus){ view in
+//                                        view.position(CGPoint(x: newRect.midX , y: newRect.midY  ))
+//                                    }
+                                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                                //                                .if(!qrIconFocus){ view in
+                                //                                    view.frame(maxWidth: .infinity, maxHeight: .infinity)
+                                //                                }
+                            }
+                        }
+                    })
+                    .onAppear{
+                        startFeed()
                     }
-                }
-//                QRCodeIcon()
-//                    .frame(width: qrIconFocus ? newRect.width : 200 , height: qrIconFocus ? newRect.height : 200)
-//                    .if(qrIconFocus){ view in
-//                        view.position(CGPoint(x: newRect.midX , y: newRect.midY ))
-//                    }
-//                    .if(!qrIconFocus){ view in
-//                        view.frame(maxWidth: .infinity, maxHeight: .infinity)
-//                    }
-//                Button("new screen"){
-//                    withAnimation(.smooth){
+                    .onDisappear{
+                        stopFeed()
+                        qrIconFocus = false
+                    }
+                    
+                    .onAppear{
+                        feed.cameraManager.getQrFrame { string, rect  in
+                            self.rect = rect
+                        }
+                        feed.cameraManager.getImage { image in
+                            qrImage = image
+                        }
+                    }
+                   
+//                    Button("new screen"){
+//                        withAnimation(.smooth){
+//                            
+//                            qrIconFocus.toggle()
+//                        }
 //                        
-//                        manualInput = true
 //                    }
-//                    
-//                }
-//                .frame(maxWidth: .infinity, maxHeight: .infinity)
-                
-                
+//                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    
+                    
+                }
             }
         }
+        .ignoresSafeArea()
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .onChange(of: qrString) { qrCode in
-            if qrCode != nil {
-                presentationMode.wrappedValue.dismiss()
-            }
+        .onChange(of: newRect) { oldValue, newValue in
+            
         }
+//        .onChange(of: qrString) { qrCode in
+//            if qrCode != nil {
+//
+//            }
+//        }
         
             
         

@@ -84,6 +84,9 @@ struct LoginScreen: View {
             .clipShape(RoundedRectangle(cornerRadius: 8))
             .padding()
             .shadow(color: .black.opacity(0.2), radius: 4, x: 2, y: 4)
+            .onAppear{
+                focusedField = .username
+            }
             
             if vm.isLoading {
                 ProgressView()

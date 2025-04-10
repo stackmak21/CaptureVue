@@ -14,10 +14,15 @@ extension QRCameraManager: AVCapturePhotoCaptureDelegate {
     
     
     func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto) {
+        
+    }
+    
+    func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: (any Error)?){
         if let imageData = photo.fileDataRepresentation() {
             onImageCapture?(UIImage(data: imageData)!) // Store the last captured image
         }
     }
+    
 }
 
 
@@ -28,12 +33,17 @@ extension QRCameraManager: AVCaptureMetadataOutputObjectsDelegate{
             return
         }
         
-        if let metaObject = metadataObjects.first {
-            guard let readableObject = metaObject as? AVMetadataMachineReadableCodeObject else { return }
-            guard let scannedCode = readableObject.stringValue else { return }
-            onQRDetected?(scannedCode, readableObject.bounds)
-            print(scannedCode)
-        }
+            if let metaObject = metadataObjects.first {
+                guard let readableObject = metaObject as? AVMetadataMachineReadableCodeObject else { return }
+                guard let scannedCode = readableObject.stringValue else { return }
+                self.onQRDetected?(scannedCode, readableObject.bounds)
+                self.capturePhoto()
+                    self.codeFetched = true
+                print(scannedCode)
+            }
+        
+        
+        
     }
 }
 
@@ -95,6 +105,32 @@ class QRCameraManager: NSObject, ObservableObject{
         }
     }
     
+    func capturePhoto(){
+        
+        sessionQueue.async{
+            var photoSettings = AVCapturePhotoSettings()
+            
+            if self.photoOutput.availablePhotoCodecTypes.contains(.jpeg) {
+                photoSettings = AVCapturePhotoSettings(format: [AVVideoCodecKey: AVVideoCodecType.jpeg])
+            }
+            
+            photoSettings.photoQualityPrioritization = .speed
+            
+            
+            // Preview Photo Settings
+            //        if photoSettings.availablePreviewPhotoPixelFormatTypes.count > 0 {
+            //            photoSettings.previewPhotoFormat = [
+            //                kCVPixelBufferPixelFormatTypeKey : photoSettings.availablePreviewPhotoPixelFormatTypes.first!,
+            //                kCVPixelBufferWidthKey : 1920,
+            //                kCVPixelBufferHeightKey : 1080
+            //            ] as [String: Any]
+            //        }
+            
+            self.photoOutput.capturePhoto(with: photoSettings, delegate: self)
+            
+        }
+    }
+    
 
     
     
@@ -151,6 +187,12 @@ class QRCameraManager: NSObject, ObservableObject{
             qrOutput.setMetadataObjectsDelegate(self, queue: .main)
         }else{
             print("Cannot Add QR Output")
+        }
+        
+        if session.canAddOutput(photoOutput) {
+            session.addOutput(photoOutput)
+        }else{
+            print("Cannot Add Photo Output")
         }
         
         session.commitConfiguration()

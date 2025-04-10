@@ -19,8 +19,5 @@ struct CaptureVueResponseRaw: Codable, Error {
             reason: self.reason ?? ""
         )
     }
-    
-    static let decodeResponseError = CaptureVueResponseRaw(msg: "Capture Vue Error", code: 400, reason: "Reason")
-    
 }
 

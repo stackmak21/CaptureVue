@@ -85,6 +85,7 @@ class EventViewModel: BaseViewModel {
                 router: router,
                 onCapture: { image in
                     self.uploadFiles([image], section: .gallery)
+                    print("imageeeeeeeee")
                 },
                 onVideoCapture: { videoURL in
                     self.uploadVideo(videoURL, section: .story)
