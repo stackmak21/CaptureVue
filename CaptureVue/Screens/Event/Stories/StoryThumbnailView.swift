@@ -34,7 +34,7 @@ struct StoryThumbnailView: View {
                                 .padding(4)
                             if !showStory || selectedStory != story.id{
                                 
-                                ImageLoader(url: story.url)
+                                ImageLoader(url: story.previewImage)
                                     .matchedGeometryEffect(id: story.id, in: storyNamespace)
                                     .frame(width: 76, height: 76)
                                     .clipShape(Circle())

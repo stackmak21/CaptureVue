@@ -15,9 +15,4 @@ abstract_target 'SharedPods' do
     
   end
   
-  # App Clip Target
-  target 'CaptureVueAppClip' do
-    # Additional pods specific to the App Clip can be added here
-    
-  end
 end

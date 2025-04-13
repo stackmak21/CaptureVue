@@ -31,4 +31,16 @@ struct StoryItem: Identifiable{
         self.creator = creator
         self.isSeen = isSeen
     }
+    
+    var previewImage: String {
+        if self.type == .photo {
+            return self.url
+        }else{
+            return self.previewUrl
+        }
+    }
+    
+    var isVideo: Bool {
+        return self.type == .video
+    }
 }

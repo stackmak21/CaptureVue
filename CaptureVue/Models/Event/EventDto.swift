@@ -11,6 +11,7 @@ struct EventDto: Codable, Identifiable {
     let id: String?
     let eventName: String?
     let mainImage: String?
+    let qrCodeImage: String?
     let eventDescription: String?
     let expires: Int64?
     let createdAt: Int64?
@@ -24,6 +25,7 @@ struct EventDto: Codable, Identifiable {
         case id = "eventId"
         case eventName
         case mainImage
+        case qrCodeImage
         case eventDescription
         case expires
         case createdAt
@@ -39,6 +41,7 @@ struct EventDto: Codable, Identifiable {
             id: self.id ?? "",
             eventName: self.eventName ?? "",
             mainImage: self.mainImage ?? "",
+            qrCodeImage: self.qrCodeImage ?? "",
             eventDescription: self.eventDescription ?? "",
             expires: self.expires ?? 0,
             createdAt: self.createdAt ?? 0,

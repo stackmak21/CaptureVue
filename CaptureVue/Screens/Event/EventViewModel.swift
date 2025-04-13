@@ -25,6 +25,7 @@ class EventViewModel: BaseViewModel {
     private let client: NetworkClient
     private let fetchEventUseCase: FetchEventUseCase
     private let assetUploadHelper: AssetUploadHelper
+    private let assetDownloadHelper: AssetDownloadHelper
     
     let eventId: String
     var videoUrl: String = ""
@@ -64,6 +65,7 @@ class EventViewModel: BaseViewModel {
         client: NetworkClient,
         eventRepositoryMock: EventRepositoryContract? = nil,
         galleryRepositoryMock: GalleryRepositoryContract? = nil,
+        downloadRepositoryMock: DownloadRepositoryMock? = nil,
         eventId: String
     ) {
         self.router = router
@@ -71,6 +73,7 @@ class EventViewModel: BaseViewModel {
         self.eventId = eventId
         self.fetchEventUseCase = FetchEventUseCase(client: client, eventRepositoryMock: eventRepositoryMock)
         self.assetUploadHelper = AssetUploadHelper(client: client, galleryRepositoryMock: galleryRepositoryMock)
+        self.assetDownloadHelper = AssetDownloadHelper(client: client, downloadRepositoryMock: downloadRepositoryMock)
     }
     
     deinit {
@@ -84,7 +87,7 @@ class EventViewModel: BaseViewModel {
             CaptureCameraView(
                 router: router,
                 onCapture: { image in
-                    self.uploadFiles([image], section: .gallery)
+                    self.uploadFiles([image], section: .story)
                     print("imageeeeeeeee")
                 },
                 onVideoCapture: { videoURL in
@@ -157,6 +160,14 @@ class EventViewModel: BaseViewModel {
                     section: section
                 )
                 fetchCustomerEvent()
+        }
+        tasks.append(task)
+    }
+    
+    func downloadAsset(assetURL: String, assetType: MediaType){
+        let task = Task{
+            print(#function, Thread.current)
+            await assetDownloadHelper.downloadAsset(assetURL: assetURL, assetType: assetType)
         }
         tasks.append(task)
     }

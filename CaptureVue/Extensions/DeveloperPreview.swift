@@ -22,6 +22,7 @@ class DeveloperPreview {
             id: "cp-12345",
             eventName: "Test event 1",
             mainImage: "https://picsum.photos/804/1009",
+            qrCodeImage: "https://d2ngutvc9hnga2.cloudfront.net/cp-10002/QR_cp-10002.jpg",  // https://d2ngutvc9hnga2.cloudfront.net/cp-10002/QR_cp-10002.jpg
             eventDescription: "Test description 1",
             expires: 1735467926000,
             createdAt: 1730197768000,
@@ -31,14 +32,14 @@ class DeveloperPreview {
             creator: creatorInstance,
             storiesList: [
                 StoryItemDto(id: "075e147b-a701-4eaa-a1a6-b5167a857516", url: "https://picsum.photos/800/1000", previewUrl: "", type: .photo, creator: creatorInstance),
-                StoryItemDto(id: "25b859ef-efd5-42f3-953f-a8a0d963c6fda3", url: "https://stream.mux.com/YiPdTw2SBszeSHknXe015bb00VLnkCbFiqXPK329h00MH4.m3u8", previewUrl: "", type: .photo, creator: creatorInstance),
+                StoryItemDto(id: "25b859ef-efd5-42f3-953f-a8a0d963c6fda3", url: "https://picsum.photos/802/1000", previewUrl: "", type: .photo, creator: creatorInstance),
                 StoryItemDto(id: "672b239c-900e-49cf-9ed4-54f26b073eae", url: "https://picsum.photos/804/1000", previewUrl: "", type: .photo, creator: creatorInstance),
                 StoryItemDto(id: "9371ef4e-2bab-49d5-a35e-7ec1e809e809", url: "https://picsum.photos/806/1000", previewUrl: "", type: .photo, creator: creatorInstance),
                 StoryItemDto(id: "dd2393db-0eba-4dc1-afb9-b6755dc8b90c", url: "https://picsum.photos/803/1000", previewUrl: "", type: .photo, creator: creatorInstance),
                 StoryItemDto(id: "ec3af1c2-0bf3-4eee-be7e-9407695d373d", url: "https://picsum.photos/805/1000", previewUrl: "", type: .photo, creator: creatorInstance),
             ],
             galleryList: [
-                GalleryItemDto(id: "4637ef9d-a3bc-431f-b12a-f5332c27f827", publicUrl: "https://stream.mux.com/YiPdTw2SBszeSHknXe015bb00VLnkCbFiqXPK329h00MH4.m3u8", creatorId: "cpu-12345", createdAt: 1731422089000, eventId: "cp-12345", dataType: .photo, previewUrl: "", customer: creatorInstance),
+                GalleryItemDto(id: "4637ef9d-a3bc-431f-b12a-f5332c27f827", publicUrl: "https://picsum.photos/801/1067", creatorId: "cpu-12345", createdAt: 1731422089000, eventId: "cp-12345", dataType: .photo, previewUrl: "", customer: creatorInstance),
                 GalleryItemDto(id: "4637ef9d-a3bc-431f-b12a-f5hgjc27f827", publicUrl: "https://picsum.photos/802/1002", creatorId: "cpu-12345", createdAt: 1731422089000, eventId: "cp-12345", dataType: .photo, previewUrl: "", customer: creatorInstance),
                 GalleryItemDto(id: "4637ef9d-a3bc-431f-b12a-f5qw3c27f827", publicUrl: "https://picsum.photos/802/1003", creatorId: "cpu-12345", createdAt: 1731422089000, eventId: "cp-12345", dataType: .photo, previewUrl: "", customer: creatorInstance),
                 GalleryItemDto(id: "4637ef9d-a3bc-431f-b12a-f589kc27f827", publicUrl: "https://picsum.photos/802/1004", creatorId: "cpu-12345", createdAt: 1731422089000, eventId: "cp-12345", dataType: .photo, previewUrl: "", customer: creatorInstance),

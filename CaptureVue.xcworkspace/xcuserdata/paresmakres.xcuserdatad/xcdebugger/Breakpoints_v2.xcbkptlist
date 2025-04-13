@@ -304,8 +304,8 @@
             filePath = "CaptureVue/Utilities/Networking/NetworkClient.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "54"
-            endingLineNumber = "54"
+            startingLineNumber = "57"
+            endingLineNumber = "57"
             landmarkName = "execute(url:authToken:queryItems:urlScheme:urlHost:urlPort:httpMethod:headers:timeInterval:requestBody:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -352,8 +352,8 @@
             filePath = "CaptureVue/Utilities/Networking/NetworkClient.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "55"
-            endingLineNumber = "55"
+            startingLineNumber = "58"
+            endingLineNumber = "58"
             landmarkName = "execute(url:authToken:queryItems:urlScheme:urlHost:urlPort:httpMethod:headers:timeInterval:requestBody:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -368,8 +368,8 @@
             filePath = "CaptureVue/Screens/Event/EventViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "32"
-            endingLineNumber = "32"
+            startingLineNumber = "33"
+            endingLineNumber = "33"
             landmarkName = "EventViewModel"
             landmarkType = "3">
          </BreakpointContent>
@@ -400,9 +400,9 @@
             filePath = "CaptureVue/Screens/Event/EventViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "65"
-            endingLineNumber = "65"
-            landmarkName = "init(router:client:eventRepositoryMock:galleryRepositoryMock:eventId:)"
+            startingLineNumber = "66"
+            endingLineNumber = "66"
+            landmarkName = "init(router:client:eventRepositoryMock:galleryRepositoryMock:downloadRepositoryMock:eventId:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -448,9 +448,9 @@
             filePath = "CaptureVue/Screens/Event/EventViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "64"
-            endingLineNumber = "64"
-            landmarkName = "init(router:client:eventRepositoryMock:galleryRepositoryMock:eventId:)"
+            startingLineNumber = "65"
+            endingLineNumber = "65"
+            landmarkName = "init(router:client:eventRepositoryMock:galleryRepositoryMock:downloadRepositoryMock:eventId:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -480,8 +480,8 @@
             filePath = "CaptureVue/Utilities/FileManager/FileManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "69"
-            endingLineNumber = "69"
+            startingLineNumber = "70"
+            endingLineNumber = "70"
             landmarkName = "deleteFile(fileName:folderName:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -525,9 +525,9 @@
             filePath = "CaptureVue/Screens/Event/EventViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "66"
-            endingLineNumber = "66"
-            landmarkName = "init(router:client:eventRepositoryMock:galleryRepositoryMock:eventId:)"
+            startingLineNumber = "67"
+            endingLineNumber = "67"
+            landmarkName = "init(router:client:eventRepositoryMock:galleryRepositoryMock:downloadRepositoryMock:eventId:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -593,6 +593,35 @@
             endingLineNumber = "29"
             landmarkName = "init(photoOutput:videoDeviceInput:onStartCapturing:onCapture:)"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.SymbolicBreakpoint">
+         <BreakpointContent
+            uuid = "F1694523-5FBF-455D-A0FA-E10CE43A98C2"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            symbolName = ""
+            moduleName = "">
+            <Locations>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "7DC14BFE-B5D2-45AD-96D4-ABFA9CB5685A"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CaptureVue/Utilities/Images/ImageLoader.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "8"
+            endingLineNumber = "8"
+            landmarkName = "unknown"
+            landmarkType = "0">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

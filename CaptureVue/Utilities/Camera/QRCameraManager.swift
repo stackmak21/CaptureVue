@@ -92,7 +92,7 @@ class QRCameraManager: NSObject, ObservableObject{
                 }
                 
                 
-                
+                self.session.removeOutput(self.photoOutput)
                 self.session.removeOutput(self.qrOutput)
                 self.session.stopRunning()
             }

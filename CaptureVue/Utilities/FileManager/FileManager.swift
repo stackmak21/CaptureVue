@@ -66,6 +66,7 @@ actor LocalFileManager {
     
     func deleteFile(fileName: String, folderName: String) -> Bool {
         do{
+            print(#function, Thread.current)
             guard let url = getUrlForFile(fileName: fileName, folderName: folderName) else { return false }
             try FileManager.default.removeItem(atPath: url.path)
             return true

@@ -36,6 +36,8 @@ struct EventScreen: View {
     private let deviceHeight: Double = UIScreen.self.main.bounds.height
     
     
+    @State var isQRCodeSheetPresented: Bool = false
+    
     
     
     @StateObject var vm: EventViewModel
@@ -59,13 +61,15 @@ struct EventScreen: View {
     @State var x: CGFloat = 0
     @State var y: CGFloat = 0
     
+    @State var imageToUpload: UIImage?
+    
     
     //    @Namespace var storyNamespace
     @Namespace var galleryNamespace
     
     
-    init(router: AnyRouter, client: NetworkClient, eventRepositoryMock: EventRepositoryContract? = nil, galleryRepositoryMock: GalleryRepositoryContract? = nil, eventId: String ) {
-        _vm = StateObject(wrappedValue: EventViewModel(router: router, client: client, eventRepositoryMock: eventRepositoryMock , galleryRepositoryMock: galleryRepositoryMock ,eventId: eventId ))
+    init(router: AnyRouter, client: NetworkClient, eventRepositoryMock: EventRepositoryContract? = nil, galleryRepositoryMock: GalleryRepositoryContract? = nil, downloadRepositoryMock: DownloadRepositoryMock? = nil, eventId: String ) {
+        _vm = StateObject(wrappedValue: EventViewModel(router: router, client: client, eventRepositoryMock: eventRepositoryMock , galleryRepositoryMock: galleryRepositoryMock, downloadRepositoryMock: downloadRepositoryMock,eventId: eventId ))
     }
     
     var body: some View {
@@ -74,8 +78,12 @@ struct EventScreen: View {
                 VStack(spacing: 0){
                     ImageLoader(
                         url: vm.event.mainImage,
-                        height: 260
+                        height: 260,
+                        capturedImage: { imageToUpload = $0 }
                     )
+                    .onAppear{
+                        ImagePrefetcher.instance.startPrefetching(eventID: vm.eventId, urls: [vm.event.qrCodeImage])
+                    }
                     .overlay {
                         HStack{
                             Text(vm.event.eventName)
@@ -83,11 +91,22 @@ struct EventScreen: View {
                                 .font(Typography.medium(size: 16))
                             
                             Spacer()
-                            Text(vm.event.eventName)
-                                .foregroundStyle(.white)
-                                .font(Typography.medium(size: 16))
+                            Button(
+                                action: {
+//                                    let imageSaver = ImageSaver()
+//                                    if let imagetoUpload = imageToUpload{
+//                                        imageSaver.writeToPhotoAlbum(image: imagetoUpload)
+//                                    }
+                                },
+                                label: {
+                                    Image(systemName: "square.and.arrow.down.on.square.fill")
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fit)
+                                        .frame(width: 20)
+                                        .foregroundStyle(Color.white)
+                                }
+                            )
                         }
-                        .opacity(calculateOpacity())
                         .padding(.horizontal)
                         .padding(.vertical, 4)
                         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
@@ -97,7 +116,7 @@ struct EventScreen: View {
                     ScrollViewReader{ mainScrollReader in
                         ScrollView(showsIndicators: true) {
                             
-                            VStack(spacing: 0){
+                            LazyVStack(spacing: 0){
                                 
                                 HStack{
                                     Text(vm.event.eventName)
@@ -106,6 +125,18 @@ struct EventScreen: View {
                                             position = rect
                                         }
                                     Spacer()
+                                    
+                                    Button {
+                                        isQRCodeSheetPresented = true
+                                    } label: {
+                                        Image(systemName: "qrcode.viewfinder")
+                                            .resizable()
+                                            .aspectRatio(contentMode: .fit)
+                                            .frame(width: 22)
+                                            .foregroundStyle(Color.black)
+                                    }
+
+                                    
                                     
                                 }
                                 .padding(.horizontal)
@@ -168,12 +199,95 @@ struct EventScreen: View {
                         })
                     }
                 }
+                .sheet(isPresented: $isQRCodeSheetPresented, content: {
+                    ZStack{
+                        Color.gray.opacity(0.05).ignoresSafeArea()
+                            
+                            
+                        VStack{
+                            ImageLoader(url: vm.event.qrCodeImage)
+                                .frame(width: 120, height: 120)
+                                .presentationDetents([.medium])
+                                .presentationDragIndicator(.visible)
+                            
+                            ZStack{
+                                
+                                HStack{
+                                    Text(verbatim: "https://capturevue.com/event/\(vm.eventId)")
+                                        .foregroundStyle(Color.black)
+                                        .padding(EdgeInsets(top: 16, leading: 10, bottom: 16, trailing: 10))
+                                    Spacer()
+                                }
+                                .background {
+                                    RoundedRectangle(cornerRadius: 8)
+                                        .stroke(lineWidth: 1)
+                                        .fill(Color.gray)
+                                }
+                                .overlay(content: {
+                                    Button(
+                                        action: {},
+                                        label: {
+                                            Image(systemName: "document.on.document.fill")
+                                                .foregroundStyle(Color.black)
+                                                .font(Typography.medium(size: 14))
+                                        }
+                                    )
+                                    .padding(.trailing, 10)
+                                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .trailing)
+                                })
+                                .padding()
+                                
+                            }
+                            .frame(maxWidth: .infinity)
+                            Button(
+                                action: {},
+                                label: {
+                                    Text("Download")
+                                        .font(Typography.medium(size: 14))
+                                        .foregroundStyle(Color.white)
+                                        .frame(maxWidth: .infinity)
+                                        .padding(EdgeInsets(top: 16, leading: 10, bottom: 16, trailing: 10))
+                                        .background{
+                                            RoundedRectangle(cornerRadius: 8)
+                                                .foregroundStyle(Color.black)
+                                            
+                                        }
+                                        .padding(.horizontal, 10)
+                                }
+                            )
+                            .buttonStyle(.plain)
+                            Button(
+                                action: {
+
+                                },
+                                label: {
+                                    Text("Share")
+                                        .font(Typography.medium(size: 14))
+                                        .foregroundStyle(Color.white)
+                                        .frame(maxWidth: .infinity)
+                                        .padding(EdgeInsets(top: 16, leading: 10, bottom: 16, trailing: 10))
+                                        .background{
+                                            RoundedRectangle(cornerRadius: 8)
+                                                .foregroundStyle(Color.black)
+                                            
+                                        }
+                                        .padding(.horizontal, 10)
+                                }
+                            )
+                            .buttonStyle(.plain)
+                        }
+                    }
+                })
                 .ignoresSafeArea()
+                
                 
                 
                 if showGallery{
                     GalleryView(
                         galleryList: vm.event.galleryList,
+                        onDownloadClick: {assetURL, type in
+                            vm.downloadAsset(assetURL: assetURL, assetType: type)
+                        },
                         galleryNamespace: galleryNamespace,
                         showGallery: $showGallery,
                         selectedGalleryItem: $selectedGalleryItem
@@ -320,7 +434,7 @@ struct EventScreen: View {
 #Preview {
     
     RouterView{ router in
-        EventScreen(router: router, client: NetworkClient(), eventRepositoryMock: EventRepositoryMock(), galleryRepositoryMock: GalleryRepositoryMock(), eventId: "cp-12345")
+        EventScreen(router: router, client: NetworkClient(), eventRepositoryMock: EventRepositoryMock(), galleryRepositoryMock: GalleryRepositoryMock(), downloadRepositoryMock: DownloadRepositoryMock(), eventId: "cp-12345")
     }
     //    UploadprogressBanner(progress: 70, filesUploaded: 1, filesToUpload: 5)
 }

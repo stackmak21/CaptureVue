@@ -8,25 +8,36 @@
 import SwiftUI
 import Kingfisher
 
+
 struct ImageLoader: View {
     let url: String
     let width: CGFloat?
     let height: CGFloat?
     
+    let capturedImage: ((UIImage) -> Void)?
+    
     init(
         url: String,
         width: CGFloat? = nil,
-        height: CGFloat? = nil
+        height: CGFloat? = nil,
+        capturedImage: ((UIImage) -> Void)? = nil
     ) {
         self.url = url
         self.width = width
         self.height = height
+        self.capturedImage = capturedImage
     }
     
     var body: some View {
         ZStack{
             if let urlValue = URL(string: url) {
                 KFImage(urlValue)
+                    .onSuccess({ image in
+                        if let cgImage = image.image.cgImage{
+                            let image = UIImage(cgImage: cgImage)
+                            capturedImage?(image)
+                        }
+                    })
                     .resizable()
                     .placeholder{
                         ProgressView()

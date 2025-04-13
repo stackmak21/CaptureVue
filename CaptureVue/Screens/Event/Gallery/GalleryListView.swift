@@ -28,22 +28,31 @@ struct GalleryListView: View {
                         .frame(height: 120)
                     if !showGallery || selectedGalleryItem != galleryItem.id{
                         GeometryReader{ geo in
-                            ImageLoader(url: galleryItem.previewImage)
-                                .matchedGeometryEffect(id: galleryItem.id, in: galleryNamespace)
-                                .frame(width: geo.size.width, height: 120)
-                                .clipped()
-                                .clipShape(RoundedRectangle(cornerRadius: 4))
-                                .padding(1)
-                                .background(
-                                    RoundedRectangle(cornerRadius: 5)
-                                        .fill(Color.black.opacity(0.6))
-                                )
-                                .onTapGesture {
-                                    selectedGalleryItem = galleryItem.id
-                                    withAnimation(.easeInOut(duration: 0.1)){
-                                        showGallery.toggle()
-                                    }
+                            ZStack{
+                                ImageLoader(url: galleryItem.previewImage)
+                                    .matchedGeometryEffect(id: galleryItem.id, in: galleryNamespace)
+                                    .frame(width: geo.size.width, height: 120)
+                                    .clipped()
+                                    .clipShape(RoundedRectangle(cornerRadius: 4))
+                                    .padding(1)
+                                    .background(
+                                        RoundedRectangle(cornerRadius: 5)
+                                            .fill(Color.black.opacity(0.6))
+                                    )
+                                    
+                                if galleryItem.isVideo{
+                                    Image(systemName: "play.circle.fill")
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fit)
+                                        .frame(width: 40)
                                 }
+                            }
+                            .onTapGesture {
+                                selectedGalleryItem = galleryItem.id
+                                withAnimation(.easeInOut(duration: 0.1)){
+                                    showGallery.toggle()
+                                }
+                            }
                         }
                     }
                 }

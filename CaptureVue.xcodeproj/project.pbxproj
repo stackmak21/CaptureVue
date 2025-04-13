@@ -27,8 +27,6 @@
 		F953B2652CD2E9E00058C2BD /* QRCameraManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F953B2642CD2E9E00058C2BD /* QRCameraManager.swift */; };
 		F953B2672CD3CDE20058C2BD /* PermissionAlertStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = F953B2662CD3CDE20058C2BD /* PermissionAlertStatus.swift */; };
 		F953B2692CD6047D0058C2BD /* QRCodeIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = F953B2682CD6047D0058C2BD /* QRCodeIcon.swift */; };
-		F966BA652CBD91B6000863F2 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = F966BA642CBD91B6000863F2 /* FirebaseAnalytics */; };
-		F966BA672CBD91B6000863F2 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = F966BA662CBD91B6000863F2 /* FirebaseCrashlytics */; };
 		F96982F32CF31B4E00CC3C55 /* StoryThumbnailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F96982F22CF31B4E00CC3C55 /* StoryThumbnailView.swift */; };
 		F96982F52CF31CA800CC3C55 /* StoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F96982F42CF31CA800CC3C55 /* StoryView.swift */; };
 		F96982FA2CF3530D00CC3C55 /* GalleryListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F96982F92CF3530D00CC3C55 /* GalleryListView.swift */; };
@@ -38,6 +36,17 @@
 		F96983062CF63E5A00CC3C55 /* VideoPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F96983052CF63E5A00CC3C55 /* VideoPlayerView.swift */; };
 		F96A6D4E2CC1B9A3001C1E85 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = F96A6D4D2CC1B9A3001C1E85 /* Kingfisher */; };
 		F980ED0E2D71F5A7003D8CAC /* UploadThumbnailUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F980ED0D2D71F5A7003D8CAC /* UploadThumbnailUseCase.swift */; };
+		F9954A492DA7C0D8007E6590 /* GalleryVideoPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9954A482DA7C0D8007E6590 /* GalleryVideoPlayer.swift */; };
+		F9954A4B2DA8322C007E6590 /* ImageSaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9954A4A2DA8322B007E6590 /* ImageSaver.swift */; };
+		F9954A4E2DA8F4F9007E6590 /* AssetDownloadHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9954A4D2DA8F4F9007E6590 /* AssetDownloadHelper.swift */; };
+		F9954A522DA8F545007E6590 /* DownloadRepositoryContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9954A512DA8F545007E6590 /* DownloadRepositoryContract.swift */; };
+		F9954A542DA8F57F007E6590 /* DownloadAssetUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9954A532DA8F57F007E6590 /* DownloadAssetUseCase.swift */; };
+		F9954A592DA8F62B007E6590 /* DownloadRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9954A582DA8F62B007E6590 /* DownloadRepository.swift */; };
+		F9954A5B2DA8F65D007E6590 /* DownloadApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9954A5A2DA8F65D007E6590 /* DownloadApi.swift */; };
+		F9954A5D2DA8F66A007E6590 /* DownloadRepositoryMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9954A5C2DA8F66A007E6590 /* DownloadRepositoryMock.swift */; };
+		F9954A5F2DA9050D007E6590 /* VideoSaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9954A5E2DA9050D007E6590 /* VideoSaver.swift */; };
+		F9954A612DA9A534007E6590 /* SwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9954A602DA9A534007E6590 /* SwiftUIView.swift */; };
+		F9954A642DABADA2007E6590 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9954A632DABADA2007E6590 /* Logger.swift */; };
 		F99772252D4CCFEE00D14332 /* SwipeBackGestures.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99772242D4CCFEE00D14332 /* SwipeBackGestures.swift */; };
 		F997722E2D5490ED00D14332 /* ValidateEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = F997722D2D5490ED00D14332 /* ValidateEvent.swift */; };
 		F99772302D54912F00D14332 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = F997722F2D54912F00D14332 /* Event.swift */; };
@@ -147,22 +156,7 @@
 		F9F306262D44FC8000E41995 /* CreateEventViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F306232D44FC8000E41995 /* CreateEventViewModel.swift */; };
 		F9F306272D44FC8000E41995 /* CreateEventScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F306222D44FC8000E41995 /* CreateEventScreen.swift */; };
 		F9F306292D4651A500E41995 /* CreateEventResponseDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F306282D4651A500E41995 /* CreateEventResponseDto.swift */; };
-		F9F3062C2D46E85300E41995 /* MuxUploadSDK in Frameworks */ = {isa = PBXBuildFile; productRef = F9F3062B2D46E85300E41995 /* MuxUploadSDK */; };
-		F9F3062F2D46F54500E41995 /* MuxUploadSdk.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F3062E2D46F54500E41995 /* MuxUploadSdk.swift */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		F9A562622CBB9DDF00634C7A /* Embed App Clips */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "$(CONTENTS_FOLDER_PATH)/AppClips";
-			dstSubfolderSpec = 16;
-			files = (
-			);
-			name = "Embed App Clips";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		2D9E3592D2DD2BA8C1AA897F /* Pods_SharedPods_CaptureVueAppClip.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SharedPods_CaptureVueAppClip.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -197,6 +191,17 @@
 		F96983012CF5207C00CC3C55 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		F96983052CF63E5A00CC3C55 /* VideoPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerView.swift; sourceTree = "<group>"; };
 		F980ED0D2D71F5A7003D8CAC /* UploadThumbnailUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadThumbnailUseCase.swift; sourceTree = "<group>"; };
+		F9954A482DA7C0D8007E6590 /* GalleryVideoPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryVideoPlayer.swift; sourceTree = "<group>"; };
+		F9954A4A2DA8322B007E6590 /* ImageSaver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSaver.swift; sourceTree = "<group>"; };
+		F9954A4D2DA8F4F9007E6590 /* AssetDownloadHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetDownloadHelper.swift; sourceTree = "<group>"; };
+		F9954A512DA8F545007E6590 /* DownloadRepositoryContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadRepositoryContract.swift; sourceTree = "<group>"; };
+		F9954A532DA8F57F007E6590 /* DownloadAssetUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadAssetUseCase.swift; sourceTree = "<group>"; };
+		F9954A582DA8F62B007E6590 /* DownloadRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadRepository.swift; sourceTree = "<group>"; };
+		F9954A5A2DA8F65D007E6590 /* DownloadApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadApi.swift; sourceTree = "<group>"; };
+		F9954A5C2DA8F66A007E6590 /* DownloadRepositoryMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadRepositoryMock.swift; sourceTree = "<group>"; };
+		F9954A5E2DA9050D007E6590 /* VideoSaver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoSaver.swift; sourceTree = "<group>"; };
+		F9954A602DA9A534007E6590 /* SwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIView.swift; sourceTree = "<group>"; };
+		F9954A632DABADA2007E6590 /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		F99772242D4CCFEE00D14332 /* SwipeBackGestures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeBackGestures.swift; sourceTree = "<group>"; };
 		F997722D2D5490ED00D14332 /* ValidateEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidateEvent.swift; sourceTree = "<group>"; };
 		F997722F2D54912F00D14332 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
@@ -313,7 +318,6 @@
 		F9F306232D44FC8000E41995 /* CreateEventViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateEventViewModel.swift; sourceTree = "<group>"; };
 		F9F306242D44FC8000E41995 /* CreateEventInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateEventInteractor.swift; sourceTree = "<group>"; };
 		F9F306282D4651A500E41995 /* CreateEventResponseDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateEventResponseDto.swift; sourceTree = "<group>"; };
-		F9F3062E2D46F54500E41995 /* MuxUploadSdk.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MuxUploadSdk.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -323,9 +327,6 @@
 			files = (
 				F9F306142D42912F00E41995 /* KeychainSwift in Frameworks */,
 				F9A561F52CB5C34E00634C7A /* SwiftfulRouting in Frameworks */,
-				F9F3062C2D46E85300E41995 /* MuxUploadSDK in Frameworks */,
-				F966BA672CBD91B6000863F2 /* FirebaseCrashlytics in Frameworks */,
-				F966BA652CBD91B6000863F2 /* FirebaseAnalytics in Frameworks */,
 				F909281B2DA2637A0074FC57 /* SwiftStoriesKit in Frameworks */,
 				699E42A99FF6384630584121 /* Pods_SharedPods_CaptureVue.framework in Frameworks */,
 				F96A6D4E2CC1B9A3001C1E85 /* Kingfisher in Frameworks */,
@@ -383,15 +384,15 @@
 		F9503AC82CD6C5E000DDD4F0 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				F9954A622DABAD92007E6590 /* Logger */,
 				F909281C2DA384AD0074FC57 /* NotificationCenter */,
 				F99773DB2D6A8EE600D14332 /* FileManager */,
+				F997737C2D67957A00D14332 /* Interactors */,
 				F99773D32D6A7C1000D14332 /* UseCases */,
 				F99773B62D69195400D14332 /* SectionItem */,
 				F99773B12D68CA7B00D14332 /* BaseViewModel */,
-				F997737C2D67957A00D14332 /* Interactors */,
 				F997736B2D565A8800D14332 /* TaskManager */,
 				F99772222D4CCFD700D14332 /* SwipeBackGestures */,
-				F9F3062D2D46F50500E41995 /* Mux SDK */,
 				F9F3060F2D41A14900E41995 /* Keychain */,
 				F9A9E0832CE5638E003DB166 /* Images */,
 				F927D19C2CF1F36300EB7650 /* Cache */,
@@ -461,6 +462,8 @@
 			children = (
 				F96982FB2CF3537B00CC3C55 /* GalleryView.swift */,
 				F96982F92CF3530D00CC3C55 /* GalleryListView.swift */,
+				F9954A482DA7C0D8007E6590 /* GalleryVideoPlayer.swift */,
+				F9954A602DA9A534007E6590 /* SwiftUIView.swift */,
 			);
 			path = Gallery;
 			sourceTree = "<group>";
@@ -468,10 +471,47 @@
 		F96982FE2CF5201100CC3C55 /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				F953B24B2CC8274B0058C2BD /* OnBoarding */,
 				F96982FF2CF5203500CC3C55 /* LoginScreen.swift */,
 				F96983012CF5207C00CC3C55 /* LoginViewModel.swift */,
 			);
 			path = Login;
+			sourceTree = "<group>";
+		};
+		F9954A4C2DA8F4E1007E6590 /* AssetDownloadHelper */ = {
+			isa = PBXGroup;
+			children = (
+				F9954A4D2DA8F4F9007E6590 /* AssetDownloadHelper.swift */,
+				F9954A4F2DA8F511007E6590 /* Download */,
+			);
+			path = AssetDownloadHelper;
+			sourceTree = "<group>";
+		};
+		F9954A4F2DA8F511007E6590 /* Download */ = {
+			isa = PBXGroup;
+			children = (
+				F9954A532DA8F57F007E6590 /* DownloadAssetUseCase.swift */,
+			);
+			path = Download;
+			sourceTree = "<group>";
+		};
+		F9954A552DA8F611007E6590 /* Download */ = {
+			isa = PBXGroup;
+			children = (
+				F9954A512DA8F545007E6590 /* DownloadRepositoryContract.swift */,
+				F9954A582DA8F62B007E6590 /* DownloadRepository.swift */,
+				F9954A5A2DA8F65D007E6590 /* DownloadApi.swift */,
+				F9954A5C2DA8F66A007E6590 /* DownloadRepositoryMock.swift */,
+			);
+			path = Download;
+			sourceTree = "<group>";
+		};
+		F9954A622DABAD92007E6590 /* Logger */ = {
+			isa = PBXGroup;
+			children = (
+				F9954A632DABADA2007E6590 /* Logger.swift */,
+			);
+			path = Logger;
 			sourceTree = "<group>";
 		};
 		F99772222D4CCFD700D14332 /* SwipeBackGestures */ = {
@@ -539,6 +579,7 @@
 		F997737C2D67957A00D14332 /* Interactors */ = {
 			isa = PBXGroup;
 			children = (
+				F9954A552DA8F611007E6590 /* Download */,
 				F99773BF2D6929E300D14332 /* Authentication */,
 				F997739B2D6868CF00D14332 /* Gallery */,
 				F997738E2D67D63600D14332 /* Event */,
@@ -660,6 +701,7 @@
 		F99773D32D6A7C1000D14332 /* UseCases */ = {
 			isa = PBXGroup;
 			children = (
+				F9954A4C2DA8F4E1007E6590 /* AssetDownloadHelper */,
 				F99773EE2D6F2B3200D14332 /* AssetUploadHelper */,
 				F99773D42D6A7C7C00D14332 /* Authentication */,
 				F99773D52D6A7C8600D14332 /* Gallery */,
@@ -832,7 +874,6 @@
 			children = (
 				F9A5623F2CBA8D6400634C7A /* Splash */,
 				F96982FE2CF5201100CC3C55 /* Login */,
-				F953B24B2CC8274B0058C2BD /* OnBoarding */,
 				F9F306152D42AC5E00E41995 /* Home */,
 				F9F306302D47D67600E41995 /* Event */,
 				F9F3061E2D437E8300E41995 /* CreateEvent */,
@@ -923,6 +964,8 @@
 		F9A9E0832CE5638E003DB166 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				F9954A5E2DA9050D007E6590 /* VideoSaver.swift */,
+				F9954A4A2DA8322B007E6590 /* ImageSaver.swift */,
 				F9A9E0842CE563AA003DB166 /* ImageLoader.swift */,
 				F9A9E0862CE564F1003DB166 /* ImagePrefetcher.swift */,
 				F9A9E0A92CEF8C7F003DB166 /* GalleryItemView.swift */,
@@ -958,14 +1001,6 @@
 			path = CreateEvent;
 			sourceTree = "<group>";
 		};
-		F9F3062D2D46F50500E41995 /* Mux SDK */ = {
-			isa = PBXGroup;
-			children = (
-				F9F3062E2D46F54500E41995 /* MuxUploadSdk.swift */,
-			);
-			path = "Mux SDK";
-			sourceTree = "<group>";
-		};
 		F9F306302D47D67600E41995 /* Event */ = {
 			isa = PBXGroup;
 			children = (
@@ -989,8 +1024,6 @@
 				F9A561DE2CB5BD5E00634C7A /* Sources */,
 				F9A561DF2CB5BD5E00634C7A /* Frameworks */,
 				F9A561E02CB5BD5E00634C7A /* Resources */,
-				F9A562622CBB9DDF00634C7A /* Embed App Clips */,
-				F966BA622CBD9095000863F2 /* Upload dSYMs to Firebase Crashlytics */,
 			);
 			buildRules = (
 			);
@@ -999,11 +1032,8 @@
 			name = CaptureVue;
 			packageProductDependencies = (
 				F9A561F42CB5C34E00634C7A /* SwiftfulRouting */,
-				F966BA642CBD91B6000863F2 /* FirebaseAnalytics */,
-				F966BA662CBD91B6000863F2 /* FirebaseCrashlytics */,
 				F96A6D4D2CC1B9A3001C1E85 /* Kingfisher */,
 				F9F306132D42912F00E41995 /* KeychainSwift */,
-				F9F3062B2D46E85300E41995 /* MuxUploadSDK */,
 				F909281A2DA2637A0074FC57 /* SwiftStoriesKit */,
 			);
 			productName = CaptureVue;
@@ -1037,10 +1067,8 @@
 			mainGroup = F9A561D92CB5BD5E00634C7A;
 			packageReferences = (
 				F9A561F32CB5C34E00634C7A /* XCRemoteSwiftPackageReference "SwiftfulRouting" */,
-				F966BA632CBD91B6000863F2 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				F96A6D4C2CC1B9A3001C1E85 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				F9F306122D42912F00E41995 /* XCRemoteSwiftPackageReference "keychain-swift" */,
-				F9F3062A2D46E85300E41995 /* XCRemoteSwiftPackageReference "swift-upload-sdk" */,
 				F90928192DA2637A0074FC57 /* XCRemoteSwiftPackageReference "SwiftStoriesKit" */,
 			);
 			productRefGroup = F9A561E32CB5BD5E00634C7A /* Products */;
@@ -1094,30 +1122,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		F966BA622CBD9095000863F2 /* Upload dSYMs to Firebase Crashlytics */ = {
-			isa = PBXShellScriptBuildPhase;
-			alwaysOutOfDate = 1;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}",
-				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${PRODUCT_NAME}",
-				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Info.plist",
-				"$(TARGET_BUILD_DIR)/$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/GoogleService-Info.plist",
-				"$(TARGET_BUILD_DIR)/$(EXECUTABLE_PATH)",
-			);
-			name = "Upload dSYMs to Firebase Crashlytics";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"${BUILD_DIR%/Build/*}/SourcePackages/checkouts/firebase-ios-sdk/Crashlytics/run\"\n";
-		};
 		F9A561F62CB5D49F00634C7A /* SwiftGen */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
@@ -1159,9 +1163,13 @@
 				F9A5622F2CB71B0500634C7A /* Fonts.swift in Sources */,
 				F99773E52D6E28FB00D14332 /* GetAwsDirectUploadUrlUseCase.swift in Sources */,
 				F99772302D54912F00D14332 /* Event.swift in Sources */,
+				F9954A4E2DA8F4F9007E6590 /* AssetDownloadHelper.swift in Sources */,
 				F99773CD2D69BC3C00D14332 /* CreateEventResponse.swift in Sources */,
 				F96982F32CF31B4E00CC3C55 /* StoryThumbnailView.swift in Sources */,
+				F9954A492DA7C0D8007E6590 /* GalleryVideoPlayer.swift in Sources */,
+				F9954A592DA8F62B007E6590 /* DownloadRepository.swift in Sources */,
 				F99773F62D6F6D4200D14332 /* DeleteTempFileUseCase.swift in Sources */,
+				F9954A5D2DA8F66A007E6590 /* DownloadRepositoryMock.swift in Sources */,
 				F96982FC2CF3537B00CC3C55 /* GalleryView.swift in Sources */,
 				F99773B82D69196700D14332 /* SectionItem.swift in Sources */,
 				F997722E2D5490ED00D14332 /* ValidateEvent.swift in Sources */,
@@ -1182,6 +1190,8 @@
 				F9A9E0852CE563AA003DB166 /* ImageLoader.swift in Sources */,
 				F927D19E2CF1F37000EB7650 /* CacheManager.swift in Sources */,
 				F927D19B2CF1B01500EB7650 /* VideoPlayerManager.swift in Sources */,
+				F9954A4B2DA8322C007E6590 /* ImageSaver.swift in Sources */,
+				F9954A5F2DA9050D007E6590 /* VideoSaver.swift in Sources */,
 				F93A1DAA2D9FEA2500636322 /* CaptureVideoProccessor.swift in Sources */,
 				F9A9E08D2CE67432003DB166 /* DateExtensions.swift in Sources */,
 				F99773942D67D6C000D14332 /* EventRepositoryContract.swift in Sources */,
@@ -1210,7 +1220,7 @@
 				F99773DD2D6A8EF500D14332 /* FileManager.swift in Sources */,
 				F99773E12D6E266400D14332 /* PrepareUploadData.swift in Sources */,
 				F99773B32D68CE0300D14332 /* BaseViewModel.swift in Sources */,
-				F9F3062F2D46F54500E41995 /* MuxUploadSdk.swift in Sources */,
+				F9954A612DA9A534007E6590 /* SwiftUIView.swift in Sources */,
 				F99773752D66309800D14332 /* LoginResponse.swift in Sources */,
 				F9A9E0752CE2AF77003DB166 /* EventDto.swift in Sources */,
 				F99772252D4CCFEE00D14332 /* SwipeBackGestures.swift in Sources */,
@@ -1231,6 +1241,7 @@
 				F942636D2D7F53E300A55A15 /* CameraPreviewView.swift in Sources */,
 				F99773ED2D6E8A4B00D14332 /* NotifyNewAssetUseCase.swift in Sources */,
 				F9E699362D857AD800B4A1E1 /* ImageExtensions.swift in Sources */,
+				F9954A642DABADA2007E6590 /* Logger.swift in Sources */,
 				F9A9E06A2CDFC224003DB166 /* ViewExtensions.swift in Sources */,
 				F99773A12D6868E100D14332 /* GalleryApi.swift in Sources */,
 				F99773A32D6868E100D14332 /* GalleryRepository.swift in Sources */,
@@ -1243,11 +1254,13 @@
 				F99773CF2D69D16700D14332 /* MultipartRequest.swift in Sources */,
 				F9F306192D42AE0C00E41995 /* HomeViewModel.swift in Sources */,
 				F9503ACC2CD821CA00DDD4F0 /* SystemProperties.swift in Sources */,
+				F9954A5B2DA8F65D007E6590 /* DownloadApi.swift in Sources */,
 				F953B2632CD2A3BD0058C2BD /* QRCameraView.swift in Sources */,
 				F99773B02D6871ED00D14332 /* UploadServiceData.swift in Sources */,
 				F9F306172D42AC7300E41995 /* HomeScreen.swift in Sources */,
 				F96983062CF63E5A00CC3C55 /* VideoPlayerView.swift in Sources */,
 				F96983002CF5203500CC3C55 /* LoginScreen.swift in Sources */,
+				F9954A522DA8F545007E6590 /* DownloadRepositoryContract.swift in Sources */,
 				F953B2672CD3CDE20058C2BD /* PermissionAlertStatus.swift in Sources */,
 				F99772382D5491AB00D14332 /* GalleryItemDto.swift in Sources */,
 				F99773862D6798D600D14332 /* CustomerApi.swift in Sources */,
@@ -1262,6 +1275,7 @@
 				F9F3060E2D417EE400E41995 /* Credentials.swift in Sources */,
 				F9E699382D857FC100B4A1E1 /* CapturePhotoProccessor.swift in Sources */,
 				F9A9E0AA2CEF8C7F003DB166 /* GalleryItemView.swift in Sources */,
+				F9954A542DA8F57F007E6590 /* DownloadAssetUseCase.swift in Sources */,
 				F980ED0E2D71F5A7003D8CAC /* UploadThumbnailUseCase.swift in Sources */,
 				F99773C52D692A0E00D14332 /* AuthRepository.swift in Sources */,
 				F99773A82D686C0300D14332 /* CaptureVueError.swift in Sources */,
@@ -1518,14 +1532,6 @@
 				kind = branch;
 			};
 		};
-		F966BA632CBD91B6000863F2 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 11.3.0;
-			};
-		};
 		F96A6D4C2CC1B9A3001C1E85 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
@@ -1550,14 +1556,6 @@
 				minimumVersion = 24.0.0;
 			};
 		};
-		F9F3062A2D46E85300E41995 /* XCRemoteSwiftPackageReference "swift-upload-sdk" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/muxinc/swift-upload-sdk";
-			requirement = {
-				branch = main;
-				kind = branch;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1565,16 +1563,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = F90928192DA2637A0074FC57 /* XCRemoteSwiftPackageReference "SwiftStoriesKit" */;
 			productName = SwiftStoriesKit;
-		};
-		F966BA642CBD91B6000863F2 /* FirebaseAnalytics */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = F966BA632CBD91B6000863F2 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseAnalytics;
-		};
-		F966BA662CBD91B6000863F2 /* FirebaseCrashlytics */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = F966BA632CBD91B6000863F2 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseCrashlytics;
 		};
 		F96A6D4D2CC1B9A3001C1E85 /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;
@@ -1590,11 +1578,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = F9F306122D42912F00E41995 /* XCRemoteSwiftPackageReference "keychain-swift" */;
 			productName = KeychainSwift;
-		};
-		F9F3062B2D46E85300E41995 /* MuxUploadSDK */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = F9F3062A2D46E85300E41995 /* XCRemoteSwiftPackageReference "swift-upload-sdk" */;
-			productName = MuxUploadSDK;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

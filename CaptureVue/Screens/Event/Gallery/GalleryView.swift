@@ -7,6 +7,7 @@
 
 import SwiftUI
 import SwiftfulRouting
+import SwiftStoriesKit
 
 
 struct GalleryView: View {
@@ -15,6 +16,7 @@ struct GalleryView: View {
     @EnvironmentObject var videoManager: VideoPlayerManager
     
     let galleryList: [GalleryItem]
+    let onDownloadClick: (String, MediaType) -> Void
     let galleryNamespace: Namespace.ID
     
     @Binding var showGallery: Bool
@@ -33,21 +35,50 @@ struct GalleryView: View {
                 Color.black.opacity(opacity).ignoresSafeArea()
                 TabView(selection: $selectedGalleryItem){
                     ForEach(galleryList){ galleryItem in
-                        if galleryItem.isVideo{
-                            VideoPlayerView(player: videoManager.player)
-                                .onAppear{
-                                    videoManager.setVideoToPlayer(videoUrl: galleryItem.publicUrl)
-                                    videoManager.playVideo()
+                        ZStack{
+                            if galleryItem.isVideo{
+                                
+                                VideoPlayerView(player: videoManager.player)
+                                    .onAppear{
+                                        videoManager.setVideoToPlayer(videoUrl: galleryItem.publicUrl)
+                                        videoManager.playVideo()
+                                    }
+                                    .onDisappear{
+                                        videoManager.pauseVideo()
+                                    }
+                            }else{
+                                ZStack{
+                                    ImageLoader(url: galleryItem.publicUrl)
+                                        .frame(width: geo.size.width)
+                                        .clipped()
+                                        .tag(galleryItem.id)
+                                        .clipShape(RoundedRectangle(cornerRadius: 8))
                                 }
-                                .onDisappear{
-                                    videoManager.pauseVideo()
+                            }
+                            Button(
+                                action: {
+//
+//                                        ImageDownloader.instance.downloadImage(with: galleryItem.publicUrl) { fetchedImage in
+//                                            if let image = fetchedImage{
+//                                                let imageSaver = ImageSaver()
+//                                                imageSaver.writeToPhotoAlbum(image: image)
+//                                            }
+//                                        }
+                                    print("ASSET URL: \(galleryItem.publicUrl)")
+                                    onDownloadClick(galleryItem.publicUrl, galleryItem.dataType)
+
+                                },
+                                label: {
+                                    Image(systemName: "square.and.arrow.down.on.square.fill")
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fit)
+                                        .frame(width: 32)
+                                        .foregroundStyle(Color.red)
                                 }
-                        }else{
-                            ImageLoader(url: galleryItem.publicUrl)
-                                .frame(width: geo.size.width)
-                                .clipped()
-                                .tag(galleryItem.id)
-                                .clipShape(RoundedRectangle(cornerRadius: 8))
+                            )
+                            .buttonStyle(.plain)
+                            .padding()
+                            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topTrailing)
                         }
                     }
                 }
@@ -108,6 +139,7 @@ struct GalleryView: View {
     let dev = DeveloperPreview.instance
     GalleryView(
         galleryList: dev.event.galleryList,
+        onDownloadClick: {image, type in },
         galleryNamespace: Namespace().wrappedValue,
         showGallery: .constant(true),
         selectedGalleryItem: .constant("")

@@ -7,22 +7,12 @@
 
 import SwiftUI
 import SwiftfulRouting
-import Firebase
 import UIKit
 
-//class AppDelegate: NSObject, UIApplicationDelegate {
-//  func application(_ application: UIApplication,
-//                   didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
-//    FirebaseApp.configure()
-//
-//    return true
-//  }
-//}
+
 
 @main
 struct CaptureVueApp: App {
-//     register app delegate for Firebase setup
-//    @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
 
     @UIApplicationDelegateAdaptor var appDelegate: UIAppDelegate
 
@@ -87,7 +77,7 @@ struct CaptureVueApp: App {
 final class UIAppDelegate: NSObject, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
-        print(#function)
+        
         return true
     }
     
@@ -103,11 +93,11 @@ final class UIAppDelegate: NSObject, UIApplicationDelegate {
         catch(let error){
             print("Delete Error: \(error)")
         }
-            print(#function)
+            
     }
 
 
     func application(_ application: UIApplication, didDiscardSceneSessions sceneSessions: Set<UISceneSession>) {
-        print(#function)
+
     }
 }

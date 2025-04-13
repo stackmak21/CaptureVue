@@ -41,6 +41,7 @@ actor NetworkClient: NSObject {
                 endpoint: endpoint,
                 queryItems: queryItems
             )
+            
             let request = buildRequest(
                 url: url,
                 httpMethod: httpMethod,
@@ -49,6 +50,8 @@ actor NetworkClient: NSObject {
                 requestBody: requestBody,
                 authToken: authToken
             )
+            
+            
             
             let (data, response) = try await URLSession.shared.data(for: request)
             let serverResponse: T = try handleResponse(data, response)
@@ -68,6 +71,120 @@ actor NetworkClient: NSObject {
     }
     
     
+    func download(
+        url endpoint: String,
+        authToken: String = "",
+        queryItems: [String: String] = [:],
+        urlScheme: URLScheme? = nil,
+        urlHost: String? = nil,
+        urlPort: Int? = nil,
+        httpMethod: HttpMethod = .get,
+        headers: [String: String] = [:],
+        timeInterval: Double = 60,
+        requestBody: Data? = nil
+    ) async -> Result<Data, CaptureVueResponseRaw>{
+        do{
+            let url = try buildURL(
+                url: endpoint.hasPrefix("http") ? endpoint : nil,
+                scheme: urlScheme ?? scheme,
+                host: urlHost ?? host,
+                port: urlPort ?? port,
+                endpoint: endpoint,
+                queryItems: queryItems
+            )
+            
+            let request = buildRequest(
+                url: url,
+                httpMethod: httpMethod,
+                headers: headers,
+                timeInterval: timeInterval,
+                requestBody: requestBody,
+                authToken: authToken
+            )
+            
+            // It return the downlowded file url in the file manager.
+            let (data, response) = try await URLSession.shared.data(for: request)
+            guard let response = response as? HTTPURLResponse else { throw NetworkError.badResponse}
+            if response.isSuccess(){
+                return .success(data)
+            }else{
+                return .failure(CaptureVueResponseRaw(msg: nil, code: nil, reason: nil))
+            }
+            
+        }
+        catch(let error as CaptureVueResponseRaw){
+            return .failure(error)
+        }
+        catch(let error as NetworkError){
+            print(error.errorDescription())
+            return .failure(CaptureVueResponseRaw(msg: nil, code: nil, reason: nil))
+        }
+        catch(let error){
+            print(error.localizedDescription)
+            return .failure(CaptureVueResponseRaw(msg: nil, code: nil, reason: nil))
+        }
+    }
+    
+    
+    func execute1(
+        url endpoint: String,
+        authToken: String = "",
+        queryItems: [String: String] = [:],
+        urlScheme: URLScheme? = nil,
+        urlHost: String? = nil,
+        urlPort: Int? = nil,
+        httpMethod: HttpMethod = .get,
+        headers: [String: String] = [:],
+        timeInterval: Double = 60,
+        requestBody: Data? = nil
+    ) async -> Result<Data, CaptureVueResponseRaw>{
+        do{
+            let url = try buildURL(
+                url: endpoint.hasPrefix("http") ? endpoint : nil,
+                scheme: urlScheme ?? scheme,
+                host: urlHost ?? host,
+                port: urlPort ?? port,
+                endpoint: endpoint,
+                queryItems: queryItems
+            )
+            
+            let request = buildRequest(
+                url: url,
+                httpMethod: httpMethod,
+                headers: headers,
+                timeInterval: timeInterval,
+                requestBody: requestBody,
+                authToken: authToken
+            )
+            
+            
+            
+            let (data, response) = try await URLSession.shared.data(for: request)
+            guard let response = response as? HTTPURLResponse else { throw NetworkError.badResponse}
+            if response.isSuccess(){
+                return .success(data)
+            }else{
+                return .failure(CaptureVueResponseRaw(msg: nil, code: nil, reason: nil))
+            }
+
+            
+        }
+        catch(let error as CaptureVueResponseRaw){
+            return .failure(error)
+        }
+        catch(let error as NetworkError){
+            print(error.errorDescription())
+            return .failure(CaptureVueResponseRaw(msg: nil, code: nil, reason: nil))
+        }
+        catch(let error){
+            print(error.localizedDescription)
+            return .failure(CaptureVueResponseRaw(msg: nil, code: nil, reason: nil))
+        }
+        
+        
+    }
+    
+    
     //MARK: - BUILD URL FUNCTION
     
     private func buildURL(
@@ -80,8 +197,8 @@ actor NetworkClient: NSObject {
         
     ) throws -> URL {
         if let url = completedUrl{
-            guard let uploadUrl = URL(string: url) else { throw NetworkError.invalidUrl("") }
-            return uploadUrl
+            guard let prefixedURL = URL(string: url) else { throw NetworkError.invalidUrl("") }
+            return prefixedURL
         }
         var urlComponents = URLComponents()
         urlComponents.scheme = scheme.rawValue
@@ -193,6 +310,55 @@ actor NetworkClient: NSObject {
     //MARK: - Upload Function
     
     func upload(
+        url endpoint: String,
+        authToken: String = "",
+        queryItems: [String: String] = [:],
+        urlScheme: URLScheme? = nil,
+        urlHost: String? = nil,
+        urlPort: Int? = nil,
+        httpMethod: HttpMethod = .get,
+        headers: [String: String] = [:],
+        timeInterval: Double = 60,
+        requestBody: Data? = nil,
+        onUploadProgressUpdate: ((Int) -> Void)? = nil ,
+        onUploadComplete: (() -> Void)? = nil
+        
+    ) async {
+        do{
+            let url = try buildURL(
+                url: endpoint.hasPrefix("http") ? endpoint : nil,
+                scheme: urlScheme ?? scheme,
+                host: urlHost ?? host,
+                port: urlPort ?? port,
+                endpoint: endpoint,
+                queryItems: queryItems
+            )
+            let request = buildRequest(
+                url: url,
+                httpMethod: httpMethod,
+                headers: headers,
+                timeInterval: timeInterval,
+                authToken: authToken
+            )
+            
+            self.onUploadComplete = onUploadComplete
+            self.onUploadProgressUpdate = onUploadProgressUpdate
+            
+            guard let requestBodyData = requestBody else { throw NetworkError.invalidRequest }
+            let (_, response) = try await URLSession.shared.upload(for: request, from: requestBodyData, delegate: self)
+            guard let urlResponse = response as? HTTPURLResponse, urlResponse.isSuccess() else { throw NetworkError.badResponse  }
+            
+            
+        }
+        catch(let error as NetworkError){
+            print(error.errorDescription())
+        }
+        catch(let error){
+            print(error.localizedDescription)
+        }
+    }
+    
+    func download(
         url endpoint: String,
         authToken: String = "",
         queryItems: [String: String] = [:],

@@ -12,6 +12,7 @@ struct Event{
     let id: String
     let eventName: String
     let mainImage: String
+    let qrCodeImage: String
     let eventDescription: String
     let expires: Int64
     let createdAt: Int64
@@ -25,6 +26,7 @@ struct Event{
         id: String = "",
         eventName: String = "",
         mainImage: String = "",
+        qrCodeImage: String = "",
         eventDescription: String = "",
         expires: Int64 = 0,
         createdAt: Int64 = 0,
@@ -37,6 +39,7 @@ struct Event{
         self.id = id
         self.eventName = eventName
         self.mainImage = mainImage
+        self.qrCodeImage = qrCodeImage
         self.eventDescription = eventDescription
         self.expires = expires
         self.createdAt = createdAt

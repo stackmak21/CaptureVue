@@ -65,8 +65,8 @@ class SplashViewModel: ObservableObject{
                 switch loginResponse {
                 case .success(let response):
                     token = response.token
-//                    navigateToHome()
-                    navigateToOnBoarding()
+                    navigateToHome()
+//                    navigateToOnBoarding()
                 case .failure(_):
                     navigateToLogin()
                 }

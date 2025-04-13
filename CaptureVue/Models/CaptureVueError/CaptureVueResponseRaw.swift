@@ -12,6 +12,16 @@ struct CaptureVueResponseRaw: Codable, Error {
     let code: Int?
     let reason: String?
     
+    init(
+        msg: String? = nil,
+        code: Int? = nil,
+        reason: String? = nil
+    ) {
+        self.msg = msg
+        self.code = code
+        self.reason = reason
+    }
+    
     func toCaptureVueError() -> CaptureVueError {
         return CaptureVueError(
             msg: self.msg ?? "",

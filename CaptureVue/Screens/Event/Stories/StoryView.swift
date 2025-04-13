@@ -38,7 +38,7 @@ struct StoryView: View {
                     ForEach(storiesList){ story in
                         GeometryReader{ geo in
                             Group{
-                                if story.url.hasSuffix(".mp4"){
+                                if story.isVideo{
                                     VideoPlayerView(player: videoManager.player)
                                         .onAppear{
                                             videoManager.setVideoToPlayer(videoUrl: story.url)
