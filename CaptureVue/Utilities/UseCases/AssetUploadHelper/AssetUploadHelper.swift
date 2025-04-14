@@ -11,6 +11,7 @@ import SwiftUI
 import UniformTypeIdentifiers
 
 
+
 class AssetUploadHelper{
     
     private let copyIntoTempFileUseCase: CopyIntoTempFileUseCase
@@ -41,25 +42,25 @@ class AssetUploadHelper{
         self.uploadAwsThumbnailUseCase = UploadThumbnailUseCase(client: client, galleryRepositoryMock: galleryRepositoryMock)
     }
     
-    func uploadAwsLibraryAssets(_ token: String, selectedFiles: [PhotosPickerItem], eventId: String, section: AssetSectionType, onUploadProgressUpdate: ((Int) -> Void)? = nil) async {
+    func uploadAwsLibraryAssets(selectedFiles: [PhotosPickerItem], eventId: String, section: AssetSectionType, onUploadProgressUpdate: ((Int) -> Void)? = nil) async {
         await copyLibraryItemsIntoTempFile(selectedFiles)
         let filesToUpload = await getAllPendingUploadFiles()
         self.onUploadProgressUpdate = onUploadProgressUpdate
-        await uploadProcess(token: token, eventId: eventId, section: section, filesToUpload: filesToUpload)
+        await uploadProcess(eventId: eventId, section: section, filesToUpload: filesToUpload)
     }
     
-    func uploadAwsCameraAssets(_ token: String, selectedFiles: [UIImage], eventId: String, section: AssetSectionType, onUploadProgressUpdate: ((Int) -> Void)? = nil) async {
+    func uploadAwsCameraAssets(selectedFiles: [UIImage], eventId: String, section: AssetSectionType, onUploadProgressUpdate: ((Int) -> Void)? = nil) async {
         await copyCameraItemsIntoTempFile(selectedFiles)
         let filesToUpload = await getAllPendingUploadFiles()
         self.onUploadProgressUpdate = onUploadProgressUpdate
-        await uploadProcess(token: token, eventId: eventId, section: section, filesToUpload: filesToUpload)
+        await uploadProcess(eventId: eventId, section: section, filesToUpload: filesToUpload)
     }
     
-    func uploadAwsVideoFile(_ token: String, capturedVideoURL: URL, eventId: String, section: AssetSectionType) async {
+    func uploadAwsVideoFile(capturedVideoURL: URL, eventId: String, section: AssetSectionType) async {
         let fileName = capturedVideoURL.lastPathComponent
         print(fileName)
         var thumbnailName: String = ""
-        if let name = await createAndUploadThumbnail(token: token, fileName: fileName, eventId: eventId){
+        if let name = await createAndUploadThumbnail(fileName: fileName, eventId: eventId){
             thumbnailName = name
         }
         let uploadInfo = PrepareUploadData(
@@ -69,16 +70,16 @@ class AssetUploadHelper{
             assetType: .video,
             thumbnailPublicName: thumbnailName
         )
-        await getAwsDirectUploadUrl(token, uploadInfo: uploadInfo)
+        await getAwsDirectUploadUrl(uploadInfo)
     }
     
     
-    private func uploadProcess(token: String, eventId: String, section: AssetSectionType, filesToUpload: [String]) async {
+    private func uploadProcess(eventId: String, section: AssetSectionType, filesToUpload: [String]) async {
         for fileName in filesToUpload {
             var thumbnailName: String = ""
             let assetType: GalleryItemType = mimeTypeForPath(path: fileName).hasPrefix("image") ? .photo : .video
             if assetType == .video {
-                if let name = await createAndUploadThumbnail(token: token, fileName: fileName, eventId: eventId){
+                if let name = await createAndUploadThumbnail(fileName: fileName, eventId: eventId){
                     thumbnailName = name
                 }
             }
@@ -89,19 +90,19 @@ class AssetUploadHelper{
                 assetType: assetType,
                 thumbnailPublicName: thumbnailName
             )
-            await getAwsDirectUploadUrl(token, uploadInfo: uploadInfo)
+            await getAwsDirectUploadUrl(uploadInfo)
         }
     }
     
     
     
     
-    private func getAwsDirectUploadUrl(_ token: String, uploadInfo: PrepareUploadData) async {
-        let response = await getAwsDirectUploadUrlUseCase.invoke(token, uploadInfo: uploadInfo)
+    private func getAwsDirectUploadUrl(_ uploadInfo: PrepareUploadData) async {
+        let response = await getAwsDirectUploadUrlUseCase.invoke(uploadInfo: uploadInfo)
         switch response {
         case .success(let response):
             await uploadAwsFile(uploadUrl: response.url, uploadInfo: uploadInfo, onUploadProgressUpdate: { progress in  Task{ @MainActor in self.onUploadProgressUpdate?(progress) } })
-            await notifyNewAssetUploadUseCase.invoke(token, assetUploadRequest: uploadInfo.toNotifyNewAssetRequest())
+            await notifyNewAssetUploadUseCase.invoke(assetUploadRequest: uploadInfo.toNotifyNewAssetRequest())
             let deletedSuccesfully = await deleteTempFileUseCase.invoke(fileName: uploadInfo.fileName)
             print("deleted successfully: \(deletedSuccesfully)")
         case .failure(_):
@@ -109,17 +110,17 @@ class AssetUploadHelper{
         }
     }
     
-    private func createAndUploadThumbnail(token: String, fileName: String, eventId: String) async -> String? {
+    private func createAndUploadThumbnail( fileName: String, eventId: String) async -> String? {
         if let fileUrl = await fileManager.getFileUrl(fileName: fileName, folderName: "UploadPendingFiles"){
             let videoThumbnailImage = await getThumbnailFromVideoUseCase.invoke(url: fileUrl, at: 1)
             guard let imageData = videoThumbnailImage?.jpegData(compressionQuality: 1) else { return nil }
             let thumbnailName = "\(UUID().uuidString).jpeg"
             let uploadInfo = PrepareUploadData(eventId: eventId, fileName: thumbnailName, section: .gallery, assetType: .thumbnail, thumbnailPublicName: "")
-            let response = await getAwsDirectUploadUrlUseCase.invoke(token, uploadInfo: uploadInfo)
+            let response = await getAwsDirectUploadUrlUseCase.invoke(uploadInfo: uploadInfo)
             switch response {
             case .success(let response):
                 await uploadAwsThumbnailUseCase.invoke(uploadUrl: response.url, uploadInfo: uploadInfo, imageData: imageData)
-                await notifyNewAssetUploadUseCase.invoke(token, assetUploadRequest: uploadInfo.toNotifyNewAssetRequest())
+                await notifyNewAssetUploadUseCase.invoke(assetUploadRequest: uploadInfo.toNotifyNewAssetRequest())
                 return thumbnailName
             case .failure(_):
                 print("Failed to get AWS Direct Upload Url")

@@ -35,7 +35,7 @@ struct GalleryRepositoryMock: GalleryRepositoryContract {
         return []
     }
     
-    func getAwsDirectUploadUrl(_ token: String, uploadInfo: PrepareUploadData) async -> Result<AwsDirectUploadUrl, CaptureVueResponseRaw> {
+    func getAwsDirectUploadUrl(uploadInfo: PrepareUploadData) async -> Result<AwsDirectUploadUrl, CaptureVueResponseRaw> {
         return .success(AwsDirectUploadUrl(url: "fdfd"))
     }
   
@@ -44,7 +44,7 @@ struct GalleryRepositoryMock: GalleryRepositoryContract {
         
     }
     
-    func notifyNewAssetUpload(_ token: String, assetUploadRequest: NotifyNewAssetRequest) async -> CaptureVueResponseRaw { return CaptureVueResponseRaw(msg: nil, code: nil, reason: nil)}
+    func notifyNewAssetUpload(assetUploadRequest: NotifyNewAssetRequest) async -> CaptureVueResponseRaw { return CaptureVueResponseRaw(msg: nil, code: nil, reason: nil)}
     
     
     func copyIntoTempFile(_ selectedFile: Data, identifier: String) async {

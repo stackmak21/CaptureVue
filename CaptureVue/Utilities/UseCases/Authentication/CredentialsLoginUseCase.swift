@@ -18,7 +18,7 @@ struct CredentialsLoginUseCase{
     }
     
     
-    func invoke(_ credentials: Credentials) async -> LoginResponseResult {
+    func invoke(_ credentials: Credentials) async -> Result<LoginResponse, CaptureVueResponseRaw> {
         return await repository.login(credentials)
     }
 }

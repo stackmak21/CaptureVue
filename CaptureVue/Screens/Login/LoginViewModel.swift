@@ -11,13 +11,11 @@ import SwiftfulRouting
 @MainActor
 class LoginViewModel: BaseViewModel {
     
-    @KeychainStorage(.token) var token = ""
-    @KeychainStorage(.credentials) var credentials = Credentials()
-    
     private let router: AnyRouter
     private var tasks: [Task<Void, Never>] = []
     
     private let client: NetworkClient
+    private let keychain: KeychainManager = KeychainManager()
     
     private let loginUseCase: CredentialsLoginUseCase
     
@@ -51,9 +49,9 @@ class LoginViewModel: BaseViewModel {
                 let loginResponse = await loginUseCase.invoke(userCredentials)
                 switch loginResponse {
                 case .success(let response):
-                    print(response.token)
-                    token = response.token
-                    credentials = userCredentials
+                    keychain.save(response.token, key: .token)
+                    keychain.save(response.refreshAccessToken, key: .refreshToken)
+                    keychain.saveData(userCredentials, key: .credentials)
                     goToHome()
                 case .failure(let error):
                     Banner(router: router, message: error.msg ?? "", bannerType: .error, bannerDuration: .long, action: nil)

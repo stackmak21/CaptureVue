@@ -8,7 +8,11 @@
 import Foundation
 
 extension HTTPURLResponse{
-    func isSuccess() -> Bool {
+    var isSuccess: Bool {
         return self.statusCode >= 200 && self.statusCode <= 299
+    }
+    
+    var isUnauthorized: Bool {
+        return self.statusCode == 401
     }
 }

@@ -17,14 +17,9 @@ import Foundation
 
 
 
-//MARK: - Type Alias
-
-typealias LoginResponseDtoResult = Result<LoginResponseDto, CaptureVueResponseRaw>
-typealias LoginResponseResult = Result<LoginResponse, CaptureVueResponseRaw>
-
 //MARK: - Contract
 
 protocol AuthRepositoryContract {
-    func login(_ credentials: Credentials) async -> LoginResponseResult
+    func login(_ credentials: Credentials) async -> Result<LoginResponse, CaptureVueResponseRaw>
 
 }

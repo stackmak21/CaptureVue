@@ -11,6 +11,7 @@ import Foundation
 
 class AuthRepository: AuthRepositoryContract {
     private let authApi: AuthApi
+    private let keychain: KeychainManager = KeychainManager()
     
     init(client: NetworkClient) {
         self.authApi = AuthApi(client: client)
@@ -18,11 +19,12 @@ class AuthRepository: AuthRepositoryContract {
     
 
     
-    func login(_ credentials: Credentials) async -> LoginResponseResult {
+    func login(_ credentials: Credentials) async -> Result<LoginResponse, CaptureVueResponseRaw> {
         return await authApi.login(
             LoginRequestBody(
                 email: credentials.email,
-                password: credentials.password
+                password: credentials.password,
+                deviceId: keychain.get(key: .deviceId) ?? ""
             )
         )
         .map({ $0.toLoginResponse() })

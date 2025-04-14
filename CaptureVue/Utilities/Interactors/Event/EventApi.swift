@@ -11,8 +11,14 @@ import Foundation
 struct EventApi {
     
     private let client: NetworkClient
+    private let keychain: KeychainManager = KeychainManager()
+
     
-    init(client: NetworkClient) { self.client = client }
+    init(client: NetworkClient) {
+        self.client = client
+        
+    }
+
     
     func validateEvent(_ eventId: String) async -> Result<ValidateEventDto, CaptureVueResponseRaw> {
         return await client.execute(
@@ -21,7 +27,8 @@ struct EventApi {
         )
     }
     
-    func fetchEvent(_ eventId: String, _ token: String) async -> Result<EventDto, CaptureVueResponseRaw> {
+    func fetchEvent(_ eventId: String) async -> Result<EventDto, CaptureVueResponseRaw> {
+        let token = keychain.get(key: .token) ?? ""
         return await client.execute(
             url: "api/v1/event",
             authToken: token,
@@ -29,7 +36,8 @@ struct EventApi {
         )
     }
     
-    func createEvent(_ token: String, _ createEventRequest: CreateEventRequest, _ eventImage: Data) async -> Result<CreateEventResponseDto, CaptureVueResponseRaw> {
+    func createEvent(_ createEventRequest: CreateEventRequest, _ eventImage: Data) async -> Result<CreateEventResponseDto, CaptureVueResponseRaw> {
+        let token = keychain.get(key: .token) ?? ""
         var multipartRequest = MultipartRequest()
         if let requestBodyJson = try? JSONEncoder().encode(createEventRequest){
             multipartRequest.add(key: "createEventRequest", value: requestBodyJson)

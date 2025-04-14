@@ -19,14 +19,14 @@ struct EventRepository: EventRepositoryContract {
             .mapError({ $0 })
     }
     
-    func fetchEvent(_ eventId: String, _ token: String) async -> Result<Event, CaptureVueResponseRaw> {
-        return await eventApi.fetchEvent(eventId, token)
+    func fetchEvent(_ eventId: String) async -> Result<Event, CaptureVueResponseRaw> {
+        return await eventApi.fetchEvent(eventId)
             .map({ $0.toEvent() })
             .mapError({ $0 })
     }
     
-    func createEvent(_ token: String, _ createEventRequest: CreateEventRequest, _ eventImage: Data) async -> Result<CreateEventResponse, CaptureVueResponseRaw> {
-        return await eventApi.createEvent(token, createEventRequest, eventImage)
+    func createEvent(_ createEventRequest: CreateEventRequest, _ eventImage: Data) async -> Result<CreateEventResponse, CaptureVueResponseRaw> {
+        return await eventApi.createEvent(createEventRequest, eventImage)
             .map({ $0.toCreateEventResponse() })
             .mapError({ $0 })
     }

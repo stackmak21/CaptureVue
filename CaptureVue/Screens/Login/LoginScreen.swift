@@ -24,10 +24,6 @@ struct LoginScreen: View {
         ZStack{
             Color.gray.opacity(0.3).ignoresSafeArea()
             VStack{
-                if !vm.token.isEmpty{
-                    Text("\(vm.token)")
-                }
-                
                 ImageLoader(
                     url: "https://picsum.photos/802/1017",
                     height: 220

@@ -10,6 +10,7 @@ import SwiftUI
 import UniformTypeIdentifiers
 
 
+
 enum Headers: String{
     case contentType = "Content-Type"
     case contentLength = "Content-Length"
@@ -21,11 +22,15 @@ struct GalleryApi {
     
     private let client: NetworkClient
     private let fileManager = LocalFileManager.instance
+    private let keychain: KeychainManager = KeychainManager()
     
-    init(client: NetworkClient) { self.client = client }
+    init(client: NetworkClient) {
+        self.client = client
+    }
     
     
-    func getAwsDirectUploadUrl(token: String, uploadInfo: PrepareUploadData) async -> Result<AwsDirectUploadUrlDto, CaptureVueResponseRaw> {
+    func getAwsDirectUploadUrl(uploadInfo: PrepareUploadData) async -> Result<AwsDirectUploadUrlDto, CaptureVueResponseRaw> {
+        let token = keychain.get(key: .token) ?? ""
         return await client.execute(
             url: "api/v1/gallery/awsDirectUploadUrl",
             authToken: token,
@@ -40,6 +45,7 @@ struct GalleryApi {
     func uploadAwsFile(uploadUrl: String, uploadInfo: PrepareUploadData, onUploadProgressUpdate: ((Int) -> Void)? = nil) async {
         if let fileData = await fileManager.getFile(fileName: uploadInfo.fileName, folderName: "UploadPendingFiles"){
                 let fileLength = String(fileData.count)
+                log.warning("Data SIZE LENGTH: \(fileLength)")
                 let mimeType = mimeTypeForPath(path: uploadInfo.fileName)
                 let eventId = uploadInfo.eventId
                 await client.upload(
@@ -75,7 +81,8 @@ struct GalleryApi {
     }
     
     
-    func notifyNewAssetUpload(_ token: String, assetUploadRequest: NotifyNewAssetRequest) async -> CaptureVueResponseRaw {
+    func notifyNewAssetUpload(assetUploadRequest: NotifyNewAssetRequest) async -> CaptureVueResponseRaw {
+        let token = keychain.get(key: .token) ?? ""
         let data = try? JSONEncoder().encode(assetUploadRequest)
         let response: Result<CaptureVueResponseRaw, CaptureVueResponseRaw> = await client.execute(
             url: "api/v1/gallery/notifyNewAsset",

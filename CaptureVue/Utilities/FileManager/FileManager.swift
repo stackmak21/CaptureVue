@@ -13,7 +13,7 @@ actor LocalFileManager {
     static let instance = LocalFileManager()
     private init() { }
     
-    func saveFile(file: Data, fileName: String, folderName: String) {
+    func saveFile(file: Data, fileName: String, folderName: String) -> URL? {
         
         // create folder
         createFolderIfNeeded(folderName: folderName)
@@ -21,13 +21,15 @@ actor LocalFileManager {
         // get path for image
         guard
             let url = getUrlForFile(fileName: fileName, folderName: folderName)
-            else { return }
+            else { return nil }
         
         // save image to path
         do {
             try file.write(to: url)
+            return url
         } catch let error {
-            print("Error saving file. File Name: \(fileName). \(error)")
+            log.error("Error saving file. File Name: \(fileName).  \(error)")
+            return nil
         }
     }
     
@@ -66,7 +68,6 @@ actor LocalFileManager {
     
     func deleteFile(fileName: String, folderName: String) -> Bool {
         do{
-            print(#function, Thread.current)
             guard let url = getUrlForFile(fileName: fileName, folderName: folderName) else { return false }
             try FileManager.default.removeItem(atPath: url.path)
             return true

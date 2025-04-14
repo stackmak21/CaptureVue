@@ -9,4 +9,5 @@ import Foundation
 
 struct LoginResponse {
     let token: String
+    let refreshAccessToken: String
 }

@@ -224,8 +224,8 @@
             filePath = "CaptureVue/Screens/Splash/SplashViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "63"
-            endingLineNumber = "63"
+            startingLineNumber = "65"
+            endingLineNumber = "65"
             landmarkName = "silentLogin()"
             landmarkType = "7">
          </BreakpointContent>
@@ -256,10 +256,10 @@
             filePath = "CaptureVue/Utilities/Keychain/KeychainManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "79"
-            endingLineNumber = "79"
-            landmarkName = "init(wrappedValue:_:)"
-            landmarkType = "7">
+            startingLineNumber = "85"
+            endingLineNumber = "85"
+            landmarkName = "unknown"
+            landmarkType = "0">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -272,9 +272,9 @@
             filePath = "CaptureVue/Utilities/Interactors/Home/CustomerApi.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "18"
-            endingLineNumber = "18"
-            landmarkName = "fetchCustomerHome(_:)"
+            startingLineNumber = "24"
+            endingLineNumber = "24"
+            landmarkName = "fetchCustomerHome()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -297,22 +297,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "49F2344F-07E9-489E-9D5C-5C439D34A915"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "CaptureVue/Utilities/Networking/NetworkClient.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "57"
-            endingLineNumber = "57"
-            landmarkName = "execute(url:authToken:queryItems:urlScheme:urlHost:urlPort:httpMethod:headers:timeInterval:requestBody:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "7B376814-245C-430B-9FAF-8A3E530D556A"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -320,8 +304,8 @@
             filePath = "CaptureVue/Screens/Login/LoginViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "54"
-            endingLineNumber = "54"
+            startingLineNumber = "52"
+            endingLineNumber = "52"
             landmarkName = "onSubmitClicked()"
             landmarkType = "7">
          </BreakpointContent>
@@ -336,25 +320,9 @@
             filePath = "CaptureVue/Screens/Login/LoginViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "53"
-            endingLineNumber = "53"
+            startingLineNumber = "51"
+            endingLineNumber = "51"
             landmarkName = "onSubmitClicked()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "1EB1C3FE-2861-4CFB-8197-FA25C112F120"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "CaptureVue/Utilities/Networking/NetworkClient.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "58"
-            endingLineNumber = "58"
-            landmarkName = "execute(url:authToken:queryItems:urlScheme:urlHost:urlPort:httpMethod:headers:timeInterval:requestBody:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -416,8 +384,8 @@
             filePath = "CaptureVue/Utilities/Interactors/Gallery/GalleryApi.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "41"
-            endingLineNumber = "41"
+            startingLineNumber = "46"
+            endingLineNumber = "46"
             landmarkName = "uploadAwsFile(uploadUrl:uploadInfo:onUploadProgressUpdate:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -432,8 +400,8 @@
             filePath = "CaptureVue/Utilities/FileManager/FileManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "46"
-            endingLineNumber = "46"
+            startingLineNumber = "48"
+            endingLineNumber = "48"
             landmarkName = "getFile(fileName:folderName:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -464,8 +432,8 @@
             filePath = "CaptureVue/Utilities/FileManager/FileManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "68"
-            endingLineNumber = "68"
+            startingLineNumber = "70"
+            endingLineNumber = "70"
             landmarkName = "deleteFile(fileName:folderName:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -480,8 +448,8 @@
             filePath = "CaptureVue/Utilities/FileManager/FileManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "70"
-            endingLineNumber = "70"
+            startingLineNumber = "71"
+            endingLineNumber = "71"
             landmarkName = "deleteFile(fileName:folderName:)"
             landmarkType = "7">
          </BreakpointContent>

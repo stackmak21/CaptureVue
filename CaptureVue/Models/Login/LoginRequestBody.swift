@@ -6,8 +6,10 @@
 //
 
 import Foundation
+import SwiftUI
 
 struct LoginRequestBody: Codable {
     let email: String
     let password: String
+    let deviceId: String 
 }

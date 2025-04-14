@@ -30,9 +30,8 @@ struct GalleryRepository: GalleryRepositoryContract {
         return await fileManager.getAllFiles(folderName: "UploadPendingFiles")
     }
     
-    func getAwsDirectUploadUrl(_ token: String, uploadInfo: PrepareUploadData) async -> Result<AwsDirectUploadUrl, CaptureVueResponseRaw> {
+    func getAwsDirectUploadUrl(uploadInfo: PrepareUploadData) async -> Result<AwsDirectUploadUrl, CaptureVueResponseRaw> {
         return await galleryApi.getAwsDirectUploadUrl(
-            token: token,
             uploadInfo: uploadInfo
         )
         .map({$0.toAwsDirectUploadUrl()})
@@ -46,10 +45,14 @@ struct GalleryRepository: GalleryRepositoryContract {
             if let uti = file.supportedContentTypes.first?.identifier {
                 identifier = getFileExtension(from: uti)
             }
-            if let data = try? await file.loadTransferable(type: Data.self){
-                fileData = data
+            if let imageData = try? await file.loadTransferable(type: Data.self){
+                let uiImage = UIImage(data: imageData)
+                if let data = uiImage?.jpegData(compressionQuality: 0.6){  // Reduced compression quallity because iphone save them as HEIC
+                    fileData = data
+                }
             }
         }
+        log.warning("\(#function)\(fileData.count)")
         return (fileData, identifier)
     }
     
@@ -71,8 +74,8 @@ struct GalleryRepository: GalleryRepositoryContract {
         
     }
     
-    func notifyNewAssetUpload(_ token: String, assetUploadRequest: NotifyNewAssetRequest) async -> CaptureVueResponseRaw {
-        return await galleryApi.notifyNewAssetUpload(token, assetUploadRequest: assetUploadRequest)
+    func notifyNewAssetUpload(assetUploadRequest: NotifyNewAssetRequest) async -> CaptureVueResponseRaw {
+        return await galleryApi.notifyNewAssetUpload(assetUploadRequest: assetUploadRequest)
     }
     
     func deleteTempFile(fileName: String) async -> Bool {

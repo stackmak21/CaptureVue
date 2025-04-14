@@ -36,7 +36,7 @@ class CreateEventViewModel: BaseViewModel {
     
     
     
-    @KeychainStorage(.token) var token = ""
+
     
     init(
         router: AnyRouter,
@@ -63,7 +63,7 @@ class CreateEventViewModel: BaseViewModel {
             setLoading()
             defer{ resetLoading() }
                 if let eventImageData = eventImage?.jpegData(compressionQuality: 0.8){
-                    let createEventResponse =  await createEventUseCase.invoke(token, createEventRequestBuilder(), eventImageData)
+                    let createEventResponse =  await createEventUseCase.invoke(createEventRequestBuilder(), eventImageData)
                     switch createEventResponse {
                     case .success(let response):
                         router.dismissScreen()

@@ -15,7 +15,7 @@ struct FetchEventUseCase{
         self.repository = eventRepositoryMock ?? EventRepository(client: client)
     }
     
-    func invoke(_ eventId: String, _ token: String) async -> Result<Event, CaptureVueResponseRaw> {
-        return await repository.fetchEvent(eventId, token)
+    func invoke(_ eventId: String) async -> Result<Event, CaptureVueResponseRaw> {
+        return await repository.fetchEvent(eventId)
     }
 }

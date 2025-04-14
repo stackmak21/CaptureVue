@@ -7,7 +7,42 @@
 
 import SwiftUI
 
+class networker{
+    
+    
+    func completionFunc(completion: @escaping () -> Void){
+        
+        log.warning("Before Completion", showCurrentThread: true)
+        DispatchQueue.global().asyncAfter(deadline: .now() +  3){
+            completion()
+        }
+        log.warning("After Completion", showCurrentThread: true)
+        
+    }
+    
+    func completionFuncCaller() async {
+        await withCheckedContinuation { continuation in
+            completionFunc {
+                log.warning("completion Executed", showCurrentThread: true)
+                continuation.resume()
+            }
+        }
+    }
+    
+    func asyncTask1() async {
+        log.error("AsyncTask", showCurrentThread: true)
+        print("asyncTask 1 first")
+        try? await Task.sleep(nanoseconds: 4_000_000_000)
+        await completionFuncCaller()
+        print("asyncTask 1 second")
+    }
+    
+    
+}
+
 struct SwiftUIView: View {
+    
+    let nw = networker()
     
     @State var isBig: Bool = false
     @State var myText: String = ""
@@ -15,37 +50,45 @@ struct SwiftUIView: View {
     @Namespace var namespace
     var body: some View {
         VStack{
+            Text("Device Identifier: \(UIDevice.current.identifierForVendor?.uuidString ?? "N/A")")
             Text(myText)
             Text("isBig = \(isBig)")
             RoundedRectangle(cornerRadius: 8)
-                .matchedGeometryEffect(id: isBig ? "" : "rect", in: namespace, properties: .frame, anchor: .center, isSource: false)
+                .matchedGeometryEffect(id: isBig ? "" : "rect", in: namespace, properties: .size, anchor: .center, isSource: false)
                 .foregroundStyle(Color.red)
                 .frame(width: 200, height: 200)
+                .onTapGesture {
+                    syncFunc()
+                }
             
             RoundedRectangle(cornerRadius: 8)
                 .matchedGeometryEffect(id: "rect", in: namespace, isSource: true)
                 .frame(width: 30, height: 30)
+                .opacity(isBig ? 0.0001 : 0.001)
                 .onTapGesture {
                     isBig.toggle()
+                    Task{
+                        
+                        log.info("Before AWait", showCurrentThread: true)
+                        await nw.asyncTask1()
+                        log.info("After Await", showCurrentThread: true)
+                        
+                    }
                 }
             Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
             
                 .onAppear{
-                    DispatchQueue.global(qos: .default).async {
-                        print("Dispatch first 1")
-                        DispatchQueue.main.async {
-                            myText = "Dispatc started"
-                        }
-                        Thread.sleep(forTimeInterval: 2)
-                        DispatchQueue.main.async {
-                            myText = "Dispatc finished"
-                        }
-                        print("Dispatch second 2")
-                    }
-                    Task.detached(priority: .background){
-                        await asyncTask1()
-                    }
-                    syncFunc()
+//                    DispatchQueue.global(qos: .default).async {
+//                        print("Dispatch first 1")
+//                        DispatchQueue.main.async {
+//                            print("Dispatch Started")
+//                        }
+//                        Thread.sleep(forTimeInterval: 2)
+//                        DispatchQueue.main.async {
+//                            print("Dispatch Finished")
+//                        }
+//                        print("Dispatch second 2")
+//                    }
                     
                 }
         }
@@ -56,25 +99,19 @@ struct SwiftUIView: View {
     func syncFunc(){
         print("SyncFunc First")
         let startTime = CFAbsoluteTimeGetCurrent() // Start time
-        
-        for i in 1...5000000{
-            if i % 100000 == 0{
+        log.success("sync func started ")
+        for i in 1...9000000{
+            if i % 1000000 == 0{
                 print("Sync task \(i)")
             }
         }
         print("sync func ended")
         let timeElapsed = CFAbsoluteTimeGetCurrent() - startTime
-            print("sync func ended in \(timeElapsed) seconds")
+        log.success("sync func ended with time")
+        
     }
     
-    func asyncTask1() async {
-        print("asyncTask 1 first")
-        try? await Task.sleep(nanoseconds: 1_000_000_000)
-        print("asyncTask 1 second")
-        await MainActor.run {
-            myText = "Task Finished"
-        }
-    }
+
 }
 
 #Preview {

@@ -7,20 +7,19 @@
 
 import Foundation
 import SwiftfulRouting
+import SwiftUI
 
 @MainActor
 class SplashViewModel: ObservableObject{
-    
-    @KeychainStorage(.token) var token = ""
-    @KeychainStorage(.credentials) var credentials = Credentials()
     
     private let router: AnyRouter
     private var tasks: [Task<Void, Never>] = []
     
     private let client: NetworkClient
-    
+    private let keychain: KeychainManager = KeychainManager()
     private let loginUseCase: CredentialsLoginUseCase
     
+    private var credentials: Credentials = Credentials()
     
     @Published var isLoading: Bool = false
     
@@ -32,7 +31,10 @@ class SplashViewModel: ObservableObject{
         self.router = router
         self.client = client
         self.loginUseCase = CredentialsLoginUseCase(client: client, authRepositoryMock: authRepositoryMock)
-        
+        keychain.save(UIDevice.current.identifierForVendor?.uuidString ?? "", key: .deviceId)
+        if let userCredentials: Credentials = keychain.getData(key: .credentials){
+            credentials = userCredentials
+        }
     }
     
     deinit {
@@ -64,7 +66,8 @@ class SplashViewModel: ObservableObject{
                 let loginResponse = await loginUseCase.invoke(Credentials(email: credentials.email, password: credentials.password))
                 switch loginResponse {
                 case .success(let response):
-                    token = response.token
+                    keychain.save(response.token, key: .token)
+                    keychain.save(response.refreshAccessToken, key: .refreshToken)
                     navigateToHome()
 //                    navigateToOnBoarding()
                 case .failure(_):

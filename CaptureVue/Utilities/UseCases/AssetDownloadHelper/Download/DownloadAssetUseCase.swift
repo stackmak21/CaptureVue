@@ -18,8 +18,6 @@ struct DownloadAssetUseCase{
     
     func invoke(assetURL: String) async -> Result<Data, CaptureVueError> {
         return await repository.downloadAsset(assetURL: assetURL)
-        
-
     }
     
     

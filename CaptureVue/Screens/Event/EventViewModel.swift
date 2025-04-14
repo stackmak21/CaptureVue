@@ -14,10 +14,10 @@ import MobileCoreServices
 
 
 
+
 @MainActor
 class EventViewModel: BaseViewModel {
     
-    @KeychainStorage(.token) var token = ""
     
     private let router: AnyRouter
     private var tasks: [Task<Void, Never>] = []
@@ -105,7 +105,7 @@ class EventViewModel: BaseViewModel {
             let task = Task{
                 setLoading()
                 defer { resetLoading() }
-                let response = await fetchEventUseCase.invoke(eventId, token)
+                let response = await fetchEventUseCase.invoke(eventId)
                 switch response {
                 case .success(let fetchedEvent):
                     self.event = fetchedEvent
@@ -120,7 +120,6 @@ class EventViewModel: BaseViewModel {
     func uploadFiles(_ selectedFiles: [PhotosPickerItem], section: AssetSectionType){
         let task = Task{
                 await assetUploadHelper.uploadAwsLibraryAssets(
-                    token,
                     selectedFiles: selectedFiles,
                     eventId: eventId,
                     section: section,
@@ -137,7 +136,6 @@ class EventViewModel: BaseViewModel {
     func uploadFiles(_ selectedFiles: [UIImage], section: AssetSectionType){
         let task = Task{
                 await assetUploadHelper.uploadAwsCameraAssets(
-                    token,
                     selectedFiles: selectedFiles,
                     eventId: eventId,
                     section: section,
@@ -154,7 +152,6 @@ class EventViewModel: BaseViewModel {
     func uploadVideo(_ videoURL: URL, section: AssetSectionType){
         let task = Task{
             await assetUploadHelper.uploadAwsVideoFile(
-                    token,
                     capturedVideoURL: videoURL,
                     eventId: eventId,
                     section: section
@@ -166,7 +163,6 @@ class EventViewModel: BaseViewModel {
     
     func downloadAsset(assetURL: String, assetType: MediaType){
         let task = Task{
-            print(#function, Thread.current)
             await assetDownloadHelper.downloadAsset(assetURL: assetURL, assetType: assetType)
         }
         tasks.append(task)

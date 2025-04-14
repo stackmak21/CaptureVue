@@ -15,7 +15,7 @@ struct NotifyNewAssetUseCase{
         self.repository = galleryRepositoryMock ?? GalleryRepository(client: client)
     }
     
-    func invoke(_ token: String, assetUploadRequest: NotifyNewAssetRequest) async -> CaptureVueResponseRaw {
-        return await repository.notifyNewAssetUpload(token, assetUploadRequest: assetUploadRequest)
+    func invoke(assetUploadRequest: NotifyNewAssetRequest) async -> CaptureVueResponseRaw {
+        return await repository.notifyNewAssetUpload(assetUploadRequest: assetUploadRequest)
     }
 }

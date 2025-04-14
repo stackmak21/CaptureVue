@@ -13,10 +13,6 @@ import Combine
 
 class OnBoardingViewModel: BaseViewModel {
     
-    
-    
-    @KeychainStorage(.token) var token = ""
-    
     @Published var isLoading: Bool = false
     
     private let router: AnyRouter

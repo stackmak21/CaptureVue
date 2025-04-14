@@ -12,14 +12,12 @@ import SwiftfulRouting
 @MainActor
 class HomeViewModel: BaseViewModel {
     
-    @KeychainStorage(.token) var token = ""
-    @KeychainStorage(.credentials) var credentials = Credentials()
-    
     private let router: AnyRouter
     private var tasks: [Task<Void, Never>] = []
     private var cancellables =  Set<AnyCancellable>()
     
     private let client: NetworkClient
+    private let keychain: KeychainManager = KeychainManager()
     
     //MARK: - Use Cases
     private let fetchCustomerHomeUseCase: FetchCustomerHomeUseCase
@@ -47,7 +45,7 @@ class HomeViewModel: BaseViewModel {
     }
     
     func logoutUser(){
-        credentials = Credentials()
+        keychain.saveData(Credentials(), key: .credentials)
         goToLogin()
     }
     
@@ -61,7 +59,7 @@ extension HomeViewModel {
         let task = Task{
             setLoading()
             defer{resetLoading()}
-            switch await fetchCustomerHomeUseCase.invoke(token){
+            switch await fetchCustomerHomeUseCase.invoke(){
             case .success(let response):
                 customer = response.customer
                 hostEvents = response.hostEvents
