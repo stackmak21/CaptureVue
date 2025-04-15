@@ -77,6 +77,8 @@ class AssetUploadHelper{
     private func uploadProcess(eventId: String, section: AssetSectionType, filesToUpload: [String]) async {
         for fileName in filesToUpload {
             var thumbnailName: String = ""
+            print("FILENAME: \(fileName)")
+            print("MIME TYPE: \(mimeTypeForPath(path: fileName))")
             let assetType: GalleryItemType = mimeTypeForPath(path: fileName).hasPrefix("image") ? .photo : .video
             if assetType == .video {
                 if let name = await createAndUploadThumbnail(fileName: fileName, eventId: eventId){

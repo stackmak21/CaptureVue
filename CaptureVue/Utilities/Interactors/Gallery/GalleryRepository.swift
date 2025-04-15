@@ -45,9 +45,12 @@ struct GalleryRepository: GalleryRepositoryContract {
             if let uti = file.supportedContentTypes.first?.identifier {
                 identifier = getFileExtension(from: uti)
             }
-            if let imageData = try? await file.loadTransferable(type: Data.self){
-                let uiImage = UIImage(data: imageData)
+            if let data = try? await file.loadTransferable(type: Data.self){
+                let uiImage = UIImage(data: data)
                 if let data = uiImage?.jpegData(compressionQuality: 0.6){  // Reduced compression quallity because iphone save them as HEIC
+                    fileData = data
+                }
+                else{
                     fileData = data
                 }
             }
@@ -88,6 +91,7 @@ struct GalleryRepository: GalleryRepositoryContract {
     
     func getThumbnailFromVideo(url: URL, at time: TimeInterval) async -> UIImage?{
         do{
+            log.success("Thumbnail URL: \(url)")
             let asset = AVURLAsset(url: url)
             
             let assetImageGenerator = AVAssetImageGenerator(asset: asset)
@@ -99,8 +103,9 @@ struct GalleryRepository: GalleryRepositoryContract {
             
             return UIImage(cgImage: thumbnailImage)
         }
-        catch{
+        catch(let error){
             print("Error catching thumbnail from video")
+            print("\(error.localizedDescription)")
             return nil
         }
     }
