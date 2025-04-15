@@ -115,7 +115,7 @@ class AssetUploadHelper{
     private func createAndUploadThumbnail( fileName: String, eventId: String) async -> String? {
         if let fileUrl = await fileManager.getFileUrl(fileName: fileName, folderName: "UploadPendingFiles"){
             let videoThumbnailImage = await getThumbnailFromVideoUseCase.invoke(url: fileUrl, at: 1)
-            guard let imageData = videoThumbnailImage?.jpegData(compressionQuality: 1) else { return nil }
+            guard let imageData = videoThumbnailImage?.jpegData(compressionQuality: 0.4) else { return nil } // <------ Thumbnail image quallity
             let thumbnailName = "\(UUID().uuidString).jpeg"
             let uploadInfo = PrepareUploadData(eventId: eventId, fileName: thumbnailName, section: .gallery, assetType: .thumbnail, thumbnailPublicName: "")
             let response = await getAwsDirectUploadUrlUseCase.invoke(uploadInfo: uploadInfo)

@@ -51,7 +51,7 @@ final class KeychainManager {
     
     
     enum KeychainKeys: String {
-        case token, refreshToken, deviceId, credentials
+        case token, refreshToken, deviceId, credentials, customer
     }
     
 }

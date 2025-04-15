@@ -10,11 +10,13 @@ import Foundation
 struct LoginResponseDto: Codable {
     let token: String?
     let refreshAccessToken: String?
+    let customer: CustomerDto?
     
     func toLoginResponse() -> LoginResponse{
         return LoginResponse(
             token: self.token ?? "",
-            refreshAccessToken: self.refreshAccessToken ?? ""
+            refreshAccessToken: self.refreshAccessToken ?? "",
+            customer: self.customer?.toCustomer() ?? Customer()
         )
     }
 }

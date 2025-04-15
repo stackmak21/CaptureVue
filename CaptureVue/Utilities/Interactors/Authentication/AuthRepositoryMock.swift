@@ -11,7 +11,7 @@ class AuthRepositoryMock: AuthRepositoryContract {
     
     
     func login(_ credentials: Credentials) async -> Result<LoginResponse, CaptureVueResponseRaw> {
-        return .success(LoginResponse(token: "Test Token", refreshAccessToken: "Refresh Token"))
+        return .success(LoginResponse(token: "Test Token", refreshAccessToken: "Refresh Token", customer: Customer()))
     }
     
 }

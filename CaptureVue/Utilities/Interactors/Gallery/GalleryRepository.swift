@@ -91,7 +91,6 @@ struct GalleryRepository: GalleryRepositoryContract {
     
     func getThumbnailFromVideo(url: URL, at time: TimeInterval) async -> UIImage?{
         do{
-            log.success("Thumbnail URL: \(url)")
             let asset = AVURLAsset(url: url)
             
             let assetImageGenerator = AVAssetImageGenerator(asset: asset)

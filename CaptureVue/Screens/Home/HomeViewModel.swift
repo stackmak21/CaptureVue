@@ -46,6 +46,9 @@ class HomeViewModel: BaseViewModel {
     
     func logoutUser(){
         keychain.saveData(Credentials(), key: .credentials)
+        keychain.save("", key: .token)
+        keychain.save("", key: .refreshToken)
+        keychain.saveData(Customer(), key: .customer)
         goToLogin()
     }
     

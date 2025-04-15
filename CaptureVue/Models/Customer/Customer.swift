@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Customer {
+struct Customer: Codable {
     
     let id: String
     let email: String
@@ -15,6 +15,7 @@ struct Customer {
     let lastName: String
     let createdAt: Int64
     let isVerified: Bool
+    let isGuest: Bool
     
     init(
         id: String = "",
@@ -22,7 +23,8 @@ struct Customer {
         firstName: String = "",
         lastName: String = "",
         createdAt: Int64 = 0,
-        isVerified: Bool = false
+        isVerified: Bool = false,
+        isGuest: Bool = false
     ) {
         self.id = id
         self.email = email
@@ -30,5 +32,6 @@ struct Customer {
         self.lastName = lastName
         self.createdAt = createdAt
         self.isVerified = isVerified
+        self.isGuest = isGuest
     }
 }

@@ -61,19 +61,19 @@ class SplashViewModel: ObservableObject{
     
     
     func silentLogin(){
+        let token = keychain.get(key: .token) ?? ""
         let task = Task{
-            if credentials.isValid() {
-                let loginResponse = await loginUseCase.invoke(Credentials(email: credentials.email, password: credentials.password))
-                switch loginResponse {
-                case .success(let response):
-                    keychain.save(response.token, key: .token)
-                    keychain.save(response.refreshAccessToken, key: .refreshToken)
+            if !token.isEmpty {
+//                let loginResponse = await loginUseCase.invoke(Credentials(email: credentials.email, password: credentials.password))
+//                switch loginResponse {
+//                case .success(let response):
+//                    keychain.save(response.token, key: .token)
+//                    keychain.save(response.refreshAccessToken, key: .refreshToken)
                     navigateToHome()
 //                    navigateToOnBoarding()
-                case .failure(_):
-                    navigateToLogin()
+//                case .failure(_):
+//                    navigateToLogin()
                 }
-            }
             else{
                 navigateToLogin()
             }

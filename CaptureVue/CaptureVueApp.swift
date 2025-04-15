@@ -29,7 +29,8 @@ struct CaptureVueApp: App {
         WindowGroup {
             
             RouterView { router in
-                SplashScreen(router: router, client: client)
+//                SplashScreen(router: router, client: client)
+                SwiftStoriesTestView()
                     
                     .onOpenURL(perform: { url in
                         let string = url.absoluteString

@@ -52,6 +52,7 @@ class LoginViewModel: BaseViewModel {
                     keychain.save(response.token, key: .token)
                     keychain.save(response.refreshAccessToken, key: .refreshToken)
                     keychain.saveData(userCredentials, key: .credentials)
+                    keychain.saveData(response.customer, key: .customer)
                     goToHome()
                 case .failure(let error):
                     Banner(router: router, message: error.msg ?? "", bannerType: .error, bannerDuration: .long, action: nil)
