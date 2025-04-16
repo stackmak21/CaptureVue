@@ -87,7 +87,7 @@ class NetworkClient: NSObject {
                 let authToken = await refreshToken()
                 var request = urlRequest
                 request.setValue("Bearer " + authToken, forHTTPHeaderField: "Authorization")
-                return await execute(urlRequest: request, retrying: true)
+                return await execute(urlRequest: request, retrying: true)  // <----- Recursive function called after refreshing token.
             }
             else{
                 throw NetworkError.unauthorized

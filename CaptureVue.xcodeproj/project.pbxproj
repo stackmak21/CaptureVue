@@ -146,6 +146,8 @@
 		F9A9E09A2CE8A21C003DB166 /* DeveloperPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A9E0992CE8A21C003DB166 /* DeveloperPreview.swift */; };
 		F9A9E0AA2CEF8C7F003DB166 /* GalleryItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A9E0A92CEF8C7F003DB166 /* GalleryItemView.swift */; };
 		F9C3141B2DAE587D0034CA06 /* SwiftStoriesTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9C3141A2DAE587D0034CA06 /* SwiftStoriesTestView.swift */; };
+		F9C3141E2DAF71F80034CA06 /* CoverScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9C3141D2DAF71F80034CA06 /* CoverScreen.swift */; };
+		F9C314202DAF720A0034CA06 /* CoverViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9C3141F2DAF720A0034CA06 /* CoverViewModel.swift */; };
 		F9E699302D818CAA00B4A1E1 /* CameraCaptureButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9E6992F2D818CAA00B4A1E1 /* CameraCaptureButton.swift */; };
 		F9E699362D857AD800B4A1E1 /* ImageExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9E699352D857AD800B4A1E1 /* ImageExtensions.swift */; };
 		F9E699382D857FC100B4A1E1 /* CapturePhotoProccessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9E699372D857FC100B4A1E1 /* CapturePhotoProccessor.swift */; };
@@ -314,6 +316,8 @@
 		F9A9E0992CE8A21C003DB166 /* DeveloperPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeveloperPreview.swift; sourceTree = "<group>"; };
 		F9A9E0A92CEF8C7F003DB166 /* GalleryItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryItemView.swift; sourceTree = "<group>"; };
 		F9C3141A2DAE587D0034CA06 /* SwiftStoriesTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftStoriesTestView.swift; sourceTree = "<group>"; };
+		F9C3141D2DAF71F80034CA06 /* CoverScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoverScreen.swift; sourceTree = "<group>"; };
+		F9C3141F2DAF720A0034CA06 /* CoverViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoverViewModel.swift; sourceTree = "<group>"; };
 		F9E6992F2D818CAA00B4A1E1 /* CameraCaptureButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraCaptureButton.swift; sourceTree = "<group>"; };
 		F9E699352D857AD800B4A1E1 /* ImageExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageExtensions.swift; sourceTree = "<group>"; };
 		F9E699372D857FC100B4A1E1 /* CapturePhotoProccessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapturePhotoProccessor.swift; sourceTree = "<group>"; };
@@ -896,6 +900,7 @@
 		F9A5623C2CBA8D1000634C7A /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				F9C3141C2DAF71D70034CA06 /* Cover */,
 				F9A5623F2CBA8D6400634C7A /* Splash */,
 				F96982FE2CF5201100CC3C55 /* Login */,
 				F9F306152D42AC5E00E41995 /* Home */,
@@ -994,6 +999,15 @@
 				F9A9E0A92CEF8C7F003DB166 /* GalleryItemView.swift */,
 			);
 			path = Images;
+			sourceTree = "<group>";
+		};
+		F9C3141C2DAF71D70034CA06 /* Cover */ = {
+			isa = PBXGroup;
+			children = (
+				F9C3141D2DAF71F80034CA06 /* CoverScreen.swift */,
+				F9C3141F2DAF720A0034CA06 /* CoverViewModel.swift */,
+			);
+			path = Cover;
 			sourceTree = "<group>";
 		};
 		F9F3060F2D41A14900E41995 /* Keychain */ = {
@@ -1197,6 +1211,7 @@
 				F96982FC2CF3537B00CC3C55 /* GalleryView.swift in Sources */,
 				F99773B82D69196700D14332 /* SectionItem.swift in Sources */,
 				F997722E2D5490ED00D14332 /* ValidateEvent.swift in Sources */,
+				F9C314202DAF720A0034CA06 /* CoverViewModel.swift in Sources */,
 				F9954A702DAD39CE007E6590 /* NetworkLogger.swift in Sources */,
 				F997738A2D67B08500D14332 /* HomeResponseDto.swift in Sources */,
 				F99773BE2D691A2C00D14332 /* LeadingSectionIcon.swift in Sources */,
@@ -1290,6 +1305,7 @@
 				F96983002CF5203500CC3C55 /* LoginScreen.swift in Sources */,
 				F9954A522DA8F545007E6590 /* DownloadRepositoryContract.swift in Sources */,
 				F953B2672CD3CDE20058C2BD /* PermissionAlertStatus.swift in Sources */,
+				F9C3141E2DAF71F80034CA06 /* CoverScreen.swift in Sources */,
 				F99772382D5491AB00D14332 /* GalleryItemDto.swift in Sources */,
 				F99773862D6798D600D14332 /* CustomerApi.swift in Sources */,
 				F9A9E09A2CE8A21C003DB166 /* DeveloperPreview.swift in Sources */,
@@ -1473,6 +1489,9 @@
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CaptureVue/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "This app needs to capture image to show in the app.";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "App needs access to microphone for videos.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "App needs access to photos for video upload.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -1508,6 +1527,9 @@
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CaptureVue/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "This app needs to capture image to show in the app.";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "App needs access to microphone for videos.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "App needs access to photos for video upload.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

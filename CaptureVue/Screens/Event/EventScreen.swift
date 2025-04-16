@@ -213,6 +213,7 @@ struct EventScreen: View {
                             ZStack{
                                 
                                 HStack{
+                                    // https://www.capturevue.com/event/cp-10002
                                     Text(verbatim: "https://capturevue.com/event/\(vm.eventId)")
                                         .foregroundStyle(Color.black)
                                         .padding(EdgeInsets(top: 16, leading: 10, bottom: 16, trailing: 10))

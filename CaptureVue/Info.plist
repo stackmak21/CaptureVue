@@ -2,19 +2,25 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>NSCameraUsageDescription</key>
-	<string>This app needs to capture image to show in the app.</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>com.stackmak.capturevue</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>capturevue</string>
 			</array>
 		</dict>
+		<dict/>
 	</array>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Ubuntu-Light.ttf</string>
@@ -22,14 +28,5 @@
 		<string>Ubuntu-Medium.ttf</string>
 		<string>Ubuntu-Bold.ttf</string>
 	</array>
-	<key>NSAppTransportSecurity</key>
-	<dict>
-		<key>NSAllowsArbitraryLoads</key>
-		<true/>
-	</dict>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>App needs access to photos for video upload.</string>
-	<key>NSMicrophoneUsageDescription</key>
-	<string>App needs access to microphone for videos.</string>
 </dict>
 </plist>
