@@ -10,6 +10,8 @@ import Foundation
 //MARK: - Repository
 
 class AuthRepository: AuthRepositoryContract {
+    
+    
     private let authApi: AuthApi
     private let keychain: KeychainManager = KeychainManager()
     
@@ -29,6 +31,16 @@ class AuthRepository: AuthRepositoryContract {
         )
         .map({ $0.toLoginResponse() })
         .mapError({ $0 })
+    }
+    
+    func guestLogin() async -> Result<LoginResponse, CaptureVueResponseRaw> {
+        
+        return await authApi.guestLogin(
+            GuestLoginRequestBody(
+                deviceId: keychain.get(key: .deviceId) ?? ""
+            )
+        )
+        .map({ $0.toLoginResponse() })
     }
     
 }

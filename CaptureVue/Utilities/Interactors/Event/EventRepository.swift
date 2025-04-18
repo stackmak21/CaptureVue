@@ -25,6 +25,12 @@ struct EventRepository: EventRepositoryContract {
             .mapError({ $0 })
     }
     
+    func fetchEventCover(_ eventId: String) async -> Result<EventCover, CaptureVueResponseRaw> {
+        return await eventApi.fetchEventCover(eventId)
+            .map({ $0.toEventCover() })
+            .mapError({ $0 })
+    }
+    
     func createEvent(_ createEventRequest: CreateEventRequest, _ eventImage: Data) async -> Result<CreateEventResponse, CaptureVueResponseRaw> {
         return await eventApi.createEvent(createEventRequest, eventImage)
             .map({ $0.toCreateEventResponse() })

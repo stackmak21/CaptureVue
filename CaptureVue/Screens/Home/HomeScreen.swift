@@ -11,6 +11,8 @@ import SwiftfulRouting
 struct HomeScreen: View {
     
     @StateObject var vm: HomeViewModel
+    
+    @State var isPresented: Bool = false
 
     init(router: AnyRouter, client: NetworkClient, customerRepositoryMock: CustomerRepositoryContract? = nil) {
         _vm = StateObject(wrappedValue:HomeViewModel(router: router, client: client, customerRepositoryMock: customerRepositoryMock))
@@ -26,7 +28,7 @@ struct HomeScreen: View {
                             .font(Typography.regular(size: 16))
                         Spacer()
                         Button {
-                            vm.goToHome()
+                            isPresented = true
                         } label: {
                             HStack(spacing: 4){
                                 
@@ -124,6 +126,16 @@ struct HomeScreen: View {
                 }
                 ToolbarItem(placement: .principal) {
                     Text("My title")
+                }
+            }
+            .sheet(isPresented: $isPresented) {
+                QRCodeScannerScreen(onQrString: { qrCode in
+                    vm.analyzeQrCode(qrCodeString: qrCode)
+                    isPresented = false
+                })
+                .presentationDetents([.medium])
+                .onDisappear() {
+                    
                 }
             }
             .onAppear {

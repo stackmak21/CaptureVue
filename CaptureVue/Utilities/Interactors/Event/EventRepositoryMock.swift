@@ -22,4 +22,8 @@ struct EventRepositoryMock: EventRepositoryContract{
         return .success(CreateEventResponse(msg: "message", paymentUrl: "payment url", success: true, eventId: "cp-1234"))
     }
     
+    func fetchEventCover(_ eventId: String) async -> Result<EventCover, CaptureVueResponseRaw>{
+        return .success(EventCover())
+    }
+    
 }

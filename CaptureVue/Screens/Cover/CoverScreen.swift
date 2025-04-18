@@ -6,12 +6,20 @@
 //
 
 import SwiftUI
+import SwiftfulRouting
 
 struct CoverScreen: View {
+    
+    @StateObject var vm: CoverViewModel
+    
+    
+    init(router: AnyRouter, client: NetworkClient,  eventId: String, eventRepositoryMock: EventRepositoryContract? = nil) {
+        self._vm = StateObject(wrappedValue: CoverViewModel(router: router, client: client, eventId: eventId, eventRepositoryMock: eventRepositoryMock))
+    }
     var body: some View {
         VStack(spacing: 0){
             Spacer()
-            ImageLoader(url: "https://picsum.photos/801/1068")
+            ImageLoader(url: vm.event.mainImage)
                 .frame(width: 240, height: 300)
                 .clipShape(RoundedRectangle(cornerRadius: 8))
                 .rotationEffect(Angle(degrees: 4), anchor: .center)
@@ -30,9 +38,11 @@ struct CoverScreen: View {
                 .foregroundStyle(Color.gray)
                 .padding(.bottom)
             Button(
-                action: {},
+                action: {
+                    vm.goToEvent()
+                },
                 label: {
-                    Text("Login")
+                    Text("Enter Event")
                         .frame(maxWidth: 300)
                         .foregroundStyle(Color.white)
                         .padding(.vertical)
@@ -49,9 +59,15 @@ struct CoverScreen: View {
             
                 
         }
+        .navigationBarBackButtonHidden(true)
+        .onAppear{
+            vm.handleUserAuthentication()
+        }
     }
 }
 
 #Preview {
-    CoverScreen()
+    RouterView{ router in
+        CoverScreen(router: router, client: NetworkClient(), eventId: "cp-10001", eventRepositoryMock: EventRepositoryMock())
+    }
 }

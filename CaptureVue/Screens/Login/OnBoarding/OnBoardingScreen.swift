@@ -70,7 +70,9 @@ struct OnBoardingScreen: View {
             }
             .padding()
             .sheet(isPresented: $isPresent) {
-                QRCodeScannerScreen(qrString: $viewModel.eventId)
+                QRCodeScannerScreen(onQrString: { qrCode in
+                    
+                })
                 .presentationDetents([.medium])
                 .onDisappear() {
                     

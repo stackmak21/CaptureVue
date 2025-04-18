@@ -36,6 +36,15 @@ struct EventApi {
         )
     }
     
+    func fetchEventCover(_ eventId: String) async -> Result<EventCoverDto, CaptureVueResponseRaw> {
+        let token = keychain.get(key: .token) ?? ""
+        return await client.execute(
+            url: "api/v1/event/cover",
+            authToken: token,
+            queryItems: ["eventId": eventId]
+        )
+    }
+    
     func createEvent(_ createEventRequest: CreateEventRequest, _ eventImage: Data) async -> Result<CreateEventResponseDto, CaptureVueResponseRaw> {
         let token = keychain.get(key: .token) ?? ""
         var multipartRequest = MultipartRequest()

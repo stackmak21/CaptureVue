@@ -83,10 +83,13 @@ extension HomeViewModel {
         router.showScreen(.push, destination: { LoginScreen(router: $0, client: self.client) })
     }
     
-    func goToHome() {
-        //        router.showScreen(.push){ router in
-        //            OnBoardingScreen(router: router, dataService: self.interactor.dataService)
-        //        }
+    func analyzeQrCode(qrCodeString: String) {
+        if let qrCodeURL = URL(string: qrCodeString){
+            router.showScreen(.push) { router in
+                CoverScreen(router: router, client: self.client, eventId: qrCodeURL.lastPathComponent)
+            }
+            
+        }
     }
     
     func goToCreateEvent() {

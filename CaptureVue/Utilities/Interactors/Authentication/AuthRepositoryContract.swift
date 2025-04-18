@@ -21,5 +21,6 @@ import Foundation
 
 protocol AuthRepositoryContract {
     func login(_ credentials: Credentials) async -> Result<LoginResponse, CaptureVueResponseRaw>
-
+    func guestLogin() async -> Result<LoginResponse, CaptureVueResponseRaw>
+    
 }

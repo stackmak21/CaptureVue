@@ -19,7 +19,8 @@ struct QRCodeScannerScreen: View {
     @State var image: UIImage? = nil
     @State var manualInput: Bool = false
     @State var qrImage: UIImage?
-    @Binding var qrString: String?
+    @State var qrCode: String = ""
+    let onQrString: (String) -> Void
     
     @Namespace private var namespace
     
@@ -53,6 +54,7 @@ struct QRCodeScannerScreen: View {
                                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.5){
                                         stopFeed()
                                         self.newRect = .zero
+                                        onQrString(qrCode)
                                         presentationMode.wrappedValue.dismiss()
                                         
                                     }
@@ -117,8 +119,9 @@ struct QRCodeScannerScreen: View {
                     }
                     
                     .onAppear{
-                        feed.cameraManager.getQrFrame { string, rect  in
+                        feed.cameraManager.getQrFrame { QrCodeString, rect  in
                             self.rect = rect
+                            self.qrCode = QrCodeString
                         }
                         feed.cameraManager.getImage { image in
                             qrImage = image
@@ -165,5 +168,5 @@ struct QRCodeScannerScreen: View {
 }
 
 #Preview {
-    QRCodeScannerScreen(qrString: .constant(nil))
+    QRCodeScannerScreen(onQrString: {qrString in })
 }

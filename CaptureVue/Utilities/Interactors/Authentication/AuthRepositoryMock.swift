@@ -8,6 +8,10 @@
 import Foundation
 
 class AuthRepositoryMock: AuthRepositoryContract {
+    func guestLogin() async -> Result<LoginResponse, CaptureVueResponseRaw> {
+        .success(LoginResponse(token: "Test Token", refreshAccessToken: "Refresh Token", customer: Customer()))
+    }
+    
     
     
     func login(_ credentials: Credentials) async -> Result<LoginResponse, CaptureVueResponseRaw> {

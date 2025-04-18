@@ -29,12 +29,16 @@ struct CaptureVueApp: App {
         WindowGroup {
             
             RouterView { router in
-//                SplashScreen(router: router, client: client)
-                SwiftStoriesTestView()
+                SplashScreen(router: router, client: client)
+//                SwiftStoriesTestView()
                     
                     .onOpenURL(perform: { url in
-                        let string = url.absoluteString
-                        print(string)
+                        let eventId = url.lastPathComponent
+                        // capturevue://http://www.capturevue.com/event/cp-10001
+                        print(eventId)
+                        router.showScreen(.push) { router in
+                            CoverScreen(router: router, client: client, eventId: eventId)
+                        }
                     })
                     
                     .onAppear{

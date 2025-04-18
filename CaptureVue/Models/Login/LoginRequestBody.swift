@@ -13,3 +13,8 @@ struct LoginRequestBody: Codable {
     let password: String
     let deviceId: String 
 }
+
+
+struct GuestLoginRequestBody: Codable {
+    let deviceId: String
+}
