@@ -68,11 +68,11 @@ class CreateEventViewModel: BaseViewModel {
                     case .success(let response):
                         router.dismissScreen()
                     case .failure(let error):
-                        Banner(router: router, message: error.msg ?? "", bannerType: .error, bannerDuration: .long, action: nil)
+                        Banner(message: error.msg ?? "", bannerType: .error, bannerDuration: .long, action: nil)
                     }
                 }
                 else{
-                    Banner(router: router, message: "Failed to create Data from Image", bannerType: .error, bannerDuration: .long, action: nil)
+                    Banner(message: "Failed to create Data from Image", bannerType: .error, bannerDuration: .long, action: nil)
                 }
         }
         

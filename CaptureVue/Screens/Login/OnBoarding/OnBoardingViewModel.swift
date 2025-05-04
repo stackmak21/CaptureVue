@@ -75,7 +75,7 @@ extension OnBoardingViewModel {
             dismissOnBackgroundTap: true,
             ignoreSafeArea: false,
             destination: {
-                Banner(router: self.router, message: message, bannerType: bannerType, bannerDuration: bannerDuration, action: action)
+                Banner(message: message, bannerType: bannerType, bannerDuration: bannerDuration, action: action)
             })
     }
 }

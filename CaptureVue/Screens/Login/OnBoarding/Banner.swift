@@ -10,25 +10,21 @@ import SwiftfulRouting
 
 struct Banner: View {
     
-    let router: AnyRouter
     let message: String
     let bannerType: BannerType
     let bannerDuration: BannerDuration
     let action: BannerAction?
     
     init(
-        router: AnyRouter,
         message: String,
         bannerType: BannerType,
         bannerDuration: BannerDuration,
         action: BannerAction?
     ) {
-        self.router = router
         self.message = message
         self.bannerType = bannerType
         self.bannerDuration = bannerDuration
         self.action = action
-        showBanner()
     }
     
     
@@ -72,27 +68,16 @@ struct Banner: View {
         }
         
         .padding()
-        .onAppear{
-            DispatchQueue.main.asyncAfter(deadline: .now() + bannerDuration.duration) {
-                self.router.dismissModal()
-            }
-        }
-        .onTapGesture {
-            self.router.dismissModal()
-        }
+//        .onAppear{
+//            DispatchQueue.main.asyncAfter(deadline: .now() + bannerDuration.duration) {
+//                self.router.dismissModal()
+//            }
+//        }
+//        .onTapGesture {
+//            self.router.dismissModal()
+//        }
     }
-    
-    private func showBanner() {
-        router.showModal(
-            transition: .move(edge: .bottom),
-            animation: .easeInOut,
-            alignment: .bottom,
-            backgroundColor: .black.opacity(0.1),
-            dismissOnBackgroundTap: true,
-            ignoreSafeArea: false,
-            destination: { self }
-        )
-    }
+
     
         
 }
@@ -102,9 +87,9 @@ struct Banner: View {
         ZStack{
             Color.black.ignoresSafeArea()
             VStack{
-                Banner(router: router, message: "There is an error There is an error There is an error ", bannerType: .info, bannerDuration: .short, action: BannerAction(message: "Retry", onTap: {}))
-                Banner(router: router, message: "There is an error There is an error There is an error ", bannerType: .warning, bannerDuration: .short, action: BannerAction(message: "Retry", onTap: {}))
-                Banner(router: router, message: "There is an error There is an error There is an error ", bannerType: .error, bannerDuration: .short, action: BannerAction(message: "Retry", onTap: {}))
+                Banner(message: "There is an error There is an error There is an error ", bannerType: .info, bannerDuration: .short, action: BannerAction(message: "Retry", onTap: {}))
+                Banner(message: "There is an error There is an error There is an error ", bannerType: .warning, bannerDuration: .short, action: BannerAction(message: "Retry", onTap: {}))
+                Banner(message: "There is an error There is an error There is an error ", bannerType: .error, bannerDuration: .short, action: BannerAction(message: "Retry", onTap: {}))
             }
         }
     }

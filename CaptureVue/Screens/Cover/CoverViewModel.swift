@@ -74,12 +74,25 @@ class CoverViewModel: BaseViewModel{
                 switch response {
                 case .success(let fetchedEvent):
                     self.event = fetchedEvent
+                    showBanner(message: "Success Event Cover", .info)
                 case .failure(let error):
-                    Banner(router: router, message: error.msg ?? "" , bannerType: .error, bannerDuration: .long, action: nil)
+                    showBanner(message: error.msg ?? "empty message")
                 }
             }
 
         tasks.append(task)
+    }
+    
+    private func showBanner(message: String, _ bannerType: BannerType = .error, _ bannerDuration: BannerDuration = .long, action: BannerAction? = nil) {
+        router.showModal(
+            transition: .move(edge: .bottom),
+            animation: .easeInOut,
+            alignment: .bottom,
+            backgroundColor: .black.opacity(0.1),
+            dismissOnBackgroundTap: true,
+            ignoreSafeArea: false,
+            destination: { Banner(message: message, bannerType: bannerType, bannerDuration: bannerDuration, action: action) }
+        )
     }
     
     func goToEvent(){

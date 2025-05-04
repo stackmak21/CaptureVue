@@ -110,7 +110,7 @@ class EventViewModel: BaseViewModel {
                 case .success(let fetchedEvent):
                     self.event = fetchedEvent
                 case .failure(let error):
-                    Banner(router: router, message: error.msg ?? "" , bannerType: .error, bannerDuration: .long, action: nil)
+                    Banner(message: error.msg ?? "" , bannerType: .error, bannerDuration: .long, action: nil)
                 }
             }
 

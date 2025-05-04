@@ -51,7 +51,7 @@ struct Event{
     }
     
     func isValid() -> Bool {
-        return !self.id.isEmpty
+        return !id.isEmpty
     }
     
 }

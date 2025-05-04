@@ -42,8 +42,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/stackmak21/SwiftStoriesKit",
       "state" : {
-        "branch" : "main",
-        "revision" : "70caa43f46b0bb1d4433e4e10ad1eb207ea7d250"
+        "revision" : "60830f010f00d12540941fce697748d532bb9813",
+        "version" : "1.0.0"
       }
     }
   ],
