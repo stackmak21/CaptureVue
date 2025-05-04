@@ -20,7 +20,8 @@ import Foundation
 //MARK: - Contract
 
 protocol AuthRepositoryContract {
-    func login(_ credentials: Credentials) async -> Result<LoginResponse, CaptureVueResponseRaw>
-    func guestLogin() async -> Result<LoginResponse, CaptureVueResponseRaw>
+    func login(_ credentials: Credentials) async -> Result<LoginResponse, CaptureVueError>
+    func guestLogin() async -> Result<LoginResponse, CaptureVueError>
+    func register(_ registerDetails: RegisterDetails) async -> Result<RegisterResponse, CaptureVueError>
     
 }

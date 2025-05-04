@@ -1,5 +1,5 @@
 //
-//  LoginScreen.swift
+//  RegisterScreen.swift
 //  CaptureVue
 //
 //  Created by Paris Makris on 25/11/24.
@@ -8,16 +8,16 @@
 import SwiftUI
 import SwiftfulRouting
 
-struct LoginScreen: View {
+struct RegisterScreen: View {
     
     
-    @StateObject var vm: LoginViewModel
+    @StateObject var vm: RegisterViewModel
     
     @FocusState private var focusedField: FocusedField?
     @FocusState var isUsernameFocused: Bool
     
     init(router: AnyRouter, client: NetworkClient, authRepositoryMock: AuthRepositoryContract? = nil) {
-        _vm = StateObject(wrappedValue: LoginViewModel(router: router, client: client, authRepositoryMock: authRepositoryMock))
+        _vm = StateObject(wrappedValue: RegisterViewModel(router: router, client: client, authRepositoryMock: authRepositoryMock))
     }
     
     var body: some View {
@@ -31,14 +31,40 @@ struct LoginScreen: View {
                     .clipShape(RoundedRectangle(cornerRadius: 8))
                     .padding()
                 
+                TextField(text: $vm.firstName) {
+                    Text("First name")
+                        .font(Typography.medium(size: 12))
+                }
+                .onSubmit {
+                    focusedField = .lastName
+                }
+                .focused($focusedField, equals: .firstName)
+                .padding()
+                .background(.white)
+                .clipShape(RoundedRectangle(cornerRadius: 8))
+                .frame(height: 55)
+                
+                TextField(text: $vm.lastName) {
+                    Text("Last name")
+                        .font(Typography.medium(size: 12))
+                }
+                .onSubmit {
+                    focusedField = .email
+                }
+                .focused($focusedField, equals: .lastName)
+                .padding()
+                .background(.white)
+                .clipShape(RoundedRectangle(cornerRadius: 8))
+                .frame(height: 55)
+                
                 TextField(text: $vm.email) {
-                    Text("Enter your username")
+                    Text("Enter your email")
                         .font(Typography.medium(size: 12))
                 }
                 .onSubmit {
                     focusedField = .password
                 }
-                .focused($focusedField, equals: .username)
+                .focused($focusedField, equals: .email)
                 .padding()
                 .background(.white)
                 .clipShape(RoundedRectangle(cornerRadius: 8))
@@ -62,7 +88,7 @@ struct LoginScreen: View {
                 Button {
                     vm.onSubmitClicked()
                 } label: {
-                    Text("Login")
+                    Text("Register")
                         .font(Typography.medium(size: 16))
                         .foregroundStyle(Color.white)
                         .frame(maxWidth: .infinity)
@@ -73,17 +99,15 @@ struct LoginScreen: View {
                 .buttonStyle(PlainButtonStyle())
                 .padding(.top)
                 
-                
                 Button(
-                    action: { vm.goToRegisterScreen() },
+                    action: { vm.goToLoginScreen() },
                     label: {
-                        Text("Don't have an account? Register")
+                        Text("Already have acount?")
                             .foregroundStyle(Color.gray)
                     }
                 )
                 .buttonStyle(PlainButtonStyle())
                 .padding(.top, 10)
-                
             }
             .padding()
             .background(RadialGradient(colors: [.white.opacity(0.5), .white], center: .center, startRadius: 0, endRadius: 400))
@@ -91,7 +115,7 @@ struct LoginScreen: View {
             .padding()
             .shadow(color: .black.opacity(0.2), radius: 4, x: 2, y: 4)
             .onAppear{
-                focusedField = .username
+                focusedField = .firstName
             }
             
             if vm.isLoading {
@@ -113,9 +137,11 @@ struct LoginScreen: View {
     
 }
 
-extension LoginScreen {
+extension RegisterScreen {
     enum FocusedField{
-        case username
+        case firstName
+        case lastName
+        case email
         case password
     }
 }
@@ -125,6 +151,6 @@ extension LoginScreen {
 
 #Preview {
     RouterView{ router in
-        LoginScreen(router: router, client: NetworkClient(), authRepositoryMock: AuthRepositoryMock())
+        RegisterScreen(router: router, client: NetworkClient(), authRepositoryMock: AuthRepositoryMock())
     }
 }

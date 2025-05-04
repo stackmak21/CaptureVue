@@ -17,6 +17,17 @@ class AuthApi {
         self.client = client
     }
     
+    func register(_ registerRequestBody: RegistetRequestBody) async -> Result<RegisterResponseDto, CaptureVueResponseRaw>{
+        let requestBody = try? JSONEncoder().encode(registerRequestBody)
+        let response: Result<RegisterResponseDto, CaptureVueResponseRaw> =  await client.execute(
+            url: "api/v1/customer/register",
+            httpMethod: .post,
+            headers: ["Content-Type" : "application/json"],
+            requestBody: requestBody
+        )
+        return response
+    }
+    
     func login(_ loginRequestBody: LoginRequestBody) async -> Result<LoginResponseDto, CaptureVueResponseRaw> {
         let requestBody = try? JSONEncoder().encode(loginRequestBody)
         let response: Result<LoginResponseDto, CaptureVueResponseRaw> =  await client.execute(
@@ -42,7 +53,6 @@ class AuthApi {
     
     
     func refreshToken(_ refreshTokenRequestBody: RefreshTokenRequestBody) async -> Result<LoginResponseDto ,CaptureVueResponseRaw> {
-        // /api/v1/customer/refreshToken
         let requestBody = try? JSONEncoder().encode(refreshTokenRequestBody)
         let response: Result<LoginResponseDto, CaptureVueResponseRaw> =  await client.execute(
             url: "api/v1/customer/refreshToken",

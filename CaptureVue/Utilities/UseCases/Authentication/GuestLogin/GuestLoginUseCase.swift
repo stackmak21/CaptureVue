@@ -1,15 +1,15 @@
 //
-//  CredentialsLoginUseCase.swift
+//  GuestLoginUseCase.swift
 //  CaptureVue
 //
-//  Created by Paris Makris on 21/2/25.
+//  Created by Paris Makris on 18/4/25.
 //
 
 import Foundation
 
-//MARK: - CredentialsLoginUseCase
+//MARK: - GuestLoginUseCase
 
-struct CredentialsLoginUseCase{
+struct GuestLoginUseCase{
     
     private let repository: AuthRepositoryContract
     
@@ -18,7 +18,7 @@ struct CredentialsLoginUseCase{
     }
     
     
-    func invoke(_ credentials: Credentials) async -> Result<LoginResponse, CaptureVueError> {
-        return await repository.login(credentials)
+    func invoke() async -> Result<LoginResponse, CaptureVueError> {
+        return await repository.guestLogin()
     }
 }

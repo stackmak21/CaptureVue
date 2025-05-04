@@ -19,9 +19,23 @@ class AuthRepository: AuthRepositoryContract {
         self.authApi = AuthApi(client: client)
     }
     
+    func register(_ registerDetails: RegisterDetails) async -> Result<RegisterResponse, CaptureVueError> {
+        return await authApi.register(
+            RegistetRequestBody(
+                firstName: registerDetails.firstName,
+                lastName: registerDetails.lastName,
+                email: registerDetails.email,
+                password: registerDetails.password,
+                deviceId: keychain.get(key: .deviceId) ?? ""
+            )
+        )
+        .map({ $0.toRegisterResponse() })
+        .mapError({ $0.toCaptureVueError() })
+    }
+    
 
     
-    func login(_ credentials: Credentials) async -> Result<LoginResponse, CaptureVueResponseRaw> {
+    func login(_ credentials: Credentials) async -> Result<LoginResponse, CaptureVueError> {
         return await authApi.login(
             LoginRequestBody(
                 email: credentials.email,
@@ -30,10 +44,10 @@ class AuthRepository: AuthRepositoryContract {
             )
         )
         .map({ $0.toLoginResponse() })
-        .mapError({ $0 })
+        .mapError({ $0.toCaptureVueError() })
     }
     
-    func guestLogin() async -> Result<LoginResponse, CaptureVueResponseRaw> {
+    func guestLogin() async -> Result<LoginResponse, CaptureVueError> {
         
         return await authApi.guestLogin(
             GuestLoginRequestBody(
@@ -41,6 +55,7 @@ class AuthRepository: AuthRepositoryContract {
             )
         )
         .map({ $0.toLoginResponse() })
+        .mapError({$0.toCaptureVueError()})
     }
     
 }

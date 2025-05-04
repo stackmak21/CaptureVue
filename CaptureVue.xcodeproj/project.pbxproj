@@ -35,6 +35,13 @@
 		F96983062CF63E5A00CC3C55 /* VideoPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F96983052CF63E5A00CC3C55 /* VideoPlayerView.swift */; };
 		F96A6D4E2CC1B9A3001C1E85 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = F96A6D4D2CC1B9A3001C1E85 /* Kingfisher */; };
 		F980ED0E2D71F5A7003D8CAC /* UploadThumbnailUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F980ED0D2D71F5A7003D8CAC /* UploadThumbnailUseCase.swift */; };
+		F992C8B62DC7C11300EDC798 /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F992C8B52DC7C11300EDC798 /* RegisterViewModel.swift */; };
+		F992C8B72DC7C11300EDC798 /* RegisterScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = F992C8B42DC7C11300EDC798 /* RegisterScreen.swift */; };
+		F992C8BB2DC7C7AA00EDC798 /* RegistetRequestBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = F992C8BA2DC7C7AA00EDC798 /* RegistetRequestBody.swift */; };
+		F992C8BD2DC7C82900EDC798 /* RegisterResponseDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = F992C8BC2DC7C82900EDC798 /* RegisterResponseDto.swift */; };
+		F992C8BF2DC7C85700EDC798 /* RegisterResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F992C8BE2DC7C85700EDC798 /* RegisterResponse.swift */; };
+		F992C8C12DC7C99300EDC798 /* RegisterDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = F992C8C02DC7C99300EDC798 /* RegisterDetails.swift */; };
+		F992C8C32DC7CB3300EDC798 /* RegisterUserUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F992C8C22DC7CB3300EDC798 /* RegisterUserUseCase.swift */; };
 		F9954A492DA7C0D8007E6590 /* GalleryVideoPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9954A482DA7C0D8007E6590 /* GalleryVideoPlayer.swift */; };
 		F9954A4E2DA8F4F9007E6590 /* AssetDownloadHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9954A4D2DA8F4F9007E6590 /* AssetDownloadHelper.swift */; };
 		F9954A522DA8F545007E6590 /* DownloadRepositoryContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9954A512DA8F545007E6590 /* DownloadRepositoryContract.swift */; };
@@ -201,6 +208,13 @@
 		F96983012CF5207C00CC3C55 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		F96983052CF63E5A00CC3C55 /* VideoPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerView.swift; sourceTree = "<group>"; };
 		F980ED0D2D71F5A7003D8CAC /* UploadThumbnailUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadThumbnailUseCase.swift; sourceTree = "<group>"; };
+		F992C8B42DC7C11300EDC798 /* RegisterScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterScreen.swift; sourceTree = "<group>"; };
+		F992C8B52DC7C11300EDC798 /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
+		F992C8BA2DC7C7AA00EDC798 /* RegistetRequestBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistetRequestBody.swift; sourceTree = "<group>"; };
+		F992C8BC2DC7C82900EDC798 /* RegisterResponseDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterResponseDto.swift; sourceTree = "<group>"; };
+		F992C8BE2DC7C85700EDC798 /* RegisterResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterResponse.swift; sourceTree = "<group>"; };
+		F992C8C02DC7C99300EDC798 /* RegisterDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterDetails.swift; sourceTree = "<group>"; };
+		F992C8C22DC7CB3300EDC798 /* RegisterUserUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterUserUseCase.swift; sourceTree = "<group>"; };
 		F9954A482DA7C0D8007E6590 /* GalleryVideoPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryVideoPlayer.swift; sourceTree = "<group>"; };
 		F9954A4D2DA8F4F9007E6590 /* AssetDownloadHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetDownloadHelper.swift; sourceTree = "<group>"; };
 		F9954A512DA8F545007E6590 /* DownloadRepositoryContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadRepositoryContract.swift; sourceTree = "<group>"; };
@@ -500,11 +514,30 @@
 		F96982FE2CF5201100CC3C55 /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				F953B24B2CC8274B0058C2BD /* OnBoarding */,
 				F96982FF2CF5203500CC3C55 /* LoginScreen.swift */,
 				F96983012CF5207C00CC3C55 /* LoginViewModel.swift */,
 			);
 			path = Login;
+			sourceTree = "<group>";
+		};
+		F992C8B32DC7C10600EDC798 /* Register */ = {
+			isa = PBXGroup;
+			children = (
+				F992C8B42DC7C11300EDC798 /* RegisterScreen.swift */,
+				F992C8B52DC7C11300EDC798 /* RegisterViewModel.swift */,
+			);
+			path = Register;
+			sourceTree = "<group>";
+		};
+		F992C8B92DC7C79300EDC798 /* Register */ = {
+			isa = PBXGroup;
+			children = (
+				F992C8BA2DC7C7AA00EDC798 /* RegistetRequestBody.swift */,
+				F992C8BC2DC7C82900EDC798 /* RegisterResponseDto.swift */,
+				F992C8BE2DC7C85700EDC798 /* RegisterResponse.swift */,
+				F992C8C02DC7C99300EDC798 /* RegisterDetails.swift */,
+			);
+			path = Register;
 			sourceTree = "<group>";
 		};
 		F9954A4C2DA8F4E1007E6590 /* AssetDownloadHelper */ = {
@@ -741,7 +774,6 @@
 			isa = PBXGroup;
 			children = (
 				F9C314272DB2FDCB0034CA06 /* FetchEventCover */,
-				F9C314212DB2901E0034CA06 /* GuestLogin */,
 				F9954A4C2DA8F4E1007E6590 /* AssetDownloadHelper */,
 				F99773EE2D6F2B3200D14332 /* AssetUploadHelper */,
 				F99773D42D6A7C7C00D14332 /* Authentication */,
@@ -755,9 +787,11 @@
 		F99773D42D6A7C7C00D14332 /* Authentication */ = {
 			isa = PBXGroup;
 			children = (
+				F9C314212DB2901E0034CA06 /* GuestLogin */,
 				F99773C82D692A3200D14332 /* CredentialsLoginUseCase.swift */,
 				F99773952D67D73C00D14332 /* ValidateEventUseCase.swift */,
 				F99773D02D6A719E00D14332 /* CreateEventUseCase.swift */,
+				F992C8C22DC7CB3300EDC798 /* RegisterUserUseCase.swift */,
 			);
 			path = Authentication;
 			sourceTree = "<group>";
@@ -916,8 +950,10 @@
 		F9A5623C2CBA8D1000634C7A /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				F953B24B2CC8274B0058C2BD /* OnBoarding */,
 				F9C3141C2DAF71D70034CA06 /* Cover */,
 				F9A5623F2CBA8D6400634C7A /* Splash */,
+				F992C8B32DC7C10600EDC798 /* Register */,
 				F96982FE2CF5201100CC3C55 /* Login */,
 				F9F306152D42AC5E00E41995 /* Home */,
 				F9F306302D47D67600E41995 /* Event */,
@@ -994,6 +1030,7 @@
 				F99773AE2D6871D900D14332 /* UploadServiceData */,
 				F99773AD2D686DC000D14332 /* AwsDirectUploadUrl */,
 				F99773DA2D6A8E5D00D14332 /* CreateEvent */,
+				F992C8B92DC7C79300EDC798 /* Register */,
 				F99773A92D686C5700D14332 /* Login */,
 				F99773A62D686BE900D14332 /* CaptureVueError */,
 				F997738B2D67B1BA00D14332 /* Home */,
@@ -1290,8 +1327,11 @@
 				F953B2692CD6047D0058C2BD /* QRCodeIcon.swift in Sources */,
 				F99773BA2D6919B900D14332 /* DoubleExtensions.swift in Sources */,
 				F997737F2D67967100D14332 /* FetchCustomerHomeUseCase.swift in Sources */,
+				F992C8B62DC7C11300EDC798 /* RegisterViewModel.swift in Sources */,
+				F992C8B72DC7C11300EDC798 /* RegisterScreen.swift in Sources */,
 				F9A9E07E2CE52E10003DB166 /* EventScreen.swift in Sources */,
 				F99773C12D6929EC00D14332 /* AuthRepositoryContract.swift in Sources */,
+				F992C8BF2DC7C85700EDC798 /* RegisterResponse.swift in Sources */,
 				F9A562442CBABA4200634C7A /* SplashViewModel.swift in Sources */,
 				F99773902D67D65000D14332 /* EventApi.swift in Sources */,
 				F99773AC2D686D6000D14332 /* AwsDirectUploadUrl.swift in Sources */,
@@ -1307,6 +1347,7 @@
 				F93021992D91888E0084E078 /* SwiftStoriesKitTest.swift in Sources */,
 				F9A9E0872CE564F1003DB166 /* ImagePrefetcher.swift in Sources */,
 				F997723E2D553E8900D14332 /* AwsDirectUploadUrlDto.swift in Sources */,
+				F992C8BB2DC7C7AA00EDC798 /* RegistetRequestBody.swift in Sources */,
 				F9A9E0802CE52E22003DB166 /* EventViewModel.swift in Sources */,
 				F99773712D5BE4E600D14332 /* LocalNotificationManager.swift in Sources */,
 				F942636B2D77862E00A55A15 /* HttpUrlResponseExtensions.swift in Sources */,
@@ -1332,6 +1373,8 @@
 				F99772342D54917200D14332 /* StoryItemDto.swift in Sources */,
 				F99773F02D6F2B4300D14332 /* AssetUploadHelper.swift in Sources */,
 				F93021942D8AFF5B0084E078 /* StoriesTest.swift in Sources */,
+				F992C8C32DC7CB3300EDC798 /* RegisterUserUseCase.swift in Sources */,
+				F992C8BD2DC7C82900EDC798 /* RegisterResponseDto.swift in Sources */,
 				F99773D92D6A7F2D00D14332 /* CopyTempFileUseCase.swift in Sources */,
 				F99773CF2D69D16700D14332 /* MultipartRequest.swift in Sources */,
 				F9F306192D42AE0C00E41995 /* HomeViewModel.swift in Sources */,
@@ -1360,6 +1403,7 @@
 				F9E699382D857FC100B4A1E1 /* CapturePhotoProccessor.swift in Sources */,
 				F9A9E0AA2CEF8C7F003DB166 /* GalleryItemView.swift in Sources */,
 				F9954A542DA8F57F007E6590 /* DownloadAssetUseCase.swift in Sources */,
+				F992C8C12DC7C99300EDC798 /* RegisterDetails.swift in Sources */,
 				F9C314232DB2905C0034CA06 /* GuestLoginUseCase.swift in Sources */,
 				F980ED0E2D71F5A7003D8CAC /* UploadThumbnailUseCase.swift in Sources */,
 				F99773C52D692A0E00D14332 /* AuthRepository.swift in Sources */,
