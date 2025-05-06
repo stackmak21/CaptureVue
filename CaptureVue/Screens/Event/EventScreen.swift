@@ -78,9 +78,9 @@ struct EventScreen: View {
                 VStack(spacing: 0){
                     ImageLoader(
                         url: vm.event.mainImage,
-                        height: 260,
                         capturedImage: { imageToUpload = $0 }
                     )
+                    .frame(height: 260)
                     .onAppear{
                         ImagePrefetcher.instance.startPrefetching(eventID: vm.eventId, urls: [vm.event.qrCodeImage])
                     }
@@ -186,7 +186,8 @@ struct EventScreen: View {
                                     selectedGalleryItem: $selectedGalleryItem,
                                     showGallery: $showGallery
                                 )
-                                .zIndex(0)
+                                .zIndex(2)
+                                .animation(nil, value: showGallery)
                                 .padding(.horizontal)
                             }
 //                            .frameReader{ rect in
@@ -294,7 +295,7 @@ struct EventScreen: View {
                         selectedGalleryItem: $selectedGalleryItem
                     )
                     .environmentObject(videoPlayer)
-                    .zIndex(1)
+                    .zIndex(0)
                     
                 }
                 
@@ -333,7 +334,8 @@ struct EventScreen: View {
             
             
         }
-//        .animation(.interpolatingSpring(duration: 0.08), value: showStory)
+        .animation(.spring(duration: 0.16), value: showStory)
+        .animation(.spring(duration: 0.16), value: showGallery)
         
         
         .overlay(alignment: .top, content: {

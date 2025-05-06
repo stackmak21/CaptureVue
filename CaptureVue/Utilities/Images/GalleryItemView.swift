@@ -16,9 +16,9 @@ struct GalleryItemView: View {
             VStack(spacing: 0){
                 
                 ImageLoader(
-                    url: galleryItem.publicUrl,
-                    height: proxy.size.height * 5/6
+                    url: galleryItem.publicUrl
                 )
+                .frame(height: proxy.size.height * 5/6)
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
                 ZStack{
                     Rectangle()

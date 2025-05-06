@@ -42,6 +42,7 @@
 		F992C8BF2DC7C85700EDC798 /* RegisterResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F992C8BE2DC7C85700EDC798 /* RegisterResponse.swift */; };
 		F992C8C12DC7C99300EDC798 /* RegisterDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = F992C8C02DC7C99300EDC798 /* RegisterDetails.swift */; };
 		F992C8C32DC7CB3300EDC798 /* RegisterUserUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F992C8C22DC7CB3300EDC798 /* RegisterUserUseCase.swift */; };
+		F992C8C52DCA151500EDC798 /* TestGalleryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F992C8C42DCA151500EDC798 /* TestGalleryItem.swift */; };
 		F9954A492DA7C0D8007E6590 /* GalleryVideoPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9954A482DA7C0D8007E6590 /* GalleryVideoPlayer.swift */; };
 		F9954A4E2DA8F4F9007E6590 /* AssetDownloadHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9954A4D2DA8F4F9007E6590 /* AssetDownloadHelper.swift */; };
 		F9954A522DA8F545007E6590 /* DownloadRepositoryContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9954A512DA8F545007E6590 /* DownloadRepositoryContract.swift */; };
@@ -215,6 +216,7 @@
 		F992C8BE2DC7C85700EDC798 /* RegisterResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterResponse.swift; sourceTree = "<group>"; };
 		F992C8C02DC7C99300EDC798 /* RegisterDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterDetails.swift; sourceTree = "<group>"; };
 		F992C8C22DC7CB3300EDC798 /* RegisterUserUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterUserUseCase.swift; sourceTree = "<group>"; };
+		F992C8C42DCA151500EDC798 /* TestGalleryItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestGalleryItem.swift; sourceTree = "<group>"; };
 		F9954A482DA7C0D8007E6590 /* GalleryVideoPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryVideoPlayer.swift; sourceTree = "<group>"; };
 		F9954A4D2DA8F4F9007E6590 /* AssetDownloadHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetDownloadHelper.swift; sourceTree = "<group>"; };
 		F9954A512DA8F545007E6590 /* DownloadRepositoryContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadRepositoryContract.swift; sourceTree = "<group>"; };
@@ -897,6 +899,7 @@
 				F93021932D8AFF5B0084E078 /* StoriesTest.swift */,
 				F93021982D91888E0084E078 /* SwiftStoriesKitTest.swift */,
 				F9C3141A2DAE587D0034CA06 /* SwiftStoriesTestView.swift */,
+				F992C8C42DCA151500EDC798 /* TestGalleryItem.swift */,
 			);
 			path = CaptureVue;
 			sourceTree = "<group>";
@@ -1371,6 +1374,7 @@
 				F9C314292DB2FDE70034CA06 /* FetchEventCoverUseCase.swift in Sources */,
 				F99773A52D6868E100D14332 /* GalleryRepositoryMock.swift in Sources */,
 				F99772342D54917200D14332 /* StoryItemDto.swift in Sources */,
+				F992C8C52DCA151500EDC798 /* TestGalleryItem.swift in Sources */,
 				F99773F02D6F2B4300D14332 /* AssetUploadHelper.swift in Sources */,
 				F93021942D8AFF5B0084E078 /* StoriesTest.swift in Sources */,
 				F992C8C32DC7CB3300EDC798 /* RegisterUserUseCase.swift in Sources */,

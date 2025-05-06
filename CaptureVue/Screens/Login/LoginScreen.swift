@@ -25,9 +25,9 @@ struct LoginScreen: View {
             Color.gray.opacity(0.3).ignoresSafeArea()
             VStack{
                 ImageLoader(
-                    url: "https://picsum.photos/802/1017",
-                    height: 220
+                    url: "https://picsum.photos/802/1017"
                 )
+                .frame(height: 220)
                     .clipShape(RoundedRectangle(cornerRadius: 8))
                     .padding()
                 

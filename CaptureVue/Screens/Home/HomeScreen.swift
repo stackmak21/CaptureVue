@@ -75,10 +75,9 @@ struct HomeScreen: View {
                                         
                                         if !event.mainImage.isEmpty {
                                                 ImageLoader(
-                                                    url: event.mainImage,
-                                                    width: 40,
-                                                    height: 40
+                                                    url: event.mainImage
                                                 )
+                                                .frame(width: 40, height: 40)
                                                     
                                                     .clipShape(RoundedRectangle(cornerRadius: 8))
                                             }
