@@ -1,5 +1,5 @@
 {
-  "originHash" : "0d683038f064a0ecd3d0f20ad00b620b492003eabd0f7f3f50e7604d4d2d568f",
+  "originHash" : "c2e7b052f60d675182341d44b64b4c720081643ae04d67a991e08efc69e833bb",
   "pins" : [
     {
       "identity" : "keychain-swift",
@@ -35,15 +35,6 @@
       "state" : {
         "revision" : "bf0a8b4628b0e24d60f090b382c15b96329ab92c",
         "version" : "5.3.6"
-      }
-    },
-    {
-      "identity" : "swiftstorieskit",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/stackmak21/SwiftStoriesKit",
-      "state" : {
-        "revision" : "60830f010f00d12540941fce697748d532bb9813",
-        "version" : "1.0.0"
       }
     }
   ],

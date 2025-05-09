@@ -50,6 +50,10 @@ struct Event{
         self.galleryList = galleryList
     }
     
+    var storyBundles: [StoryBundle] {
+        return storiesList.map({ $0.toStoryBundle() })
+    }
+    
     func isValid() -> Bool {
         return !id.isEmpty
     }

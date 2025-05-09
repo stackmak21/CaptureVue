@@ -11,7 +11,6 @@ import Kingfisher
 import AVKit
 import PhotosUI
 
-import SwiftStoriesKit
 
 
 struct EventScreen: View {
@@ -153,14 +152,24 @@ struct EventScreen: View {
 //                                .zIndex(1)
                                 
                                 
-                                StoryThumbnailView(
-                                    storiesList: vm.event.storiesList,
-                                    storyNamespace: storyNamespace,
+//                                StoryThumbnailView(
+//                                    storiesList: vm.event.storiesList,
+//                                    storyNamespace: storyNamespace,
+//                                    showStory: $showStory,
+//                                    selectedStory: $selectedStory,
+//                                    onAddstoryClick: { vm.isMediaPickerPresented.toggle() }
+//                                )
+//                                .padding(.vertical)
+                                
+                                StoryCarousel(
+                                    storyBundles: $vm.stories,
                                     showStory: $showStory,
+                                    isInternalThumbnailShown: $isInternalThumbnailShown,
                                     selectedStory: $selectedStory,
-                                    onAddstoryClick: { vm.isMediaPickerPresented.toggle() }
+                                    thumbnailNamespace: thumbnailNamespace,
+                                    storyNamespace: storyNamespace
                                 )
-                                .padding(.vertical)
+                                
                                 
                                 HStack{
                                     PhotosPicker(selection: $vm.selectedFiles)
@@ -186,7 +195,6 @@ struct EventScreen: View {
                                     selectedGalleryItem: $selectedGalleryItem,
                                     showGallery: $showGallery
                                 )
-                                .zIndex(2)
                                 .animation(nil, value: showGallery)
                                 .padding(.horizontal)
                             }
@@ -295,21 +303,37 @@ struct EventScreen: View {
                         selectedGalleryItem: $selectedGalleryItem
                     )
                     .environmentObject(videoPlayer)
-                    .zIndex(0)
                     
                 }
                 
-                                if showStory{
-                                    StoryView(
-                                        showStory: $showStory,
-                                        allow3dRotation: $allow3dRotation,
-                                        selectedStory: $selectedStory,
-                                        storiesList: vm.event.storiesList,
-                                        storyNamespace: storyNamespace
-                                    )
-                                    .environmentObject(videoPlayer)
-                                    .zIndex(1)
-                                }
+//                                if showStory{
+//                                    StoryView(
+//                                        showStory: $showStory,
+//                                        allow3dRotation: $allow3dRotation,
+//                                        selectedStory: $selectedStory,
+//                                        storiesList: vm.event.storiesList,
+//                                        storyNamespace: storyNamespace
+//                                    )
+//                                    .environmentObject(videoPlayer)
+//                                    .zIndex(1)
+//                                }
+                
+                Color.black.opacity(showStory ? opacity : 0).ignoresSafeArea()
+                
+                if showStory{
+                    StoryFullScreenViewer(
+                        storiesBundle: $vm.stories,
+                        opacity: $opacity,
+                        showStory: $showStory,
+                        isInternalThumbnailShown: $isInternalThumbnailShown,
+                        selectedStory: $selectedStory,
+                        timerProgress: $timerProgress,
+                        thumbnailNamespace: thumbnailNamespace,
+                        storyNamespace: storyNamespace
+                    )
+                    .zIndex(10)
+                    
+                }
                 
                 
 //                if showStory {

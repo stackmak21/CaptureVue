@@ -43,4 +43,14 @@ struct StoryItem: Identifiable{
     var isVideo: Bool {
         return self.type == .video
     }
+    
+    func toStoryBundle() -> StoryBundle{
+        return StoryBundle(
+            id: self.id,
+            stories: [Story(imageURL: self.url)],
+            previewUrl: self.url,
+            type: self.type,
+            creator: self.creator
+        )
+    }
 }

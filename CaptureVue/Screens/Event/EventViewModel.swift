@@ -30,8 +30,14 @@ class EventViewModel: BaseViewModel {
     let eventId: String
     var videoUrl: String = ""
     
+    @Published var stories: [StoryBundle] = []
     
-    @Published var event: Event = Event()
+    
+    @Published var event: Event = Event() {
+        didSet{
+            stories = event.storyBundles
+        }
+    }
     @Published var isLoading: Bool = false
     
     @Published var isMediaPickerPresented: Bool = false
