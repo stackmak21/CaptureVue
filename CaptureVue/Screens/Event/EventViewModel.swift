@@ -30,6 +30,8 @@ class EventViewModel: BaseViewModel {
     let eventId: String
     var videoUrl: String = ""
     
+    @Published var myString: String = ""
+    
     @Published var stories: [StoryBundle] = []
     
     
@@ -103,9 +105,7 @@ class EventViewModel: BaseViewModel {
         }
     }
     
-    func goBack(){
-        router.dismissScreen()
-    }
+
     
     func fetchCustomerEvent() {
             let task = Task{
@@ -180,4 +180,35 @@ class EventViewModel: BaseViewModel {
         isPhotoPickerPresented = true
     }
     
+}
+
+
+//MARK: - Navigation
+
+extension EventViewModel{
+    
+    func goBack(){
+        router.dismissScreen()
+    }
+    
+    func showAlert(){
+        router.showAlert(.alert, title: "Title", subtitle: "Subtitle") {
+            TextField("TextField", text: Binding(get: { self.myString }, set: { self.myString = $0 }))
+        }
+    }
+    
+    func uploadBanner(){
+        router.showModal(
+            transition: .move(edge: .bottom),
+            animation: .easeInOut(duration: 0.2),
+            alignment: .center,
+            backgroundColor: .black.opacity(0.1),
+            dismissOnBackgroundTap: true,
+            ignoreSafeArea: true,
+            destination: {
+                RoundedRectangle(cornerRadius: 8)
+                    .frame(width: 200, height: 200)
+            }
+        )
+    }
 }

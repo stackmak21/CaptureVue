@@ -92,6 +92,8 @@ struct EventScreen: View {
                             Spacer()
                             Button(
                                 action: {
+                                    vm.showAlert()
+//                                    vm.uploadBanner()
 //                                    let imageSaver = ImageSaver()
 //                                    if let imagetoUpload = imageToUpload{
 //                                        imageSaver.writeToPhotoAlbum(image: imagetoUpload)
@@ -152,23 +154,23 @@ struct EventScreen: View {
 //                                .zIndex(1)
                                 
                                 
-//                                StoryThumbnailView(
-//                                    storiesList: vm.event.storiesList,
-//                                    storyNamespace: storyNamespace,
-//                                    showStory: $showStory,
-//                                    selectedStory: $selectedStory,
-//                                    onAddstoryClick: { vm.isMediaPickerPresented.toggle() }
-//                                )
-//                                .padding(.vertical)
-                                
-                                StoryCarousel(
-                                    storyBundles: $vm.stories,
+                                StoryThumbnailView(
+                                    storiesList: vm.event.storiesList,
+                                    storyNamespace: storyNamespace,
                                     showStory: $showStory,
-                                    isInternalThumbnailShown: $isInternalThumbnailShown,
                                     selectedStory: $selectedStory,
-                                    thumbnailNamespace: thumbnailNamespace,
-                                    storyNamespace: storyNamespace
+                                    onAddstoryClick: { vm.isMediaPickerPresented.toggle() }
                                 )
+                                .padding(.vertical)
+                                
+//                                StoryCarousel(
+//                                    storyBundles: $vm.stories,
+//                                    showStory: $showStory,
+//                                    isInternalThumbnailShown: $isInternalThumbnailShown,
+//                                    selectedStory: $selectedStory,
+//                                    thumbnailNamespace: thumbnailNamespace,
+//                                    storyNamespace: storyNamespace
+//                                )
                                 
                                 
                                 HStack{
@@ -306,34 +308,34 @@ struct EventScreen: View {
                     
                 }
                 
-//                                if showStory{
-//                                    StoryView(
-//                                        showStory: $showStory,
-//                                        allow3dRotation: $allow3dRotation,
-//                                        selectedStory: $selectedStory,
-//                                        storiesList: vm.event.storiesList,
-//                                        storyNamespace: storyNamespace
-//                                    )
-//                                    .environmentObject(videoPlayer)
-//                                    .zIndex(1)
-//                                }
+                                if showStory{
+                                    StoryView(
+                                        showStory: $showStory,
+                                        allow3dRotation: $allow3dRotation,
+                                        selectedStory: $selectedStory,
+                                        storiesList: vm.event.storiesList,
+                                        storyNamespace: storyNamespace
+                                    )
+                                    .environmentObject(videoPlayer)
+                                    .zIndex(1)
+                                }
                 
                 Color.black.opacity(showStory ? opacity : 0).ignoresSafeArea()
                 
-                if showStory{
-                    StoryFullScreenViewer(
-                        storiesBundle: $vm.stories,
-                        opacity: $opacity,
-                        showStory: $showStory,
-                        isInternalThumbnailShown: $isInternalThumbnailShown,
-                        selectedStory: $selectedStory,
-                        timerProgress: $timerProgress,
-                        thumbnailNamespace: thumbnailNamespace,
-                        storyNamespace: storyNamespace
-                    )
-                    .zIndex(10)
-                    
-                }
+//                if showStory{
+//                    StoryFullScreenViewer(
+//                        storiesBundle: $vm.stories,
+//                        opacity: $opacity,
+//                        showStory: $showStory,
+//                        isInternalThumbnailShown: $isInternalThumbnailShown,
+//                        selectedStory: $selectedStory,
+//                        timerProgress: $timerProgress,
+//                        thumbnailNamespace: thumbnailNamespace,
+//                        storyNamespace: storyNamespace
+//                    )
+//                    .zIndex(10)
+//                    
+//                }
                 
                 
 //                if showStory {
