@@ -55,6 +55,7 @@ struct GalleryListView: View {
                             }
                             
                             .transition(.scale(scale: 0.99))
+
                             .onTapGesture {
                                 selectedGalleryItem = galleryItem.id
 //                                withAnimation(.easeInOut(duration: 0.1)){

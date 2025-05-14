@@ -17,6 +17,9 @@ struct TestGalleryItem: View {
     
     @State var showGallery: Bool = false
     
+    @State var offsetY: CGFloat = 0
+    @State var scale: CGFloat = 0
+    
     let columns: [GridItem] = [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())]
     
     var body: some View {
@@ -27,14 +30,32 @@ struct TestGalleryItem: View {
                         ZStack{
                             Rectangle()
                                 .frame(height: 200)
-                            ImageLoader(url: item.publicUrl)
-                                .matchedGeometryEffect(id: item.id, in: galleryNamespace)
-                                .frame(height: 200)
+                            if !showGallery && item.id != selectedImage?.id ?? "" {
+                                ImageLoader(url: item.publicUrl)
+                                    .matchedGeometryEffect(id: item.id, in: galleryNamespace)
+                                    .frame(height: 200)
+                            }
+                                
                         }
                         .transition(.scale(scale: 0.99))
                         .onTapGesture {
                             selectedImage = item
-                            showGallery = true
+                            withAnimation(.spring(response: 0.6, dampingFraction: 0.8), {
+                                showGallery = true
+                                offsetY = 300
+                                scale = 0.4
+                            }, completion: {
+                                withAnimation(.spring(response: 0.2, dampingFraction: 2)) {
+                                    offsetY = 0
+                                    scale = 1
+                                }
+                            })
+//                            withAnimation(.spring(response: 0.5, dampingFraction: 0.8)) {
+//                                offsetY = 300 // push down
+//                                scale = 0.95
+//                                showGallery = true
+//                            }
+                            
                         }
                     }
                 }
@@ -45,12 +66,19 @@ struct TestGalleryItem: View {
                         .matchedGeometryEffect(id: image.id, in: galleryNamespace)
                 }
                 .transition(.scale(scale: 0.99))
+                .offset(y: offsetY)
+                .scaleEffect(scale)
                 .onTapGesture {
-                    showGallery = false
+                    withAnimation(.spring(response: 0.5, dampingFraction: 0.8)) {
+                        offsetY = 0 // push down
+                        scale = 1
+                        showGallery = false
+                        selectedImage = nil
+                    }
                 }
             }
         }
-        .animation(.spring(duration: 1), value: showGallery)
+//        .animation(.spring(duration: 1), value: showGallery)
     }
 }
 

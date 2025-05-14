@@ -128,7 +128,8 @@ struct EventScreen: View {
                                     Spacer()
                                     
                                     Button {
-                                        isQRCodeSheetPresented = true
+//                                        isQRCodeSheetPresented = true
+                                        Thread.sleep(forTimeInterval: 3)
                                     } label: {
                                         Image(systemName: "qrcode.viewfinder")
                                             .resizable()
