@@ -180,7 +180,6 @@
 		F9F306192D42AE0C00E41995 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F306182D42AE0C00E41995 /* HomeViewModel.swift */; };
 		F9F3061D2D42CABD00E41995 /* EventsDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F3061C2D42CABD00E41995 /* EventsDto.swift */; };
 		F9F306202D437E9C00E41995 /* CreateEventRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F3061F2D437E9C00E41995 /* CreateEventRequest.swift */; };
-		F9F306252D44FC8000E41995 /* CreateEventInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F306242D44FC8000E41995 /* CreateEventInteractor.swift */; };
 		F9F306262D44FC8000E41995 /* CreateEventViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F306232D44FC8000E41995 /* CreateEventViewModel.swift */; };
 		F9F306272D44FC8000E41995 /* CreateEventScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F306222D44FC8000E41995 /* CreateEventScreen.swift */; };
 		F9F306292D4651A500E41995 /* CreateEventResponseDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F306282D4651A500E41995 /* CreateEventResponseDto.swift */; };
@@ -374,7 +373,6 @@
 		F9F3061F2D437E9C00E41995 /* CreateEventRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateEventRequest.swift; sourceTree = "<group>"; };
 		F9F306222D44FC8000E41995 /* CreateEventScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateEventScreen.swift; sourceTree = "<group>"; };
 		F9F306232D44FC8000E41995 /* CreateEventViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateEventViewModel.swift; sourceTree = "<group>"; };
-		F9F306242D44FC8000E41995 /* CreateEventInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateEventInteractor.swift; sourceTree = "<group>"; };
 		F9F306282D4651A500E41995 /* CreateEventResponseDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateEventResponseDto.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -1168,7 +1166,6 @@
 			children = (
 				F9F306222D44FC8000E41995 /* CreateEventScreen.swift */,
 				F9F306232D44FC8000E41995 /* CreateEventViewModel.swift */,
-				F9F306242D44FC8000E41995 /* CreateEventInteractor.swift */,
 			);
 			path = CreateEvent;
 			sourceTree = "<group>";
@@ -1358,7 +1355,6 @@
 				F99773962D67D73C00D14332 /* ValidateEventUseCase.swift in Sources */,
 				F96983022CF5207C00CC3C55 /* LoginViewModel.swift in Sources */,
 				F99773E92D6E616E00D14332 /* IntExtensions.swift in Sources */,
-				F9F306252D44FC8000E41995 /* CreateEventInteractor.swift in Sources */,
 				F9F306262D44FC8000E41995 /* CreateEventViewModel.swift in Sources */,
 				F909281E2DA384CA0074FC57 /* LocalNotificationCenter.swift in Sources */,
 				F9F306272D44FC8000E41995 /* CreateEventScreen.swift in Sources */,

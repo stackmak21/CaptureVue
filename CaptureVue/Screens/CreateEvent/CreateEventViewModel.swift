@@ -23,7 +23,7 @@ class CreateEventViewModel: BaseViewModel {
     
     @Published var isLoading: Bool = false
     
-    @Published var eventName: String = "paris birthday SWIFT"
+    @Published var eventName: String = "Paris Birthday"
     @Published var eventImage: UIImage?
     @Published var eventDescription: String = ""
     @Published var authorizeGuests: Bool = false

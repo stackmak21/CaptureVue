@@ -40,12 +40,12 @@ struct TestGalleryItem: View {
                         .transition(.scale(scale: 0.99))
                         .onTapGesture {
                             selectedImage = item
-                            withAnimation(.spring(response: 0.6, dampingFraction: 0.8), {
+                            withAnimation(.easeInOut(duration: 0.12), {
                                 showGallery = true
                                 offsetY = 300
                                 scale = 0.4
                             }, completion: {
-                                withAnimation(.spring(response: 0.2, dampingFraction: 2)) {
+                                withAnimation(.easeInOut(duration: 0.12)){
                                     offsetY = 0
                                     scale = 1
                                 }
@@ -69,7 +69,7 @@ struct TestGalleryItem: View {
                 .offset(y: offsetY)
                 .scaleEffect(scale)
                 .onTapGesture {
-                    withAnimation(.spring(response: 0.5, dampingFraction: 0.8)) {
+                    withAnimation(.spring(response: 0.2, dampingFraction: 0.8)) {
                         offsetY = 0 // push down
                         scale = 1
                         showGallery = false

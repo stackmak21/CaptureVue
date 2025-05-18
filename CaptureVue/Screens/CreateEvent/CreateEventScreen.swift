@@ -33,9 +33,20 @@ struct CreateEventScreen: View {
             GeometryReader{ proxy in
                 VStack(spacing: 0){
                     HStack{
-                        Text("Paris Birthday")
-                            .font(Typography.bold(size: 20))
-                            .frame(maxWidth: .infinity, alignment: .center)
+                        TextField(text: $vm.eventName) {
+                            Text("Paris Birthday")
+                                .font(Typography.bold(size: 20))
+                                .multilineTextAlignment(.center)
+                                .frame(maxWidth: .infinity, alignment: .center)
+                                
+                        }
+                        .font(Typography.bold(size: 20))
+                        .multilineTextAlignment(.center)
+                        .frame(maxWidth: .infinity, alignment: .center)
+                        
+//                        Text("Paris Birthday")
+//                            .font(Typography.bold(size: 20))
+//                            .frame(maxWidth: .infinity, alignment: .center)
                     }
                     .overlay(alignment: .trailing) {
                         Button(
@@ -70,7 +81,7 @@ struct CreateEventScreen: View {
                                 Image(uiImage: image)
                                     .resizable()
                                     .frame(height: proxy.size.height/3)
-                                    .scaledToFit()
+                                    .scaledToFill()
                                     .clipShape(RoundedRectangle(cornerRadius: 12))
                                     .padding()
                                     .shadow(color: .black, radius: 6, x: 2, y: 4)

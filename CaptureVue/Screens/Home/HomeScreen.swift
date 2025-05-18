@@ -64,51 +64,22 @@ struct HomeScreen: View {
                         }
                         .buttonStyle(PlainButtonStyle())
                     }
-                    ForEach(vm.hostEvents, id: \.id){ event in
-                        Button(
-                            action: {
-                                vm.goToEvent(eventId: event.id)
-                            },
-                            label: {
-                                VStack{
-                                    HStack{
-                                        
-                                        if !event.mainImage.isEmpty {
-                                                ImageLoader(
-                                                    url: event.mainImage
-                                                )
-                                                .frame(width: 40, height: 40)
-                                                    
-                                                    .clipShape(RoundedRectangle(cornerRadius: 8))
-                                            }
-//                                            ImageLoader(url: event.mainImage)
-//                                                .frame(width: 40, height: 40)
-//                                                .clipShape(RoundedRectangle(cornerRadius: 8))
-                                            
-                                        else{
-                                            RoundedRectangle(cornerRadius: 8)
-                                                .frame(width: 40, height: 40)
-                                        }
-                                        Text(event.eventName)
-                                            .font(Typography.medium(size: 16))
-                                    }
-                                    .padding(EdgeInsets(top: 6, leading: 10, bottom: 6, trailing: 10))
-                                    .background(.gray.opacity(0.6))
-                                    .clipShape(RoundedRectangle(cornerRadius: 8))
-                                    
-                                    
-                                }
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                            }
-                        )
-                        .buttonStyle(PlainButtonStyle())
-                        
-                    }
+                    EventListings(
+                        events: vm.hostEvents,
+                        onEventClick: {
+                            vm.goToEvent(eventId: $0.id)
+                        }
+                    )
                     Divider()
                         .padding(.vertical)
                     titleWithCounter(title: "Participating Events", counter: vm.participatingEvents.count)
                         .frame(maxWidth: .infinity, alignment: .leading)
-                    
+                    EventListings(
+                        events: vm.participatingEvents,
+                        onEventClick: {
+                            vm.goToEvent(eventId: $0.id)
+                        }
+                    )
                     Spacer()
                 }
                 .padding()
@@ -162,5 +133,55 @@ struct HomeScreen: View {
 #Preview {
     RouterView{ router in
         HomeScreen(router: router, client: NetworkClient(), customerRepositoryMock: CustomerRepositoryMock())
+    }
+}
+
+
+struct EventListings: View {
+    
+    let events: [Event]
+    let onEventClick: (Event) -> Void
+    
+    var body: some View {
+        ForEach(events, id: \.id){ event in
+            Button(
+                action: {
+                    onEventClick(event)
+                },
+                label: {
+                    VStack{
+                        HStack{
+                            
+                            if !event.mainImage.isEmpty {
+                                    ImageLoader(
+                                        url: event.mainImage
+                                    )
+                                    .frame(width: 40, height: 40)
+                                        
+                                        .clipShape(RoundedRectangle(cornerRadius: 8))
+                                }
+//                                            ImageLoader(url: event.mainImage)
+//                                                .frame(width: 40, height: 40)
+//                                                .clipShape(RoundedRectangle(cornerRadius: 8))
+                                
+                            else{
+                                RoundedRectangle(cornerRadius: 8)
+                                    .frame(width: 40, height: 40)
+                            }
+                            Text(event.eventName)
+                                .font(Typography.medium(size: 16))
+                        }
+                        .padding(EdgeInsets(top: 6, leading: 10, bottom: 6, trailing: 10))
+                        .background(.gray.opacity(0.6))
+                        .clipShape(RoundedRectangle(cornerRadius: 8))
+                        
+                        
+                    }
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                }
+            )
+            .buttonStyle(PlainButtonStyle())
+            
+        }
     }
 }
