@@ -16,6 +16,7 @@ struct Customer: Codable {
     let createdAt: Int64
     let isVerified: Bool
     let isGuest: Bool
+    let password: String
     
     init(
         id: String = "",
@@ -24,7 +25,8 @@ struct Customer: Codable {
         lastName: String = "",
         createdAt: Int64 = 0,
         isVerified: Bool = false,
-        isGuest: Bool = false
+        isGuest: Bool = false,
+        password: String = ""
     ) {
         self.id = id
         self.email = email
@@ -33,5 +35,6 @@ struct Customer: Codable {
         self.createdAt = createdAt
         self.isVerified = isVerified
         self.isGuest = isGuest
+        self.password = password
     }
 }

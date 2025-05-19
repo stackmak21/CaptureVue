@@ -336,8 +336,8 @@
             filePath = "CaptureVue/Screens/Event/EventViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "35"
-            endingLineNumber = "35"
+            startingLineNumber = "37"
+            endingLineNumber = "37"
             landmarkName = "EventViewModel"
             landmarkType = "3">
          </BreakpointContent>
@@ -368,9 +368,9 @@
             filePath = "CaptureVue/Screens/Event/EventViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "74"
-            endingLineNumber = "74"
-            landmarkName = "init(router:client:eventRepositoryMock:galleryRepositoryMock:downloadRepositoryMock:eventId:)"
+            startingLineNumber = "75"
+            endingLineNumber = "75"
+            landmarkName = "init(router:client:eventRepositoryMock:galleryRepositoryMock:downloadRepositoryMock:authRepositoryMock:eventId:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -416,9 +416,9 @@
             filePath = "CaptureVue/Screens/Event/EventViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "73"
-            endingLineNumber = "73"
-            landmarkName = "init(router:client:eventRepositoryMock:galleryRepositoryMock:downloadRepositoryMock:eventId:)"
+            startingLineNumber = "74"
+            endingLineNumber = "74"
+            landmarkName = "init(router:client:eventRepositoryMock:galleryRepositoryMock:downloadRepositoryMock:authRepositoryMock:eventId:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -493,9 +493,9 @@
             filePath = "CaptureVue/Screens/Event/EventViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "75"
-            endingLineNumber = "75"
-            landmarkName = "init(router:client:eventRepositoryMock:galleryRepositoryMock:downloadRepositoryMock:eventId:)"
+            startingLineNumber = "76"
+            endingLineNumber = "76"
+            landmarkName = "init(router:client:eventRepositoryMock:galleryRepositoryMock:downloadRepositoryMock:authRepositoryMock:eventId:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

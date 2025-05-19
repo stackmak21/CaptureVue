@@ -22,4 +22,8 @@ class AuthRepositoryMock: AuthRepositoryContract {
         return .success(RegisterResponse(token: "Test Token", refreshAccessToken: "Refresh Token", customer: Customer()))
     }
     
+    func updateUsername(_ username: String) async -> Result<UpdateGuestUsernameResponse, CaptureVueError>{
+        return .success(UpdateGuestUsernameResponse(guestCustomer: Customer()))
+    }
+    
 }

@@ -13,16 +13,16 @@ import UIKit
 
 @main
 struct CaptureVueApp: App {
-
+    
     @UIApplicationDelegateAdaptor var appDelegate: UIAppDelegate
-
+    
     
     @Environment(\.scenePhase) var scenePhase
     
     let client: NetworkClient = NetworkClient()
     
     init(){
-//        configureNavigationBar()
+        //        configureNavigationBar()
     }
     
     var body: some Scene {
@@ -30,64 +30,66 @@ struct CaptureVueApp: App {
             
             RouterView { router in
                 SplashScreen(router: router, client: client)
-//                SwiftStoriesTestView()
-                    
+                //                SwiftStoriesTestView()
+                
                     .onOpenURL(perform: { url in
-                        let eventId = url.lastPathComponent
                         // capturevue://http://www.capturevue.com/event/cp-10001
-                        print(eventId)
-                        router.showScreen(.push) { router in
-                            CoverScreen(router: router, client: client, eventId: eventId)
+                        if let eventId = url.absoluteString.components(separatedBy: "://").last {
+                            router.showScreen(.push) { router in
+                                CoverScreen(router: router, client: client, eventId: eventId)
+                            }
                         }
+                        
+                        
                     })
-                    
+                
                     .onAppear{
                         NotificationManager.requestPermissions()
                     }
                 
-//                LoginScreen(router: router, dataService: dataService)
-//                EventHomeScreen(router: router, dataService: dataService, event: DeveloperPreview.instance.event)
+                //                LoginScreen(router: router, dataService: dataService)
+                //                EventHomeScreen(router: router, dataService: dataService, event: DeveloperPreview.instance.event)
             }
-
-//            TestTabViewOpening()
-//            let dev = DeveloperPreview.instance
-//            let dataService = DataServiceImpl()
-//            RouterView{ router in
-//                EventHomeScreen(router: router, dataService: dataService, event: dev.event)
-////                LoginScreen(router: router, dataService: dataService)
-//            }
             
-           
+            //            TestTabViewOpening()
+            //            let dev = DeveloperPreview.instance
+            //            let dataService = DataServiceImpl()
+            //            RouterView{ router in
+            //                EventHomeScreen(router: router, dataService: dataService, event: dev.event)
+            ////                LoginScreen(router: router, dataService: dataService)
+            //            }
+            
+            
         }
     }
-//    
-//    private func configureNavigationBar() {
-//        let backgroundColor = UIColor(Color.blue)
-//        let foregroundColor = UIColor(Color.white)
-//        
-//        let coloredAppearance = UINavigationBarAppearance()
-//        coloredAppearance.configureWithOpaqueBackground()
-//        coloredAppearance.backgroundColor = backgroundColor
-//        coloredAppearance.titleTextAttributes = [.foregroundColor: foregroundColor]
-//        coloredAppearance.largeTitleTextAttributes = [.foregroundColor: foregroundColor]
-//        
-//        UINavigationBar.appearance().standardAppearance = coloredAppearance
-//        UINavigationBar.appearance().compactAppearance = coloredAppearance
-//        UINavigationBar.appearance().scrollEdgeAppearance = coloredAppearance
-//        UINavigationBar.appearance().tintColor = foregroundColor
-//    }
+    //
+    //    private func configureNavigationBar() {
+    //        let backgroundColor = UIColor(Color.blue)
+    //        let foregroundColor = UIColor(Color.white)
+    //
+    //        let coloredAppearance = UINavigationBarAppearance()
+    //        coloredAppearance.configureWithOpaqueBackground()
+    //        coloredAppearance.backgroundColor = backgroundColor
+    //        coloredAppearance.titleTextAttributes = [.foregroundColor: foregroundColor]
+    //        coloredAppearance.largeTitleTextAttributes = [.foregroundColor: foregroundColor]
+    //
+    //        UINavigationBar.appearance().standardAppearance = coloredAppearance
+    //        UINavigationBar.appearance().compactAppearance = coloredAppearance
+    //        UINavigationBar.appearance().scrollEdgeAppearance = coloredAppearance
+    //        UINavigationBar.appearance().tintColor = foregroundColor
+    //    }
 }
 
 
 final class UIAppDelegate: NSObject, UIApplicationDelegate {
-
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
         
         return true
     }
     
     
-
+    
     func applicationWillTerminate(_ application: UIApplication) {
         do{
             let tempFilesUrl = FileManager.default.temporaryDirectory
@@ -98,11 +100,11 @@ final class UIAppDelegate: NSObject, UIApplicationDelegate {
         catch(let error){
             print("Delete Error: \(error)")
         }
-            
+        
     }
-
-
+    
+    
     func application(_ application: UIApplication, didDiscardSceneSessions sceneSessions: Set<UISceneSession>) {
-
+        
     }
 }

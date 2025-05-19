@@ -16,7 +16,7 @@ class DeveloperPreview {
     
     private init() {
         
-        let creatorInstance: CustomerDto = CustomerDto(id: "vdskkoskfowubuyydw8i", email: "parhsmakrhs@gmail.com", firstName: "Paris", lastName: "Makris", createdAt: 1730197765000, isVerified: true, isGuest: false)
+        let creatorInstance: CustomerDto = CustomerDto(id: "vdskkoskfowubuyydw8i", email: "parhsmakrhs@gmail.com", firstName: "Paris", lastName: "Makris", createdAt: 1730197765000, isVerified: true, isGuest: false, password: "password")
         
         eventDto = EventDto(
             id: "cp-12345",

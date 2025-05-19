@@ -62,4 +62,15 @@ class AuthApi {
         )
         return response
     }
+    
+    func updateUsername(_ updateUsernameRequest: GuestCustomerNameRequest) async -> Result<UpdateGuestUsernameResponseDto, CaptureVueResponseRaw> {
+        let requestBody = try? JSONEncoder().encode(updateUsernameRequest)
+        let response: Result<UpdateGuestUsernameResponseDto, CaptureVueResponseRaw> =  await client.execute(
+            url: "api/v1/customer/updateGuestName",
+            httpMethod: .post,
+            headers: ["Content-Type" : "application/json"],
+            requestBody: requestBody
+        )
+        return response
+    }
 }

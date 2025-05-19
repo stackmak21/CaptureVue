@@ -67,8 +67,8 @@ struct EventScreen: View {
     @Namespace var galleryNamespace
     
     
-    init(router: AnyRouter, client: NetworkClient, eventRepositoryMock: EventRepositoryContract? = nil, galleryRepositoryMock: GalleryRepositoryContract? = nil, downloadRepositoryMock: DownloadRepositoryMock? = nil, eventId: String ) {
-        _vm = StateObject(wrappedValue: EventViewModel(router: router, client: client, eventRepositoryMock: eventRepositoryMock , galleryRepositoryMock: galleryRepositoryMock, downloadRepositoryMock: downloadRepositoryMock,eventId: eventId ))
+    init(router: AnyRouter, client: NetworkClient, eventRepositoryMock: EventRepositoryContract? = nil, galleryRepositoryMock: GalleryRepositoryContract? = nil, downloadRepositoryMock: DownloadRepositoryMock? = nil, authRepositoryMock: AuthRepositoryMock? = nil, eventId: String ) {
+        _vm = StateObject(wrappedValue: EventViewModel(router: router, client: client, eventRepositoryMock: eventRepositoryMock , galleryRepositoryMock: galleryRepositoryMock, downloadRepositoryMock: downloadRepositoryMock, authRepositoryMock: authRepositoryMock, eventId: eventId ))
     }
     
     var body: some View {
@@ -370,6 +370,26 @@ struct EventScreen: View {
                 UploadprogressBanner(progress: $vm.uploadProgress, filesToUpload: vm.filesToUpload)
             }
         })
+        .sheet(isPresented: $vm.isUsernameSheetPresented, content: {
+            VStack{
+                Text("You have to provide a username to continue")
+                    .font(Typography.medium(size: 14))
+                    .foregroundStyle(Color.black)
+                TextField("Enter your username", text: $vm.username)
+                    .textFieldStyle(.roundedBorder)
+                    .padding()
+                Button(action: {
+                    vm.onUsernameSubmit(username: vm.username)
+                },
+                       label: {
+                    Text("Submit")
+                })
+                
+            }
+            .padding(.horizontal)
+            .presentationDetents([.fraction(0.5)])
+            .presentationDragIndicator(.visible)
+        })
         .sheet(isPresented: $vm.isMediaPickerPresented, content: {
             HStack{
                 Button(
@@ -464,7 +484,7 @@ struct EventScreen: View {
 #Preview {
     
     RouterView{ router in
-        EventScreen(router: router, client: NetworkClient(), eventRepositoryMock: EventRepositoryMock(), galleryRepositoryMock: GalleryRepositoryMock(), downloadRepositoryMock: DownloadRepositoryMock(), eventId: "cp-12345")
+        EventScreen(router: router, client: NetworkClient(), eventRepositoryMock: EventRepositoryMock(), galleryRepositoryMock: GalleryRepositoryMock(), downloadRepositoryMock: DownloadRepositoryMock(), authRepositoryMock: AuthRepositoryMock(), eventId: "cp-12345")
     }
     //    UploadprogressBanner(progress: 70, filesUploaded: 1, filesToUpload: 5)
 }

@@ -15,6 +15,7 @@ struct CustomerDto: Codable, Identifiable{
     let createdAt: Int64?
     let isVerified: Bool?
     let isGuest: Bool?
+    let password: String?
     
     
     enum CodingKeys: String, CodingKey{
@@ -25,6 +26,7 @@ struct CustomerDto: Codable, Identifiable{
         case createdAt
         case isVerified
         case isGuest
+        case password
     }
     
     func toCustomer() -> Customer {

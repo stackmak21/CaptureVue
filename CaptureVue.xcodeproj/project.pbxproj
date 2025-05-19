@@ -172,6 +172,9 @@
 		F9E699302D818CAA00B4A1E1 /* CameraCaptureButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9E6992F2D818CAA00B4A1E1 /* CameraCaptureButton.swift */; };
 		F9E699362D857AD800B4A1E1 /* ImageExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9E699352D857AD800B4A1E1 /* ImageExtensions.swift */; };
 		F9E699382D857FC100B4A1E1 /* CapturePhotoProccessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9E699372D857FC100B4A1E1 /* CapturePhotoProccessor.swift */; };
+		F9F1D55B2DDA883400662F31 /* UpdateUsernameUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F1D55A2DDA883400662F31 /* UpdateUsernameUseCase.swift */; };
+		F9F1D55D2DDA8A6800662F31 /* GuestCustomerNameRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F1D55C2DDA8A6800662F31 /* GuestCustomerNameRequest.swift */; };
+		F9F1D55F2DDA8AA300662F31 /* UpdateGuestUsernameResponseDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F1D55E2DDA8AA300662F31 /* UpdateGuestUsernameResponseDto.swift */; };
 		F9F3060C2D3FF3C400E41995 /* LoginResponseDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F3060B2D3FF3C400E41995 /* LoginResponseDto.swift */; };
 		F9F3060E2D417EE400E41995 /* Credentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F3060D2D417EE400E41995 /* Credentials.swift */; };
 		F9F306112D41A15100E41995 /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F306102D41A15100E41995 /* KeychainManager.swift */; };
@@ -364,6 +367,9 @@
 		F9E6992F2D818CAA00B4A1E1 /* CameraCaptureButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraCaptureButton.swift; sourceTree = "<group>"; };
 		F9E699352D857AD800B4A1E1 /* ImageExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageExtensions.swift; sourceTree = "<group>"; };
 		F9E699372D857FC100B4A1E1 /* CapturePhotoProccessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapturePhotoProccessor.swift; sourceTree = "<group>"; };
+		F9F1D55A2DDA883400662F31 /* UpdateUsernameUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateUsernameUseCase.swift; sourceTree = "<group>"; };
+		F9F1D55C2DDA8A6800662F31 /* GuestCustomerNameRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuestCustomerNameRequest.swift; sourceTree = "<group>"; };
+		F9F1D55E2DDA8AA300662F31 /* UpdateGuestUsernameResponseDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateGuestUsernameResponseDto.swift; sourceTree = "<group>"; };
 		F9F3060B2D3FF3C400E41995 /* LoginResponseDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginResponseDto.swift; sourceTree = "<group>"; };
 		F9F3060D2D417EE400E41995 /* Credentials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Credentials.swift; sourceTree = "<group>"; };
 		F9F306102D41A15100E41995 /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
@@ -782,6 +788,8 @@
 				F9F3060D2D417EE400E41995 /* Credentials.swift */,
 				F99773772D6630D800D14332 /* LoginRequestBody.swift */,
 				F9954A6B2DAC6585007E6590 /* RefreshTokenRequestBody.swift */,
+				F9F1D55C2DDA8A6800662F31 /* GuestCustomerNameRequest.swift */,
+				F9F1D55E2DDA8AA300662F31 /* UpdateGuestUsernameResponseDto.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -856,6 +864,7 @@
 				F99773952D67D73C00D14332 /* ValidateEventUseCase.swift */,
 				F99773D02D6A719E00D14332 /* CreateEventUseCase.swift */,
 				F992C8C22DC7CB3300EDC798 /* RegisterUserUseCase.swift */,
+				F9F1D55A2DDA883400662F31 /* UpdateUsernameUseCase.swift */,
 			);
 			path = Authentication;
 			sourceTree = "<group>";
@@ -1370,6 +1379,7 @@
 				F9954A6C2DAC6585007E6590 /* RefreshTokenRequestBody.swift in Sources */,
 				F9A9E08D2CE67432003DB166 /* DateExtensions.swift in Sources */,
 				F99773942D67D6C000D14332 /* EventRepositoryContract.swift in Sources */,
+				F9F1D55D2DDA8A6800662F31 /* GuestCustomerNameRequest.swift in Sources */,
 				F997738D2D67B1C500D14332 /* HomeResponse.swift in Sources */,
 				F99773D12D6A719E00D14332 /* CreateEventUseCase.swift in Sources */,
 				F9F306202D437E9C00E41995 /* CreateEventRequest.swift in Sources */,
@@ -1423,8 +1433,10 @@
 				F9A9E0802CE52E22003DB166 /* EventViewModel.swift in Sources */,
 				F99773712D5BE4E600D14332 /* LocalNotificationManager.swift in Sources */,
 				F942636B2D77862E00A55A15 /* HttpUrlResponseExtensions.swift in Sources */,
+				F9F1D55B2DDA883400662F31 /* UpdateUsernameUseCase.swift in Sources */,
 				F99773882D67991B00D14332 /* CustomerRepositoryMock.swift in Sources */,
 				F99773982D67D75C00D14332 /* EventRepositoryMock.swift in Sources */,
+				F9F1D55F2DDA8AA300662F31 /* UpdateGuestUsernameResponseDto.swift in Sources */,
 				F9F3060C2D3FF3C400E41995 /* LoginResponseDto.swift in Sources */,
 				F9954A6A2DABDD61007E6590 /* TabViewTest.swift in Sources */,
 				F96982FA2CF3530D00CC3C55 /* GalleryListView.swift in Sources */,

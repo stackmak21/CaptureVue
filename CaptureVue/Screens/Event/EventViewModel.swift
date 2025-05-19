@@ -22,7 +22,9 @@ class EventViewModel: BaseViewModel {
     private let router: AnyRouter
     private var tasks: [Task<Void, Never>] = []
     
+    private let keychain: KeychainManager = KeychainManager()
     private let client: NetworkClient
+    private let updateUsernameUseCase: UpdateUsernameUseCase
     private let fetchEventUseCase: FetchEventUseCase
     private let assetUploadHelper: AssetUploadHelper
     private let assetDownloadHelper: AssetDownloadHelper
@@ -49,13 +51,12 @@ class EventViewModel: BaseViewModel {
     @Published var uploadProgress: Double = 0
     @Published var filesToUpload: Int = 0
     
+    @Published var isUsernameSheetPresented: Bool = false
+    
+    @Published var username: String = ""
+    
     @Published var selectedFiles: [PhotosPickerItem] = [] {
-        didSet{
-            filesToUpload = selectedFiles.count
-            if !selectedFiles.isEmpty{
-                uploadFiles(selectedFiles, section: .gallery)
-            }
-        }
+        didSet{ usernameCheck() }
     }
     
     @Published var selectedStoryItem: [PhotosPickerItem] = [] {
@@ -74,6 +75,7 @@ class EventViewModel: BaseViewModel {
         eventRepositoryMock: EventRepositoryContract? = nil,
         galleryRepositoryMock: GalleryRepositoryContract? = nil,
         downloadRepositoryMock: DownloadRepositoryMock? = nil,
+        authRepositoryMock: AuthRepositoryMock? = nil,
         eventId: String
     ) {
         self.router = router
@@ -82,11 +84,50 @@ class EventViewModel: BaseViewModel {
         self.fetchEventUseCase = FetchEventUseCase(client: client, eventRepositoryMock: eventRepositoryMock)
         self.assetUploadHelper = AssetUploadHelper(client: client, galleryRepositoryMock: galleryRepositoryMock)
         self.assetDownloadHelper = AssetDownloadHelper(client: client, downloadRepositoryMock: downloadRepositoryMock)
+        self.updateUsernameUseCase = UpdateUsernameUseCase(client: client, authRepositoryMock: authRepositoryMock)
     }
     
     deinit {
         tasks.forEach{$0.cancel()}
         print("View Model Deinit")
+    }
+    
+    func usernameCheck() {
+        if let user: Customer =  keychain.getData(key: .customer) {
+            if user.firstName.isEmpty && !user.isGuest{
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.6){
+                    self.isUsernameSheetPresented = true
+                }
+            }
+            else{
+                uploadSelectedGalleryFiles()
+            }
+        }
+    }
+    
+    func onUsernameSubmit(username: String){
+        let task = Task{
+            setLoading()
+            defer { resetLoading() }
+            let response = await updateUsernameUseCase.invoke(username)
+            switch response {
+            case .success(let updateUsernameResponse):
+                keychain.saveData(updateUsernameResponse.guestCustomer, key: .customer)
+                isUsernameSheetPresented = false
+                usernameCheck()
+            case .failure(let error):
+                Banner(message: error.msg ?? "" , bannerType: .error, bannerDuration: .long, action: nil)
+            }
+        }
+        
+        tasks.append(task)
+    }
+    
+    func uploadSelectedGalleryFiles(){
+        filesToUpload = selectedFiles.count
+        if !selectedFiles.isEmpty{
+            uploadFiles(selectedFiles, section: .gallery)
+        }
     }
     
     func openCamera(){

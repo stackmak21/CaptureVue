@@ -58,4 +58,15 @@ class AuthRepository: AuthRepositoryContract {
         .mapError({$0.toCaptureVueError()})
     }
     
+    func updateUsername(_ username: String) async -> Result<UpdateGuestUsernameResponse, CaptureVueError>{
+        return await authApi.updateUsername(
+            GuestCustomerNameRequest(
+                username: username,
+                deviceId: keychain.get(key: .deviceId) ?? ""
+            )
+        )
+        .map({ $0.toUpdateGuestUsernameResponse() })
+        .mapError({$0.toCaptureVueError()})
+    }
+    
 }
