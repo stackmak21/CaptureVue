@@ -39,13 +39,20 @@ struct HomeScreen: View {
                                 Text("Join")
                                     .foregroundStyle(Color.white)
                                     .font(Typography.medium(size: 12))
-                                 
                             }
                             .padding(EdgeInsets(top: 4, leading: 6, bottom: 4, trailing: 6))
                             .background(Color.gray)
                             .clipShape(RoundedRectangle(cornerRadius: 4))
                         }
                         .buttonStyle(PlainButtonStyle())
+                        Button(
+                            action: {
+                                vm.goToSettings()
+                            },
+                            label: {
+                                Image(systemName: "gear")
+                            }
+                        )
                     }
                     HStack{
                         titleWithCounter(title: "Hosting Events", counter: vm.hostEvents.count)

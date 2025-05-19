@@ -104,6 +104,12 @@ extension HomeViewModel {
         }
     }
     
+    func goToSettings() {
+        router.showScreen(.push){ router in
+            SettingsScreen(router: router, client: self.client)
+        }
+    }
+    
     func dismissScreenStack() {
         router.dismissEnvironment()
     }

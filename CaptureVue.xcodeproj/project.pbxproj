@@ -176,6 +176,8 @@
 		F9F1D55D2DDA8A6800662F31 /* GuestCustomerNameRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F1D55C2DDA8A6800662F31 /* GuestCustomerNameRequest.swift */; };
 		F9F1D55F2DDA8AA300662F31 /* UpdateGuestUsernameResponseDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F1D55E2DDA8AA300662F31 /* UpdateGuestUsernameResponseDto.swift */; };
 		F9F1D5612DDB93CC00662F31 /* UserDefaultManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F1D5602DDB93CC00662F31 /* UserDefaultManager.swift */; };
+		F9F1D5642DDBA23C00662F31 /* SettingsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F1D5632DDBA23C00662F31 /* SettingsScreen.swift */; };
+		F9F1D5662DDBA26000662F31 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F1D5652DDBA26000662F31 /* SettingsViewModel.swift */; };
 		F9F3060C2D3FF3C400E41995 /* LoginResponseDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F3060B2D3FF3C400E41995 /* LoginResponseDto.swift */; };
 		F9F3060E2D417EE400E41995 /* Credentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F3060D2D417EE400E41995 /* Credentials.swift */; };
 		F9F306112D41A15100E41995 /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F306102D41A15100E41995 /* KeychainManager.swift */; };
@@ -372,6 +374,8 @@
 		F9F1D55C2DDA8A6800662F31 /* GuestCustomerNameRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuestCustomerNameRequest.swift; sourceTree = "<group>"; };
 		F9F1D55E2DDA8AA300662F31 /* UpdateGuestUsernameResponseDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateGuestUsernameResponseDto.swift; sourceTree = "<group>"; };
 		F9F1D5602DDB93CC00662F31 /* UserDefaultManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultManager.swift; sourceTree = "<group>"; };
+		F9F1D5632DDBA23C00662F31 /* SettingsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsScreen.swift; sourceTree = "<group>"; };
+		F9F1D5652DDBA26000662F31 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		F9F3060B2D3FF3C400E41995 /* LoginResponseDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginResponseDto.swift; sourceTree = "<group>"; };
 		F9F3060D2D417EE400E41995 /* Credentials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Credentials.swift; sourceTree = "<group>"; };
 		F9F306102D41A15100E41995 /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
@@ -1026,6 +1030,7 @@
 		F9A5623C2CBA8D1000634C7A /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				F9F1D5622DDBA21600662F31 /* Settings */,
 				F953B24B2CC8274B0058C2BD /* OnBoarding */,
 				F9C3141C2DAF71D70034CA06 /* Cover */,
 				F9A5623F2CBA8D6400634C7A /* Splash */,
@@ -1153,6 +1158,15 @@
 				F9C314282DB2FDE70034CA06 /* FetchEventCoverUseCase.swift */,
 			);
 			path = FetchEventCover;
+			sourceTree = "<group>";
+		};
+		F9F1D5622DDBA21600662F31 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				F9F1D5632DDBA23C00662F31 /* SettingsScreen.swift */,
+				F9F1D5652DDBA26000662F31 /* SettingsViewModel.swift */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 		F9F3060F2D41A14900E41995 /* Keychain */ = {
@@ -1405,6 +1419,7 @@
 				F9A9E07E2CE52E10003DB166 /* EventScreen.swift in Sources */,
 				F99773C12D6929EC00D14332 /* AuthRepositoryContract.swift in Sources */,
 				F992C8BF2DC7C85700EDC798 /* RegisterResponse.swift in Sources */,
+				F9F1D5642DDBA23C00662F31 /* SettingsScreen.swift in Sources */,
 				F9A562442CBABA4200634C7A /* SplashViewModel.swift in Sources */,
 				F99773902D67D65000D14332 /* EventApi.swift in Sources */,
 				F99773AC2D686D6000D14332 /* AwsDirectUploadUrl.swift in Sources */,
@@ -1413,6 +1428,7 @@
 				F99773E12D6E266400D14332 /* PrepareUploadData.swift in Sources */,
 				F99773B32D68CE0300D14332 /* BaseViewModel.swift in Sources */,
 				F9954A612DA9A534007E6590 /* SwiftUIView.swift in Sources */,
+				F9F1D5662DDBA26000662F31 /* SettingsViewModel.swift in Sources */,
 				F99773752D66309800D14332 /* LoginResponse.swift in Sources */,
 				F9A9E0752CE2AF77003DB166 /* EventDto.swift in Sources */,
 				F99772252D4CCFEE00D14332 /* SwipeBackGestures.swift in Sources */,
