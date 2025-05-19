@@ -10,6 +10,17 @@ import SwiftfulRouting
 import SwiftUI
 
 
+struct CreateEventDraft: Codable {
+    var eventName: String = ""
+    var eventDescription: String = ""
+    var authorizeGuests: Bool = false
+    var guestsGallery: Bool = false
+    var guestsNum: Int = 0
+    var startDate: Date = .now
+    var endDate: Date = .now
+}
+
+
 @MainActor
 class CreateEventViewModel: BaseViewModel {
    
@@ -35,6 +46,12 @@ class CreateEventViewModel: BaseViewModel {
     @Published var videoURL: URL?
     
     
+    @Published var draft: CreateEventDraft = CreateEventDraft() {
+        didSet{
+            UserDefaultManager.shared.saveData(data: draft, key: .createEventDraft)
+        }
+    }
+    
     
 
     
@@ -46,6 +63,9 @@ class CreateEventViewModel: BaseViewModel {
         self.router = router
         self.client = client
         self.createEventUseCase = CreateEventUseCase(client: client, eventRepositoryMock: eventRepositoryMock)
+        if let draft: CreateEventDraft = UserDefaultManager.shared.fetchData(key: .createEventDraft){
+            self.draft = draft
+        }
     }
     
     deinit {

@@ -33,7 +33,7 @@ struct CreateEventScreen: View {
             GeometryReader{ proxy in
                 VStack(spacing: 0){
                     HStack{
-                        TextField(text: $vm.eventName) {
+                        TextField(text: $vm.draft.eventName) {
                             Text("Paris Birthday")
                                 .font(Typography.bold(size: 20))
                                 .multilineTextAlignment(.center)
@@ -133,7 +133,7 @@ struct CreateEventScreen: View {
                             
                             Slider(value: $sliderValue, in: 0...Double(sliderSteps.count - 1), step: 1)
                                 .onChange(of: sliderValue) { _, newValue in
-                                    vm.guestsNum = Int(sliderSteps[Int(sliderValue)])
+                                    vm.draft.guestsNum = Int(sliderSteps[Int(sliderValue)])
                                 }
                             
                             SectionItem(
@@ -148,7 +148,7 @@ struct CreateEventScreen: View {
                             SectionItem(
                                 message: "Authorize Guest",
                                 leadingIcon: { LeadingSectionIcon("person.badge.key") },
-                                action: { Toggle(isOn: $vm.authorizeGuests, label: {}) }
+                                action: { Toggle(isOn: $vm.draft.authorizeGuests, label: {}) }
                             )
                             
                             Divider()
@@ -156,7 +156,7 @@ struct CreateEventScreen: View {
                             SectionItem(
                                 message: "Guests Gallery",
                                 leadingIcon: { LeadingSectionIcon("lock.open") },
-                                action: { Toggle(isOn: $vm.guestsGallery, label: {}) }
+                                action: { Toggle(isOn: $vm.draft.guestsGallery, label: {}) }
                             )
                             
                             Divider()
@@ -165,7 +165,7 @@ struct CreateEventScreen: View {
                                 message: "Start Date",
                                 leadingIcon: { LeadingSectionIcon("calendar") },
                                 action: {
-                                    DatePicker(selection: $vm.startDate) {}
+                                    DatePicker(selection: $vm.draft.startDate) {}
                                         .datePickerStyle(.compact)
                                         .accentColor(Color.red)
                                         .frame(maxWidth: .infinity, alignment: .leading)
@@ -178,7 +178,7 @@ struct CreateEventScreen: View {
                                 message: "End Date",
                                 leadingIcon: { LeadingSectionIcon("calendar") },
                                 action: {
-                                    DatePicker(selection: $vm.endDate) {}
+                                    DatePicker(selection: $vm.draft.endDate) {}
                                         .datePickerStyle(.compact)
                                         .accentColor(Color.red)
                                         .frame(maxWidth: .infinity, alignment: .leading)
@@ -193,7 +193,7 @@ struct CreateEventScreen: View {
                                 .frame(maxWidth: .infinity, alignment: .leading)
                                 .padding(.top, 10)
                             
-                            TextField(text: $vm.eventDescription) {
+                            TextField(text: $vm.draft.eventDescription) {
                                 Text("Event Description")
                             }
                             .frame(minHeight: 50)

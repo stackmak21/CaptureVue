@@ -175,6 +175,7 @@
 		F9F1D55B2DDA883400662F31 /* UpdateUsernameUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F1D55A2DDA883400662F31 /* UpdateUsernameUseCase.swift */; };
 		F9F1D55D2DDA8A6800662F31 /* GuestCustomerNameRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F1D55C2DDA8A6800662F31 /* GuestCustomerNameRequest.swift */; };
 		F9F1D55F2DDA8AA300662F31 /* UpdateGuestUsernameResponseDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F1D55E2DDA8AA300662F31 /* UpdateGuestUsernameResponseDto.swift */; };
+		F9F1D5612DDB93CC00662F31 /* UserDefaultManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F1D5602DDB93CC00662F31 /* UserDefaultManager.swift */; };
 		F9F3060C2D3FF3C400E41995 /* LoginResponseDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F3060B2D3FF3C400E41995 /* LoginResponseDto.swift */; };
 		F9F3060E2D417EE400E41995 /* Credentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F3060D2D417EE400E41995 /* Credentials.swift */; };
 		F9F306112D41A15100E41995 /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9F306102D41A15100E41995 /* KeychainManager.swift */; };
@@ -370,6 +371,7 @@
 		F9F1D55A2DDA883400662F31 /* UpdateUsernameUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateUsernameUseCase.swift; sourceTree = "<group>"; };
 		F9F1D55C2DDA8A6800662F31 /* GuestCustomerNameRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuestCustomerNameRequest.swift; sourceTree = "<group>"; };
 		F9F1D55E2DDA8AA300662F31 /* UpdateGuestUsernameResponseDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateGuestUsernameResponseDto.swift; sourceTree = "<group>"; };
+		F9F1D5602DDB93CC00662F31 /* UserDefaultManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultManager.swift; sourceTree = "<group>"; };
 		F9F3060B2D3FF3C400E41995 /* LoginResponseDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginResponseDto.swift; sourceTree = "<group>"; };
 		F9F3060D2D417EE400E41995 /* Credentials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Credentials.swift; sourceTree = "<group>"; };
 		F9F306102D41A15100E41995 /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
@@ -466,6 +468,7 @@
 				F927D1992CF1AFFC00EB7650 /* VideoPlayer */,
 				F953B25D2CC96C130058C2BD /* Camera */,
 				F9503AC92CD6C5ED00DDD4F0 /* Networking */,
+				F9F1D5602DDB93CC00662F31 /* UserDefaultManager.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -1473,6 +1476,7 @@
 				F9954A522DA8F545007E6590 /* DownloadRepositoryContract.swift in Sources */,
 				F953B2672CD3CDE20058C2BD /* PermissionAlertStatus.swift in Sources */,
 				F9C3141E2DAF71F80034CA06 /* CoverScreen.swift in Sources */,
+				F9F1D5612DDB93CC00662F31 /* UserDefaultManager.swift in Sources */,
 				F99772382D5491AB00D14332 /* GalleryItemDto.swift in Sources */,
 				F99773862D6798D600D14332 /* CustomerApi.swift in Sources */,
 				F9A9E09A2CE8A21C003DB166 /* DeveloperPreview.swift in Sources */,
