@@ -13,7 +13,7 @@ import SwiftfulRouting
 @MainActor
 class SettingsViewModel: BaseViewModel {
     
-    private let router: AnyRouter
+    let router: AnyRouter
     private var tasks: [Task<Void, Never>] = []
     
     private let client: NetworkClient

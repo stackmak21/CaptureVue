@@ -212,7 +212,7 @@ struct CreateEventScreen: View {
                             
                             Button(
                                 action: {
-                                    vm.publishEvent()
+                                    vm.usernameCheck()
                                 },
                                 label: {
                                     Text("Publish")
@@ -245,7 +245,30 @@ struct CreateEventScreen: View {
                     .controlSize(.regular)
             }
         }
+        .sheet(isPresented: $vm.isUsernameSheetPresented, content: {
+            VStack{
+                Text("You have to provide a username to continue")
+                    .font(Typography.medium(size: 14))
+                    .foregroundStyle(Color.black)
+                TextField("Enter your username", text: $vm.username)
+                    .textFieldStyle(.roundedBorder)
+                    .padding()
+                Button(action: {
+                    vm.onUsernameSubmit(username: vm.username)
+                },
+                       label: {
+                    Text("Submit")
+                })
+                
+            }
+            .padding(.horizontal)
+            .presentationDetents([.fraction(0.5)])
+            .presentationDragIndicator(.visible)
+        })
         .navigationBarBackButtonHidden(true)
+        .onDisappear {
+            vm.saveDraft()
+        }
     }
     
     private func loadVideo() async {

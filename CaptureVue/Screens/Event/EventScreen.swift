@@ -456,6 +456,12 @@ struct EventScreen: View {
             
         }
         .onAppear( perform: vm.fetchCustomerEvent)
+        .onChange(of: vm.uploadProgress) { oldValue, newValue in
+            print("Upload Progress Old: \(oldValue) , Upload Progress New: \(newValue)")
+            if newValue == 100 {
+                vm.uploadProgress = 0
+            }
+        }
     }
     
     

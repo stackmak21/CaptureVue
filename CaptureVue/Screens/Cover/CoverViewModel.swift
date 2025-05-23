@@ -11,7 +11,7 @@ import SwiftfulRouting
 
 class CoverViewModel: BaseViewModel{
     
-    private let router: AnyRouter
+    let router: AnyRouter
     private var tasks: [Task<Void, Never>] = []
     
     private let client: NetworkClient
@@ -74,7 +74,7 @@ class CoverViewModel: BaseViewModel{
                 switch response {
                 case .success(let fetchedEvent):
                     self.event = fetchedEvent
-                    showBanner(message: "Success Event Cover", .info)
+                    showBanner(message: "Success Event Cover", bannerType: .info, bannerDuration: .short)
                 case .failure(let error):
                     showBanner(message: error.msg ?? "empty message")
                 }
@@ -83,17 +83,7 @@ class CoverViewModel: BaseViewModel{
         tasks.append(task)
     }
     
-    private func showBanner(message: String, _ bannerType: BannerType = .error, _ bannerDuration: BannerDuration = .long, action: BannerAction? = nil) {
-        router.showModal(
-            transition: .move(edge: .bottom),
-            animation: .easeInOut,
-            alignment: .bottom,
-            backgroundColor: .black.opacity(0.1),
-            dismissOnBackgroundTap: true,
-            ignoreSafeArea: false,
-            destination: { Banner(message: message, bannerType: bannerType, bannerDuration: bannerDuration, action: action) }
-        )
-    }
+
     
     func goToEvent(){
         router.showScreen(.push) { router in

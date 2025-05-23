@@ -57,7 +57,7 @@ struct GalleryApi {
                         Headers.xAmzMetaEvent.rawValue : eventId
                     ],
                     requestBody: fileData,
-                    onUploadProgressUpdate: { onUploadProgressUpdate?($0) },
+                    onUploadProgressUpdate: onUploadProgressUpdate,
                     onUploadComplete: {}
                 )
         }

@@ -12,7 +12,7 @@ import SwiftfulRouting
 @MainActor
 class HomeViewModel: BaseViewModel {
     
-    private let router: AnyRouter
+    let router: AnyRouter
     private var tasks: [Task<Void, Never>] = []
     private var cancellables =  Set<AnyCancellable>()
     

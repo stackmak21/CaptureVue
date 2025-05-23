@@ -15,7 +15,7 @@ class OnBoardingViewModel: BaseViewModel {
     
     @Published var isLoading: Bool = false
     
-    private let router: AnyRouter
+    let router: AnyRouter
     private var tasks: [Task<Void, Never>] = []
     private var cancellables: Set<AnyCancellable> = []
     

@@ -103,7 +103,7 @@ class AssetUploadHelper{
         let response = await getAwsDirectUploadUrlUseCase.invoke(uploadInfo: uploadInfo)
         switch response {
         case .success(let response):
-            await uploadAwsFile(uploadUrl: response.url, uploadInfo: uploadInfo, onUploadProgressUpdate: { progress in  Task{ @MainActor in self.onUploadProgressUpdate?(progress) } })
+            await uploadAwsFile(uploadUrl: response.url, uploadInfo: uploadInfo, onUploadProgressUpdate: onUploadProgressUpdate)
             await notifyNewAssetUploadUseCase.invoke(assetUploadRequest: uploadInfo.toNotifyNewAssetRequest())
             let deletedSuccesfully = await deleteTempFileUseCase.invoke(fileName: uploadInfo.fileName)
             print("deleted successfully: \(deletedSuccesfully)")

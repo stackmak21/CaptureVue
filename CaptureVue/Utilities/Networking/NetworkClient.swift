@@ -301,8 +301,10 @@ class NetworkClient: NSObject {
                 log.warning("Data SIZE: \(string)")
             }
             
+            let uploadProgressHandler = UploadProgressHandler(onProgressChange: onUploadProgressUpdate)
+            
             guard let requestBodyData = requestBody else { throw NetworkError.invalidRequest }
-            let (_, response) = try await URLSession.shared.upload(for: request, from: requestBodyData, delegate: self)
+            let (_, response) = try await URLSession.shared.upload(for: request, from: requestBodyData, delegate: uploadProgressHandler)
             guard let urlResponse = response as? HTTPURLResponse, urlResponse.isSuccess else { throw NetworkError.badResponse  }
             
             
@@ -317,20 +319,29 @@ class NetworkClient: NSObject {
     
 }
 
-extension NetworkClient: URLSessionTaskDelegate {
-
-    private func urlSession(
+class UploadProgressHandler: NSObject, URLSessionTaskDelegate {
+    
+    let onProgressChange: ((Int) -> Void)?
+    
+    init(
+        onProgressChange: ((Int) -> Void)? = nil
+    ){
+        self.onProgressChange = onProgressChange
+    }
+    
+    func urlSession(
         _ session: URLSession,
         task: URLSessionTask,
         didSendBodyData bytesSent: Int64,
         totalBytesSent: Int64,
-        totalBytesExpectedToSend: Int64) async {
+        totalBytesExpectedToSend: Int64){
+            log.error("URL SESSION DATA EXECUTED", showCurrentThread: true)
             let uploadProgressFloat = Float(totalBytesSent) / Float(totalBytesExpectedToSend)
             let uploadProgressInt = Int(uploadProgressFloat * 100)
-            onUploadProgressUpdate?(uploadProgressInt)
+            onProgressChange?(uploadProgressInt)
         }
-    
 }
+
 
 
 

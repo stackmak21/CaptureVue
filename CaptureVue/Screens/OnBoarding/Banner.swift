@@ -15,16 +15,20 @@ struct Banner: View {
     let bannerDuration: BannerDuration
     let action: BannerAction?
     
+    let onDismiss: (() -> Void)?
+    
     init(
         message: String,
         bannerType: BannerType,
         bannerDuration: BannerDuration,
-        action: BannerAction?
+        action: BannerAction?,
+        onDismiss: (() -> Void)? = nil
     ) {
         self.message = message
         self.bannerType = bannerType
         self.bannerDuration = bannerDuration
         self.action = action
+        self.onDismiss = onDismiss
     }
     
     
@@ -68,14 +72,14 @@ struct Banner: View {
         }
         
         .padding()
-//        .onAppear{
-//            DispatchQueue.main.asyncAfter(deadline: .now() + bannerDuration.duration) {
-//                self.router.dismissModal()
-//            }
-//        }
-//        .onTapGesture {
-//            self.router.dismissModal()
-//        }
+        .onAppear{
+            DispatchQueue.main.asyncAfter(deadline: .now() + bannerDuration.duration) {
+                onDismiss?()
+            }
+        }
+        .onTapGesture {
+            onDismiss?()
+        }
     }
 
     

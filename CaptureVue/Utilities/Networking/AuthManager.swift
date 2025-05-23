@@ -161,7 +161,7 @@ class AuthManager{
                 }
             }
             catch(let error){
-                print("\(#function)", error)
+                log.error(error.localizedDescription)
             }
         }
     

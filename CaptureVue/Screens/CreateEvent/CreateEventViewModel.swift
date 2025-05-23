@@ -12,6 +12,7 @@ import SwiftUI
 
 struct CreateEventDraft: Codable {
     var eventName: String = ""
+    var eventImage: Data = Data()
     var eventDescription: String = ""
     var authorizeGuests: Bool = false
     var guestsGallery: Bool = false
@@ -24,12 +25,14 @@ struct CreateEventDraft: Codable {
 @MainActor
 class CreateEventViewModel: BaseViewModel {
    
-    private let router: AnyRouter
+    let router: AnyRouter
+    private let keychain: KeychainManager = KeychainManager()
     private var tasks: [Task<Void, Never>] = []
     
     private let client: NetworkClient
     // Use Cases
     private let createEventUseCase: CreateEventUseCase
+    private let updateUsernameUseCase: UpdateUsernameUseCase
     
     
     @Published var isLoading: Bool = false
@@ -46,11 +49,10 @@ class CreateEventViewModel: BaseViewModel {
     @Published var videoURL: URL?
     
     
-    @Published var draft: CreateEventDraft = CreateEventDraft() {
-        didSet{
-            UserDefaultManager.shared.saveData(data: draft, key: .createEventDraft)
-        }
-    }
+    @Published var draft: CreateEventDraft = CreateEventDraft()
+    
+    @Published var isUsernameSheetPresented: Bool = false
+    @Published var username: String = ""
     
     
 
@@ -58,25 +60,20 @@ class CreateEventViewModel: BaseViewModel {
     init(
         router: AnyRouter,
         client: NetworkClient,
-        eventRepositoryMock: EventRepositoryContract? = nil
+        eventRepositoryMock: EventRepositoryContract? = nil,
+        authRepositoryMock: AuthRepositoryMock? = nil
     ) {
         self.router = router
         self.client = client
         self.createEventUseCase = CreateEventUseCase(client: client, eventRepositoryMock: eventRepositoryMock)
-        if let draft: CreateEventDraft = UserDefaultManager.shared.fetchData(key: .createEventDraft){
-            self.draft = draft
-        }
+        self.updateUsernameUseCase = UpdateUsernameUseCase(client: client, authRepositoryMock: authRepositoryMock)
+        getDraft()
     }
     
     deinit {
         tasks.forEach{$0.cancel()}
     }
-    
-    func startUpload(fileUrl: URL) {
-//        mux.uploadVideoToMux(fileURL: fileUrl)
-    }
-    
-    
+
     
     func publishEvent() {
         let task = Task{
@@ -95,26 +92,38 @@ class CreateEventViewModel: BaseViewModel {
                     Banner(message: "Failed to create Data from Image", bannerType: .error, bannerDuration: .long, action: nil)
                 }
         }
-        
-//        let task = Task{
-//            do{
-//                let mainImage = UIImage(systemName: "square.and.arrow.up")?.jpegData(compressionQuality: 0.8)!
-//                let secondImage = eventImage?.jpegData(compressionQuality: 0.1)
-//                isLoading = true
-//                
-//                
-//                isLoading = false
-//                
-//                    
-//                
-//            }
-//            catch let error as CaptureVueErrorDto{
-//                isLoading = false
-//
-//            }
-//            
-//        }
-//        tasks.append(task)
+    }
+    
+    
+    func onUsernameSubmit(username: String){
+        let task = Task{
+            setLoading()
+            defer { resetLoading() }
+            let response = await updateUsernameUseCase.invoke(username)
+            switch response {
+            case .success(let updateUsernameResponse):
+                keychain.saveData(updateUsernameResponse.guestCustomer, key: .customer)
+                isUsernameSheetPresented = false
+                publishEvent()
+            case .failure(let error):
+                Banner(message: error.msg ?? "" , bannerType: .error, bannerDuration: .long, action: nil)
+            }
+        }
+        tasks.append(task)
+    }
+    
+    
+    func usernameCheck() {
+        if let user: Customer =  keychain.getData(key: .customer) {
+            if user.firstName.isEmpty && !user.isGuest{
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.6){
+                    self.isUsernameSheetPresented = true
+                }
+            }
+            else{
+                publishEvent()
+            }
+        }
     }
     
     
@@ -137,6 +146,22 @@ class CreateEventViewModel: BaseViewModel {
             guestsUploadVideo: nil,
             supportStories: true
         )
+    }
+    
+    func saveDraft(){
+        var imageData = Data()
+        if let eventImageData = eventImage?.jpegData(compressionQuality: 0.8){
+            imageData = eventImageData
+        }
+        draft.eventImage = imageData
+        UserDefaultManager.shared.saveData(data: draft, key: .createEventDraft)
+    }
+    
+    func getDraft(){
+        if let draft: CreateEventDraft = UserDefaultManager.shared.fetchData(key: .createEventDraft){
+            eventImage = UIImage(data: draft.eventImage)
+            self.draft = draft
+        }
     }
     
 //    func convertImageToData(image: Image) -> Data {

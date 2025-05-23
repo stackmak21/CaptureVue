@@ -19,7 +19,7 @@ import MobileCoreServices
 class EventViewModel: BaseViewModel {
     
     
-    private let router: AnyRouter
+    let router: AnyRouter
     private var tasks: [Task<Void, Never>] = []
     
     private let keychain: KeychainManager = KeychainManager()
@@ -94,6 +94,7 @@ class EventViewModel: BaseViewModel {
     
     func usernameCheck() {
         if let user: Customer =  keychain.getData(key: .customer) {
+            print("User first name: \(user.firstName.isEmpty)  &&  User isGuest: \(user.isGuest)")
             if user.firstName.isEmpty && !user.isGuest{
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.6){
                     self.isUsernameSheetPresented = true
@@ -171,7 +172,10 @@ class EventViewModel: BaseViewModel {
                     eventId: eventId,
                     section: section,
                     onUploadProgressUpdate: { [weak self] progress in
-                        self?.uploadProgress = Double(progress)
+                        print("progresss: \(progress)")
+                        Task { @MainActor in
+                            self?.uploadProgress = Double(progress)
+                        }
                     }
                 )
                 filesToUpload = 0
